@@ -1,4 +1,4 @@
-# RestaurantReservationSys
+RestaurantReservationSys
 Restaurant Reservation System
 
 Authors: Vince Tieu, Rhys Hall, Jason Wang
