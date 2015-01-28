@@ -1,5 +1,5 @@
 # RestaurantReservationSys#
 Restaurant Reservation System
-Authors: Vince Tieu, Rhys Hall, Jason Wang
-Group Name: Centaur Logic
-Created: Jan 27, 2015
+AUTHOR(S): Vince Tieu, Rhys Hall, Jason Wang
+GROUP NAME: Centaur Logic
+CREATED: Jan 27, 2015
