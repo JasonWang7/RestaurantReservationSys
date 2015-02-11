@@ -4,7 +4,7 @@ $servername ='localhost';
 $username ='root';
 $password = 'xxxx';
 
-$database = 'rss_reservation';
+$database = 'rrs_reservation';
 $dbConn = mysql_connect($servername, $username,$password); 
         
 if (!($dbConn)) {
