@@ -1,10 +1,16 @@
 <?php
+/**
+ * Database setup
+ * Creates all the tables for the project
+ * @author Jinhai Wang
+ * Date: Feb 10, 2015
+ */
 /*change your db login info*/
 $servername ='localhost';
 $username ='root';
 $password = 'xxxx';
 
-$database = 'rrs_reservation';
+$database = 'rss_reservation';
 $dbConn = mysql_connect($servername, $username,$password); 
         
 if (!($dbConn)) {
@@ -34,6 +40,7 @@ $query = "CREATE TABLE `user` (
     `address` text,
     `post code` text,
     `role` text NOT NULL,
+    `status` text NOT NULL default 'active',
     `rewardpoint` int NOT NULL default '0',
     `likes` text,
      PRIMARY KEY (`id`)
