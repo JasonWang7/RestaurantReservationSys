@@ -6,11 +6,13 @@
  * Date: Feb 10, 2015
  */
 /*change your db login info*/
-$servername ='localhost';
-$username ='root';
-$password = 'xxxx';
+require('../config.php');
 
-$database = 'rss_reservation';
+$servername = $configs['db_host_rrsframe'];
+$username = $configs['db_user_rrsframe'];
+$password = $configs['db_pass_rrsframe'];
+$database = $configs['db_name_rrsframe'];
+
 $dbConn = mysql_connect($servername, $username,$password); 
         
 if (!($dbConn)) {
@@ -40,7 +42,7 @@ $query = "CREATE TABLE `user` (
     `address` text,
     `post code` text,
     `role` text NOT NULL,
-    `status` text NOT NULL default 'active',
+    `status` varchar(50) NOT NULL default 'active',
     `rewardpoint` int NOT NULL default '0',
     `likes` text,
      PRIMARY KEY (`id`)
@@ -257,4 +259,17 @@ $query = "CREATE TABLE `subscription` (
 
 
 $result = mysql_query($query);
+
+/*insert default data*/
+$query = "insert into user (firstname,lastname,email,passwordHash,username,verified,role) values('','','','1234','admin',1,'super admin');";
+$result = mysql_query($query);
+
+if($result){
+    echo "<b>successfully set up database!</b><br><b>Please update amdin info and password asap.</b>";
+}
+else{
+  die('Could not create table: ' . mysql_error());
+  
+}
+mysql_close($dbConn);
 ?>
