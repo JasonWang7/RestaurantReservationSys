@@ -40,7 +40,7 @@ $query = "CREATE TABLE `user` (
     `verified` tinyint(1) NOT NULL default '0',
     `city` text NOT NULL,
     `address` text,
-    `post code` text,
+    `postcode` text,
     `role` text NOT NULL,
     `status` varchar(50) NOT NULL default 'active',
     `rewardpoint` int NOT NULL default '0',
@@ -261,7 +261,7 @@ $query = "CREATE TABLE `subscription` (
 $result = mysql_query($query);
 
 /*insert default data*/
-$query = "insert into user (firstname,lastname,email,passwordHash,username,verified,role) values('','','','1234','admin',1,'super admin');";
+$query = "insert into user (firstname,lastname,email,passwordHash,username,verified,role) values('','','admin@example.com','1234','admin',1,'super admin');";
 $result = mysql_query($query);
 
 if($result){
