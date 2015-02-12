@@ -51,7 +51,7 @@
 <a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Events/Promotions</a> 
 </p>
 
-<br><br><br>
+<br><br><br> 
 
 <!-- Style sheet obtained from http://bootsnipp.com/snippets/featured -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">

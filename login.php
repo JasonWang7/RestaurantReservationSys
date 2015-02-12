@@ -168,7 +168,7 @@
                                     <button class="btn btn-info" id="btn-signup" type="button"><i class="icon-hand-right"></i> &nbsp; Sign Up</button>
                                 </div>
                             </div>
-                        </form>
+                        </form> 
                     </div>
                 </div>
             </div>
