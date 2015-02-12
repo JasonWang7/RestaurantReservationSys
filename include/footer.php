@@ -11,40 +11,58 @@
 <html>
 <body>
 
+<!-- Large space between web body content and footer -->
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<hr>
+
 <!-- "About Us" link -->
 <p>
-<a href="" style="font-size: 15px; text-decoration: underline">About Us</a> 
-</p>
-
-<!-- "Dining Rewards" link -->
-<p>
-<a href="" style="font-size: 15px; text-decoration: underline">Dining Rewards</a> 
-</p>
-
-<!-- "Top Restaurants" link -->
-<p>
-<a href="" style="font-size: 15px; text-decoration: underline">Top Restaurants</a> 
-</p>
-
-<!-- "Invite Friends" link -->
-<p>
-<a href="" style="font-size: 15px; text-decoration: underline">Invite Friends</a> 
-</p>
-
-<!-- "Events/Promotions" link -->
-<p>
-<a href="" style="font-size: 15px; text-decoration: underline">Events/Promotions</a> 
+<a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp About Us</a> 
 </p>
 
 <br>
 
+<!-- "Dining Rewards" link -->
+<p>
+<a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Dining Rewards</a> 
+</p>
+
+<br>
+
+<!-- "Top Restaurants" link -->
+<p>
+<a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Top Restaurants</a> 
+</p>
+
+<br>
+
+<!-- "Invite Friends" link -->
+<p>
+<a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Invite Friends</a> 
+</p>
+
+<br>
+
+<!-- "Events/Promotions" link -->
+<p>
+<a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Events/Promotions</a> 
+</p>
+
+<br><br><br>
+
 <!-- Style sheet obtained from http://bootsnipp.com/snippets/featured -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-<div class="container">
-<h4>Share</h4>
+
+<!-- Social networking icons -->
+<h4>&nbsp &nbsp Share</h4>
 	<hr>
-                <a href="https://www.facebook.com/bootsnipp"><i id="social" class="fa fa-facebook-square fa-2x social-fb"></i></a> 
+			&nbsp &nbsp; 
+	
+            <a href="https://www.facebook.com/bootsnipp"><i id="social" class="fa fa-facebook-square fa-2x social-fb"></i></a> 
 				
 				<!-- space social network icons apart -->
 				&nbsp;
@@ -60,13 +78,13 @@
 	            <a href="mailto:bootsnipp@gmail.com"><i id="social" class="fa fa-envelope-square fa-2x social-em"></i></a>
 
     <hr>
-</div>
 
 </body>
 </html>
 
-<br><br><br>
-
-<p style="font-family:courier"><i>Copyright @2015. Centaur Logic</i></p>
-
 <br><br>
+<hr>
+
+<p style="font-family:courier"><i> &nbsp Copyright @2015. Centaur Logic</i></p>
+
+<hr>
