@@ -15,7 +15,7 @@ $userObj->setUserName($_POST["username"]);
 $result = $userObj->insertUser();
 if($result == true)
 {
-	echo 'successfully created account!';
+	echo 'successfully created account!'; 
 }
 
 ?>
