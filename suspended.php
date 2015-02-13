@@ -1,1 +1,1 @@
-<?php You account is suspended?>
+<?php Your account is suspended?>

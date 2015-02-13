@@ -2,7 +2,7 @@
 require_once('./authentication.class.php');
 $useremailval = $_POST["email"];	
 $passwordval = $_POST["password"];
-echo 'somehting';
+echo 'something';
 authentication::login($useremailval,$passwordval);
 
 
