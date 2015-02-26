@@ -94,6 +94,6 @@
 	}
 $route_info = parseRoute();
 echo '<pre>'.print_r($route_info, true).'</pre>';   //print array in readable format
-dispatch($route_info)
+dispatch($route_info);
 
 ?>
