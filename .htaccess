@@ -1,0 +1,18 @@
+#Author: Jinhai Wang
+#Date: Feb 25, 2015
+#
+#Note: please make rewrite module is on in httpd.conf file
+
+RewriteEngine On
+
+
+#if directory exist, not rewrite
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#if file exist, not rewrite
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#symbolix link
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.*)$ router.php?url=$1 [QSA,L]
