@@ -1,16 +1,66 @@
+/******************************************************************************************
+* File name: addRestaurant.css
+* Purpose: Provides styles to be applied to sections in "addRestaurant.php"
+* Author: Rhys Hall
+* Group Name: Centaur Logic
+* Created: February 25, 2015
+******************************************************************************************/
+
 #pageName{
 	background-color: #3385FF;
 	text-align: center;
+	padding: 0px 0px 0px 0px;
 }
 
 h2.white{
 	color: white;
 }
 
+h4.blue{
+	color: blue;
+}
+
 #content{
 	padding: 0px 0px 0px 25px; 
 }
 
-#mainButtons{
-	padding: 0px 0px 0px 170px;
+#instructions{
+	color: green;
+	padding: 70px 0px 35px 0px;
+}
+
+#restaurantName{
+	padding: 0px 0px 35px 0px;
+}
+
+#features{
+	padding: 0px 0px 35px 0px;
+	color: black;
+}
+
+#priceRange{
+	padding: 0px 0px 35px 0px
+}
+
+#hours{
+	padding: 0px 0px 35px 0px;
+	color: black;
+}
+
+#about{
+	padding: 0px 0px 35px 0px;
+}
+
+#website{
+	padding: 0px 0px 35px 0px;
+}
+
+#buttons{
+	padding: 20px 0px 5px 170px;
+	color: black;
+}
+
+#submitButton{
+	width: 75px;
+	height: 28px;
 }
