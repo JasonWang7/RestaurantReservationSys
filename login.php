@@ -15,10 +15,10 @@
                             </div>
 
 
-                            <form class="form-horizontal" id="loginform" name="loginform">
+                            <form class="form-horizontal" id="loginform" name="loginform" ACTION="loginhandler.php" METHOD=post>
                                 <div style="margin-bottom: 25px" class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="Username">                                        
+                                            <input id="login-username" type="text" class="form-control" name="email" value="" placeholder="Username">                                        
                                 </div>
                                     
                                 <div style="margin-bottom: 25px" class="input-group">
@@ -35,7 +35,7 @@
 
                                 <div class="form-group" style="margin-top:10px">
                                     <div class="col-sm-12 controls">
-                                        <a class="btn btn-success" href="#" id="btn-login">Login</a>
+                                       <button type="submit" class="btn btn-default">Submit</button>
                                     </div>
                                 </div>
 
