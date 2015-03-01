@@ -70,16 +70,16 @@
                                       if(isset($_SESSION['sess_username'])){
                                         echo "<h2>Welcome ".$_SESSION['sess_username'].'!</h2>';
                                     echo "you logged in as ", $_SESSION['sess_username'];
-                                    echo "<br/><a href='logout.php'>logout</a>";
+                                    echo "<br/><a href='logout'>logout</a>";
                                 }
                                 else{
-                                  echo '<li class="active"><a href="register.php">Sign Up</a></li>';
+                                  echo '<li class="active"><a href="register">Sign Up</a></li>';
                                 }
                               ?>
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu<span class="caret"></span></a>
                               <ul class="dropdown-menu" role="menu">
-                                <li><a href="login.php">Login</a></li>
+                                <li><a href="login">Login</a></li>
                                 <li><a href="#">Reservations</a></li>
                                 <li><a href="#">Account</a></li>
                                 <li><a href="#">Contact Us</a></li>

@@ -1,6 +1,7 @@
 <?php
-require_once('config.php');
-require_once('models/user.php');
+$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
+require_once($root.'config.php'); 
+require_once($root.'model/user.php');
 
 /***author: Jason Wang*****/
 
@@ -10,6 +11,17 @@ class mysqldatabaserrs{
 	private $dbusername = $configs['db_user_rrsframe'];
 	private $dbpassword = $configs['db_pass_rrsframe'];
 	private $databasename = $configs['db_name_rrsframe'];*/
+	private $dbhostname ="";
+	private $dbusername = "";
+	private $dbpassword = "";
+	private $databasename = "";
+	function __construct() { 
+
+    	$dbhostname =$configs['db_host_rrsframe'];
+		$dbusername = $configs['db_user_rrsframe'];
+		$dbpassword = $configs['db_pass_rrsframe'];
+		$databasename = $configs['db_name_rrsframe'];         
+    }
 	
 	/**
      * create database connection using crediential from config.php
@@ -20,6 +32,7 @@ class mysqldatabaserrs{
 		$dbname = 'rss_reservation';
 		$constring =  'mysql:host='.$host.';dbname='.$dbname ;
 		$connection = new PDO($constring, 'root', 'jasonwang');
+		
 
 		return $connection;
 	}

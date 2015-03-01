@@ -6,10 +6,13 @@
  */
  /*mvc setting config*/
  /*need to change password */
+
 $configs = array();
 $configs['db_host_rrsframe'] = 'localhost';
 $configs['db_user_rrsframe'] = 'root';
-$configs['db_pass_rrsframe'] = 'roadkill182';
+$configs['db_pass_rrsframe'] = 'jasonwang';
 $configs['db_name_rrsframe'] = 'rss_reservation';
+$configs['BASE_PATH'] = dirname(realpath(__FILE__)).'/';
+echo $configs['BASE_PATH'];
 
 ?>

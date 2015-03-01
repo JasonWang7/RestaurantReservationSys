@@ -1,4 +1,8 @@
-<?php include("include/header.php"); ?>
+<?php 
+$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
+include($root."view/include/header.php"); 
+
+?>
 <div class="row">
 	<div class="col-md-12">	
 		<form style="font-size:28px" class="navbar-form navbar-left" role="search">
@@ -9,7 +13,7 @@
 		        <button type="submit" class="btn btn-default">Submit</button>
 		</form>
 		<div style="font-size:28px" class="navbar-form navbar-right" role="search">
-			Or if you can't find one.	<a href="#">Add a Resturant</a>
+			Or if you can't find one.	<a href="addrestaurant">Add a Resturant</a>
 		</div>
 	</div>
 </div>
@@ -93,4 +97,6 @@
   </tbody>
 </table> 
 </div>
-<?php include("include/footer.php"); ?>
+<?php 
+$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
+include($root."view/include/footer.php"); ?>

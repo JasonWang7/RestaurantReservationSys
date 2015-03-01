@@ -13,7 +13,7 @@
 	<head>
 		<title>Add Restaurant</title>
 		
-		<link rel="stylesheet" type="text/css" href="addRestaurant.css">
+		<link rel="stylesheet" type="text/css" href="css/addRestaurant.css">
 	</head>
 	
 	<body>

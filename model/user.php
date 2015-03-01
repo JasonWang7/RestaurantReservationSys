@@ -1,8 +1,8 @@
 <?php
 /******author: Jason Wang*****/
-$root = $_SERVER['DOCUMENT_ROOT'];
-require_once($root.'/RRS/authentication.class.php');
-require_once($root.'/RRS/database.class.php');
+$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
+require_once($root.'util/authentication.class.php');
+require_once($root.'util/database.class.php');
 class user{
 	private $userid;
 	private $username;

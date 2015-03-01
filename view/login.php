@@ -1,4 +1,6 @@
-<?php include("include/header.php"); ?>
+<?php 
+
+include("include/header.php"); ?>
 
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" id="loginform" style="margin-top:30px;">
@@ -14,8 +16,9 @@
                             <div class="alert alert-danger col-sm-12" id="login-alert" style="display:none">
                             </div>
 
-
-                            <form class="form-horizontal" id="loginform" name="loginform" ACTION="loginhandler.php" METHOD=post>
+                            
+                            <form class="form-horizontal" id="loginform" name="loginform" ACTION="controller/loginhandler.php" METHOD=post>
+                            
                                 <div style="margin-bottom: 25px" class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                             <input id="login-username" type="text" class="form-control" name="email" value="" placeholder="Username">                                        
@@ -48,6 +51,7 @@
                                     </div>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>

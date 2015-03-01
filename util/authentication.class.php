@@ -1,6 +1,7 @@
 <?php
 /*****author: Jason Wang*******/
-require_once('database.class.php');
+$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
+require_once($root.'util/database.class.php');
 class authentication{
 	private $useremail;
 	private $password;
@@ -31,12 +32,14 @@ class authentication{
 		session_start();
 		$useremail = $email;
 		$password = $passwordparam;
+		$path = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 		/*if(!isset($this->post['email']) && $this->post['email']==''&&!isset($this->post['password']))*/
 		$isAuthenticated = false;
 		$isAutenticated = mysqldatabaserrs::verifyUser($email,authentication::encryptPass($password));
 		if($isAutenticated != true){  //user not fould or authenticated, redirect
 			
-			header('Location: logintest.php');
+			header('Location: '.$path.'loing');
+			echo $root;
 		}
 		else{
 			/***verified,retrive user info, generate session id, save value***/
@@ -50,7 +53,8 @@ class authentication{
 				$_SESSION['sess_useremail'] = $email;
 				$userInfo->getUserName();
 				session_write_close();
-				header('Location: index.php');
+				header('Location: /RRS/');
+
 			}
 			else{
 				header('Location: suspended.php');

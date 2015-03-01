@@ -11,17 +11,16 @@
 		$route =array();
 		//check if it is set, else return empty array
 		if (isset($_SERVER['REQUEST_URI'])) {      
-			echo $_SERVER['REQUEST_URI'];
+			//echo $_SERVER['REQUEST_URI'];
 			$requestPath = explode("?",$_SERVER['REQUEST_URI']); //splite parameter from path
 			//matching controll,id using regex
 			#$ca =   '/^([\w]+)\/([\w]+).*$/';           //  controller/id
 	        #$c =    '/^([\w]+).*$/';                    //  controller
 
 	        //find the base of script
-	        $route['base'] = rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/');
+	        $route['base'] = rtrim(dirname($_SERVER['REQUEST_URI']), '\/');
 	        $route['call_utf8'] = substr(urldecode($requestPath[0]), strlen($route['base']) + 1);
-	        $route['call'] = utf8_decode($route['call_utf8']);    //this will get controller/id 
-	        echo '<pre>'.print_r($route, true).'</pre>';       
+	        $route['call'] = utf8_decode($route['call_utf8']);    //this will get controller/id      
 	        //check if call to itself
 	        if ($route['call'] == basename($_SERVER['PHP_SELF'])) {
 		      $route['call'] = '';
@@ -61,59 +60,38 @@
 	*/
 	function dispatch($routeInfo){
 		$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
-		$controllerName = strtolower($routeInfo['call_parts'][0]);
-		
 		if(isset($routeInfo['call_parts'][0])){
 			$controllerName = strtolower($routeInfo['call_parts'][0]);
-
-			if(file_exists($root.'view/'.$routeInfo['call_parts'][0].".php")){
-				include($root.'view/'.$routeInfo['call_parts'][0].".php");
+			$temp = explode(".",$controllerName);
+			$controllerName  = $temp[0];
+			if($controllerName=='restaurant'){
+				include($root.'view/'.$controllerName.".php");
+			}
+			else if($controllerName=='user'){
+				include($root.'view/'.$controllerName.".php");
+			}
+			else if($controllerName=='account'){
+				include($root.'view/'.$controllerName.".php");
+			}
+			else if($controllerName=='register'){
+				include($root.'view/'.$controllerName.".php");
+			}
+			else if($controllerName=='review'){
+				include($root.'view/'.$controllerName.".php");
+			}
+			else if($controllerName=='book'){
+				include($root.'view/'.$controllerName.".php");
+			}
+			else if($controllerName=='addrestaurant'){
+				include($root.'view/'.$controllerName.".php");
+			}
+			else if($controllerName=='login'){
+				include($root.'view/'.$controllerName.".php");
 			}
 			else{
 				include($root.'view/404.php');
 			}
 		}
-		
-			
-			/*
-			if($controllerName=='restaurant'){
-				echo  "route to ".$routeInfo['call_parts'][0].".php";
-				include($root.'view/'.$routeInfo['call_parts'][0].".php");
-			}
-			else if($controllerName=='user'){
-				echo  "route to ".$routeInfo['call_parts'][0].".php";
-				include($root.'view/'.$routeInfo['call_parts'][0].".php");
-			}
-			else if($controllerName=='account'){
-				echo  "route to ".$routeInfo['call_parts'][0].".php";
-				include($root.'view/'.$routeInfo['call_parts'][0].".php");
-			}
-			else if($controllerName=='register'){
-				echo  "route to ".$routeInfo['call_parts'][0].".php";
-				include($root.'view/'.$routeInfo['call_parts'][0].".php");
-
-			}
-			else if($controllerName=='review'){
-				echo  "route to ".$routeInfo['call_parts'][0].".php";
-				include($root.'view/'.$routeInfo['call_parts'][0].".php");
-			}
-			else if($controllerName=='book'){
-				echo  "route to ".$routeInfo['call_parts'][0].".php";
-				include($root.'view/'.$routeInfo['call_parts'][0].".php");
-			}
-			else if($controllerName=='addrestaurant'){
-				echo  "route to ".$routeInfo['call_parts'][0].".php";
-				include($root.'view/'.$routeInfo['call_parts'][0].".php");
-			}
-			else if($controllerName=='login'){
-
-				echo  "route to ".$routeInfo['call_parts'][0].".php";
-				include($root.'view/'.$routeInfo['call_parts'][0].".php");
-			}
-			else{
-				include($root.'view/404.php');
-			}*/
-		
 	}
 $route_info = parseRoute();
 //echo '<pre>'.print_r($route_info, true).'</pre>';   //print array in readable format
