@@ -13,7 +13,7 @@
 	<head>
 		<title>Add Restaurant</title>
 		
-		<link rel="stylesheet" type="text/css" href="addRestaurant.css">
+		<link rel="stylesheet" type="text/css" href="/RRS/css/addRestaurant.css">
 	</head>
 	
 	<body>
@@ -33,7 +33,7 @@
 			
 			<!--main content of page-->
 			<div id="content">
-				<form action="controller/addRestaurantController.php" method="post">
+				<form action="/RRS/controller/addRestaurantController.php" method="post">
 				
 					<div id="instructions">
 						<div id="instructionsText">
