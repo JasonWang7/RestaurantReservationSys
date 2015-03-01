@@ -1,4 +1,35 @@
-<?php include("include/header.php"); ?>
+<?php 
+$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
+include($root."view/include/header.php"); 
+include($root ."util/database.class.php");
+?>
+<?php
+    $dbconn = mysqldatabaserrs::connectdb();
+    $query = "select * from restaurant where restaurantid=:profileid";
+
+    try {
+
+    $stmt = $dbconn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt ->bindParam(":profileid",$_GET['id']);
+    $stmt->execute();
+    
+    while($row = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT))
+    {
+      $name = $row[3];
+      $phone = $row[5];
+      $features = $row[6];
+      $price = $row[7];
+    }
+    $stmt = null;
+
+    }
+    catch (PDOException $e) {
+      print $e->getMessage();
+    }
+
+    mysqldatabaserrs::closeconnection($dbconn);
+?>
+
 <!-- Vincent Tieu created this page -->
 <!-- some things such as the tabbed pages are from the http://bootswatch.com/simplex/ examples -->
 
@@ -11,8 +42,8 @@
         </div>
         <div class="col-md-9">
                 <div class="row">
-                  <h2>Name of Whatever</h2>
-                  <h3>Phone: 519-412-3242 / Rating: 5 out of 5 (100)</h3>
+                  <h2><?php echo $name; ?></h2>
+                  <h3>Phone: <?php echo $phone; ?> / Rating: 5 out of 5</h3>
                 </div>
                 <div class="row">
                   <div class="btn-group btn-group-justified">
@@ -23,10 +54,10 @@
                   </div>
                 </div>
                 <div class="row">
-                  <h3>Kids, veggie, thai, good food, whatever, list of, stuff here</h3>
+                  <h3><?php echo $features; ?></h3>
                 </div>
                 <div class="row">
-                  <h3>Price Range: $1 - $100</h3>
+                  <h3>Price Range: <?php echo $price; ?></h3>
                 </div>
                 <div class="row">
                   <h3>Payment Methods: Credit card, Cash</h3>
