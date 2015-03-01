@@ -2,8 +2,7 @@
 <div class="row">
   <div class="col-12">  
     <div class="jumbotron">
-      <h2>Your account is currently suspended.</h2>
-      <p>Please proceed by emailing us at email@email.com</p>
+      <h1>Your reservation was successfully booked.</h1>
     </div>
   </div>
 </div>
