@@ -6,40 +6,80 @@
 * Created: February 25, 2015
 ******************************************************************************************/
 
+
 #pageName{
 	background-color: #3385FF;
 	text-align: center;
-	padding: 0px 0px 0px 0px;
+	padding: 8px 0px 8px 0px;
 }
 
 h2.white{
 	color: white;
 }
 
-h4.blue{
-	color: blue;
+h4.white{
+	color: white;
 }
 
 #content{
 	padding: 0px 0px 0px 25px; 
 }
 
+#instructionsText{
+	background-color: #3385FF;
+	width: 605px;
+	font-size: 120%;
+}
+
 #instructions{
-	color: green;
-	padding: 70px 0px 35px 0px;
+	color: white;
+	padding: 70px 0px 50px 225px;
+}
+
+#restaurantNameText{
+	background-color: #3385FF;
+	padding: 0px 0px 0px 15px;
+	width: 170px;
 }
 
 #restaurantName{
 	padding: 0px 0px 35px 0px;
 }
 
+#addressText{
+	background-color: #3385FF;
+	padding: 0px 0px 0px 15px;
+	width: 90px;
+}
+#address{
+	padding: 0px 0px 35px 0px;
+}
+
+#featuresText{
+	background-color: #3385FF;
+	padding: 0px 0px 0px 15px;
+	width: 100px;
+}
+
 #features{
 	padding: 0px 0px 35px 0px;
-	color: black;
+	color: red;
+}
+
+#priceRangeText{
+	background-color: #3385FF;
+	padding: 0px 0px 0px 18px;
+	width: 130px;
 }
 
 #priceRange{
 	padding: 0px 0px 35px 0px
+}
+
+#hoursText{
+	background-color: #3385FF;
+	padding: 0px 0px 0px 17px;
+	width: 82px;
 }
 
 #hours{
@@ -47,8 +87,20 @@ h4.blue{
 	color: black;
 }
 
+#aboutText{
+	background-color: #3385FF;
+	padding: 0px 0px 0px 15px;
+	width: 105px;
+}
+
 #about{
 	padding: 0px 0px 35px 0px;
+}
+
+#websiteText{
+	background-color: #3385FF;
+	padding: 0px 0px 0px 15px;
+	width: 120px;
 }
 
 #website{
@@ -56,7 +108,7 @@ h4.blue{
 }
 
 #buttons{
-	padding: 20px 0px 5px 170px;
+	padding: 20px 0px 5px 150px;
 	color: black;
 }
 
