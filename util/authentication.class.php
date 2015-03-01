@@ -39,7 +39,7 @@ class authentication{
 		if($isAutenticated != true){  //user not fould or authenticated, redirect
 			
 			header('Location: '.$path.'loing');
-			echo $root;
+			
 		}
 		else{
 			/***verified,retrive user info, generate session id, save value***/

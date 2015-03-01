@@ -13,6 +13,6 @@ $configs['db_user_rrsframe'] = 'root';
 $configs['db_pass_rrsframe'] = 'jasonwang';
 $configs['db_name_rrsframe'] = 'rss_reservation';
 $configs['BASE_PATH'] = dirname(realpath(__FILE__)).'/';
-echo $configs['BASE_PATH'];
+
 
 ?>

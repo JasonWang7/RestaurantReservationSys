@@ -45,7 +45,7 @@ class user{
 		$userObj->setUserEmail($result['email']);
 		$userObj->setStatus($result['status']);
 		
-		mysqldatabaserrs::closeconnction($dbconn);
+		mysqldatabaserrs::closeconnection($dbconn);
 		return $userObj;
 	}
 
@@ -67,7 +67,7 @@ class user{
 		$stmt->execute();
 		$resultObj = $stmt->fetch(PDO::FETCH_CLASS,"user");
 		
-		closeconnction($dbconn);
+		closeconnection($dbconn);
 		return $resultObj;
 	}
 
@@ -83,27 +83,26 @@ class user{
 		
 
 		$dbconn =mysqldatabaserrs::connectdb();
-		$query = "insert into user (firstname,lastname,email,passwordHash,phone,username,city,address,postcode,role,
-					likes) values(:firstname,:lastname,:useremail,:password,:phone,:username,:city,:address,:postcode,:role,:likes);";
+		$query = "insert into user (firstname,lastname,email,username,passwordHash,city) 
+			values(:firstname,:lastname,:useremail,:username,:password,:city);";
 		$stmt = $dbconn->prepare($query);
 		
 		/*bind values to escape*/
 		$stmt->bindValue(':username',$this->getUserName());	
 		$stmt->bindValue(':useremail',$this->getUserEmail());			
 		$stmt->bindValue(':firstname',$this->getFirstName());	
-		$stmt->bindValue(':lastname',$this->getLastName());	
-		$stmt->bindValue(':username',$this->getUserName());			
-		$stmt->bindValue(':password',$passwordHashed);		
-		$stmt->bindValue(':phone',$this->getPhone());			
-		$stmt->bindValue(':address',$this->getAddress());		
-		$stmt->bindValue(':postcode',$this->getPostcode());				
+		$stmt->bindValue(':lastname',$this->getLastName());			
+		$stmt->bindValue(':password',$passwordHashed);					
 		$stmt->bindValue(':city',$this->getCity());
-		$stmt->bindValue(':role',$this->getRole());			
-		$stmt->bindValue(':likes',$this->getLikes());
-
-		$stmt->execute();
-		mysqldatabaserrs::closeconnction($dbconn);
-		$this->setPassword($passwordHashed);
+	
+		if($stmt->execute()){
+			mysqldatabaserrs::closeconnection($dbconn);
+			$this->setPassword($passwordHashed);
+			return 1;
+		}
+		else{
+			return 0;
+		}
 		/*
 		echo $this->getUserName();	
 		echo $this->getUserEmail();			
@@ -117,7 +116,7 @@ class user{
 		echo $this->getCity();
 		echo $this->getRole();			
 		echo $this->getLikes();*/
-		return true;
+		
 	}
 
 
@@ -153,7 +152,7 @@ class user{
 		$stmt->bindValue(':rewardpoint',$newUserObj->getRewardpoint());
 		$stmt->bindValue(':userid',$newUserObj->getUserId());
 		$stmt->execute();
-		closeconnction($dbconn);
+		closeconnection($dbconn);
 
 	}
 
@@ -174,7 +173,7 @@ class user{
 		$stmt->bindValue(':val',$val);
 		$stmt->bindValue(':useridParam',$useridParam);
 		$stmt->execute();
-		closeconnction($dbconn);
+		closeconnection($dbconn);
 	}
 
 

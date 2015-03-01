@@ -78,7 +78,7 @@ include($root ."util/database.class.php");
       print $e->getMessage();
     }
 
-    mysqldatabaserrs::closeconnction($dbconn);
+    mysqldatabaserrs::closeconnection($dbconn);
     ?>
   </tbody>
 </table> 

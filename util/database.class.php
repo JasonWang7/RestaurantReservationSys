@@ -43,7 +43,7 @@ class mysqldatabaserrs{
      * @param connection to be closed
      * @return none
      */
-	function closeconnction($dbconnection){
+	function closeconnection($dbconnection){
 
 		$dbconnection = null;
 	}
@@ -66,11 +66,11 @@ class mysqldatabaserrs{
 		$stmt->execute();
 
 		if($stmt->fetchAll(PDO::FETCH_ASSOC)){
-			mysqldatabaserrs::closeconnction($conn);
+			mysqldatabaserrs::closeconnection($conn);
 			return true;
 		}
 		else{
-			mysqldatabaserrs::closeconnction($conn);
+			mysqldatabaserrs::closeconnection($conn);
 			return false;
 		}
 
