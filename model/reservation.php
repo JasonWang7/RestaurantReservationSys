@@ -58,10 +58,8 @@ class Reservation{
   }
 
 
-  /**********insert user data to datbase********/
-
   /**
-  * inssert new user using its obj values
+  * inssert new reservation into database
   * @return true or false
   */
   function insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime, $email, $phone)
