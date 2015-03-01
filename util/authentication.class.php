@@ -1,9 +1,5 @@
 <?php
-/**
- * authentication class provide user login verify and sha256 encryption
- * @author Jinhai Wang
- * Date: Feb 10, 2015
- */
+/*****author: Jason Wang*******/
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 require_once($root.'util/database.class.php');
 class authentication{

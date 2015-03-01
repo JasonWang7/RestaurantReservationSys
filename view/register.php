@@ -1,102 +1,51 @@
-<?php include("include/header.php"); ?>
-
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" id="signupbox" style="margin-top:50px">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                Create an Account
-                            </div>
-                        </div>
-
-                        <div class="panel-body">
-                            <form class="form-horizontal" id="signupform" name="signupform" ACTION="controller/usercontroller.php" METHOD=post>
-                                <div class="alert alert-danger" id="signupalert" style="display:none;">
-                                    <p>Error:</p>
-                                    <span></span>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="email">Email</label>
-
-                                    <div class="col-md-9">
-                                        <input class="form-control" name="email" placeholder="Email Address" type="text">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="username">User Name</label>
-
-                                    <div class="col-md-9">
-                                        <input class="form-control" name="username" placeholder="User Name" type="text">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="firstname">First Name</label>
-
-                                    <div class="col-md-9">
-                                        <input class="form-control" name="firstname" placeholder="First Name" type="text">
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="lastname">Last Name</label>
-
-                                    <div class="col-md-9">
-                                        <input class="form-control" name="lastname" placeholder="Last Name" type="text">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="city">City</label>
-
-                                    <div class="col-md-9">
-                                        <input class="form-control" name="city" placeholder="City" type="text">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="password">Password</label>
-
-                                    <div class="col-md-9">
-                                        <input class="form-control" name="pass1" placeholder="Password" type="password">
-                                    </div>
-                                </div>
-
-                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="password">Confirm Password</label>
-
-                                    <div class="col-md-9">
-                                        <input class="form-control" name="pass2" placeholder="Password" type="password">
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <!-- Button -->
-
-
-                                    <div class="col-md-offset-3 col-md-9">
-                                        <button class="btn btn-info" id="btn-signup" type="submit"  value = "submit"><i class="icon-hand-right"></i> &nbsp; Sign Up</button>
-                                    </div>
-                                </div>
-                            </form> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-    <!-- /.container -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>register</title>
+</head>
+<body bgcolor="black" style="color:white;">
+<FORM ACTION="controller/usercontroller.php" METHOD=post>
+<h1>welcome to the registration page</h1>
+please input the registration details to create an account here<br>
+<table border="2">
+<tr>
+<td>User Name :</td><td><input name="username" type="text" size"30"></input></td>
+</tr>
+<tr>
+<td>email :</td><td><input name="email" type="text" size"30"></input></td>
+</tr>
+<tr>
+<td>password :</td><td><input name="pass1" type="password" size"30"></input></td>
+</tr>
+<tr>
+<td>retype password :</td><td><input name="pass2" type="password" size"30"></input></td>
+</tr>
+<tr>
+<td>first name :</td><td><input name="firstname" type="text" size"30"></input></td>
+</tr>
+<tr>
+<td>last name :</td><td><input name="lastname" type="text" size"30"></input></td>
+</tr>
+<tr>
+<td>phone :</td><td><input name="phone" type="text" size"30"></input></td>
+</tr>
+<tr>
+<td>address :</td><td><input name="address" type="text" size"30"></input></td>
+</tr>
+<tr>
+<td>city:</td><td><input name="city" type="text" size"30"></input></td>
+</tr>
+<tr>
+<td>postcode:</td><td><input name="postcode" type="text" size"30"></input></td>
+</tr>
+<tr>
+<td>rrole :</td><td><input name="role" type="text" size"30"></input></td>
+</tr>
+<tr>
+<td>likes :</td><td><input name="likes" type="text" size"30"></input></td>
+</tr>
+</table>
+<input type="submit" value="register me!"></input>
+</FORM>
 </body>
 </html>
-
-<?php
-include 'include/footer.php';
-?>

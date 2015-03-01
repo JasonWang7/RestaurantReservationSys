@@ -10,7 +10,7 @@
 #pageName{
 	background-color: #3385FF;
 	text-align: center;
-	padding: 7px 0px 7px 0px;
+	padding: 8px 0px 8px 0px;
 }
 
 h2.white{
@@ -52,26 +52,6 @@ h4.white{
 	width: 90px;
 }
 #address{
-	padding: 0px 0px 35px 0px;
-}
-
-#emailText{
-	background-color: #3385FF;
-	padding: 0px 0px 0px 15px;
-	width: 75px;
-}
-
-#email{
-	padding: 0px 0px 35px 0px;
-}
-
-#phoneText{
-	background-color: #3385FF;
-	padding: 0px 0px 0px 15px;
-	width: 150px;
-}
-
-#phone{
 	padding: 0px 0px 35px 0px;
 }
 
@@ -128,7 +108,7 @@ h4.white{
 }
 
 #buttons{
-	padding: 20px 0px 50px 150px;
+	padding: 20px 0px 5px 150px;
 	color: black;
 }
 

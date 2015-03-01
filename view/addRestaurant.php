@@ -13,7 +13,7 @@
 	<head>
 		<title>Add Restaurant</title>
 		
-		<link rel="stylesheet" type="text/css" href="/RRS/css/addRestaurant.css">
+		<link rel="stylesheet" type="text/css" href="addRestaurant.css">
 	</head>
 	
 	<body>
@@ -33,7 +33,7 @@
 			
 			<!--main content of page-->
 			<div id="content">
-				<form action="/RRS/controller/addRestaurantController.php" method="post">
+				<form action="controller/addRestaurantController.php" method="post">
 				
 					<div id="instructions">
 						<div id="instructionsText">
@@ -57,20 +57,6 @@
 								<h4 class="white">Address</h4>
 							</div>
 							<input type="text" name="address" size=35 maxlength=35>
-						</div>
-						
-						<div id="email">
-							<div id="emailText">
-								<h4 class="white">Email</h4>
-							</div>
-							<input type="text" name="email" size=35 maxlength=35>
-						</div>
-						
-						<div id="phone">
-							<div id="phoneText">
-								<h4 class="white">Phone Number</h4>
-							</div>
-							<input type="text" name="phone" size=25 maxlength=25>
 						</div>
 					
 						<!--features of restaurant separated into radio buttons-->

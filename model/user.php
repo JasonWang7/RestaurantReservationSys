@@ -81,11 +81,10 @@ class user{
 	function insertUser(){
 		$passwordHashed = authentication::encryptPass($this->getPassword());  /*use temp val to hold hashed password*/
 		
-	
+
 		$dbconn =mysqldatabaserrs::connectdb();
-		
-		$query = "insert into user (firstname,lastname,email,passwordHash,username,city
-					) values(:firstname,:lastname,:useremail,:password,:username,:city);";
+		$query = "insert into user (firstname,lastname,email,passwordHash,phone,username,city,address,postcode,role,
+					likes) values(:firstname,:lastname,:useremail,:password,:phone,:username,:city,:address,:postcode,:role,:likes);";
 		$stmt = $dbconn->prepare($query);
 		
 		/*bind values to escape*/
@@ -94,21 +93,17 @@ class user{
 		$stmt->bindValue(':firstname',$this->getFirstName());	
 		$stmt->bindValue(':lastname',$this->getLastName());	
 		$stmt->bindValue(':username',$this->getUserName());			
-		$stmt->bindValue(':password',$passwordHashed);					
+		$stmt->bindValue(':password',$passwordHashed);		
+		$stmt->bindValue(':phone',$this->getPhone());			
+		$stmt->bindValue(':address',$this->getAddress());		
+		$stmt->bindValue(':postcode',$this->getPostcode());				
 		$stmt->bindValue(':city',$this->getCity());
-		$err = $stmt->execute();
-		
-		if($stmt->errorCode() != 0){
-			mysqldatabaserrs::closeconnction($dbconn);
-			return 'There is error creating your account. Try again.';
-		}
-		
-		//mysqldatabaserrs::closeconnction($dbconn);
-		mysqldatabaserrs::closeconnction($dbconn);
+		$stmt->bindValue(':role',$this->getRole());			
+		$stmt->bindValue(':likes',$this->getLikes());
 
-	
-	
-		
+		$stmt->execute();
+		mysqldatabaserrs::closeconnction($dbconn);
+		$this->setPassword($passwordHashed);
 		/*
 		echo $this->getUserName();	
 		echo $this->getUserEmail();			
@@ -122,7 +117,7 @@ class user{
 		echo $this->getCity();
 		echo $this->getRole();			
 		echo $this->getLikes();*/
-		
+		return true;
 	}
 
 
