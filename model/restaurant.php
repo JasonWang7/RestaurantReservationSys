@@ -35,21 +35,22 @@ class restaurant
 	* @param email
 	* @return restaurant obj
 	*/
-	function selectRestaurantInfo($email)
+	function selectRestaurantInfo($name)
 	{
-		$dbconn = connectdb();
-		$query = 'select address, restaurantid as restaurantId, type, restaurantname as restaurantName, 
+		$dbconn = mysqldatabaserrs::connectdb();
+		$query = 'select address, restaurantid as restaurantId, type, restaurantname, 
 					email, phone, features, pricerange as priceRange, about, website, holidayhour as holidayHour,
-					likes, profilepicture as profilePicture, verified from restaurant where email=:email;';
+					likes, profilepicture as profilePicture, verified from restaurant where restaurantname=:name;';
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/
-		$stmt->bindValue(':email',$this->getUserEmail());				
+		$stmt->bindValue(':name',$this->getRestaurantName());				
 
 		$stmt->execute();
 		$resultObj = $stmt->fetch(PDO::FETCH_CLASS,"restaurant");
 		
-		closeconnction($dbconn);
+		mysqldatabaserrs::closeconnection($dbconn);
+		
 		return $resultObj;
 	}
 	
@@ -183,6 +184,11 @@ class restaurant
 		$this->features = $param;	
 	}
 	
+	function setPriceRange($param)
+	{
+		$this->priceRange = $param;	
+	}
+	
 	function setAbout($param)
 	{
 		$this->about = $param;	
@@ -212,4 +218,5 @@ class restaurant
 	{
 		$this->verified = $param;	
 	}
+}
 ?>
