@@ -4,7 +4,7 @@
 <title>register</title>
 </head>
 <body bgcolor="black" style="color:white;">
-<FORM ACTION="controllers/usercontroller.php" METHOD=post>
+<FORM ACTION="controller/usercontroller.php" METHOD=post>
 <h1>welcome to the registration page</h1>
 please input the registration details to create an account here<br>
 <table border="2">

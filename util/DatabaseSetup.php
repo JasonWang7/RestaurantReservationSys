@@ -41,7 +41,7 @@ $query = "CREATE TABLE `user` (
     `city` text NOT NULL,
     `address` text,
     `postcode` text,
-    `role` text NOT NULL,
+    `role` text NOT NULL default 'regular',
     `status` varchar(50) NOT NULL default 'active',
     `rewardpoint` int NOT NULL default '0',
     `likes` text,

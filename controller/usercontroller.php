@@ -1,10 +1,8 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
-require_once($root.'models/user.php');
-class UserController extends BaseController{
-	$userObj = new user;
+require_once($root.'model/user.php');
 
-	
+	$userObj = new user;	
 	$userObj->setUserEmail($_POST["email"]);	
 	$userObj->setFirstName($_POST["firstname"]);	
 	$userObj->setLastName($_POST["lastname"]);			
@@ -24,7 +22,7 @@ class UserController extends BaseController{
 
 
 
-}
+
 
 
 

@@ -1,6 +1,6 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
-require_once($root.'models/user.php');
+require_once($root.'model/user.php');
 class LoginController extends BaseController{
 	public function Action($userdata){
 		$userObj = new user;
