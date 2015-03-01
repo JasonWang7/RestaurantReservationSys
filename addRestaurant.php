@@ -11,14 +11,13 @@
 <html>
 
 	<head>
-		<title>
-			Add Restaurant
-		</title>
+		<title>Add Restaurant</title>
 		
 		<link rel="stylesheet" type="text/css" href="addRestaurant.css">
 	</head>
 	
 	<body>
+		<!-- container represents whole page -->
 		<div id="container">
 		
 			<div id="header">
@@ -27,17 +26,20 @@
 				?>
 			</div>
 			
+			<!--title-->
 			<div id="pageName">
 				<h2 class="white">Add a Restaurant</h3>
 			</div>
 			
+			<!--main content of page-->
 			<div id="content">
-				<form action="addRestaurantHandler.php">
+				<form action="addRestaurantHandler.php" method="post">
 				
 					<div id="instructions">
 						<p>***Fill out information pertaining to each restaurant category then click "Submit" when finished</p>
 					</div>
 				
+					<!--all components of page where user enters data-->
 					<div id="input">
 					
 						<div id="restaurantName">
@@ -45,6 +47,7 @@
 								<input type="text" name="restaurantName" size=35 maxlength=35>
 						</div>
 					
+						<!--features of restaurant separated into radiobuttons-->
 						<div id="features">
 							<h4 class="blue">Features:</h4>
 								African <input type="radio" name="african"></input> &nbsp
@@ -60,7 +63,7 @@
 								Indian <input type="radio" name="indian"></input> &nbsp 
 								Irish <input type="radio" name="irish"></input> &nbsp
 								Italian <input type="radio" name="italian"></input> &nbsp 
-								Japanese <input type="radio" name="japenese"></input> &nbsp
+								Japanese <input type="radio" name="japanese"></input> &nbsp
 								Kid Friendly <input type="radio" name="kidFriendly"> &nbsp <br>
 								Korean <input type="radio" name="korean"></input> &nbsp
 								Pub <input type="radio" name="pub"></input>&nbsp 
@@ -68,11 +71,13 @@
 								Vegan <input type="radio" name="vegan"></input> &nbsp
 						</div>
 					
+						<!--approximate price range of dining at restaurant-->
 						<div id="priceRange">
 							<h4 class="blue">Price Range:</h4>
 							<input type="text" name="priceRange" size=25 maxlength=25></input>
 						</div>
 					
+						<!--hours corresponding to each day of the week-->
 						<div id="hours">
 							<h4 class="blue">Hours:</h4>
 						
@@ -110,17 +115,20 @@
 				
 						</div>
 				
+						<!--Basic description of the restaurant-->
 						<div id="about">
 							<h4 class="blue">About:</h4>
 							<textarea cols="65" rows="8" name="about"></textarea>
 						</div>
 				
+						<!--link to restaurant website (if owner currently has one)-->
 						<div id="website">
 							<h4 class="blue">Website:</h4>
 							<input type="text" name="website" size=50 maxlength=100></input>
 						</div>		
 					</div>
 					
+					<!--buttons that user clicks on to submit, cancel or preview info-->
 					<div id="buttons">
 						<div id="submit">
 							<input id="submitButton" type="submit" value="Submit"></input>	
@@ -136,4 +144,3 @@
 	</body>
 
 </html>
-	
