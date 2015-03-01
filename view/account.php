@@ -14,7 +14,7 @@
       <li class=""><a href="deleteacc.php">Delete Account</a></li>
     </ul>
     <div id="myTabContent" class="tab-content" style="margin-left:20px;">
-      <div class="tab-pane fade <?php if(!isset($_GET['reservation'])){ echo 'active in'; } ?> "id="account">
+      <div class="tab-pane fade <?php if(isset($_GET['reservation'])==false){ echo 'active in'; } ?> "id="account">
         <div class="row">
         <div class="col-md-12">
           <h3>Account Details:</h3>
@@ -48,7 +48,7 @@
         </div>
     </div>  
       </div>
-      <div class="tab-pane fade  <?php if(!isset($_GET['reservation'])){ echo 'active in'; } ?> " id="reservations">
+      <div class="tab-pane fade  <?php if(isset($_GET['reservation'])){ echo 'active in'; } ?> " id="reservations">
         <p>Reservations Here</p>
       </div>
       <div class="tab-pane fade" id="events">
