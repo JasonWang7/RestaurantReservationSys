@@ -58,6 +58,20 @@
 							</div>
 							<input type="text" name="address" size=35 maxlength=35>
 						</div>
+						
+						<div id="email">
+							<div id="emailText">
+								<h4 class="white">Email</h4>
+							</div>
+							<input type="text" name="email" size=35 maxlength=35>
+						</div>
+						
+						<div id="phone">
+							<div id="phoneText">
+								<h4 class="white">Phone Number</h4>
+							</div>
+							<input type="text" name="phone" size=25 maxlength=25>
+						</div>
 					
 						<!--features of restaurant separated into radio buttons-->
 						<div id="features">
