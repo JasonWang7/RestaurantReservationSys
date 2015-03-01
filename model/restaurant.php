@@ -1,43 +1,69 @@
 <?php
 /******************************************************************************************
 * File name: restaurant.php
-* Purpose: Provides restaurant class functionality that contains several methods in 
-* handling restaurant data
+* Purpose: 
 * Author: Rhys Hall
 * Group Name: Centaur Logic
 * Created: February 28, 2015
 ******************************************************************************************/
 
-$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
-require_once($root.'util/authentication.class.php');
-require_once($root.'util/database.class.php');
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once($root.'/RRS/authentication.class.php');
+require_once($root.'/RRS/database.class.php');
 
 class restaurant
 {
-	private $address;
-	private $type;
+	//text field variables
 	private $restaurantName;
-	private $email;
-	private $phone;
-	private $features;
 	private $priceRange;
 	private $about;
 	private $website;
-	private $holidayHour;
-	private $likes;
-	private $profilePicture;
-	private $verified;
-
+	private $sundayStart;
+	private $sundayEnd;
+	private $mondayStart;
+	private $mondayEnd;
+	private $tuesdayStart;
+	private $tuesdayEnd;
+	private $wednesdayStart;
+	private $wednesdayEnd;
+	private $thursdayStart;
+	private $thursdayEnd;
+	private $fridayStart;
+	private $fridayEnd;
+	private $saturdayStart;
+	private $saturdayEnd;
+			
+	//radio button (restaurant feature) variables
+	private $african;
+	private $alcoholMenu;
+	private $american;
+	private $buffet;
+	private $casualDining;
+	private $chinese;
+	private $coffeehouse;
+	private $fastFood;
+	private $fineDining;
+	private $french;
+	private $indian;
+	private $irish;
+	private $italian;
+	private $japanese;
+	private $kidFriendly;
+	private $korean;
+	private $pub;
+	private $tableTopCooking;
+	private $vegan;
+	
 	
 	/**
 	* retrieve all the information about a given restaurant
 	* @param email
 	* @return restaurant obj
 	*/
-	//function selectRestaurantInfo($email)
-	//{
+	function selectRestaurantInfo($email)
+	{
 		
-	//}
+	}
 	
 	
 	/**
@@ -46,43 +72,13 @@ class restaurant
 	*/
 	function insertRestaurantInfo()
 	{
-		$dbconn = mysqldatabaserrs::connectdb();
-		$query = "insert into restaurant(address, type, restaurantname, email, phone, features, pricerange,
-					about, website, holidayhour, likes, profilepicture, verified) 
-					values(:address,:type,:restaurantName,:email,:phone,:features,:priceRange,
-					:about,:website,:role,:likes);";
-		$stmt = $dbconn->prepare($query);
+		
 	}
 	
 	//getter functions
-	function getAddress()
-	{
-		return $this->address;
-	}
-	
-	function getType()
-	{
-		return $this->type;
-	}
-	
 	function getRestaurantName()
 	{
 		return $this->restaurantName;		
-	}
-	
-	function getEmail()
-	{
-		return $this->email;
-	}
-	
-	function getPhone()
-	{
-		return $this->phone;
-	}
-	
-	function getFeatures()
-	{
-		return $this->features;
 	}
 	
 	function getPriceRange()
@@ -100,56 +96,172 @@ class restaurant
 		return $this->website;
 	}
 	
-	function getHolidayHour()
+	function getSundayStart()
 	{
-		return $this->holidayHour;
+		return $this->sundayStart;
 	}
 	
-	function getLikes()
+	function getSundayEnd()
 	{
-		return $this->likes;
+		return $this->sundayEnd;
 	}
 	
-	function getProfilePicture()
+	function getMondayEnd()
 	{
-		return $this->profilePicture;
+		return $this->mondayEnd;
 	}
 	
-	function getVerified()
+	function getTuesdayStart()
 	{
-		return $this->verified;
+		return $this->tuesdayStart;
+	}
+	
+	function getTuesdayEnd()
+	{
+		return $this->tuesdayEnd;
+	}
+	
+	function getWednesdayStart()
+	{
+		return $this->wednesdayEnd;
+	}
+	
+	function getWednesdayEnd()
+	{
+		return $this->wednesdayEnd;
+	}
+	
+	function getThursdayStart()
+	{
+		return $this->thursdayEnd;
+	}
+	
+	function getThursdayEnd()
+	{
+		return $this->thursdayEnd;
+	}
+	
+	function getFridayStart()
+	{
+		return $this->getFridayEnd;
+	}
+	
+	function getSaturdayStart()
+	{
+		return $this->saturdayStart;
+	}
+	
+	function getSaturdayEnd()
+	{
+		return $this->saturdayEnd;
+	}
+	
+	function getAfrican()
+	{
+		return $this->african;
+	}
+	
+	function getAlcoholMenu()
+	{
+		return $this->alcoholMenu;
+	}
+	
+	function getAmerican()
+	{
+		return $this->american;
+	}
+	
+	function getBuffet()
+	{
+		return $this->buffet;
+	}
+	
+	function getCasualDining()
+	{
+		return $this->casualDining;
+	}
+	
+	function getChinese()
+	{
+		return $this->chinese;
+	}
+	
+	function getCoffeehouse()
+	{
+		return $this->coffeehouse;
+	}
+	
+	function getFastFood()
+	{
+		return $this->fastFood;
+	}
+	
+	function getFineDining()
+	{
+		return $this->fineDining;
+	}
+	
+	function getFrench()
+	{
+		return $this->french;
+	}
+	
+	function getIndian()
+	{
+		return $this->indian;
+	}
+	
+	function getIrish()
+	{
+		return $this->irish;
+	}
+	
+	function getItalian()
+	{
+		return $this->italian;
+	}
+	
+	function getJapanese()
+	{
+		return $this->japanese;
+	}
+	
+	function getKidFriendly()
+	{
+		return $this->kidFriendly;
+	}
+	
+	function getKorean()
+	{
+		return $this->korean;
+	}
+	
+	function getPub()
+	{
+		return $this->pub;
+	}
+	
+	function getTableTopCooking()
+	{
+		return $this->tableTopCooking;
+	}
+	
+	function getVegan()
+	{
+		return $this->vegan;
 	}
 	
 	
-	//setter functions
-	function setAddress($param)
-	{
-		$this->addressName = $param;	
-	}
-	
-	function setType($param)
-	{
-		$this->type = $param;	
-	}
+	//setters
 	
 	function setRestaurantName($param)
 	{
 		$this->restaurantName = $param;	
 	}
 	
-	function setEmail($param)
+	function setPriceRange($param)
 	{
-		$this->email = $param;	
-	}
-	
-	function setPhone($param)
-	{
-		$this->phone = $param;	
-	}
-	
-	function setFeatures($param)
-	{
-		$this->features = $param;	
+		$this->priceRange = $param;	
 	}
 	
 	function setAbout($param)
@@ -162,23 +274,168 @@ class restaurant
 		$this->website = $param;	
 	}
 	
-	function setHolidayHour($param)
+	function setSundayStart($param)
 	{
-		$this->holidayHour = $param;	
+		$this-> = $param;	
 	}
 	
-	function setLikes($param)
+	function setSundayEnd($param)
 	{
-		$this->likes = $param;	
+		$this-> = $param;	
 	}
 	
-	function setProfilePicture($param)
+	function setMondayStart($param)
 	{
-		$this->profilePicture = $param;	
+		$this->mondayStart = $param;	
 	}
 	
-	function setVerified($param)
+	function setMondayEnd($param)
 	{
-		$this->verified = $param;	
+		$this->mondayEnd = $param;	
 	}
-?>
+	
+	function setTuesdayStart($param)
+	{
+		$this->tuesdayStart = $param;	
+	}
+	
+	function setTuesdayEnd($param)
+	{
+		$this->tuesdayEnd = $param;	
+	}
+	
+	function setWednesdayStart($param)
+	{
+		$this->setWednesdayStart = $param;	
+	}
+	
+	function setWednesdayEnd($param)
+	{
+		$this->wednesdayEnd = $param;	
+	}
+	
+	function setThursdayStart($param)
+	{
+		$this->thursdayStart = $param;	
+	}
+	
+	function setThursdayEnd($param)
+	{
+		$this->thursdayEnd = $param;	
+	}
+	
+	function setFridayStart($param)
+	{
+		$this->fridayStart = $param;	
+	}
+	
+	function setFridayEnd($param)
+	{
+		$this->fridayEnd = $param;	
+	}
+	
+	function setSaturdayStart($param)
+	{
+		$this->saturdayStart = $param;	
+	}
+	
+	function setSaturdayEnd($param)
+	{
+		$this->saturdayEnd = $param;	
+	}
+	
+	function setAfrican($param)
+	{
+		$this->african = $param;	
+	}
+	
+	function setAlcoholMenu($param)
+	{
+		$this->alcoholMenu = $param;	
+	}
+	
+	function setAmerican($param)
+	{
+		$this->american = $param;	
+	}
+	
+	function setBuffet($param)
+	{
+		$this->buffet = $param;	
+	}
+	
+	function setCasualDining($param)
+	{
+		$this->casualDining = $param;	
+	}
+	
+	function setChinese($param)
+	{
+		$this->chinese = $param;	
+	}
+	
+	function setCoffeeHouse($param)
+	{
+		$this->coffeehouse = $param;	
+	}
+	
+	function setFastFood($param)
+	{
+		$this->fastFood = $param;	
+	}
+	
+	function setFineDining($param)
+	{
+		$this->fineDining = $param;	
+	}
+	
+	function setFrench($param)
+	{
+		$this->french = $param;	
+	}
+	
+	function setIndian($param)
+	{
+		$this->indian = $param;	
+	}
+	
+	function setIrish($param)
+	{
+		$this->irish = $param;	
+	}
+	
+	function setItalian($param)
+	{
+		$this->italian = $param;	
+	}
+	
+	function setJapanese($param)
+	{
+		$this->japanese = $param;	
+	}
+	
+	function setKidFriendly($param)
+	{
+		$this->kidFriendly = $param;	
+	}
+	
+	function setKorean($param)
+	{
+		$this->korean = $param;	
+	}
+	
+	function setPub($param)
+	{
+		$this->pub = $param;	
+	}
+	
+	function setTableTopCooking($param)
+	{
+		$this->tableTopCooking = $param;	
+	}
+	
+	function setVegan($param)
+	{
+		$this->vegan = $param;	
+	}
+}

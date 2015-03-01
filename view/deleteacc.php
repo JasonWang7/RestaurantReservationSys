@@ -1,4 +1,3 @@
-<!-- Vincent Tieu created this page -->
 <?php include("include/header.php"); ?>
 <div class="row">
   <div class="col-12">  

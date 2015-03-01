@@ -1,6 +1,3 @@
-<!--
-    Author: Vince - this is the index page
--->
 <?php 
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 include($root."view/include/header.php"); 

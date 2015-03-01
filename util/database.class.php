@@ -1,9 +1,13 @@
 <?php
+/**
+ * database utillity class provide db connection, user verification
+ * @author Jinhai Wang
+ * Date: Feb 10, 2015
+ */
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 require_once($root.'config.php'); 
 require_once($root.'model/user.php');
 
-/***author: Jason Wang*****/
 
 class mysqldatabaserrs{
 
