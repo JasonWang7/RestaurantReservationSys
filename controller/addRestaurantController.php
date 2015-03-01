@@ -18,18 +18,27 @@
 			$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 			require_once($root.'model/restaurant.php');
 			require_once($root.'model/businessHour.php');
-
+			echo '-----------------------'.$root.'model/restaurant.php';
 			$restaurantObj = new restaurant;
 			$businessHourObj = new businessHour;
+			$features = array("african", "alcoholMenu", "american", "buffet", "casualDining", 
+			"chinese", "coffeehouse", "fastFood", "fineDining", "french", "indian", "irish",
+			"italian", "japanese", "kidFriendly", "korean", "pub", "tableTopCooking", "vegan");
 			
 			//text field variables
-			$restaurantObj->setRestaurantName($_POST["restaurantName"]);
 			$restaurantObj->setAddress($_POST["address"]);
+			$restaurantObj->setType($_POST[""]);
+			$restaurantObj->setRestaurantName($_POST["restaurantName"]);
 			$restaurantObj->setEmail($_POST["email"]);
 			$restaurantObj->setPhone($_POST["phone"]);
+			$restaurantObj->setFeatures($_POST[""]);
 			$restaurantObj->setPriceRange($_POST["priceRange"]);
 			$restaurantObj->setAbout($_POST["about"]);
 			$restaurantObj->setWebsite($_POST["website"]);
+			$restaurantObj->setHolidayHour($_POST[""]);
+			$restaurantObj->setLikes($_POST[""]);
+			$restaurantObj->setProfilePicture($_POST[""]);
+			$restaurantObj->setVerified($_POST[""]);
 			$businessHourObj->setSundayStart($_POST["sundayStart"]);
 			$businessHourObj->setSundayEnd($_POST["sundayEnd"]);
 			$businessHourObj->setMondayStart($_POST["mondayStart"]);
