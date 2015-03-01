@@ -18,24 +18,25 @@
 	<div class="col-md-12">	
 		<div class="jumbotron">
 		<div class="row">
-		  <div class="well col-md-2" style="font-size:18px; margin:10px; text-align:middle; height:180px;">"This dining place is good...." by Test Guy<p>on <a href="#">Bob Diner</a></div>
-		  <div class="well col-md-2" style="font-size:18px; margin:10px; text-align:middle; height:180px;">"This dining place is good...." by Test Guy<p>on <a href="#">Bob Diner</a></div>
-		  <div class="well col-md-2" style="font-size:18px; margin:10px; text-align:middle; height:180px;">"This dining place is good...." by Test Guy<p>on <a href="#">Bob Diner</a></div>
-		  <div class="well col-md-2" style="font-size:18px; margin:10px; text-align:middle; height:180px;">"This dining place is good...." by Test Guy<p>on <a href="#">Bob Diner</a></div>
-		  <div class="well col-md-2" style="font-size:18px; margin:10px; text-align:middle; height:180px;">"This dining place is good...." by Test Guy<p>on <a href="#">Bob Diner</a></div>
-		  <div class="well col-md-2" style="font-size:18px; margin:10px; text-align:middle; width:50px; height:180px;"><a href="#">></a></div>
+		  <div class="well col-md-2" style="font-size:18px; background-color:#eee; margin:8px; text-align:middle; height:180px;">"This dining place is good...." by Test Guy<p>on <a href="#">Bob Diner</a></div>
+		  <div class="well col-md-2" style="font-size:18px; background-color:#eee; margin:8px; text-align:middle; height:180px;">"This dining place is good...." by Test Guy<p>on <a href="#">Bob Diner</a></div>
+		  <div class="well col-md-2" style="font-size:18px; background-color:#eee; margin:8px; text-align:middle; height:180px;">"This dining place is good...." by Test Guy<p>on <a href="#">Bob Diner</a></div>
+		  <div class="well col-md-2" style="font-size:18px; background-color:#eee; margin:8px; text-align:middle; height:180px;">"This dining place is good...." by Test Guy<p>on <a href="#">Bob Diner</a></div>
+		  <div class="well col-md-2" style="font-size:18px; background-color:#eee; margin:8px; text-align:middle; height:180px;">"This dining place is good...." by Test Guy<p>on <a href="#">Bob Diner</a></div>
+		  <div class="well col-md-2" style="font-size:18px; background-color:#eee; margin:8px; text-align:middle; width:50px; height:180px;"><a href="#">></a></div>
 		</div>
 		</div>
 	</div>
 </div>
 <div class="row">
 	<div class="btn-group btn-group-justified">
-  <a href="#" class="btn btn-primary">Popular Restaurants</a>
-  <a href="#" class="btn btn-primary">New Restaurants</a>
-  <a href="#" class="btn btn-primary">Events</a>
-  <a href="#" class="btn btn-primary">Reviews</a>
+	  <a href="#" class="btn btn-primary">Popular Restaurants</a>
+	  <a href="#" class="btn btn-primary">New Restaurants</a>
+	  <a href="#" class="btn btn-primary">Events</a>
+	  <a href="#" class="btn btn-primary">Reviews</a>
+	</div>
 </div>
-</div>
+<hr>
 <div class="row">
 	<table class="table table-striped table-hover ">
   <thead>

@@ -8,57 +8,32 @@
 ******************************************************************************************/
 ?>
 
-<html>
-<body>
-
 <!-- Large space between web body content and footer -->
-<br><br>
-<br><br>
-<br><br>
-<br><br>
+
 <hr>
-
+<div class="nav-bar">
 <!-- "About Us" link -->
-<p>
 <a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp About Us</a> 
-</p>
 
-<br>
 
 <!-- "Dining Rewards" link -->
-<p>
-<a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Dining Rewards</a> 
-</p>
 
-<br>
+<a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Dining Rewards</a> 
 
 <!-- "Top Restaurants" link -->
-<p>
 <a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Top Restaurants</a> 
-</p>
-
-<br>
 
 <!-- "Invite Friends" link -->
-<p>
 <a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Invite Friends</a> 
-</p>
-
-<br>
 
 <!-- "Events/Promotions" link -->
-<p>
 <a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Events/Promotions</a> 
-</p>
-
-<br><br><br> 
 
 <!-- Style sheet obtained from http://bootsnipp.com/snippets/featured -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 
 <!-- Social networking icons -->
-<h4>&nbsp &nbsp Share</h4>
 	<hr>
 			&nbsp &nbsp; 
 	
@@ -78,13 +53,4 @@
 	            <a href="mailto:bootsnipp@gmail.com"><i id="social" class="fa fa-envelope-square fa-2x social-em"></i></a>
 
     <hr>
-
-</body>
-</html>
-
-<br><br>
-<hr>
-
 <p style="font-family:courier"><i> &nbsp Copyright @2015. Centaur Logic</i></p>
-
-<hr>

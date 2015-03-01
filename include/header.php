@@ -18,7 +18,23 @@
     
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script><!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <style>
+      body { 
+        background: url("http://www.resto.be/static/images/95/9/shutterstock_74171587_95399.jpg"); no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
 
+      .main
+      {
+        padding:30px;
+        background-color: #fcfcfc;
+        border-radius: 10px;
+        margin-bottom:10px;
+      }
+    </style>
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

@@ -1,6 +1,6 @@
 <?php include("include/header.php"); ?>
 <div class="row">
-  <div class="col-12">  
+  <div class="col-12">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#menu" data-toggle="tab" aria-expanded="false">Account Details</a></li>
       <li class=""><a href="#reviews" data-toggle="tab" aria-expanded="true">Reservations</a></li>
@@ -10,7 +10,7 @@
       <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Bills</a></li>
       <li class=""><a href="deleteacc.php">Delete Account</a></li>
     </ul>
-    <div id="myTabContent" class="tab-content">
+    <div id="myTabContent" class="tab-content" style="margin-left:20px;">
       <div class="tab-pane fade active in" id="menu">
         <div class="row">
         <div class="col-md-12">
