@@ -25,6 +25,8 @@
 			//text field variables
 			$restaurantObj->setRestaurantName($_POST["restaurantName"]);
 			$restaurantObj->setAddress($_POST["address"]);
+			$restaurantObj->setEmail($_POST["email"]);
+			$restaurantObj->setPhone($_POST["phone"]);
 			$restaurantObj->setPriceRange($_POST["priceRange"]);
 			$restaurantObj->setAbout($_POST["about"]);
 			$restaurantObj->setWebsite($_POST["website"]);

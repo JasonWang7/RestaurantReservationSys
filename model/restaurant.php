@@ -14,6 +14,7 @@ require_once($root.'util/database.class.php');
 
 class restaurant
 {
+	private $restaurantId;
 	private $address;
 	private $type;
 	private $restaurantName;
@@ -30,14 +31,27 @@ class restaurant
 
 	
 	/**
-	* retrieve all the information about a given restaurant
+	* retrieve all the information about the restaurant
 	* @param email
 	* @return restaurant obj
 	*/
-	//function selectRestaurantInfo($email)
-	//{
+	function selectRestaurantInfo($email)
+	{
+		$dbconn = connectdb();
+		$query = 'select address, restaurantid as restaurantId, type, restaurantname as restaurantName, 
+					email, phone, features, pricerange as priceRange, about, website, holidayhour as holidayHour,
+					likes, profilepicture as profilePicture, verified from restaurant where email=:email;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindValue(':email',$this->getUserEmail());				
+
+		$stmt->execute();
+		$resultObj = $stmt->fetch(PDO::FETCH_CLASS,"restaurant");
 		
-	//}
+		closeconnction($dbconn);
+		return $resultObj;
+	}
 	
 	
 	/**
@@ -50,8 +64,25 @@ class restaurant
 		$query = "insert into restaurant(address, type, restaurantname, email, phone, features, pricerange,
 					about, website, holidayhour, likes, profilepicture, verified) 
 					values(:address,:type,:restaurantName,:email,:phone,:features,:priceRange,
-					:about,:website,:role,:likes);";
+					:about,:website,:holidayHour,:likes, :profilePicture, :verified);";
 		$stmt = $dbconn->prepare($query);
+		
+		/*bind values to escape*/
+		$stmt->bindValue(':address',$this->getAddress());	
+		$stmt->bindValue(':type',$this->getType());			
+		$stmt->bindValue(':restaurantName',$this->getRestaurantName());	
+		$stmt->bindValue(':email',$this->getEmail());	
+		$stmt->bindValue(':phone',$this->getPhone());			
+		$stmt->bindValue(':features',$this->getFeatures);		
+		$stmt->bindValue(':priceRange',$this->getPriceRange());			
+		$stmt->bindValue(':about',$this->getAbout());		
+		$stmt->bindValue(':website',$this->getWebsite());				
+		$stmt->bindValue(':city',$this->getCity());
+		$stmt->bindValue(':role',$this->getRole());			
+		$stmt->bindValue(':likes',$this->getLikes());
+
+		$stmt->execute();
+		mysqldatabaserrs::closeconnction($dbconn);
 	}
 	
 	//getter functions
