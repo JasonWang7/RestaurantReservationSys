@@ -1,9 +1,12 @@
+<!--
+    Author: Vince - this is the account page
+-->
 <?php include("include/header.php"); ?>
 <div class="row">
   <div class="col-12">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#menu" data-toggle="tab" aria-expanded="false">Account Details</a></li>
-      <li class=""><a href="#reviews" data-toggle="tab" aria-expanded="true">Reservations</a></li>
+      <li class="active"><a href="#account" data-toggle="tab" aria-expanded="false">Account Details</a></li>
+      <li class=""><a href="#reservations" data-toggle="tab" aria-expanded="true">Reservations</a></li>
       <li class=""><a href="#events" data-toggle="tab" aria-expanded="true">Likes</a></li>
       <li class=""><a href="#about" data-toggle="tab" aria-expanded="true">Reviews</a></li>
       <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Reward</a></li>
@@ -11,7 +14,7 @@
       <li class=""><a href="deleteacc.php">Delete Account</a></li>
     </ul>
     <div id="myTabContent" class="tab-content" style="margin-left:20px;">
-      <div class="tab-pane fade active in" id="menu">
+      <div class="tab-pane fade <?php if(isset($_GET['reservation'])==false){ echo 'active in'; } ?> "id="account">
         <div class="row">
         <div class="col-md-12">
           <h3>Account Details:</h3>
@@ -45,8 +48,8 @@
         </div>
     </div>  
       </div>
-      <div class="tab-pane fade" id="reviews">
-        <p>Reviews Here</p>
+      <div class="tab-pane fade  <?php if(isset($_GET['reservation'])){ echo 'active in'; } ?> " id="reservations">
+        <p>Reservations Here</p>
       </div>
       <div class="tab-pane fade" id="events">
         <p>Events here</p>

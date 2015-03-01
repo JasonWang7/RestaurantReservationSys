@@ -29,7 +29,6 @@
 		    else{
 		    	$route['call_parts'] = explode('/', $route['call']);  //split into array of controller , id
 		    }
-		    
 
 		    //process query paramters
 		    if(count($requestPath)>1){
@@ -50,6 +49,7 @@
 		    }
 		    
 		}
+		
 	    return $route;
 	}
 
