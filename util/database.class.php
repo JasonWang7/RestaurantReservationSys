@@ -31,7 +31,7 @@ class mysqldatabaserrs{
 		$host = 'localhost';
 		$dbname = 'rss_reservation';
 		$constring =  'mysql:host='.$host.';dbname='.$dbname ;
-		$connection = new PDO($constring, 'root', 'jasonwang');
+		$connection = new PDO($constring, 'root', 'roadkill182');
 		
 
 		return $connection;

@@ -20,7 +20,13 @@
 			require_once($root.'model/businessHour.php');
 			
 			$restaurantObj = new restaurant;
-			$businessHourObj = new businessHour;
+			$sundayHoursObj = new businessHour;
+			$mondayHoursObj = new businessHour;
+			$tuesdayHoursObj = new businessHour;
+			$wednesdayHoursObj = new businessHour;
+			$thursdayHoursObj = new businessHour;
+			$fridayHoursObj = new businessHour;
+			$saturdayHoursObj = new businessHour;
 			$features = array("african", "alcoholMenu", "american", "buffet", "casualDining", 
 			"chinese", "coffeehouse", "fastFood", "fineDining", "french", "indian", "irish",
 			"italian", "japanese", "kidFriendly", "korean", "pub", "tableTopCooking", "vegan");
@@ -52,20 +58,27 @@
 			
 			$result = $restaurantObj->insertRestaurantInfo();
 			
-			$businessHourObj->setSundayStart($_POST["sundayStart"]);
-			$businessHourObj->setSundayEnd($_POST["sundayEnd"]);
-			$businessHourObj->setMondayStart($_POST["mondayStart"]);
-			$businessHourObj->setMondayEnd($_POST["mondayEnd"]);
-			$businessHourObj->setTuesdayStart($_POST["tuesdayStart"]);
-			$businessHourObj->setTuesdayEnd($_POST["tuesdayEnd"]);
-			$businessHourObj->setWednesdayStart($_POST["wednesdayStart"]);
-			$businessHourObj->setWednesdayEnd($_POST["wednesdayEnd"]);
-			$businessHourObj->setThursdayStart($_POST["thursdayStart"]);
-			$businessHourObj->setThursdayEnd($_POST["thursdayEnd"]);
-			$businessHourObj->setFridayStart($_POST["fridayStart"]);
-			$businessHourObj->setFridayEnd($_POST["fridayEnd"]);
-			$businessHourObj->setSaturdayStart($_POST["saturdayStart"]);
-			$businessHourObj->setSaturdayEnd($_POST["saturdayEnd"]);
+			$sundayHourObj->setDay("Sunday");
+			$sundayHourObj->setStartHour($_POST["sundayStart"]);
+			$sundayHourObj->setEndHour($_POST["sundayEnd"]);
+			$mondayHourObj->setDay("Monday");
+			$mondayHourObj->setStartHour($_POST["mondayStart"]);
+			$mondayHourObj->setEndHour($_POST["mondayEnd"]);
+			$tuesdayHourObj->setDay("Tuesday");
+			$tuesdayHourObj->setStartHour($_POST["tuesdayStart"]);
+			$tuesdayHourObj->setEndHour($_POST["tuesdayEnd"]);
+			$wednesdayHourObj->setDay("Wednesday");
+			$wednesdayHourObj->setStartHour($_POST["wednesdayStart"]);
+			$wednesdayHourObj->setEndHour($_POST["wednesdayEnd"]);
+			$thursdayHourObj->setDay("Thursday");
+			$thursdayHourObj->setStartHour($_POST["thursdayStart"]);
+			$thursdayHourObj->setEndHour($_POST["thursdayEnd"]);
+			$fridayHourObj->setDay("Friday");
+			$fridayHourObj->setStartHour($_POST["fridayStart"]);
+			$fridayHourObj->setEndHour($_POST["fridayEnd"]);
+			$saturdayHourObj->setDay("Saturday");
+			$saturdayHourObj->setStartHour($_POST["saturdayStart"]);
+			$saturdayHourObj->setEndHour($_POST["saturdayEnd"]);
 		?>
 	</body>
 </html>

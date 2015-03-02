@@ -14,153 +14,85 @@ require_once($root.'util/database.class.php');
 
 class businessHour
 {
-	private $sundayStart;
-	private $sundayEnd;
-	private $mondayStart;
-	private $mondayEnd;
-	private $tuesdayStart;
-	private $tuesdayEnd;
-	private $wednesdayStart;
-	private $wednesdayEnd;
-	private $thursdayStart;
-	private $thursdayEnd;
-	private $fridayStart;
-	private $fridayEnd;
-	private $saturdayStart;
-	private $saturdayEnd;
+	private $day;
+	private $startHour;
+	private $endHour;
 	
+	/**
+	* retrieve all the business hour information about a given restaurant
+	* @param email
+	* @return restaurant obj
+	*/
+	function selectRestaurantInfo($name)
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		$query = 'select address, restaurantid as restaurantId, type, restaurantname, 
+					email, phone, features, pricerange as priceRange, about, website, holidayhour as holidayHour,
+					likes, profilepicture as profilePicture, verified from restaurant where restaurantname=:name;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindValue(':name',$this->getRestaurantName());				
+
+		$stmt->execute();
+		$resultObj = $stmt->fetch(PDO::FETCH_CLASS,"restaurant");
+		
+		mysqldatabaserrs::closeconnection($dbconn);
+		
+		return $resultObj;
+	}
+	
+	/**
+	* insert new information regarding a given restaurant's hours for a 
+	* given day
+	* @return true on success, false otherwise
+	*/
+	function insertHoursInfo()
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		$query = "insert into businesshour(day, starhour, end) 
+					values(:day, :startHour, :endHour);";
+		$stmt = $dbconn->prepare($query);
+		
+		/*bind values to escape*/
+		$stmt->bindValue(':day',$this->getDay());	
+		$stmt->bindValue(':startHour',$this->getStartHour());			
+		$stmt->bindValue(':endHour',$this->getEndHour());	
+		
+		$stmt->execute();
+		mysqldatabaserrs::closeconnection($dbconn);
+	}
 	
 	//getter methods
-	function getSundayStart()
+	function getDay()
 	{
-		return $this->sundayStart;
+		return $this->day;
 	}
 	
-	function getSundayEnd()
+	function getStartHour()
 	{
-		return $this->sundayEnd;
+		return $this->startHour;
 	}
 	
-	function getMondayEnd()
+	function getEndHour()
 	{
-		return $this->mondayEnd;
+		return $this->endHour;
 	}
-	
-	function getTuesdayStart()
-	{
-		return $this->tuesdayStart;
-	}
-	
-	function getTuesdayEnd()
-	{
-		return $this->tuesdayEnd;
-	}
-	
-	function getWednesdayStart()
-	{
-		return $this->wednesdayEnd;
-	}
-	
-	function getWednesdayEnd()
-	{
-		return $this->wednesdayEnd;
-	}
-	
-	function getThursdayStart()
-	{
-		return $this->thursdayEnd;
-	}
-	
-	function getThursdayEnd()
-	{
-		return $this->thursdayEnd;
-	}
-	
-	function getFridayStart()
-	{
-		return $this->getFridayEnd;
-	}
-	
-	function getSaturdayStart()
-	{
-		return $this->saturdayStart;
-	}
-	
-	function getSaturdayEnd()
-	{
-		return $this->saturdayEnd;
-	}
-	
 	
 	//setter methods
-	function setSundayStart($param)
+	function setDay($param)
 	{
-		$this->sundayStart = $param;	
+		$this->day = $param;	
 	}
 	
-	function setSundayEnd($param)
+	function setStartHour($param)
 	{
-		$this->sundayEnd = $param;	
+		$this->startHour = $param;	
 	}
 	
-	function setMondayStart($param)
+	function setEndHour($param)
 	{
-		$this->mondayStart = $param;	
-	}
-	
-	function setMondayEnd($param)
-	{
-		$this->mondayEnd = $param;	
-	}
-	
-	function setTuesdayStart($param)
-	{
-		$this->tuesdayStart = $param;	
-	}
-	
-	function setTuesdayEnd($param)
-	{
-		$this->tuesdayEnd = $param;	
-	}
-	
-	function setWednesdayStart($param)
-	{
-		$this->setWednesdayStart = $param;	
-	}
-	
-	function setWednesdayEnd($param)
-	{
-		$this->wednesdayEnd = $param;	
-	}
-	
-	function setThursdayStart($param)
-	{
-		$this->thursdayStart = $param;	
-	}
-	
-	function setThursdayEnd($param)
-	{
-		$this->thursdayEnd = $param;	
-	}
-	
-	function setFridayStart($param)
-	{
-		$this->fridayStart = $param;	
-	}
-	
-	function setFridayEnd($param)
-	{
-		$this->fridayEnd = $param;	
-	}
-	
-	function setSaturdayStart($param)
-	{
-		$this->saturdayStart = $param;	
-	}
-	
-	function setSaturdayEnd($param)
-	{
-		$this->saturdayEnd = $param;	
+		$this->endHour = $param;	
 	}
 }
 ?>
