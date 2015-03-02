@@ -33,7 +33,6 @@
       }
       else if(isset($_GET["reservation"])){
         //show reservation list tab
-        echo 'show reservation tab';
       }
   }
   else{
@@ -56,10 +55,10 @@
       <li class=""><a href="deleteacc">Delete Account</a></li>
     </ul>
     <div id="myTabContent" class="tab-content" style="margin-left:20px;">
-      <form action="account?save=true" method="post">
       <div class="tab-pane fade <?php if(isset($_GET['reservation'])==false){ echo 'active in'; } ?> "id="account">
         <div class="row">
         <div class="col-md-12">
+          <form action="account?save=true" method="post">
           <h3>Account Details:</h3>
             <div class="row">
               <div class="col-md-12"><h2>User ID: <input type="text" name="userid" readonly value="<?php echo $userobj->getUserId(); ?>" ></h2></div>
@@ -93,10 +92,10 @@
             </div>
             <div class="row">
                 <button class="btn btn-info" id="btn-signup" type="submit"><i class="icon-hand-right"></i> &nbsp; Save</button>
-               <a href="deleteacc"><div class="btn btn-info"><i class="icon-hand-right"></i> &nbsp; Delete</div></a>
+               
             </div>
+          </form>
         </div>
-      </form>
     </div>  
       </div>
       <div class="tab-pane fade  <?php if(isset($_GET['reservation'])){ echo 'active in'; } ?> " id="reservations">

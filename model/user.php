@@ -174,6 +174,30 @@ class user{
 
 	}
 
+	
+	/**
+	* delete user 
+	* @param useridParam
+	* @param newUserObj: a new user object contains new data
+	* Note: make sure password is harshed before call this function to update password
+	* @return true or false
+	*/
+	function deleteUser($useridParam){
+		$userObj = new user;
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+	
+		$query = 'delete from user where id =:userid;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindValue(':userid',$useridParam);	
+		$stmt->execute();
+
+		$auth->closeconnection($dbconn);
+
+	}
+
 	/**
 	* update specific user information by column name
 	* @param useridParam
