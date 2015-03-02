@@ -1,4 +1,5 @@
 <?php
+/****jinhai wang****/
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 require_once($root.'config.php'); 
 require_once($root.'model/user.php');

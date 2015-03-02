@@ -1,1 +1,3 @@
-<?php echo 'Account created.' ?>
+<?php 
+/****jinhai wang****/
+echo 'Account created.' ?>
