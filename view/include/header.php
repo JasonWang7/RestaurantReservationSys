@@ -81,8 +81,7 @@
                               <ul class="dropdown-menu" role="menu">
                                 <?php
                                 if(!isset($_SESSION['sess_username'])){
-                                        echo '<li><a href="login">Login</a></li>';
-                                ?>
+                                        echo '<li><a href="login">Login</a></li>';}                                ?>
                                 
                                 <li><a href="account?reservation=true">Reservations</a></li>
                                 <li><a href="account">Account</a></li>
