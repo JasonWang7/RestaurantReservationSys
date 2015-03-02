@@ -62,7 +62,7 @@ class Reservation{
   * inssert new reservation into database
   * @return true or false
   */
-  function insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime, $email, $phone)
+  function insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime, $datetime, $email, $phone)
   {
     //The insertion is messed up here because reservationID is suppose to be NULL and auto increment.. this table isn't created correctly.
     $dbconn =mysqldatabaserrs::connectdb();
@@ -70,14 +70,15 @@ class Reservation{
     $stmt = $dbconn->prepare($query);
     
     /*bind values to escape*/
-    $stmt->bindValue(':restaurantid', $restaurantid; 
+    $stmt->bindValue(':restaurantid', $restaurantid); 
     $stmt->bindValue(':userId',$userid);     
     $stmt->bindValue(':numguest',$numguest); 
-    $stmt->bindValue(':note',$note; 
-    $stmt->bindValue(':invitationList',$invitationList;     
+    $stmt->bindValue(':note',$note);
+    $stmt->bindValue (':datetime',$datetime);
+    $stmt->bindValue(':invitationList',$invitationList);     
     $stmt->bindValue(':dinningtime',$dinningtime);    
-    $stmt->bindValue(':email',$email;     
-    $stmt->bindValue(':phone',$phone;   
+    $stmt->bindValue(':email',$email);  
+    $stmt->bindValue(':phone',$phone);  
 
     $stmt->execute();
     mysqldatabaserrs::closeconnction($dbconn);
