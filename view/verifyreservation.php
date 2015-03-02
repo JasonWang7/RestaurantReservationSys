@@ -10,7 +10,7 @@ require_once($root ."model/reservation.php");
 require_once($root.'util/authentication.class.php');
 
 $restaurantid = 1;
-$userid = 1;
+$userid = $_SESSION['sess_user_id'];
 $numguest = $_POST['numguest'];
 $note = $_POST['note'];
 $invitationList = $_POST['invitationList'];
@@ -19,8 +19,7 @@ $email = $_POST['email'];
 $phone = $_POST['phone'];
 
 $instance = new Reservation;
-echo $instance->insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime, $email, $phone);
-  
+echo $instance->insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime,$email, $phone);
 ?>
 <div class="row">
   <div class="col-12">  

@@ -63,7 +63,7 @@ class Reservation{
   * @return true or false
   */
 
-  function insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime, $datetime, $email, $phone)
+  function insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime,$email, $phone)
   {
     //The insertion is messed up here because reservationID is suppose to be NULL and auto increment.. this table isn't created correctly.
     $dbconn =mysqldatabaserrs::connectdb();

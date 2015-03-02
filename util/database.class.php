@@ -16,11 +16,11 @@ class mysqldatabaserrs{
 	private $dbpassword = "";
 	private $databasename = "";
 	function __construct() { 
-
-    	$dbhostname =$configs['db_host_rrsframe'];
-		$dbusername = $configs['db_user_rrsframe'];
-		$dbpassword = $configs['db_pass_rrsframe'];
-		$databasename = $configs['db_name_rrsframe'];         
+ 
+		$dbhostname ='localhost';
+		$dbusername = 'root';
+		$dbpassword = 'jasonwang';
+		$databasename = 'rss_reservation';  
     }
 	
 	/**
@@ -31,7 +31,7 @@ class mysqldatabaserrs{
 		$host = 'localhost';
 		$dbname = 'rss_reservation';
 		$constring =  'mysql:host='.$host.';dbname='.$dbname ;
-		$connection = new PDO($constring, 'root', 'roadkill182');
+		$connection = new PDO($constring, 'root', 'jasonwang');
 		
 
 		return $connection;

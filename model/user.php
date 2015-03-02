@@ -56,21 +56,36 @@ class user{
 	* fetch into class. ref: http://w3facility.org/question/php-pdofetch_class-is-mapping-to-all-lowercase-properties-instead-of-camelcase/
 	*/
 	function selectUserInfo($email){
-		$dbconn = connectdb();
+		$userObj = new user;
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
 		$query = 'select username,id as userid,email as useremail,status, firstname,lastname,passwordHash as password,
-					phone,verified,city,role,rewardpoint,likes from user where email=:email;';
+					phone,verified,city,role,rewardpoint,likes,address from user where email=:email;';
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/
-		$stmt->bindValue(':useremail',$this->getUserEmail());				
+		$stmt->bindValue(':email',$email);				
 
 		$stmt->execute();
-		$resultObj = $stmt->fetch(PDO::FETCH_CLASS,"user");
-		
-		closeconnection($dbconn);
-		return $resultObj;
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		$userObj = new user;
+		$userObj->setUserName($result['username']);
+		$userObj->setUserId($result['userid']);
+		$userObj->setUserEmail($result['useremail']);
+		$userObj->setStatus($result['status']);
+		$userObj->setFirstName($result['firstname']);
+		$userObj->setLastName($result['lastname']);
+		$userObj->setPassword($result['password']);
+		$userObj->setPhone($result['phone']);
+		$userObj->setVerified($result['verified']);
+		$userObj->setCity($result['city']);
+		$userObj->setRole($result['role']);
+		$userObj->setAddress($result['address']);
+		$userObj->setRewardpoint($result['rewardpoint']);
+		$userObj->setLikes($result['likes']);
+		$auth->closeconnection($dbconn);
+		return $userObj;
 	}
-
 
 	/**********insert user data to datbase********/
 
@@ -119,7 +134,6 @@ class user{
 		
 	}
 
-
 	/******************update user database*************/
 	/**
 	* update user information
@@ -129,7 +143,10 @@ class user{
 	* @return true or false
 	*/
 	function updateUser($useridParam,$newUserObj){
-		$dbconn = connectdb();
+		$userObj = new user;
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+	
 		$query = 'update user set firstname=:firstname,lastname=:lastname,email=:useremail,passwordHash=:password,
 					phone=:phone,username=:username,city=:city,address=:address,postcode=:postcode,role=:role,
 					likes=:likes, status=:status, verified=:verified, rewardpoint=:rewardpoint where id=:userid;';
@@ -152,7 +169,8 @@ class user{
 		$stmt->bindValue(':rewardpoint',$newUserObj->getRewardpoint());
 		$stmt->bindValue(':userid',$newUserObj->getUserId());
 		$stmt->execute();
-		closeconnection($dbconn);
+
+		$auth->closeconnection($dbconn);
 
 	}
 

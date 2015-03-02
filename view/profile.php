@@ -4,7 +4,9 @@ include($root."view/include/header.php");
 include($root ."util/database.class.php");
 ?>
 <?php
-    $dbconn = mysqldatabaserrs::connectdb();
+    $userObj = new user;
+    $auth = new mysqldatabaserrs;
+    $dbconn = $auth->connectdb();
     $query = "select * from restaurant where restaurantid=:profileid";
 
     try {
@@ -27,7 +29,7 @@ include($root ."util/database.class.php");
       print $e->getMessage();
     }
 
-    mysqldatabaserrs::closeconnection($dbconn);
+    $auth->closeconnection($dbconn);
 ?>
 
 <!-- Vincent Tieu created this page -->
