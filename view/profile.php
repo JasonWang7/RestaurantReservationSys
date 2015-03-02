@@ -124,43 +124,46 @@ include($root ."util/database.class.php");
       </div>
       <div class="modal-body">
         <div class="row">
+          <form id="booktable" name="booktable" ACTION="view/verifyreservation.php" METHOD=post>
+                            
           <div class="col-md-4">
-            <h3>Date: </h3><input type="text" name="box">
+            <h3>Date: </h3><input type="text" name="datetime">
           </div>
           <div class="col-md-4">
-            <h3>Time:</h3><input type="text" name="box">
+            <h3>Time:</h3><input type="text" name="dinningtime">
           </div>
           <div class="col-md-4">
-            <h3># of Guests: </h3><input type="text" name="box">
+            <h3># of Guests: </h3><input type="text" name="numguest">
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <h3>Special Request / Note:</h3>
-            <textarea style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;">Let us know your special requests / notes.</textarea>
+            <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <h3>Your Phone Number:</h3><input type="text" name="box">
+            <h3>Your Phone Number:</h3><input type="text" name="phone">
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <h3>Your Email Address:</h3>    <input type="text" name="box">  
+            <h3>Your Email Address:</h3>    <input type="text" name="email">  
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <h3>Enter your email addresses for your guests. Please separate them with the character ";" (no quotes)</h3>
-            <textarea style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;">Let us know your special requests / notes.</textarea>
+            <textarea name="invitationList" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

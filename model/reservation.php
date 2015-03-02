@@ -62,29 +62,29 @@ class Reservation{
   * inssert new reservation into database
   * @return true or false
   */
+
   function insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime, $datetime, $email, $phone)
   {
     //The insertion is messed up here because reservationID is suppose to be NULL and auto increment.. this table isn't created correctly.
     $dbconn =mysqldatabaserrs::connectdb();
-    $query = "insert into reservation (restaurantid, userId, numguest, note, invitationList, dinningtime, email, phone) values(:restaurantid,:userId,:numguest,:note,:invitationList,:dinningtime,:email,:phone);";
+    $query = "INSERT INTO `reservation` (`restaurantid`, `reservationid`, `userId`, `numguest`, `note`, `invitationList`, `dinningtime`, `email`, `phone`) VALUES (':restaurantid', NULL, ':userId', ':numguest', ':note', ':invitationList', '2015-03-02 00:00:00', ':email', ':phone');";
+
     $stmt = $dbconn->prepare($query);
-    
     /*bind values to escape*/
-    $stmt->bindValue(':restaurantid', $restaurantid); 
-    $stmt->bindValue(':userId',$userid);     
-    $stmt->bindValue(':numguest',$numguest); 
-    $stmt->bindValue(':note',$note);
-    $stmt->bindValue (':datetime',$datetime);
-    $stmt->bindValue(':invitationList',$invitationList);     
-    $stmt->bindValue(':dinningtime',$dinningtime);    
-    $stmt->bindValue(':email',$email);  
-    $stmt->bindValue(':phone',$phone);  
+    $stmt->bindValue(':restaurantid', $restaurantid);
+    $stmt->bindValue(':userId', $userid);
+    $stmt->bindValue(':numguest', $numguest);
+    $stmt->bindValue(':note', $note);
+    $stmt->bindValue(':invitationList', $invitationList);
+    $stmt->bindValue(':dinningtime', $dinningtime);
+    $stmt->bindValue(':email', $email);
+    $stmt->bindValue(':phone', $phone);
 
-    $stmt->execute();
-    mysqldatabaserrs::closeconnction($dbconn);
+    $result = $stmt->execute();
 
+    mysqldatabaserrs::closeconnection($dbconn);
 
-    return true;
+    return $result;
   }
-
+}
 ?>
