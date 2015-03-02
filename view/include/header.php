@@ -57,7 +57,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                           </button>
-                        <img src="https://i.imgur.com/VMDg9Dc.png?1" style="width:100px; margin-top:10px;"></img>
+                        <a href="/RRS/"><img src="https://i.imgur.com/VMDg9Dc.png?1" style="width:100px; margin-top:10px;"></img></a>
                         </div>
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
