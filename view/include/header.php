@@ -79,7 +79,11 @@
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu<span class="caret"></span></a>
                               <ul class="dropdown-menu" role="menu">
-                                <li><a href="login">Login</a></li>
+                                <?php
+                                if(!isset($_SESSION['sess_username'])){
+                                        echo '<li><a href="login">Login</a></li>';
+                                ?>
+                                
                                 <li><a href="account?reservation=true">Reservations</a></li>
                                 <li><a href="account">Account</a></li>
                                 <li><a href="contactus">Contact Us</a></li>
