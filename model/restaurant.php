@@ -74,16 +74,17 @@ class restaurant
 		$stmt->bindValue(':restaurantName',$this->getRestaurantName());	
 		$stmt->bindValue(':email',$this->getEmail());	
 		$stmt->bindValue(':phone',$this->getPhone());			
-		$stmt->bindValue(':features',$this->getFeatures);		
+		$stmt->bindValue(':features',$this->getFeatures());		
 		$stmt->bindValue(':priceRange',$this->getPriceRange());			
 		$stmt->bindValue(':about',$this->getAbout());		
 		$stmt->bindValue(':website',$this->getWebsite());				
-		$stmt->bindValue(':city',$this->getCity());
-		$stmt->bindValue(':role',$this->getRole());			
+		$stmt->bindValue(':holidayHour',$this->getHolidayHour());
 		$stmt->bindValue(':likes',$this->getLikes());
-
+		$stmt->bindValue(':profilePicture',$this->getProfilePicture());
+		$stmt->bindValue(':verified',$this->getVerified());
+		
 		$stmt->execute();
-		mysqldatabaserrs::closeconnction($dbconn);
+		mysqldatabaserrs::closeconnection($dbconn);
 	}
 	
 	//getter functions
