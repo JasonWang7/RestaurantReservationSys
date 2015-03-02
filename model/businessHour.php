@@ -14,6 +14,7 @@ require_once($root.'util/database.class.php');
 
 class businessHour
 {
+	private $restaurantId;
 	private $day;
 	private $startHour;
 	private $endHour;
@@ -23,19 +24,17 @@ class businessHour
 	* @param email
 	* @return restaurant obj
 	*/
-	function selectRestaurantInfo($name)
+	function selectHoursInfo($id)
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
-		$query = 'select address, restaurantid as restaurantId, type, restaurantname, 
-					email, phone, features, pricerange as priceRange, about, website, holidayhour as holidayHour,
-					likes, profilepicture as profilePicture, verified from restaurant where restaurantname=:name;';
+		$query = 'select day, starhour, end from businesshour where restaurantid=:id;';
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/
-		$stmt->bindValue(':name',$this->getRestaurantName());				
+		$stmt->bindValue(':id',$this->getRestaurantId());				
 
 		$stmt->execute();
-		$resultObj = $stmt->fetch(PDO::FETCH_CLASS,"restaurant");
+		$resultObj = $stmt->fetch(PDO::FETCH_CLASS,"businessHour");
 		
 		mysqldatabaserrs::closeconnection($dbconn);
 		
@@ -64,6 +63,11 @@ class businessHour
 	}
 	
 	//getter methods
+	function getRestaurantId()
+	{
+		return $this->restaurantId;
+	}
+	
 	function getDay()
 	{
 		return $this->day;
@@ -80,6 +84,11 @@ class businessHour
 	}
 	
 	//setter methods
+	function setRestaurantId($param)
+	{
+		$this->restaurantId = $param;	
+	}
+	
 	function setDay($param)
 	{
 		$this->day = $param;	

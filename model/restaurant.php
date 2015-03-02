@@ -1,4 +1,6 @@
 <?php
+error_reporting(0);
+
 /******************************************************************************************
 * File name: restaurant.php
 * Purpose: Provides restaurant class functionality that contains several methods in 
@@ -38,7 +40,7 @@ class restaurant
 	function selectRestaurantInfo($name)
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
-		$query = 'select address, restaurantid as restaurantId, type, restaurantname, 
+		$query = 'select restaurantid, address, restaurantid as restaurantId, type, restaurantname, 
 					email, phone, features, pricerange as priceRange, about, website, holidayhour as holidayHour,
 					likes, profilepicture as profilePicture, verified from restaurant where restaurantname=:name;';
 		$stmt = $dbconn->prepare($query);
@@ -88,6 +90,11 @@ class restaurant
 	}
 	
 	//getter functions
+	function getId()
+	{
+		return $this->restaurantId;
+	}
+	
 	function getAddress()
 	{
 		return $this->address;
@@ -155,6 +162,11 @@ class restaurant
 	
 	
 	//setter functions
+	function setId($param)
+	{
+		$this->restaurantId = $param;	
+	}
+	
 	function setAddress($param)
 	{
 		$this->addressName = $param;	
