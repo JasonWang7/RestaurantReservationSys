@@ -57,12 +57,11 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                           </button>
-                          <a class="navbar-brand" href="/RRS">Reserve4U</a>
+                        <img src="https://i.imgur.com/VMDg9Dc.png?1" style="width:100px; margin-top:10px;"></img>
                         </div>
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                           <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Guelph</a></li>
                           </ul>
                           <ul class="nav navbar-nav navbar-right">
                                 <?php session_start(); ?>
