@@ -23,7 +23,7 @@
 			require_once($root.'model/businessHour.php');
 			
 			$restaurantObj = new restaurant;
-			$finalRestaurantObj = new restaurant;
+			$newRestaurantObj = new restaurant;
 			$sundayHoursObj = new businessHour;
 			$mondayHoursObj = new businessHour;
 			$tuesdayHoursObj = new businessHour;
@@ -47,7 +47,7 @@
 				}
 			}
 			
-			//text field variables
+			//insert restaurant attributes into database
 			$restaurantObj->setAddress($_POST["address"]);
 			$restaurantObj->setType("");
 			$restaurantObj->setRestaurantName($_POST["restaurantName"]);
@@ -57,35 +57,78 @@
 			$restaurantObj->setPriceRange($_POST["priceRange"]);
 			$restaurantObj->setAbout($_POST["about"]);
 			$restaurantObj->setWebsite($_POST["website"]);
-			$restaurantObj->setHolidayHour("");
+			$restaurantObj->setHolidayHours("");
 			$restaurantObj->setLikes("");
 			$restaurantObj->setProfilePicture("");
 			$restaurantObj->setVerified("");
 			
 			$result = $restaurantObj->insertRestaurantInfo();
-
-			/*
-			$sundayHoursObj->setDay("Sunday");
-			$sundayHoursObj->setStartHour($_POST["sundayStart"]);
-			$sundayHoursObj->setEndHour($_POST["sundayEnd"]);
-			$mondayHoursObj->setDay("Monday");
-			$mondayHoursObj->setStartHour($_POST["mondayStart"]);
-			$mondayHoursObj->setEndHour($_POST["mondayEnd"]);
-			$tuesdayHoursObj->setDay("Tuesday");
-			$tuesdayHoursObj->setStartHour($_POST["tuesdayStart"]);
-			$tuesdayHoursObj->setEndHour($_POST["tuesdayEnd"]);
-			$wednesdayHoursObj->setDay("Wednesday");
-			$wednesdayHoursObj->setStartHour($_POST["wednesdayStart"]);
-			$wednesdayHoursObj->setEndHour($_POST["wednesdayEnd"]);
-			$thursdayHoursObj->setDay("Thursday");
-			$thursdayHoursObj->setStartHour($_POST["thursdayStart"]);
-			$thursdayHoursObj->setEndHour($_POST["thursdayEnd"]);
-			$fridayHoursObj->setDay("Friday");
-			$fridayHoursObj->setStartHour($_POST["fridayStart"]);
-			$fridayHoursObj->setEndHour($_POST["fridayEnd"]);
-			$saturdayHoursObj->setDay("Saturday");
-			$saturdayHoursObj->setStartHour($_POST["saturdayStart"]);
-			$saturdayHoursObj->setEndHour($_POST["saturdayEnd"]);*/
+			
+			// insert restaurant hours into database if previous insert is successful
+			if ($result == 1)
+			{	
+				//retrieve id of previously inserted restaurant
+				$restaurantName = $restaurantObj->getRestaurantName();
+				$newRestaurantObj = $restaurantObj->selectRestaurantInfo($restaurantName);
+				
+				//assign values to days-of-week objects
+				$sundayHoursObj->setRestaurantId($newRestaurantObj->getId());
+				$sundayHoursObj->setDay("Sunday");
+				$sundayHoursObj->setStartHour($_POST["sundayStart"]);
+				$sundayHoursObj->setEndHour($_POST["sundayEnd"]);
+				$mondayHoursObj->setRestaurantId($newRestaurantObj->getId());
+				$mondayHoursObj->setDay("Monday");
+				$mondayHoursObj->setStartHour($_POST["mondayStart"]);
+				$mondayHoursObj->setEndHour($_POST["mondayEnd"]);
+				$tuesdayHoursObj->setRestaurantId($newRestaurantObj->getId());
+				$tuesdayHoursObj->setDay("Tuesday");
+				$tuesdayHoursObj->setStartHour($_POST["tuesdayStart"]);
+				$tuesdayHoursObj->setEndHour($_POST["tuesdayEnd"]);
+				$wednesdayHoursObj->setRestaurantId($newRestaurantObj->getId());
+				$wednesdayHoursObj->setDay("Wednesday");
+				$wednesdayHoursObj->setStartHour($_POST["wednesdayStart"]);
+				$wednesdayHoursObj->setEndHour($_POST["wednesdayEnd"]);
+				$thursdayHoursObj->setRestaurantId($newRestaurantObj->getId());
+				$thursdayHoursObj->setDay("Thursday");
+				$thursdayHoursObj->setStartHour($_POST["thursdayStart"]);
+				$thursdayHoursObj->setEndHour($_POST["thursdayEnd"]);
+				$fridayHoursObj->setRestaurantId($newRestaurantObj->getId());
+				$fridayHoursObj->setDay("Friday");
+				$fridayHoursObj->setStartHour($_POST["fridayStart"]);
+				$fridayHoursObj->setEndHour($_POST["fridayEnd"]);
+				$saturdayHoursObj->setRestaurantId($newRestaurantObj->getId());
+				$saturdayHoursObj->setDay("Saturday");
+				$saturdayHoursObj->setStartHour($_POST["saturdayStart"]);
+				$saturdayHoursObj->setEndHour($_POST["saturdayEnd"]);
+		
+				//insert each day of week object info into database
+				$result = $sundayHoursObj->insertHoursInfo();
+				$result = $mondayHoursObj->insertHoursInfo();
+				$result = $tuesdayHoursObj->insertHoursInfo();
+				$result = $wednesdayHoursObj->insertHoursInfo();
+				$result = $thursdayHoursObj->insertHoursInfo();
+				$result = $fridayHoursObj->insertHoursInfo();
+				$result = $saturdayHoursObj->insertHoursInfo();
+				
+				if ($result == 1)
+				{
+					echo "Successfully created new restaurant.";
+					?> <br><br><?php
+					echo "\n Your restaurant can now be viewed!";
+				}
+				else
+				{
+					echo "An error has occurred while adding restaurant hours. \n";
+					?> <br><br> <?php
+					echo "\n Please try again.";
+				}
+			}
+			else
+			{
+				echo "An error has occurred while creating the restaurant. \n";
+				?> <br><br> <?php
+				echo "\n Ensure that all the required fields are filled out";
+			}
 		?>
 	</body>
 </html>
