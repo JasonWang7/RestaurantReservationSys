@@ -13,7 +13,7 @@ $username = $configs['db_user_rrsframe'];
 $password = $configs['db_pass_rrsframe'];
 $database = $configs['db_name_rrsframe'];
 
-$dbConn = mysql_connect($servername, $username,$password); 
+$dbConn = mysql_connect($servername, $username, $password); 
         
 if (!($dbConn)) {
     print("\n");

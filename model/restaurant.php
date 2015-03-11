@@ -64,13 +64,14 @@ class restaurant
 	function insertRestaurantInfo()
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
+		
 		$query = "insert into restaurant(address, type, restaurantname, email, phone, features, pricerange,
 					about, website, holidayhour, likes, profilepicture, verified) 
 					values(:address,:type,:restaurantName,:email,:phone,:features,:priceRange,
 					:about,:website,:holidayHour,:likes, :profilePicture, :verified);";
 		$stmt = $dbconn->prepare($query);
 		
-		/*bind values to escape*/
+		// bind class values to query values
 		$stmt->bindValue(':address',$this->getAddress());	
 		$stmt->bindValue(':type',$this->getType());			
 		$stmt->bindValue(':restaurantName',$this->getRestaurantName());	
@@ -85,8 +86,15 @@ class restaurant
 		$stmt->bindValue(':profilePicture',$this->getProfilePicture());
 		$stmt->bindValue(':verified',$this->getVerified());
 		
-		$stmt->execute();
-		mysqldatabaserrs::closeconnection($dbconn);
+		if ($stmt->execute())
+		{
+			mysqldatabaserrs::closeconnection($dbconn);
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 	
 	//getter functions
@@ -169,7 +177,7 @@ class restaurant
 	
 	function setAddress($param)
 	{
-		$this->addressName = $param;	
+		$this->address = $param;	
 	}
 	
 	function setType($param)

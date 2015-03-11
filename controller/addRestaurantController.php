@@ -36,7 +36,9 @@
 			"italian", "japanese", "kidFriendly", "korean", "pub", "tableTopCooking", "vegan");
 			$featureString = "";
 			$i = 0;
+			$result = 0;
 			
+			//add all strings of features into array
 			for($i; $i<19; $i++)
 			{
 				if (!empty($_POST[$features[$i]]))
@@ -61,19 +63,8 @@
 			$restaurantObj->setVerified("");
 			
 			$result = $restaurantObj->insertRestaurantInfo();
-			
-			if ($result == true)
-			{
-				$restaurantInfo = restaurant::selectRestaurantInfo($restaurantObj->getRestaurantId());
-				
-				echo "The restaurant has successfully been created";
-			}
-			
-			else
-			{
-				
-			}
-			
+
+			/*
 			$sundayHoursObj->setDay("Sunday");
 			$sundayHoursObj->setStartHour($_POST["sundayStart"]);
 			$sundayHoursObj->setEndHour($_POST["sundayEnd"]);
@@ -94,7 +85,7 @@
 			$fridayHoursObj->setEndHour($_POST["fridayEnd"]);
 			$saturdayHoursObj->setDay("Saturday");
 			$saturdayHoursObj->setStartHour($_POST["saturdayStart"]);
-			$saturdayHoursObj->setEndHour($_POST["saturdayEnd"]);
+			$saturdayHoursObj->setEndHour($_POST["saturdayEnd"]);*/
 		?>
 	</body>
 </html>
