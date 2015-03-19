@@ -44,6 +44,7 @@ $query = "CREATE TABLE `user` (
     `role` varchar(100) NOT NULL default 'regular',
     `status` varchar(50) NOT NULL default 'active',
     `rewardpoint` int NOT NULL default '0',
+    `activationcode` varchar(200) NOT NULL default '',
     `likes` text,
      PRIMARY KEY (`id`)
     )";
