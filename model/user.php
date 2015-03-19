@@ -19,6 +19,7 @@ class user{
 	private $status;
 	private $rewardpoint;
 	private $likes;
+	private $activationcode;
 	
 
 	/********retrive user data from database*******/
@@ -98,8 +99,8 @@ class user{
 		
 
 		$dbconn =mysqldatabaserrs::connectdb();
-		$query = "insert into user (firstname,lastname,email,username,passwordHash,city) 
-			values(:firstname,:lastname,:useremail,:username,:password,:city);";
+		$query = "insert into user (firstname,lastname,email,username,passwordHash,city,activationcode) 
+			values(:firstname,:lastname,:useremail,:username,:password,:city,:activationcode);";
 		$stmt = $dbconn->prepare($query);
 		
 		/*bind values to escape*/
@@ -109,7 +110,7 @@ class user{
 		$stmt->bindValue(':lastname',$this->getLastName());			
 		$stmt->bindValue(':password',$passwordHashed);					
 		$stmt->bindValue(':city',$this->getCity());
-	
+		$stmt->bindValue(':activationcode',$this->getActivationCode());
 		if($stmt->execute()){
 			mysqldatabaserrs::closeconnection($dbconn);
 			$this->setPassword($passwordHashed);
@@ -284,6 +285,9 @@ class user{
 	function getLikes(){
 		return $this->likes;
 	}
+	function getActivationCode(){
+		return $this->activationcode;
+	}
 	
 	/****************************setter*****************************/
 
@@ -332,7 +336,10 @@ class user{
 	function setLikes($param){
 		$this->likes=$param;
 	}
-
+	function setActivationCode($param){
+		$this->activationcode=$param;
+	}
+	
 }
 
 
