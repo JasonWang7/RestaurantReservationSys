@@ -18,7 +18,7 @@
     <link href="http://bootswatch.com/assets/css/bootswatch.min.css" rel="stylesheet"><!-- Latest compiled and minified JavaScript -->
     
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script><!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <style>
       body { 
         background: url("http://www.resto.be/static/images/95/9/shutterstock_74171587_95399.jpg"); no-repeat center center fixed; 
