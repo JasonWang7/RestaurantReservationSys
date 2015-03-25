@@ -23,7 +23,10 @@ require_once($root.'model/user.php');
 		$body='Hi, <br/> <br/> You have registered accunt at Reserve4u. 
 				Please verify your email and get started using your Website account. <br/> <br/> 
 				<a href="'.'/localhost/RRS/verify/'.$activation_code.'">'.'/localhost/RRS/verify/'.$activation_code.'</a>';
-		mail($to,$subject,$body);
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+		$headers .= 'From: reserve4u110@gmail.com' . "\r\n";
+		mail($to,$subject,$body,$headers);
 		session_start();
 		session_regenerate_id();
 		$_SESSION['sess_user_id'] = $userInfo->getUserId();

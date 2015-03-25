@@ -35,6 +35,11 @@
         border-radius: 10px;
         margin-bottom:10px;
       }
+      .datepicker1 
+      { 
+        position: relative; 
+        z-index: 10000 !important; 
+      }
     </style>
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

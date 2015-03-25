@@ -114,7 +114,7 @@ include($root ."util/database.class.php");
     <p>About here</p>
   </div>
   <div class="tab-pane fade" id="rateadish">
-    <p>RAte here here</p>
+    <p>RAte here</p>
   </div>
 </div>
 
@@ -130,7 +130,20 @@ include($root ."util/database.class.php");
           <form id="booktable" name="booktable" ACTION="view/verifyreservation.php" METHOD=post>
                             
           <div class="col-md-4">
-            <h3>Date: </h3><input type="text" name="datetime">
+            <h3>Date: </h3><input  type="text" placeholder="click to show datepicker" name="datetime" id="datepicker1">
+            <!-- Load jQuery and bootstrap datepicker scripts -->
+          
+            <script src="http://localhost/RRS/css/bootstrap/js/bootstrap-datepicker.js"></script>
+            <script type="text/javascript">
+                // When the document is ready
+                $(document).ready(function () {
+                    
+                    $('#datepicker1').datepicker({
+                        format: "dd/mm/yyyy"
+                    });  
+                
+                });
+            </script>
           </div>
           <div class="col-md-4">
             <h3>Time:</h3><input type="text" name="dinningtime">

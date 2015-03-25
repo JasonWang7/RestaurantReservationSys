@@ -175,7 +175,7 @@ $query = "CREATE TABLE `reservation` (
     `invitationList` text,
     `dinningtime` datetime not null,
     `email` text,
-    `phone` int(11) not null,
+    `phone` varchar(11)  not null,
     FOREIGN KEY (userId) REFERENCES user (id),
     FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid),
     PRIMARY KEY (`reservationid`)

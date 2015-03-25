@@ -19,13 +19,6 @@ $email = $_POST['email'];
 $phone = $_POST['phone'];
 
 $instance = new Reservation;
-echo $instance->insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime,$email, $phone);
+//echo $restaurantid.$userid.$numguest.$note.$invitationList.$dinningtime.$email.$phone;
+$instance->insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime,$email, $phone);
 ?>
-<div class="row">
-  <div class="col-12">  
-    <div class="jumbotron">
-      <h1>Your reservation was successfully booked.</h1>
-    </div>
-  </div>
-</div>
-<?php include("include/footer.php"); ?>

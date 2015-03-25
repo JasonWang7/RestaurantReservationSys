@@ -146,6 +146,14 @@ class user{
 	function updateUser($useridParam,$newUserObj){
 		$userObj = new user;
 		$auth = new mysqldatabaserrs;
+		//check if password changed
+		if($this->getPassword()!=$newUserObj->getPassword()){
+			//new password hash it
+			$authuser= new authentication;
+
+			$newHashedPass = $authuser->encryptPass($newUserObj->getPassword());
+			$newUserObj->setPassword($newHashedPass);
+		}
 		$dbconn = $auth->connectdb();
 	
 		$query = 'update user set firstname=:firstname,lastname=:lastname,email=:useremail,passwordHash=:password,
