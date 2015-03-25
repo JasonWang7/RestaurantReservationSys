@@ -1,4 +1,6 @@
 <?php
+error_reporting(0);
+
 /******************************************************************************************
 * File name: restaurant.php
 * Purpose: Provides restaurant class functionality that contains several methods in 
@@ -24,7 +26,7 @@ class restaurant
 	private $priceRange;
 	private $about;
 	private $website;
-	private $holidayHour;
+	private $holidayHours;
 	private $likes;
 	private $profilePicture;
 	private $verified;
@@ -38,20 +40,36 @@ class restaurant
 	function selectRestaurantInfo($name)
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
-		$query = 'select address, restaurantid as restaurantId, type, restaurantname, 
-					email, phone, features, pricerange as priceRange, about, website, holidayhour as holidayHour,
-					likes, profilepicture as profilePicture, verified from restaurant where restaurantname=:name;';
+		$query = 'select restaurantid, address, type, restaurantname, email, phone, features, pricerange, about, website, holidayhour, likes, profilepicture, 
+		verified from restaurant where restaurantname=:name;';
+		
 		$stmt = $dbconn->prepare($query);
 
-		/*bind values to escape*/
-		$stmt->bindValue(':name',$this->getRestaurantName());				
+		// bind restaurant values from database to class values
+		$stmt->bindValue(':name', $name);				
 
 		$stmt->execute();
-		$resultObj = $stmt->fetch(PDO::FETCH_CLASS,"restaurant");
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		$restaurantObj = new restaurant;
+		$restaurantObj->setId($result['restaurantid']);
+		$restaurantObj->setAddress($result['address']);
+		$restaurantObj->setType($result['type']);
+		$restaurantObj->setRestaurantName($result['restaurantname']);
+		$restaurantObj->setEmail($result['email']);
+		$restaurantObj->setPhone($result['phone']);
+		$restaurantObj->setFeatures($result['features']);
+		$restaurantObj->setPriceRange($result['pricerange']);
+		$restaurantObj->setAbout($result['about']);
+		$restaurantObj->setWebsite($result['website']);
+		$restaurantObj->setHolidayHours($result['holidayhour']);
+		$restaurantObj->setLikes($result['likes']);
+		$restaurantObj->setProfilePicture($result['profilepicture']);
+		$restaurantObj->setVerified($result['verified']);
 		
 		mysqldatabaserrs::closeconnection($dbconn);
 		
-		return $resultObj;
+		return $restaurantObj;
 	}
 	
 	
@@ -62,13 +80,14 @@ class restaurant
 	function insertRestaurantInfo()
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
+		
 		$query = "insert into restaurant(address, type, restaurantname, email, phone, features, pricerange,
 					about, website, holidayhour, likes, profilepicture, verified) 
 					values(:address,:type,:restaurantName,:email,:phone,:features,:priceRange,
 					:about,:website,:holidayHour,:likes, :profilePicture, :verified);";
 		$stmt = $dbconn->prepare($query);
 		
-		/*bind values to escape*/
+		// bind class values to query values
 		$stmt->bindValue(':address',$this->getAddress());	
 		$stmt->bindValue(':type',$this->getType());			
 		$stmt->bindValue(':restaurantName',$this->getRestaurantName());	
@@ -78,16 +97,28 @@ class restaurant
 		$stmt->bindValue(':priceRange',$this->getPriceRange());			
 		$stmt->bindValue(':about',$this->getAbout());		
 		$stmt->bindValue(':website',$this->getWebsite());				
-		$stmt->bindValue(':holidayHour',$this->getHolidayHour());
+		$stmt->bindValue(':holidayHour',$this->getHolidayHours());
 		$stmt->bindValue(':likes',$this->getLikes());
 		$stmt->bindValue(':profilePicture',$this->getProfilePicture());
 		$stmt->bindValue(':verified',$this->getVerified());
 		
-		$stmt->execute();
-		mysqldatabaserrs::closeconnection($dbconn);
+		if ($stmt->execute())
+		{
+			mysqldatabaserrs::closeconnection($dbconn);
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 	
 	//getter functions
+	function getId()
+	{
+		return $this->restaurantId;
+	}
+	
 	function getAddress()
 	{
 		return $this->address;
@@ -133,9 +164,9 @@ class restaurant
 		return $this->website;
 	}
 	
-	function getHolidayHour()
+	function getHolidayHours()
 	{
-		return $this->holidayHour;
+		return $this->holidayHours;
 	}
 	
 	function getLikes()
@@ -155,9 +186,14 @@ class restaurant
 	
 	
 	//setter functions
+	function setId($param)
+	{
+		$this->restaurantId = $param;	
+	}
+	
 	function setAddress($param)
 	{
-		$this->addressName = $param;	
+		$this->address = $param;	
 	}
 	
 	function setType($param)
@@ -200,9 +236,9 @@ class restaurant
 		$this->website = $param;	
 	}
 	
-	function setHolidayHour($param)
+	function setHolidayHours($param)
 	{
-		$this->holidayHour = $param;	
+		$this->holidayHours = $param;	
 	}
 	
 	function setLikes($param)

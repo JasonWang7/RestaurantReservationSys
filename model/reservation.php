@@ -66,7 +66,8 @@ class Reservation{
   function insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime,$email, $phone)
   {
     //The insertion is messed up here because reservationID is suppose to be NULL and auto increment.. this table isn't created correctly.
-    $dbconn =mysqldatabaserrs::connectdb();
+    $auth = new mysqldatabaserrs;
+    $dbconn = $auth->connectdb();
     $query = "INSERT INTO `reservation` (`restaurantid`, `reservationid`, `userId`, `numguest`, `note`, `invitationList`, `dinningtime`, `email`, `phone`) VALUES (':restaurantid', NULL, ':userId', ':numguest', ':note', ':invitationList', '2015-03-02 00:00:00', ':email', ':phone');";
 
     $stmt = $dbconn->prepare($query);
@@ -82,7 +83,7 @@ class Reservation{
 
     $result = $stmt->execute();
 
-    mysqldatabaserrs::closeconnection($dbconn);
+    $auth->closeconnection($dbconn);
 
     return $result;
   }

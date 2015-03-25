@@ -14,6 +14,7 @@ require_once($root.'util/database.class.php');
 
 class businessHour
 {
+	private $restaurantId;
 	private $day;
 	private $startHour;
 	private $endHour;
@@ -23,23 +24,27 @@ class businessHour
 	* @param email
 	* @return restaurant obj
 	*/
-	function selectRestaurantInfo($name)
+	function selectHoursInfo($id)
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
-		$query = 'select address, restaurantid as restaurantId, type, restaurantname, 
-					email, phone, features, pricerange as priceRange, about, website, holidayhour as holidayHour,
-					likes, profilepicture as profilePicture, verified from restaurant where restaurantname=:name;';
+		$query = 'select restaurantid, day, starhour, end from businesshour where restaurantid=:id;';
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/
-		$stmt->bindValue(':name',$this->getRestaurantName());				
+		$stmt->bindValue(':id', $id);				
 
 		$stmt->execute();
-		$resultObj = $stmt->fetch(PDO::FETCH_CLASS,"restaurant");
+		$result = $stmt->fetch(PDO::FETCH_CLASS,"businessHour");
+		
+		$businessHourObj = new businessHour;
+		$businessHourObj->setRestaurantId($result['restaurantid']);
+		$businessHourObj->setDay($result['day']);
+		$businessHourObj->setStartHour($result['starhour']);
+		$businessHourObj->setEndHour($result['end']);
 		
 		mysqldatabaserrs::closeconnection($dbconn);
 		
-		return $resultObj;
+		return $businessHourObj;
 	}
 	
 	/**
@@ -50,20 +55,35 @@ class businessHour
 	function insertHoursInfo()
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
-		$query = "insert into businesshour(day, starhour, end) 
-					values(:day, :startHour, :endHour);";
+		$query = "insert into businesshour(restaurantid, day, starhour, end) 
+					values(:restaurantId, :day, :startHour, :endHour);";
 		$stmt = $dbconn->prepare($query);
 		
-		/*bind values to escape*/
+		// bind business hour values from database to class values
+		$stmt->bindValue(':restaurantId',$this->getRestaurantId());
 		$stmt->bindValue(':day',$this->getDay());	
 		$stmt->bindValue(':startHour',$this->getStartHour());			
 		$stmt->bindValue(':endHour',$this->getEndHour());	
 		
-		$stmt->execute();
-		mysqldatabaserrs::closeconnection($dbconn);
+		if ($stmt->execute())
+		{
+			mysqldatabaserrs::closeconnection($dbconn);
+			return 1;
+		}
+		else
+		{
+			/*$arr = $stmt->errorInfo();
+			print_r($arr);*/
+			return 0;
+		}
 	}
 	
 	//getter methods
+	function getRestaurantId()
+	{
+		return $this->restaurantId;
+	}
+	
 	function getDay()
 	{
 		return $this->day;
@@ -80,6 +100,11 @@ class businessHour
 	}
 	
 	//setter methods
+	function setRestaurantId($param)
+	{
+		$this->restaurantId = $param;	
+	}
+	
 	function setDay($param)
 	{
 		$this->day = $param;	

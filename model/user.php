@@ -19,6 +19,7 @@ class user{
 	private $status;
 	private $rewardpoint;
 	private $likes;
+	private $activationcode;
 	
 
 	/********retrive user data from database*******/
@@ -98,8 +99,8 @@ class user{
 		
 
 		$dbconn =mysqldatabaserrs::connectdb();
-		$query = "insert into user (firstname,lastname,email,username,passwordHash,city) 
-			values(:firstname,:lastname,:useremail,:username,:password,:city);";
+		$query = "insert into user (firstname,lastname,email,username,passwordHash,city,activationcode) 
+			values(:firstname,:lastname,:useremail,:username,:password,:city,:activationcode);";
 		$stmt = $dbconn->prepare($query);
 		
 		/*bind values to escape*/
@@ -109,7 +110,7 @@ class user{
 		$stmt->bindValue(':lastname',$this->getLastName());			
 		$stmt->bindValue(':password',$passwordHashed);					
 		$stmt->bindValue(':city',$this->getCity());
-	
+		$stmt->bindValue(':activationcode',$this->getActivationCode());
 		if($stmt->execute()){
 			mysqldatabaserrs::closeconnection($dbconn);
 			$this->setPassword($passwordHashed);
@@ -168,6 +169,30 @@ class user{
 		$stmt->bindValue(':status',$newUserObj->getStatus());
 		$stmt->bindValue(':rewardpoint',$newUserObj->getRewardpoint());
 		$stmt->bindValue(':userid',$newUserObj->getUserId());
+		$stmt->execute();
+
+		$auth->closeconnection($dbconn);
+
+	}
+
+	
+	/**
+	* delete user 
+	* @param useridParam
+	* @param newUserObj: a new user object contains new data
+	* Note: make sure password is harshed before call this function to update password
+	* @return true or false
+	*/
+	function deleteUser($useridParam){
+		$userObj = new user;
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+	
+		$query = 'delete from user where id =:userid;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindValue(':userid',$useridParam);	
 		$stmt->execute();
 
 		$auth->closeconnection($dbconn);
@@ -260,6 +285,9 @@ class user{
 	function getLikes(){
 		return $this->likes;
 	}
+	function getActivationCode(){
+		return $this->activationcode;
+	}
 	
 	/****************************setter*****************************/
 
@@ -308,7 +336,10 @@ class user{
 	function setLikes($param){
 		$this->likes=$param;
 	}
-
+	function setActivationCode($param){
+		$this->activationcode=$param;
+	}
+	
 }
 
 

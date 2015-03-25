@@ -1,4 +1,5 @@
 <?php
+/****jinhai wang****/
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 require_once($root.'config.php'); 
 require_once($root.'model/user.php');
@@ -19,7 +20,7 @@ class mysqldatabaserrs{
  
 		$dbhostname ='localhost';
 		$dbusername = 'root';
-		$dbpassword = 'jasonwang';
+		$dbpassword = 'roadkill182';
 		$databasename = 'rss_reservation';  
     }
 	
@@ -31,8 +32,15 @@ class mysqldatabaserrs{
 		$host = 'localhost';
 		$dbname = 'rss_reservation';
 		$constring =  'mysql:host='.$host.';dbname='.$dbname ;
-		$connection = new PDO($constring, 'root', 'jasonwang');
 		
+		try
+		{
+			$connection = new PDO($constring, 'root', 'roadkill182');
+		}
+		catch (PDOException $pe)
+		{
+			die("Could not connect to the database $dbname: " . $pe->getMessage());
+		}
 
 		return $connection;
 	}

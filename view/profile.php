@@ -1,4 +1,5 @@
 <?php 
+/****vince****/
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 include($root."view/include/header.php"); 
 include($root ."util/database.class.php");

@@ -4,6 +4,6 @@
  * @author Jinhai Wang
  * Date: Feb 25, 2015
  */
-	echo "404<br>";
+	echo "<b>404</b><br>";
 	echo "Your requested link not found.";
 ?>

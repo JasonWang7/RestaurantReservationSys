@@ -1,5 +1,5 @@
 <!--
-    Author: Vince
+    Author: Vince,Jinhai
     Sources: The login form is based off of - http://bootsnipp.com/snippets/featured/login-amp-signup-forms-in-panel
              The website layout is from - http://getbootstrap.com/examples/starter-template/
 -->

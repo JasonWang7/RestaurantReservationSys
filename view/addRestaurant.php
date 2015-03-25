@@ -32,7 +32,7 @@
 			</div>
 			
 			<!--main content of page-->
-			<div id="content">
+			<div id="content" style="background-color:#fff;">
 				<form action="/RRS/controller/addRestaurantController.php" method="post">
 				
 					<div id="instructions">

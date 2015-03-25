@@ -1,4 +1,6 @@
-<?php include("include/header.php"); ?>
+<?php 
+/****jinhai wang***/
+include("include/header.php"); ?>
 <div class="row">
   <div class="col-12">  
     <td>email :</td><td><input name="email" type="text" size"30"></input></td>
