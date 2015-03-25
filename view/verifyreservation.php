@@ -14,11 +14,18 @@ $userid = $_SESSION['sess_user_id'];
 $numguest = $_POST['numguest'];
 $note = $_POST['note'];
 $invitationList = $_POST['invitationList'];
-$dinningtime = $_POST['datetime'] . ' ' . $_POST['dinningtime'];
+$dinningtime = $_POST['datetime'] . ' ' . $_POST['dinningtime'].':00';
 $email = $_POST['email'];
 $phone = $_POST['phone'];
-
 $instance = new Reservation;
 //echo $restaurantid.$userid.$numguest.$note.$invitationList.$dinningtime.$email.$phone;
 $instance->insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime,$email, $phone);
 ?>
+<div class="row">
+  <div class="col-12">  
+    <div class="jumbotron">
+      <h1>Your reservation was successfully booked.</h1>
+    </div>
+  </div>
+</div>
+<?php include("include/footer.php"); ?>

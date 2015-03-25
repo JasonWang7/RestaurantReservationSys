@@ -130,7 +130,7 @@ include($root ."util/database.class.php");
           <form id="booktable" name="booktable" ACTION="view/verifyreservation.php" METHOD=post>
                             
           <div class="col-md-4">
-            <h3>Date: </h3><input  type="text" placeholder="click to show datepicker" name="datetime" id="datepicker1">
+            <h3>Date: </h3><input  type="text" placeholder="dd/mm/yyyy" name="datetime" id="datepicker1">
             <!-- Load jQuery and bootstrap datepicker scripts -->
           
             <script src="http://localhost/RRS/css/bootstrap/js/bootstrap-datepicker.js"></script>
@@ -146,7 +146,8 @@ include($root ."util/database.class.php");
             </script>
           </div>
           <div class="col-md-4">
-            <h3>Time:</h3><input type="text" name="dinningtime">
+            <h3>Time:</h3><input type="text" placeholder="hh:mm" name="dinningtime">
+            
           </div>
           <div class="col-md-4">
             <h3># of Guests: </h3><input type="text" name="numguest">
