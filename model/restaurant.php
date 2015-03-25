@@ -105,6 +105,34 @@ class restaurant
 		if ($stmt->execute())
 		{
 			mysqldatabaserrs::closeconnection($dbconn);
+			
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	
+	/**
+	* remove information in the database corresponding to a given restaurant name and email address
+	* @return true on success, false otherwise
+	*/
+	function removeRestaurantInfo($restaurantName, $email)
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		
+		$query = "delete from restaurant where restaurantname=:restaurantName and email=:email;";
+		$stmt = $dbconn->prepare($query);
+		
+		// bind class values to query values
+		$stmt->bindValue(':restaurantName', $restaurantName);	
+		$stmt->bindValue(':email', $email);			
+		
+		if ($stmt->execute())
+		{
+			mysqldatabaserrs::closeconnection($dbconn);
+			
 			return 1;
 		}
 		else
