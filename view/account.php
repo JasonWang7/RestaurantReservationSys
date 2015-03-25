@@ -3,9 +3,9 @@
 -->
 <?php 
       $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
-      include("include/header.php");
-      include($root.'model/user.php');
-      include($root.'model/creditcard.php'); ?>
+      include_once("include/header.php");
+      include_once($root.'model/user.php');
+      include_once($root.'model/creditcard.php'); ?>
 
 <?php 
   if(isset($_SESSION['sess_user_id'])){

@@ -20,9 +20,9 @@ require_once($root.'model/user.php');
 		//send activation email
 		$to=$userObj->getUserEmail();
 		$subject="Reserve4U Email verification";
-		$body='Hi, <br/> <br/> You have registered accunt at Reserve4u. 
+		$body='Hi'.$userObj->getUserName().', <br/> <br/> You have registered accunt at Reserve4u. 
 				Please verify your email and get started using your Website account. <br/> <br/> 
-				<a href="'.'/localhost/RRS/verify/'.$activation_code.'">'.'/localhost/RRS/verify/'.$activation_code.'</a>';
+				<a href="'.'http://localhost/RRS/verify/'.$activation_code.'">'.'/localhost/RRS/verify/'.$activation_code.'</a>';
 		$headers = "MIME-Version: 1.0" . "\r\n";
 		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 		$headers .= 'From: reserve4u110@gmail.com' . "\r\n";

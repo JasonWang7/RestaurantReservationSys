@@ -21,6 +21,7 @@ class authentication{
 		return real_escape_string($data);
 	}
 
+
 	/**
      * login verification 
      * @param email
@@ -46,7 +47,11 @@ class authentication{
 			/*******SELECT USER DATA FROM DB***/
 			$userInfo = mysqldatabaserrs::getBasicUserInfo($email);
 			/****check if user status*****/
-			if($userInfo->getStatus()!='baned'){
+			if($userInfo->getStatus()==''){
+				//not activated
+				header('Location: /RRS/login');
+			}
+			else if($userInfo->getStatus()!='baned'){
 				session_regenerate_id();
 				$_SESSION['sess_user_id'] = $userInfo->getUserId();
 				$_SESSION['sess_username'] = $userInfo->getUserName();

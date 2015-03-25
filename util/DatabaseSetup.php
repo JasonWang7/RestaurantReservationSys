@@ -37,14 +37,14 @@ $query = "CREATE TABLE `user` (
     `passwordHash` text NOT NULL,
     `phone` varchar(11),
     `UserName` text NOT NULL,
-    `verified` tinyint(1) NOT NULL default '0',
+    `verified` tinyint(1) NOT NULL default '0',   /*indicated if credit card is add and verified*/
     `city` text NOT NULL,
     `address` text,
     `postcode` text,
     `role` varchar(100) NOT NULL default 'regular',
-    `status` varchar(50) NOT NULL default 'active',
+    `status` varchar(50) NOT NULL default '', /*empty =unactivated, suspend, activated*/
     `rewardpoint` int NOT NULL default '0',
-    `activationcode` varchar(200) NOT NULL default '',
+    `activationcode` varchar(200) NOT NULL default '', 
     `likes` text,
      PRIMARY KEY (`id`)
     )";

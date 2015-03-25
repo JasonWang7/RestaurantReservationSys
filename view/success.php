@@ -5,7 +5,7 @@ include("include/header.php"); ?>
   <div class="col-12">  
     <div class="jumbotron">
       <h2>Account created.</h2>
-      <p>Activation email is sent.</p>
+      <p>Activation email is sent. Need to activate your account first.</p>
     </div>
   </div>
 </div>

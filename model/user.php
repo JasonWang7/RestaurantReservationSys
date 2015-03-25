@@ -25,6 +25,31 @@ class user{
 	/********retrive user data from database*******/
 
 	/**
+	* check activation cod
+	* @param activationcode
+	* @return true or false
+	*/
+	function checkActivationCode($activationcode){
+		$userObj = new user;
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+		$query = 'select status,activationcode from user where activationcode=:activationcode;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindValue(':activationcode',$activationcode);				
+
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		$auth->closeconnection($dbconn);
+		if($result['activationcode']==$activationcode && $result['status']==''){
+			return true;
+		}		
+		return false;
+	}
+
+
+	/**
 	* retrive basic user information like email, username, userid and status
 	* @param email
 	* @param password
@@ -96,8 +121,6 @@ class user{
 	*/
 	function insertUser(){
 		$passwordHashed = authentication::encryptPass($this->getPassword());  /*use temp val to hold hashed password*/
-		
-
 		$dbconn =mysqldatabaserrs::connectdb();
 		$query = "insert into user (firstname,lastname,email,username,passwordHash,city,activationcode) 
 			values(:firstname,:lastname,:useremail,:username,:password,:city,:activationcode);";
@@ -136,6 +159,7 @@ class user{
 	}
 
 	/******************update user database*************/
+
 	/**
 	* update user information
 	* @param useridParam
@@ -181,6 +205,26 @@ class user{
 
 		$auth->closeconnection($dbconn);
 
+	}
+
+	/**
+	* activate user
+	* @param activationcode
+	* Note: make sure password is harshed before call this function to update password
+	* @return true or false
+	*/
+	function activateUser($activationcode){
+		$userObj = new user;
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();	
+		$query = 'update user set status=:status where activationcode=:activationcode;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindValue(':activationcode',$activationcode);
+		$stmt->bindValue(':status',"active");
+		$stmt->execute();
+		$auth->closeconnection($dbconn);
 	}
 
 	
