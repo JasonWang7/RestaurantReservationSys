@@ -18,7 +18,7 @@ require_once($root.'model/user.php');
 	if ($result == 1){
 		$userInfo = user::selectBasicInfo($userObj->getUserEmail());
 		//send activation email
-		/*$to=$userObj->getUserEmail();
+		$to=$userObj->getUserEmail();
 		$subject="Reserve4U Email verification";
 		$body='Hi, <br/> <br/> You have registered accunt at Reserve4u. 
 				Please verify your email and get started using your Website account. <br/> <br/> 
@@ -35,7 +35,6 @@ require_once($root.'model/user.php');
 		header('Location: /RRS/success');	
 	}
 	else{
-		echo 'Unable to Create Account'
 		header('Location: /RRS/register');	
 	}
 
