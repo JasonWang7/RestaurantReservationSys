@@ -112,7 +112,7 @@ class Reservation{
   * @param dinningtimeparam time string in d/m/Y H:i:s formate
   * @return true or false
   */
-  function updateReservation($reservationIdVal,$numberOfGuestsVal,$noteVal,$invitationListVal,$$userEmailVal,$userPhoneVal,$dinningtimeparam)
+  function updateReservation($reservationIdVal,$numberOfGuestsVal,$noteVal,$invitationListVal,$userEmailVal,$userPhoneVal,$dinningtimeparam)
   {
    
     $auth = new mysqldatabaserrs;

@@ -124,11 +124,11 @@
                 
               $auth = new mysqldatabaserrs;
               $dbconn = $auth->connectdb();
-              $query = "select * from view_reservation_restaurant";
+              $query = "select * from view_reservation_restaurant where userId=:userId";
               try {
 
               $stmt = $dbconn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-
+              $stmt->bindValue(':userId',$_SESSION['sess_user_id']);
               $stmt->execute();
               
               while($row = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT))
@@ -200,7 +200,7 @@
               <div class="col-md-12"><h2>Expired Date: <input type="text" name="expireddate" value="<?php echo $creditcardobj->getExpireDate(); ?>"></h2></div>
             </div>
             <div class="row">
-              <div class="col-md-12"><h2>CVv: <input type="password" name="cv" value="<?php echo $creditcardobj->getCV(); ?>"></h2></div>
+              <div class="col-md-12"><h2>CVV: <input type="password" name="cv" value="<?php echo $creditcardobj->getCV(); ?>"></h2></div>
             </div>
              <div class="row">
                 <button class="btn btn-info" id="btn-signup" type="submit"><i class="icon-hand-right"></i> &nbsp; save</button>
