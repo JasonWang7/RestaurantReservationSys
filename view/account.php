@@ -2,10 +2,11 @@
     Author: Vince,Jinhai Wang - this is the account page
 -->
 <?php 
+      ob_start();
       $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
       include_once("include/header.php");
       include_once($root.'model/user.php');
-      include_once($root.'model/creditcard.php'); ?>
+      include_once($root.'controller/creditcardcontroller.php'); ?>
 
 <?php 
   if(isset($_SESSION['sess_user_id'])){
@@ -13,7 +14,7 @@
       $userinfo = new user;
       $userobj = $userinfo->selectUserInfo($_SESSION['sess_useremail']);
       $cardinfo = new creditcard;
-      $creditcardobj = $cardinfo->selectBasicInfo($_SESSION['sess_user_id']);
+      $creditcardobj = $cardinfo->selectCardInfo($_SESSION['sess_user_id']);
       //echo '<pre>'.print_r($userobj, true).'</pre>';   
       //echo '<pre>'.print_r($creditcardobj, true).'</pre>';   
       if(isset($_GET["save"])){
@@ -25,14 +26,24 @@
         $usertemp->setFirstName($_POST["firstname"]);
         $usertemp->setLastName($_POST["lastname"]);
         $usertemp->setPassword($_POST["password1"]);
-        $usertemp->setAddress($_POST["address"]);
         $usertemp->setCity($_POST["city"]);
-
         $userobj-> updateUser($_SESSION['sess_user_id'],$usertemp);
         header('Location: /RRS/account');
       }
       else if(isset($_GET["reservation"])){
         //show reservation list tab
+      }
+      else if(isset($_GET["credit"])){
+        //show credit card list tab
+        if($userobj->getVerified()==1){ //if it verified then just update 
+          //update
+        }
+        else{ //insert the new credit card
+          $creditcardobj = addCreditcard();
+          $userobj->setVerified(1);
+          $userobj->setVerifyUser($userobj->getUserId(),1); //update user talbe user is credit card verified
+        }
+        
       }
   }
   else{
@@ -110,28 +121,48 @@
         <p>billing information</p>
       </div>
       <div class="tab-pane fade" id="creditcard">
+        <form action="account?credit=true" method="post">
         <h2>Credit Card Information</h2>
             <div class="row">
-              <div class="col-md-12"><h2>Credit Card Type
+              <div class="row">
+              <div class="col-md-12"><h2>Verified: <?php if($userobj->getVerified()==1){ echo "Yes";}else{echo "No";} ?> </h2></div>
+            </div>
+              <div class="col-md-12"><h2>Credit Card Type:
               <div class="btn-group" data-toggle="buttons">
                 <label class="btn btn-primary">
-                    <input type="radio" name="options"> Mastercard
+                    <input type="radio" name="cardtype" value="Mastercard"> Mastercard
                 </label>
                 <label class="btn btn-primary">
-                    <input type="radio" name="options"> Visa
+                    <input type="radio" name="options" value="Visa"> Visa
                 </label>
+                <script type="text/javascript">
+                   document.querySelector("input[value='Mastercard']").checked = true;
+                </script>
+                
             </div>
             </h2></div>
+
             </div>
             <div class="row">
-              <div class="col-md-12"><h2>Address: <input type="text" name="address" value="<?php echo $userobj->getAddress(); ?>"></h2></div>
+              <div class="col-md-12"><h2>Name: <input type="text" name="name" value="<?php echo $creditcardobj->getName(); ?>"></h2></div>
             </div>
             <div class="row">
-              <div class="col-md-12"><h2>Credit Card: <input type="text" name="creditcard" value="<?php echo $creditcardobj->getCardNum(); ?>"></h2></div>
+              <div class="col-md-12"><h2>Address: <input type="text" name="address" value="<?php echo $creditcardobj->getAddress(); ?>"></h2></div>
             </div>
             <div class="row">
-              <div class="col-md-12"><h2>Credit Card: <input type="text" name="creditcard" value="<?php echo $creditcardobj->getCardNum(); ?>"></h2></div>
+              <div class="col-md-12"><h2>Credit Card: <input type="text" name="cardNum" value="<?php echo $creditcardobj->getCardNum(); ?>"></h2></div>
             </div>
+            <div class="row">
+              <div class="col-md-12"><h2>Expired Date: <input type="text" name="expireddate" value="<?php echo $creditcardobj->getExpireDate(); ?>"></h2></div>
+            </div>
+            <div class="row">
+              <div class="col-md-12"><h2>CVv: <input type="password" name="cv" value="<?php echo $creditcardobj->getCV(); ?>"></h2></div>
+            </div>
+             <div class="row">
+                <button class="btn btn-info" id="btn-signup" type="submit"><i class="icon-hand-right"></i> &nbsp; save</button>
+               
+            </div>
+        </form>
       </div>
     </div>
   </div>

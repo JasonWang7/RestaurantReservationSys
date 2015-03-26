@@ -227,6 +227,26 @@ class user{
 		$auth->closeconnection($dbconn);
 	}
 
+	/**
+	* credit card verified
+	* @param userid
+	* Note: make sure password is harshed before call this function to update password
+	* @return true or false
+	*/
+	function setVerifyUser($idparam,$val){
+		$userObj = new user;
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();	
+		$query = 'update user set verified=:verified where id=:idparam;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindValue(':idparam',$idparam);
+		$stmt->bindValue(':verified',$val);
+		$stmt->execute();
+		$auth->closeconnection($dbconn);
+	}
+
 	
 	/**
 	* delete user 

@@ -156,8 +156,9 @@ $query = "CREATE TABLE `creditcardinfo` (
     `name` text not null,
     `address` text not null,
     `cv` text not null,
-    `expireddate` datetime not null,
+    `expireddate` varchar(10) not null,
     `userId` int(10) unsigned NOT NULL,
+    `cardtype` VARCHAR(50) NOT NULL ,
     FOREIGN KEY (userId) REFERENCES user (id),
     PRIMARY KEY (`cardNum`)
     )";
