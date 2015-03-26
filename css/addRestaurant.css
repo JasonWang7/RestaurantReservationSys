@@ -7,132 +7,158 @@
 ******************************************************************************************/
 
 
-#pageName{
+#pageName
+{
 	background-color: #3385FF;
 	text-align: center;
 	padding: 7px 0px 7px 0px;
 }
 
-h2.white{
+h2.white
+{
 	color: white;
 }
 
-h4.white{
+h4.white
+{
 	color: white;
 }
 
-#content{
+#content
+{
 	padding: 0px 0px 0px 25px; 
 }
 
-#instructionsText{
+#instructionsText
+{
 	background-color: #3385FF;
 	width: 605px;
 	font-size: 120%;
 }
 
-#instructions{
+#instructions
+{
 	color: white;
 	padding: 70px 0px 50px 225px;
 }
 
-#restaurantNameText{
+#restaurantNameText
+{
 	background-color: #3385FF;
 	padding: 0px 0px 0px 15px;
 	width: 170px;
 }
 
-#restaurantName{
+#restaurantName
+{
 	padding: 0px 0px 35px 0px;
 }
 
-#addressText{
+#addressText
+{
 	background-color: #3385FF;
 	padding: 0px 0px 0px 15px;
 	width: 90px;
 }
-#address{
+#address
+{
 	padding: 0px 0px 35px 0px;
 }
 
-#emailText{
+#emailText
+{
 	background-color: #3385FF;
 	padding: 0px 0px 0px 15px;
 	width: 75px;
 }
 
-#email{
+#email
+{
 	padding: 0px 0px 35px 0px;
 }
 
-#phoneText{
+#phoneText
+{
 	background-color: #3385FF;
 	padding: 0px 0px 0px 15px;
 	width: 150px;
 }
 
-#phone{
+#phone
+{
 	padding: 0px 0px 35px 0px;
 }
 
-#featuresText{
+#featuresText
+{
 	background-color: #3385FF;
 	padding: 0px 0px 0px 15px;
 	width: 100px;
 }
 
-#features{
+#features
+{
 	padding: 0px 0px 35px 0px;
 	color: red;
 }
 
-#priceRangeText{
+#priceRangeText
+{
 	background-color: #3385FF;
 	padding: 0px 0px 0px 18px;
 	width: 130px;
 }
 
-#priceRange{
+#priceRange
+{
 	padding: 0px 0px 35px 0px
 }
 
-#hoursText{
+#hoursText
+{
 	background-color: #3385FF;
 	padding: 0px 0px 0px 17px;
 	width: 82px;
 }
 
-#hours{
+#hours
+{
 	padding: 0px 0px 35px 0px;
 	color: black;
 }
 
-#aboutText{
+#aboutText
+{
 	background-color: #3385FF;
 	padding: 0px 0px 0px 15px;
 	width: 105px;
 }
 
-#about{
+#about
+{
 	padding: 0px 0px 35px 0px;
 }
 
-#websiteText{
+#websiteText
+{
 	background-color: #3385FF;
 	padding: 0px 0px 0px 15px;
 	width: 120px;
 }
 
-#website{
+#website
+{
 	padding: 0px 0px 35px 0px;
 }
 
-#buttons{
+#buttons
+{
 	padding: 20px 0px 50px 150px;
 	color: black;
 }
 
-#submitButton{
+#submitButton
+{
 	width: 75px;
 	height: 28px;
 }

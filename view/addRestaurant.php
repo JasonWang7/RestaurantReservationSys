@@ -172,6 +172,7 @@
 						</div>
 					</div>
 				</form>
+			</div>
 			
 			<div id="footer">
 				<?php

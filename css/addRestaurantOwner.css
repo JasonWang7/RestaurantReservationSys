@@ -1,0 +1,71 @@
+/******************************************************************************************
+* File name: addRestaurantOwner.css
+* Purpose: Provides styles to be applied to sections in "addRestaurantOwner.php"
+* Author: Rhys Hall
+* Group Name: Centaur Logic
+* Created: March 26, 2015
+******************************************************************************************/
+
+h2.white
+{
+	color: white;
+}
+
+h4.white
+{
+	color: white;
+}
+
+#content
+{
+	padding: 0px 0px 0px 25px; 
+	background-color: white;
+}
+
+#instructionsText
+{
+	background-color: #3385FF;
+	font-size: 120%;
+}
+
+#instructions
+{
+	color: white;
+	padding: 70px 0px 50px 270px;
+}
+
+#businessNumberText
+{
+	background-color: #3385FF;
+	padding: 0px 0px 0px 15px;
+	width: 170px;
+}
+
+#businessNumber
+{
+	padding: 0px 0px 35px 0px;
+}
+
+#businessPhoneText
+{
+	background-color: #3385FF;
+	padding: 0px 0px 0px 15px;
+	width: 170px;
+}
+
+#businessPhone
+{
+	padding: 0px 0px 35px 0px;
+}
+
+#buttons
+{
+	padding: 20px 0px 50px 150px;
+	color: black;
+}
+
+#submitButton
+{
+	width: 75px;
+	height: 28px;
+}

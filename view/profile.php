@@ -1,5 +1,6 @@
 <?php 
 /****vince****/
+error_reporting(0);
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 include($root."view/include/header.php"); 
 include($root ."util/database.class.php");
@@ -33,6 +34,19 @@ include($root ."util/database.class.php");
     $auth->closeconnection($dbconn);
 ?>
 
+<script type="text/javascript">
+// displays pop-up that displays interface for user to enter ownership info into
+function loginRequiredPopup(url) 
+{
+	popUp = window.open(url,'Ownership Information','height=350,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+}
+
+function ownerInfoPopup(url) 
+{
+	popUp = window.open(url,'Ownership Information','height=600,width=700,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+}
+</script>
+
 <!-- Vincent Tieu created this page -->
 <!-- some things such as the tabbed pages are from the http://bootswatch.com/simplex/ examples -->
 
@@ -65,6 +79,17 @@ include($root ."util/database.class.php");
                 <div class="row">
                   <h3>Payment Methods: Credit card, Cash</h3>
                 </div>
+				<?php if (is_null($_SESSION['sess_user_id'])) : ?>
+					<div class="row" style=font-size:120%>
+						<br>
+						<a href="JavaScript:loginRequiredPopup('/RRS/view/loginRequired.php');">Own this restaurant? Click here to verify ownership</a>
+					</div>
+				<?php else : ?>
+					<div class="row" style=font-size:120%>
+						<br>
+						<a href="JavaScript:ownerInfoPopup('/RRS/view/addRestaurantOwnership.php');">Own this restaurant? Click here to verify ownership</a>
+					</div>
+				<?php endif; ?>	
         </div>
       </div>
   </div>

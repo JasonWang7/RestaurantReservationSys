@@ -17,8 +17,7 @@
 		<?php
 			$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 			include $root.'/view/include/header.php';
-
-			$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
+			
 			require_once($root.'model/restaurant.php');
 			require_once($root.'model/businessHour.php');
 			require_once($root.'model/restaurantOwnership.php');
