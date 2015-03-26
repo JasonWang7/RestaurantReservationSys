@@ -66,6 +66,7 @@ class creditcard{
 		$stmt->bindValue(':userId',$creditcard->getUserId());			
 		$stmt->execute();
 		$auth->closeconnection($dbconn);
+		
 		return $creditcard;
 	}
 
