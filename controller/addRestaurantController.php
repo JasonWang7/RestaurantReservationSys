@@ -21,6 +21,8 @@
 			$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 			require_once($root.'model/restaurant.php');
 			require_once($root.'model/businessHour.php');
+			require_once($root.'model/restaurantOwnership.php');
+			require_once($root.'model/user.php');
 			
 			$restaurantObj = new restaurant;
 			$newRestaurantObj = new restaurant;
@@ -31,6 +33,9 @@
 			$thursdayHoursObj = new businessHour;
 			$fridayHoursObj = new businessHour;
 			$saturdayHoursObj = new businessHour;
+			$userObj = new user;
+			$newUserObj = new user;
+			$restaurantOwnershipObj = new restaurantOwnership;
 			$features = array("african", "alcoholMenu", "american", "buffet", "casualDining", 
 			"chinese", "coffeehouse", "fastFood", "fineDining", "french", "indian", "irish",
 			"italian", "japanese", "kidFriendly", "korean", "pub", "tableTopCooking", "vegan");
@@ -110,25 +115,47 @@
 				$result = $fridayHoursObj->insertHoursInfo();
 				$result = $saturdayHoursObj->insertHoursInfo();
 				
+				//insert restaurant ownership info if successful
 				if ($result == 1)
 				{
-					echo "Successfully created new restaurant.";
-					?> <br><br><?php
-					echo "\n Your restaurant can now be viewed!";
+					//get info from user currently logged in
+					$newUserObj = $userObj->selectUserInfo($_SESSION['sess_useremail']);
+					
+					$restaurantOwnershipObj->setOwnerId($newUserObj->getUserId());
+					$restaurantOwnershipObj->setRestaurantId($newRestaurantObj->getId());
+					$restaurantOwnershipObj->setVerified($newUserObj->getVerified());
+					
+					//insert ownership info to database
+					$result = $restaurantOwnershipObj->insertRestaurantOwnership();
+					
+					if ($result == 1)
+					{
+						echo "Successfully created new restaurant.";
+						?> <br><br><?php
+						echo "\n Your restaurant can now be viewed!";
+					}
+					else
+					{
+						echo "An error has occurred while adding ownership information. \n";
+						?> <br><br> <?php
+						echo "\n Please try again.";
+					}
 				}
 				else
 				{
-					echo "An error has occurred while adding restaurant hours. \n";
+					echo "An error has occurred while creating the restaurant. \n";
 					?> <br><br> <?php
-					echo "\n Please try again.";
+					echo "\n Ensure that all of the required fields are filled out.";
 				}
 			}
 			else
 			{
 				echo "An error has occurred while creating the restaurant. \n";
 				?> <br><br> <?php
-				echo "\n Ensure that all the required fields are filled out";
+				echo "\n Ensure that all the required fields are filled out.";
 			}
+			
+			include $root.'/view/include/footer.php';
 		?>
 	</body>
 </html>
