@@ -263,7 +263,7 @@ $query = "CREATE TABLE `subscription` (
 $result = mysql_query($query);
 
 //create reservation restaurant view
-$query =  "CREATE OR REPLACE VIEW view_reservation_restaurant AS (select reservation.reservationid,reservation.userId,restaurant.restaurantid,reservation.numguest,reservation.note,reservation.invitationList,reservation.dinningtime,reservation.email,reservation.phone as userphone, restaurant.restaurantname,restaurant.address,restaurant.phone from restaurant inner join reservation on restaurant.restaurantid =reservation.restaurantid )";
+$query =  "CREATE OR REPLACE VIEW view_reservation_restaurant AS (select reservation.reservationid,reservation.userId,restaurant.restaurantid,reservation.numguest,reservation.note,reservation.invitationList,reservation.dinningtime,reservation.email,reservation.phone as userphone, restaurant.restaurantname,restaurant.address,restaurant.phone from restaurant inner join reservation on restaurant.restaurantid =reservation.restaurantid );";
 $result = mysql_query($query);
 
 /*insert default data*/
