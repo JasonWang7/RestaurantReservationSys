@@ -1,5 +1,6 @@
 <!-- Vincent Tieu, Jinhai Wang created this page -->
 <?php 
+  ob_start();
   $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
   include("include/header.php");
   include($root.'model/user.php');
