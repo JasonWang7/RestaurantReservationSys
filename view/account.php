@@ -110,9 +110,24 @@
         <p>billing information</p>
       </div>
       <div class="tab-pane fade" id="creditcard">
-        <p>credit card info</p>
+        <h2>Credit Card Information</h2>
+            <div class="row">
+              <div class="col-md-12"><h2>Credit Card Type
+              <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary">
+                    <input type="radio" name="options"> Mastercard
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="options"> Visa
+                </label>
+            </div>
+            </h2></div>
+            </div>
             <div class="row">
               <div class="col-md-12"><h2>Address: <input type="text" name="address" value="<?php echo $userobj->getAddress(); ?>"></h2></div>
+            </div>
+            <div class="row">
+              <div class="col-md-12"><h2>Credit Card: <input type="text" name="creditcard" value="<?php echo $creditcardobj->getCardNum(); ?>"></h2></div>
             </div>
             <div class="row">
               <div class="col-md-12"><h2>Credit Card: <input type="text" name="creditcard" value="<?php echo $creditcardobj->getCardNum(); ?>"></h2></div>
