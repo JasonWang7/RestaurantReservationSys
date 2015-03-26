@@ -3,7 +3,7 @@
 /******************************************************************************************
 * File name: restaurant.php
 * Purpose: Provides restaurant class functionality that contains several methods in 
-* handling restaurant data
+* handling restaurant ownership data
 * Author: Rhys Hall
 * Group Name: Centaur Logic
 * Created: February 28, 2015
