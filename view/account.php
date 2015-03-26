@@ -106,8 +106,48 @@
     </div>  
       </div>
       <div class="tab-pane fade  <?php if(isset($_GET['reservation'])){ echo 'active in'; } ?> " id="reservations">
-        <p>Reservations Here</p>
+        <p>Below is the list of reservation:</p>
+        <div class="row">
+            <table class="table table-striped table-hover ">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Cusine</th>
+                <th>Features</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+                
+                $dbconn = mysqldatabaserrs::connectdb();
+              $query = "select * from restaurant";
+              try {
+
+              $stmt = $dbconn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+
+              $stmt->execute();
+              
+              while($row = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT))
+              {
+                $data = '<tr>' . '<td>' . $row[0] . '</td><td><a href="profile?id=' . $row[0] . '">'.$row[3].'</td><td>' . $row[6] . "</td><td>" . $row[7] . '</td></tr>';
+                echo $data . '</a>';
+              }
+              $stmt = null;
+
+              }
+              catch (PDOException $e) {
+                print $e->getMessage();
+              }
+
+              mysqldatabaserrs::closeconnection($dbconn);
+              ?>
+            </tbody>
+          </table> 
+          </div>
       </div>
+
+
       <div class="tab-pane fade" id="events">
         <p>Events here</p>
       </div>
