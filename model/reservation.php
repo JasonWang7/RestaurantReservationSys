@@ -89,5 +89,54 @@ class Reservation{
 
     return $result;
   }
+
+  function deleteReservation($reservationidparam)
+  {
+   
+    $auth = new mysqldatabaserrs;
+    $dbconn = $auth->connectdb();
+    
+    $query = 'delete from reservation where reservationid=:reservationidparam;';
+    $stmt = $dbconn->prepare($query);
+    /*bind values to escape*/
+   
+    $stmt->bindValue(':reservationidparam', $reservationidparam);
+    $result = $stmt->execute();
+    $auth->closeconnection($dbconn);
+    return $result;
+  }
+
+  /**
+  * update reservation into database
+  * @param reservation obj
+  * @param dinningtimeparam time string in d/m/Y H:i:s formate
+  * @return true or false
+  */
+  function updateReservation($reservationIdVal,$numberOfGuestsVal,$noteVal,$invitationListVal,$$userEmailVal,$userPhoneVal,$dinningtimeparam)
+  {
+   
+    $auth = new mysqldatabaserrs;
+    $dbconn = $auth->connectdb();
+    //convert to date string
+    $date =date_create_from_format('d/m/Y H:i:s', $dinningtimeparam);
+    $date = date_format($date,'Y-m-d H:i:s');
+    $diningTime = $date;
+    $query = 'update reservation set numguest=:numguest,note=:note,invitationList=:invitationList,dinningtime=:dinningdate,email=:email,phone=:phone where reservationid=:reservationid;';
+    $stmt = $dbconn->prepare($query);
+    /*bind values to escape*/
+    $stmt->bindValue(':reservationid', $reservationIdVal);
+    $stmt->bindValue(':numguest', $numberOfGuestsVal);
+    $stmt->bindValue(':dinningdate',$diningTime);
+    $stmt->bindValue(':note', $noteVal);
+    $stmt->bindValue(':invitationList', $invitationListVal);
+    $stmt->bindValue(':email', $userEmailVal);
+    $stmt->bindValue(':phone', $userPhoneVal);
+
+    $result = $stmt->execute();
+    $auth->closeconnection($dbconn);
+
+    return $result;
+  }
+
 }
 ?>
