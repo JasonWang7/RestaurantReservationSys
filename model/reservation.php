@@ -63,26 +63,28 @@ class Reservation{
   * @return true or false
   */
 
-  function insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime,$email, $phone)
+  function insertReservation($restaurantidparam, $useridparam, $numguestparam, $noteparam, $invitationListparam, $dinningtimeparam,$emailparam, $phoneparam)
   {
-    //The insertion is messed up here because reservationID is suppose to be NULL and auto increment.. this table isn't created correctly.
+   
     $auth = new mysqldatabaserrs;
     $dbconn = $auth->connectdb();
-    $query = "INSERT INTO `reservation` (`restaurantid`, `reservationid`, `userId`, `numguest`, `note`, `invitationList`, `dinningtime`, `email`, `phone`) VALUES (':restaurantid', NULL, ':userId', ':numguest', ':note', ':invitationList', '2015-03-02 00:00:00', ':email', ':phone');";
-
+    //convert to date string
+    $date =date_create_from_format('d/m/Y H:i:s', $dinningtimeparam);
+    $date = date_format($date,'Y-m-d H:i:s');
+    
+    $query = 'INSERT INTO reservation (restaurantid, userId, numguest, note, invitationList, dinningtime, email, phone) VALUES (:restaurantid,  :userId, :numguest, :note, :invitationList,:dinningdate, :email, :phone);';
     $stmt = $dbconn->prepare($query);
     /*bind values to escape*/
-    $stmt->bindValue(':restaurantid', $restaurantid);
-    $stmt->bindValue(':userId', $userid);
-    $stmt->bindValue(':numguest', $numguest);
-    $stmt->bindValue(':note', $note);
-    $stmt->bindValue(':invitationList', $invitationList);
-    $stmt->bindValue(':dinningtime', $dinningtime);
-    $stmt->bindValue(':email', $email);
-    $stmt->bindValue(':phone', $phone);
+    $stmt->bindValue(':restaurantid', $restaurantidparam);
+    $stmt->bindValue(':userId', $useridparam);
+    $stmt->bindValue(':numguest', $numguestparam);
+    $stmt->bindValue(':dinningdate',$date);
+    $stmt->bindValue(':note', $noteparam);
+    $stmt->bindValue(':invitationList', $invitationListparam);
+    $stmt->bindValue(':email', $emailparam);
+    $stmt->bindValue(':phone', $phoneparam);
 
     $result = $stmt->execute();
-
     $auth->closeconnection($dbconn);
 
     return $result;

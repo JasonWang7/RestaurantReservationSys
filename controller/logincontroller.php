@@ -21,7 +21,10 @@ class LoginController extends BaseController{
 		{
 			echo 'successfully created account!'; 
 		}
-
+		else
+		{
+			echo 'Unable to create account';
+		}
 	}
 
 

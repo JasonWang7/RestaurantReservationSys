@@ -65,6 +65,9 @@
 		
 		if(isset($routeInfo['call_parts'][0])){
 			$controllerName = strtolower($routeInfo['call_parts'][0]);
+			if(count($routeInfo['call_parts'])>1){    //set post value to be routed if find control need parameter
+				$_POST['call_parts']=$routeInfo['call_parts'];
+			}
 
 			if(file_exists($root.'view/'.$routeInfo['call_parts'][0].".php")){
 				include($root.'view/'.$routeInfo['call_parts'][0].".php");

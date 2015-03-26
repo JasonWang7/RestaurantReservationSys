@@ -3,9 +3,9 @@
 -->
 <?php 
       $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
-      include("include/header.php");
-      include($root.'model/user.php');
-      include($root.'model/creditcard.php'); ?>
+      include_once("include/header.php");
+      include_once($root.'model/user.php');
+      include_once($root.'model/creditcard.php'); ?>
 
 <?php 
   if(isset($_SESSION['sess_user_id'])){
@@ -51,7 +51,8 @@
       <li class=""><a href="#events" data-toggle="tab" aria-expanded="true">Likes</a></li>
       <li class=""><a href="#about" data-toggle="tab" aria-expanded="true">Reviews</a></li>
       <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Reward</a></li>
-      <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Bills</a></li>
+      <li class=""><a href="#bills" data-toggle="tab" aria-expanded="true">Bills</a></li>
+      <li class=""><a href="#creditcard" data-toggle="tab" aria-expanded="true">Credit Card</a></li>
       <li class=""><a href="deleteacc">Delete Account</a></li>
     </ul>
     <div id="myTabContent" class="tab-content" style="margin-left:20px;">
@@ -84,12 +85,7 @@
             <div class="row">
               <div class="col-md-12"><h2>Confirm Password: <input type="password" name="password2" value="<?php echo $userobj->getPassword(); ?>"></h2></div>
             </div>
-            <div class="row">
-              <div class="col-md-12"><h2>Address: <input type="text" name="address" value="<?php echo $userobj->getAddress(); ?>"></h2></div>
-            </div>
-            <div class="row">
-              <div class="col-md-12"><h2>Credit Card: <input type="text" name="creditcard" value="<?php echo $creditcardobj->getCardNum(); ?>"></h2></div>
-            </div>
+           
             <div class="row">
                 <button class="btn btn-info" id="btn-signup" type="submit"><i class="icon-hand-right"></i> &nbsp; Save</button>
                
@@ -109,6 +105,33 @@
       </div>
       <div class="tab-pane fade" id="rateadish">
         <p>RAte here here</p>
+      </div>
+      <div class="tab-pane fade" id="bills">
+        <p>billing information</p>
+      </div>
+      <div class="tab-pane fade" id="creditcard">
+        <h2>Credit Card Information</h2>
+            <div class="row">
+              <div class="col-md-12"><h2>Credit Card Type
+              <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary">
+                    <input type="radio" name="options"> Mastercard
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="options"> Visa
+                </label>
+            </div>
+            </h2></div>
+            </div>
+            <div class="row">
+              <div class="col-md-12"><h2>Address: <input type="text" name="address" value="<?php echo $userobj->getAddress(); ?>"></h2></div>
+            </div>
+            <div class="row">
+              <div class="col-md-12"><h2>Credit Card: <input type="text" name="creditcard" value="<?php echo $creditcardobj->getCardNum(); ?>"></h2></div>
+            </div>
+            <div class="row">
+              <div class="col-md-12"><h2>Credit Card: <input type="text" name="creditcard" value="<?php echo $creditcardobj->getCardNum(); ?>"></h2></div>
+            </div>
       </div>
     </div>
   </div>
