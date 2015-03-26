@@ -114,39 +114,6 @@
 				$result = $thursdayHoursObj->insertHoursInfo();
 				$result = $fridayHoursObj->insertHoursInfo();
 				$result = $saturdayHoursObj->insertHoursInfo();
-				
-				//insert restaurant ownership info if successful
-				if ($result == 1)
-				{
-					//get info from user currently logged in
-					$newUserObj = $userObj->selectUserInfo($_SESSION['sess_useremail']);
-					
-					$restaurantOwnershipObj->setOwnerId($newUserObj->getUserId());
-					$restaurantOwnershipObj->setRestaurantId($newRestaurantObj->getId());
-					$restaurantOwnershipObj->setVerified($newUserObj->getVerified());
-					
-					//insert ownership info to database
-					$result = $restaurantOwnershipObj->insertRestaurantOwnership();
-					
-					if ($result == 1)
-					{
-						echo "Successfully created new restaurant.";
-						?> <br><br><?php
-						echo "\n Your restaurant can now be viewed!";
-					}
-					else
-					{
-						echo "An error has occurred while adding ownership information. \n";
-						?> <br><br> <?php
-						echo "\n Please try again.";
-					}
-				}
-				else
-				{
-					echo "An error has occurred while creating the restaurant. \n";
-					?> <br><br> <?php
-					echo "\n Ensure that all of the required fields are filled out.";
-				}
 			}
 			else
 			{
