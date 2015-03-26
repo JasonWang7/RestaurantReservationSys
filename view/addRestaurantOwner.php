@@ -13,18 +13,12 @@
 	<head>
 		<title>Add Owner</title>
 		
-		<link rel="stylesheet" type="text/css" href="/RRS/css/addRestaurant.css">
+		<link rel="stylesheet" type="text/css" href="/RRS/css/addRestaurantOwner.css">
 	</head>
 	
 	<body>
 		<!-- container represents whole page -->
 		<div id="container">
-		
-			<div id="header">
-				<?php
-					include 'include/header.php';
-				?>
-			</div>
 			
 			<!--title-->
 			<div id="pageName">
@@ -44,36 +38,33 @@
 					
 					<!--all components of page where user enters data-->
 					<div id="input">
-						
-						<div id="businessNumber">
-							<div id="businessNumberText">
-								<h4 class="white">Restaurant Name</h4>
+					
+						<form action="/RRS/controller/addOwnerController.php" method="post">
+					
+							<div id="businessNumber">
+								<div id="businessNumberText">
+									<h4 class="white">Business Number</h4>
+								</div>
+								<input type="text" name="businessNumber" size=35 maxlength=35>
 							</div>
-							<input type="text" name="businessNumber" size=35 maxlength=35>
-						</div>
 						
-						<div id="businessPhone">
-							<div id="businessPhoneText">
-								<h4 class="white">Restaurant Name</h4>
+							<div id="businessPhone">
+								<div id="businessPhoneText">
+									<h4 class="white">Business Phone</h4>
+								</div>
+								<input type="text" name="businessPhone" size=35 maxlength=35>
 							</div>
-							<input type="text" name="businessNumber" size=35 maxlength=35>
-						</div>
 						
-						<!--buttons that user clicks on to submit, cancel or preview info-->
-						<div id="buttons">
-							<div id="submit">
-								<input id="submitButton" type="submit" value="Submit"></input>	
+							<!--buttons that user clicks on to submit, cancel or preview info-->
+							<div id="buttons">
+								<div id="submit">
+									<input id="submitButton" type="submit" value="Submit"></input>	
+								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 				</form>
 			</div>	
-			
-			<div id="footer">
-				<?php
-					include 'include/footer.php';
-				?>
-			</div>
 		</div>
 	</body>
 </html>

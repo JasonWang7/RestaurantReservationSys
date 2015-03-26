@@ -26,15 +26,16 @@ class owner
 	* @param userId
 	* @return owner obj
 	*/
-	function selectOwnerInfo($userId)
+	function selectOwnerInfo($userId, $businessNumber)
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
-		$query = 'select ownerid, userId, businessnumber, businessphone, verified from owner where userId=:userId;';
+		$query = 'select ownerid, userId, businessnumber, businessphone, verified from owner where userId=:userId and businessnumber=:businessNumber;';
 		
 		$stmt = $dbconn->prepare($query);
 
 		// bind restaurant values from database to class values
-		$stmt->bindValue(':userId', $userId);				
+		$stmt->bindValue(':userId', $userId);	
+		$stmt->bindValue(':businessNumber', $businessNumber);
 
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -48,7 +49,7 @@ class owner
 		
 		mysqldatabaserrs::closeconnection($dbconn);
 		
-		return $restaurantOwnershipObj;
+		return $ownerObj;
 	}
 	
 	/**
@@ -60,12 +61,11 @@ class owner
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
 		
-		$query = "insert into owner(ownerid, userId, businessnumber, businessphone, verified) 
-					values(:ownerId, :userId, :businessNumber, :businessPhone, :verified);";
+		$query = "insert into owner(userId, businessnumber, businessphone, verified) 
+					values(:userId, :businessNumber, :businessPhone, :verified);";
 		$stmt = $dbconn->prepare($query);
 		
-		// bind class values to query values
-		$stmt->bindValue(':ownerId',$this->getOwnerId());	
+		// bind class values to query values	
 		$stmt->bindValue(':userId',$this->getUserId());	
 		$stmt->bindValue(':businessNumber',$this->getBusinessNumber());	
 		$stmt->bindValue(':businessPhone',$this->getBusinessPhone());	

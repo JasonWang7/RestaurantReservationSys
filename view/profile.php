@@ -19,6 +19,7 @@ include($root ."util/database.class.php");
     
     while($row = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT))
     {
+	  $id = $row[0];
       $name = $row[3];
       $phone = $row[5];
       $features = $row[6];
@@ -85,9 +86,12 @@ function ownerInfoPopup(url)
 						<a href="JavaScript:loginRequiredPopup('/RRS/view/loginRequired.php');">Own this restaurant? Click here to verify ownership</a>
 					</div>
 				<?php else : ?>
+					<?php
+						$_SESSION["restaurantId"] = $id;
+					?>
 					<div class="row" style=font-size:120%>
 						<br>
-						<a href="JavaScript:ownerInfoPopup('/RRS/view/addRestaurantOwnership.php');">Own this restaurant? Click here to verify ownership</a>
+						<a href="JavaScript:ownerInfoPopup('/RRS/view/addRestaurantOwner.php');">Own this restaurant? Click here to verify ownership</a>
 					</div>
 				<?php endif; ?>	
         </div>

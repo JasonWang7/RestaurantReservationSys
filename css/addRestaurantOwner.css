@@ -16,22 +16,29 @@ h4.white
 	color: white;
 }
 
+#pageName
+{
+	background-color: #3385FF;
+	padding: 6px 0px 0px 185px;
+}
+
 #content
 {
 	padding: 0px 0px 0px 25px; 
-	background-color: white;
-}
-
-#instructionsText
-{
-	background-color: #3385FF;
-	font-size: 120%;
 }
 
 #instructions
 {
 	color: white;
-	padding: 70px 0px 50px 270px;
+	padding: 15px 0px 0px 0px;
+}
+
+#instructionsText
+{
+	background-color: #3385FF;
+	font-size: 105%;
+	width: 500px;
+	padding: 0px 0px 0px 0px;
 }
 
 #businessNumberText
@@ -43,7 +50,7 @@ h4.white
 
 #businessNumber
 {
-	padding: 0px 0px 35px 0px;
+	padding: 40px 0px 0px 0px;
 }
 
 #businessPhoneText
@@ -55,12 +62,12 @@ h4.white
 
 #businessPhone
 {
-	padding: 0px 0px 35px 0px;
+	padding: 28px 0px 35px 0px;
 }
 
 #buttons
 {
-	padding: 20px 0px 50px 150px;
+	padding: 20px 0px 40px 0px;
 	color: black;
 }
 
