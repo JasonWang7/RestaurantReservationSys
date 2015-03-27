@@ -25,15 +25,15 @@ class restaurantOwnership
 	* @param ownerId
 	* @return restaurantOwnership obj
 	*/
-	function selectRestaurantOwnership($ownerId)
+	function selectRestaurantOwnership($restaurantId)
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
-		$query = 'select ownerid, restaurantid, verified from restaurantownership where ownerid=:ownerId;';
+		$query = 'select ownerid, restaurantid, verified from restaurantownership where restaurantid=:restaurantId;';
 		
 		$stmt = $dbconn->prepare($query);
 
 		// bind restaurant values from database to class values
-		$stmt->bindValue(':ownerId', $ownerId);				
+		$stmt->bindValue(':restaurantId', $restaurantId);				
 
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);

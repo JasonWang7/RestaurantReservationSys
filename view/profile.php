@@ -4,6 +4,7 @@ error_reporting(0);
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 include($root."view/include/header.php"); 
 include($root ."util/database.class.php");
+include($root ."model/restaurantOwnership.php");
 ?>
 <?php
     $userObj = new user;
@@ -35,8 +36,9 @@ include($root ."util/database.class.php");
     $auth->closeconnection($dbconn);
 ?>
 
+<!-------- displays pop-up that displays interface for user to enter ownership info into (section written by Rhys Hall) -------->
 <script type="text/javascript">
-// displays pop-up that displays interface for user to enter ownership info into
+
 function loginRequiredPopup(url) 
 {
 	popUp = window.open(url,'Ownership Information','height=350,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
@@ -47,6 +49,7 @@ function ownerInfoPopup(url)
 	popUp = window.open(url,'Ownership Information','height=600,width=700,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
 }
 </script>
+<!--------------------------------- Ending of section written by Rhys Hall -------------------------------------------->
 
 <!-- Vincent Tieu created this page -->
 <!-- some things such as the tabbed pages are from the http://bootswatch.com/simplex/ examples -->
@@ -80,20 +83,38 @@ function ownerInfoPopup(url)
                 <div class="row">
                   <h3>Payment Methods: Credit card, Cash</h3>
                 </div>
-				<?php if (is_null($_SESSION['sess_user_id'])) : ?>
-					<div class="row" style=font-size:120%>
-						<br>
-						<a href="JavaScript:loginRequiredPopup('/RRS/view/loginRequired.php');">Own this restaurant? Click here to verify ownership</a>
-					</div>
+				
+				<!-------- takes appropriate action for given restaurant's ownership (section written by Rhys Hall)-------->
+				<?php 
+					$_SESSION["restaurantId"] = $id;
+
+					$selector = new restaurantOwnership;
+					$ownershipObj = new restaurantOwnership;
+					
+					$ownershipObj = $selector->selectRestaurantOwnership($id);
+				?>
+				<!-- if ownership not present for given restaurant --->
+				<?php if (is_null($ownershipObj->getOwnerId())) : ?>
+					<!-- if user not logged in --->
+					<?php if (is_null($_SESSION['sess_username'])) : ?>
+						<!-- prompt user to log in -->
+						<div class="row" style=font-size:120%>
+							<br>
+							<a href="JavaScript:loginRequiredPopup('/RRS/view/loginRequired.php');">Own this restaurant? Click here to verify ownership</a>
+						</div>
+					<!-- else, allow user to enter ownership info -->
+					<?php else : ?>
+						<div class="row" style=font-size:120%>
+							<br>
+							<a href="JavaScript:ownerInfoPopup('/RRS/view/addRestaurantOwner.php');">Own this restaurant? Click here to verify ownership</a>
+						</div>
+					<?php endif; ?>	
+				<!-- else, display green check-mark for ownership indication --> 
 				<?php else : ?>
-					<?php
-						$_SESSION["restaurantId"] = $id;
-					?>
-					<div class="row" style=font-size:120%>
-						<br>
-						<a href="JavaScript:ownerInfoPopup('/RRS/view/addRestaurantOwner.php');">Own this restaurant? Click here to verify ownership</a>
-					</div>
+					<br>
+					<img src="/RRS/img/green_checkmark.jpg" alt="Ownership Declared" style="width:20px;height:20px">
 				<?php endif; ?>	
+				<!------------------------ Ending of section written by Rhys Hall ----------------------------->
         </div>
       </div>
   </div>
