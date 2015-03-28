@@ -66,8 +66,19 @@ class review {
 		$auth->closeconnection($dbconn);
 	}
 
-	function deleteReview(){
+	function deleteReview($deleteID){
+		$userObj = new user;
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+	
+		$query = 'DELETE FROM `review` WHERE `reviewid`=:reviewid;';
+		$stmt = $dbconn->prepare($query);
 
+		/*bind values to escape*/
+		$stmt->bindValue(':reviewid',$deleteID);
+		$stmt->execute();
+
+		$auth->closeconnection($dbconn);
 	}
 
 	function voteReview(){
