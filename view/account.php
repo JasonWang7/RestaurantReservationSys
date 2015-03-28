@@ -63,6 +63,7 @@
       <li class=""><a href="#events" data-toggle="tab" aria-expanded="true">Likes</a></li>
       <li class=""><a href="#about" data-toggle="tab" aria-expanded="true">Reviews</a></li>
       <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Reward</a></li>
+      <li class=""><a href="#history" data-toggle="tab" aria-expanded="true">History</a></li>
       <li class=""><a href="#bills" data-toggle="tab" aria-expanded="true">Bills</a></li>
       <li class=""><a href="#creditcard" data-toggle="tab" aria-expanded="true">Credit Card</a></li>
       <li class=""><a href="deleteacc">Delete Account</a></li>
