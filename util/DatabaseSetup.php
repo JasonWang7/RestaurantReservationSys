@@ -251,6 +251,18 @@ $query = "CREATE TABLE `review` (
 
 $result = mysql_query($query);
 
+$query = "CREATE TABLE `reviewvote` (
+    `reviewid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `userId` int(10) unsigned NOT NULL,
+    `votevalue` int(1) not null,    
+    `reviewtime` datetime not null,
+    FOREIGN KEY (userId) REFERENCES user (id),
+    FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid),
+    PRIMARY KEY (`reviewid`)
+    )";
+
+$result = mysql_query($query);
+
 $query = "DROP TABLES IF EXISTS subscription";
 $result = mysql_query($query);
 $query = "CREATE TABLE `subscription` (   
