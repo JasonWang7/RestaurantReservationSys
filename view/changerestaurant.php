@@ -1,52 +1,54 @@
 <!-- Vincent Tieu created this page -->
-<!-- Temp this code based off of Rhy's since it contains all the info needed -->
+<!-- Temp this code based off of Rhys' since it contains all the info needed -->
 <?php include("include/header.php"); ?>
 <div class="row">
   <div class="col-12">  
     <div class="jumbotron">
-
+	  <div class="title" style="padding: 0px 0px 0px 350px;">
+	    <p>Modify Restaurant</p>
+	  </div>
       <form class="form-horizontal" role="form">
         <fieldset>
           <div class="form-group">
             <label class="col-sm-3 control-label">Restaurant Name</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="NAME_HERE" id="NAME_HERE" placeholder="">
+              <input type="text" class="form-control" name="restaurantName" id="NAME_HERE" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Address </label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="NAME_HERE" id="NAME_HERE" placeholder="">
+              <input type="text" class="form-control" name="address" id="NAME_HERE" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Email</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="NAME_HERE" id="NAME_HERE" placeholder="">
+              <input type="text" class="form-control" name="email" id="NAME_HERE" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Phone Number</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="NAME_HERE" id="NAME_HERE" placeholder="">
+              <input type="text" class="form-control" name="phone" id="NAME_HERE" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Price Range</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="NAME_HERE" id="NAME_HERE" placeholder="">
+              <input type="text" class="form-control" name="priceRange" id="NAME_HERE" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Website URL</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="NAME_HERE" id="NAME_HERE" placeholder="">
+              <input type="text" class="form-control" name="website" id="NAME_HERE" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">About</label>
             <div class="col-sm-6">
-              <textarea class="form-control" rows="5" id="comment"></textarea>
+              <textarea class="form-control" name="about" rows="5" id="comment"></textarea>
             </div>
           </div>
 
