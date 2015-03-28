@@ -186,6 +186,28 @@
       <div class="tab-pane fade" id="bills">
         <p>billing information</p>
       </div>
+      <div class="tab-pane fade" id="history">
+        <div class="table-responsive">
+        <table class="table table-bordered"> 
+        <tr class="row">
+          <td class="field-label col-md-3 active">
+            <label>Date</label>
+          </td>
+          <td class="col-md-9">
+            <label>Activity Information</label>
+          </td>
+        </tr>
+        <tr class="row">
+          <td class="field-label col-md-3 active">
+              10/10/2010 - 10:10 PM
+          </td>
+          <td class="col-md-9">
+            Account Logged On
+          </td>
+        </tr>
+      </table>
+      </div>
+      </div>
       <div class="tab-pane fade" id="creditcard">
         <form action="account?credit=true" method="post">
         <h2>Credit Card Information</h2>
