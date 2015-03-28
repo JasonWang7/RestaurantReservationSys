@@ -72,6 +72,45 @@ class restaurant
 		return $restaurantObj;
 	}
 	
+	/**
+	* retrieve all restaurants that match search keyword
+	* @param keyword
+	* @return array of restaurant strings
+	*/
+	function selectMatchingRestaurants($keyword)
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		$query = "select restaurantname from restaurant where restaurantname like ':keyword%';";
+		
+		$stmt = $dbconn->prepare($query);
+
+		// bind restaurant values from database to class values
+		$stmt->bindValue(':keyword', $keyword);				
+
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		$restaurantObj = new restaurant;
+		$restaurantObj->setId($result['restaurantid']);
+		$restaurantObj->setAddress($result['address']);
+		$restaurantObj->setType($result['type']);
+		$restaurantObj->setRestaurantName($result['restaurantname']);
+		$restaurantObj->setEmail($result['email']);
+		$restaurantObj->setPhone($result['phone']);
+		$restaurantObj->setFeatures($result['features']);
+		$restaurantObj->setPriceRange($result['pricerange']);
+		$restaurantObj->setAbout($result['about']);
+		$restaurantObj->setWebsite($result['website']);
+		$restaurantObj->setHolidayHours($result['holidayhour']);
+		$restaurantObj->setLikes($result['likes']);
+		$restaurantObj->setProfilePicture($result['profilepicture']);
+		$restaurantObj->setVerified($result['verified']);
+		
+		mysqldatabaserrs::closeconnection($dbconn);
+		
+		return $restaurantObj;
+	}
+	
 	
 	/**
 	* insert new information corresponding to a given restaurant into the database system
