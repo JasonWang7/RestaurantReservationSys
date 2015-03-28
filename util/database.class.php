@@ -20,7 +20,7 @@ class mysqldatabaserrs{
  
 		$dbhostname ='localhost';
 		$dbusername = 'root';
-		$dbpassword = 'roadkill182';
+		$dbpassword = 'jasonwang';
 		$databasename = 'rss_reservation';  
     }
 	
@@ -35,7 +35,7 @@ class mysqldatabaserrs{
 		
 		try
 		{
-			$connection = new PDO($constring, 'root', 'roadkill182');
+			$connection = new PDO($constring, 'root', 'jasonwang');
 		}
 		catch (PDOException $pe)
 		{
