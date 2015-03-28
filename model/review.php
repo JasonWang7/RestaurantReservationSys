@@ -82,7 +82,23 @@ class review {
 	}
 
 	function voteReview(){
+		$userObj = new user;
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();	
+		$squery =  'UPDATE `review` SET votes=votes+1
+				 WHERE `reviewid`=:reviewid;';
+		$stmt = $dbconn->prepare($query);
 
+		/*bind values to escape*/
+		$stmt->bindValue(':reviewid',$reivewObj->getReviewId());
+		$stmt->bindValue(':comment',$reivewObj->getComment());
+		$stmt->bindValue(':servicerating',$reivewObj->getServiceRating());
+		$stmt->bindValue(':foodrating',$reivewObj->getFoodRating());
+		$stmt->bindValue(':ambiencerating',$reivewObj->getAmbienceRating());
+		$stmt->bindValue(':overallexp',$reivewObj->getOverallExp());
+		$stmt->bindValue(':votes',$reivewObj->getVotes());
+		$stmt->execute();
+		$auth->closeconnection($dbconn);
 	}
 
 	/*********************getter ********************/
