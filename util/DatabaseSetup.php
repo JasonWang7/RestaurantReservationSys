@@ -242,6 +242,7 @@ $query = "CREATE TABLE `review` (
     `ambiencerating` int(1) not null,
     `overallexp` int(1) not null,
     `votes` int(10) not null default '0',
+    `spam` int(10) not null default '0',
     `reviewtime` datetime not null,
     FOREIGN KEY (userId) REFERENCES user (id),
     FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid),
