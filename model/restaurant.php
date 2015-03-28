@@ -75,18 +75,17 @@ class restaurant
 	/**
 	* retrieve all restaurants that match search keyword
 	* @param keyword
-	* @return restaurant obj
+	* @return array of restaurant strings
 	*/
-	function selectRestaurantInfo($name)
+	function selectMatchingRestaurants($keyword)
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
-		$query = 'select restaurantid, address, type, restaurantname, email, phone, features, pricerange, about, website, holidayhour, likes, profilepicture, 
-		verified from restaurant where restaurantname=:name;';
+		$query = "select restaurantname from restaurant where restaurantname like ':keyword%';";
 		
 		$stmt = $dbconn->prepare($query);
 
 		// bind restaurant values from database to class values
-		$stmt->bindValue(':name', $name);				
+		$stmt->bindValue(':keyword', $keyword);				
 
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
