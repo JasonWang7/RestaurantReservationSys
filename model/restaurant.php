@@ -73,6 +73,45 @@ class restaurant
 	}
 	
 	/**
+	* retrieve all restaurants owned by given user
+	* @param user ID
+	* @return array of owned restaurant name strings
+	*/
+	function selectOwnedRestaurants($userId)
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		$query = 'select ownerid from owner where restaurantname=:name;';
+		
+		$stmt = $dbconn->prepare($query);
+
+		// bind restaurant values from database to class values
+		$stmt->bindValue(':name', $name);				
+
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		$restaurantObj = new restaurant;
+		$restaurantObj->setId($result['restaurantid']);
+		$restaurantObj->setAddress($result['address']);
+		$restaurantObj->setType($result['type']);
+		$restaurantObj->setRestaurantName($result['restaurantname']);
+		$restaurantObj->setEmail($result['email']);
+		$restaurantObj->setPhone($result['phone']);
+		$restaurantObj->setFeatures($result['features']);
+		$restaurantObj->setPriceRange($result['pricerange']);
+		$restaurantObj->setAbout($result['about']);
+		$restaurantObj->setWebsite($result['website']);
+		$restaurantObj->setHolidayHours($result['holidayhour']);
+		$restaurantObj->setLikes($result['likes']);
+		$restaurantObj->setProfilePicture($result['profilepicture']);
+		$restaurantObj->setVerified($result['verified']);
+		
+		mysqldatabaserrs::closeconnection($dbconn);
+		
+		return $restaurantObj;
+	}
+	
+	/**
 	* retrieve all restaurants that match search keyword
 	* @param keyword
 	* @return array of restaurant strings

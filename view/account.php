@@ -59,6 +59,7 @@
     <ul class="nav nav-tabs">
       <li class="active"><a href="#account" data-toggle="tab" aria-expanded="false">Account Details</a></li>
       <li class=""><a href="#reservations" data-toggle="tab" aria-expanded="true">Reservations</a></li>
+	  <li class=""><a href="#restaurants" data-toggle="tab" aria-expanded="true">My Restaurants</a></li>
       <li class=""><a href="#events" data-toggle="tab" aria-expanded="true">Likes</a></li>
       <li class=""><a href="#about" data-toggle="tab" aria-expanded="true">Reviews</a></li>
       <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Reward</a></li>
@@ -146,6 +147,27 @@
 
               $auth->closeconnection($dbconn);
               ?>
+            </tbody>
+          </table> 
+          </div>
+      </div>
+	  
+	  <div class="tab-pane fade  <?php if(isset($_GET['reservation'])){ echo 'active in'; } ?> " id="restaurants">
+        <p>Displaying all currently owned restaurants:</p>
+        <div class="row">
+            <table class="table table-striped table-hover ">
+            <thead>
+              <tr>
+                <th>Restaurant Name</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Edit</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              
             </tbody>
           </table> 
           </div>

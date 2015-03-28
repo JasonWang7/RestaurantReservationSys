@@ -22,7 +22,7 @@ class owner
 	
 	
 	/**
-	* retrieve all information about owner corresponding to given user id
+	* retrieve all information about owner corresponding to given user id and business number
 	* @param userId
 	* @return owner obj
 	*/
@@ -50,6 +50,38 @@ class owner
 		mysqldatabaserrs::closeconnection($dbconn);
 		
 		return $ownerObj;
+	}
+	
+	/**
+	* retrieve all owner Ids corresponding to given user id
+	* @param userId
+	* @return integer array of owner Ids- with index 0 being the length
+	*/
+	function selectOwnersInfo($userId)
+	{
+		$ownerIdList(500);
+		$i = 1;
+		$dbconn = mysqldatabaserrs::connectdb();
+		$query = 'select ownerid from owner where userId=:userId;';
+		
+		$stmt = $dbconn->prepare($query);
+
+		// bind restaurant values from database to class values
+		$stmt->bindValue(':userId', $userId);	
+
+		$stmt->execute();
+		
+		while($row=$stmt->fetch(PDO::FETCH_ASSOC))
+		{
+			$ownerIdList[i] = $row[ownerid];
+			$i = $i + 1;
+		}
+		
+		ownerIdList[0] = i;
+		
+		mysqldatabaserrs::closeconnection($dbconn);
+		
+		return $ownerIdList;
 	}
 	
 	/**

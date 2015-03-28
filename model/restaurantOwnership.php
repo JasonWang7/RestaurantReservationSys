@@ -21,8 +21,8 @@ class restaurantOwnership
 	
 	
 	/**
-	* retrieve all information about restaurant ownership corresponding to given owner id
-	* @param ownerId
+	* retrieve all information about restaurant ownership corresponding to given restaurant id
+	* @param restaurantId
 	* @return restaurantOwnership obj
 	*/
 	function selectRestaurantOwnership($restaurantId)
@@ -34,6 +34,35 @@ class restaurantOwnership
 
 		// bind restaurant values from database to class values
 		$stmt->bindValue(':restaurantId', $restaurantId);				
+
+		$stmt->execute();
+		
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		$restaurantOwnershipObj = new restaurantOwnership;
+		$restaurantOwnershipObj->setOwnerId($result['ownerid']);
+		$restaurantOwnershipObj->setRestaurantId($result['restaurantid']);
+		$restaurantOwnershipObj->setVerified($result['verified']);
+		
+		mysqldatabaserrs::closeconnection($dbconn);
+		
+		return $restaurantOwnershipObj;
+	}
+	
+	/**
+	* retrieve all information about restaurant ownership corresponding to given owner id
+	* @param ownerId
+	* @return restaurantOwnership obj
+	*/
+	function selectRestaurantId($ownerId)
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		$query = 'select restaurantid from restaurantownership where ownerid=:ownerId;';
+		
+		$stmt = $dbconn->prepare($query);
+
+		// bind restaurant values from database to class values
+		$stmt->bindValue(':ownerId', $ownerId);				
 
 		$stmt->execute();
 		
