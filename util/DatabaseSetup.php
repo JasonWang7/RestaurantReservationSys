@@ -242,6 +242,19 @@ $query = "CREATE TABLE `review` (
     `ambiencerating` int(1) not null,
     `overallexp` int(1) not null,
     `votes` int(10) not null default '0',
+    `spam` int(10) not null default '0',
+    `reviewtime` datetime not null,
+    FOREIGN KEY (userId) REFERENCES user (id),
+    FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid),
+    PRIMARY KEY (`reviewid`)
+    )";
+
+$result = mysql_query($query);
+
+$query = "CREATE TABLE `reviewvote` (
+    `reviewid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `userId` int(10) unsigned NOT NULL,
+    `votevalue` int(1) not null,    
     `reviewtime` datetime not null,
     FOREIGN KEY (userId) REFERENCES user (id),
     FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid),
