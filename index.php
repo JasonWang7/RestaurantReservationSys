@@ -17,7 +17,7 @@ include($root ."util/database.class.php");
             <button type="submit" class="btn btn-default">Submit</button>
     </form>
     <div style="font-size:28px" class="navbar-form navbar-right" role="search">
-      Or if you can't find one. <a href="addrestaurant">Add a Resturant</a>
+      Or if you can't find one. <a href="addrestaurant">Add a Restaurant</a>
     </div>
   </div>
 </div>

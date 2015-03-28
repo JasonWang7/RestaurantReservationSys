@@ -55,7 +55,7 @@
 								<input type="text" name="businessPhone" size=35 maxlength=35>
 							</div>
 						
-							<!--buttons that user clicks on to submit, cancel or preview info-->
+							<!--buttons that user clicks on to submit info-->
 							<div id="buttons">
 								<div id="submit">
 									<input id="submitButton" type="submit" value="Submit"></input>	

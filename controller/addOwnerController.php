@@ -47,7 +47,8 @@
 				
 				if ($result == 1)
 				{
-					echo "Successfully added ownership information for the given restaurant.";
+					echo "Successfully added ownership information for the given restaurant.\n";
+					echo "Indicated ownership will be viewable upon page refresh.";
 					?>
 					
 					<div id="Dismiss">
