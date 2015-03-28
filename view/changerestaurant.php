@@ -4,9 +4,99 @@
 <div class="row">
   <div class="col-12">  
     <div class="jumbotron">
-  
-d="input">
+
+      <form class="form-horizontal" role="form">
+        <fieldset>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Restaurant Name</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Address </label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Phone Number</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Price Range</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Features</label>
+            <div class="col-sm-6">
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="">Option 1
+                  </label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="">Option 2
+                  </label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="">Option 3
+                  </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Hours</label>
+            <div class="col-sm-6">
+              <div id="hours">
+              <div id="hoursText">
+                <h4 class="white">Hours</h4>
+              </div>
             
+              Sunday: &nbsp; <input type="text" name="sundayStart" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="sundayEnd" size="5" maxlength="4">
+              <br><br>
+              Monday: &nbsp; <input type="text" name="mondayStart" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="mondayEnd" size="5" maxlength="4">
+              <br><br>
+              Tuesday: &nbsp; <input type="text" name="tuesdayStart" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="tuesdayEnd" size="5" maxlength="4">
+              <br><br>
+              Wednesday: &nbsp; <input type="text" name="wednesdayStart" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="wednesdayEnd" size="5" maxlength="4">
+              <br><br>
+              Thursday: &nbsp; <input type="text" name="thursdayStart" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="thursdayEnd" size="5" maxlength="4">
+              <br><br>
+              Friday: &nbsp; <input type="text" name="fridayStart" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="fridayEnd" size="5" maxlength="4">
+              <br><br>
+              Saturday: &nbsp; <input type="text" name="saturdayStart" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="saturdayEnd" size="5" maxlength="4">         
+            </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">About</label>
+            <div class="col-sm-6">
+              <textarea class="form-control" rows="5" id="comment"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Website URL</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
             <div id="restaurantName">
               <div id="restaurantNameText">
                 <h4 class="white">Restaurant Name</h4>
