@@ -24,17 +24,20 @@ class businessHour
 	* @param email
 	* @return restaurant obj
 	*/
-	function selectHoursInfo($id)
+	function selectHoursInfo($id, $day)
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
-		$query = 'select restaurantid, day, starhour, end from businesshour where restaurantid=:id;';
+		$query = 'select restaurantid, day, starhour, end from businesshour where restaurantid=:id and day=:day;';
+		
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/
-		$stmt->bindValue(':id', $id);				
+		$stmt->bindValue(':id', $id);
+		$stmt->bindValue(':day', $day);		
 
 		$stmt->execute();
-		$result = $stmt->fetch(PDO::FETCH_CLASS,"businessHour");
+		
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		$businessHourObj = new businessHour;
 		$businessHourObj->setRestaurantId($result['restaurantid']);

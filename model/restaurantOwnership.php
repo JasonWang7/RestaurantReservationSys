@@ -36,6 +36,7 @@ class restaurantOwnership
 		$stmt->bindValue(':restaurantId', $restaurantId);				
 
 		$stmt->execute();
+		
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		$restaurantOwnershipObj = new restaurantOwnership;

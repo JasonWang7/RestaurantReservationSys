@@ -5,8 +5,10 @@ $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 include($root."view/include/header.php"); 
 include($root ."util/database.class.php");
 include($root ."model/restaurantOwnership.php");
+include($root ."model/businessHour.php");
 ?>
 <?php
+	//retrieve restaurant info
     $userObj = new user;
     $auth = new mysqldatabaserrs;
     $dbconn = $auth->connectdb();
@@ -34,6 +36,26 @@ include($root ."model/restaurantOwnership.php");
     }
 
     $auth->closeconnection($dbconn);
+	
+	/******************** retrieve restaurant hours info (section written by Rhys Hall) *************************/
+	$sundayHoursObj = new businessHour;
+	$mondayHoursObj = new businessHour;
+	$tuesdayHoursObj = new businessHour;
+	$wednesdayHoursObj = new businessHour;
+	$thursdayHoursObj = new businessHour;
+	$fridayHoursObj = new businessHour;
+	$saturdayHoursObj = new businessHour;
+	$selector = new businessHour;
+    
+	$sundayHoursObj = $selector->selectHoursInfo($id, "sunday");
+	$mondayHoursObj = $selector->selectHoursInfo($id, "monday");
+	$tuesdayHoursObj = $selector->selectHoursInfo($id, "tuesday");
+	$wednesdayHoursObj = $selector->selectHoursInfo($id, "wednesday");
+	$thursdayHoursObj = $selector->selectHoursInfo($id, "thursday");
+	$fridayHoursObj = $selector->selectHoursInfo($id, "friday");
+	$saturdayHoursObj = $selector->selectHoursInfo($id, "saturday");
+	
+	/******************************** ending of section written by Rhys Hall *************************/
 ?>
 
 <!-------- displays pop-up that displays interface for user to enter ownership info into (section written by Rhys Hall) -------->
@@ -124,12 +146,13 @@ function ownerInfoPopup(url)
   <div class="col-md-9">
     <h3>Hours of Operation:</h3>
       <div class="row">
-        <div class="col-md-2">Monday: <p>1pm - 10pm</div>
-        <div class="col-md-2">Monday: <p>1pm - 10pm</div>
-        <div class="col-md-2">Monday: <p>1pm - 10pm</div>
-        <div class="col-md-2">Monday: <p>1pm - 10pm</div>
-        <div class="col-md-2">Monday: <p>1pm - 10pm</div>
-        <div class="col-md-2">Monday: <p>1pm - 10pm</div>
+        <div class="col-md-2">Sunday: <p><?php echo $sundayHoursObj->getStartHour() . " - " . $sundayHoursObj->getEndHour();?></div>
+        <div class="col-md-2">Monday: <p><?php echo $mondayHoursObj->getStartHour() . " - " . $mondayHoursObj->getEndHour();?></div>
+        <div class="col-md-2">Tuesday: <p><?php echo $tuesdayHoursObj->getStartHour() . " - " . $tuesdayHoursObj->getEndHour();?></div>
+        <div class="col-md-2">Wednesday: <p><?php echo $wednesdayHoursObj->getStartHour() . " - " . $wednesdayHoursObj->getEndHour();?></div>
+        <div class="col-md-2">Thursday: <p><?php echo $thursdayHoursObj->getStartHour() . " - " . $thursdayHoursObj->getEndHour();?></div>
+        <div class="col-md-2">Friday: <p><?php echo $fridayHoursObj->getStartHour() . " - " . $fridayHoursObj->getEndHour();?></div>
+		<div class="col-md-2">Saturday: <p><?php echo $saturdayHoursObj->getStartHour() . " - " . $saturdayHoursObj->getEndHour();?></div>
       </div>
   </div>
 </div>
