@@ -168,6 +168,7 @@ function ownerInfoPopup(url)
   </div>
 </div>
 
+<?php if (is_null($ownershipObj->getOwnerId()) == FALSE) : ?>
 <div class="modal fade" id="bookmodal" tabindex="-1" role="dialog" aria-labelledby="bookmodal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -234,6 +235,24 @@ function ownerInfoPopup(url)
     </div>
   </div>
 </div>
+<?php else : ?>
+<div class="modal fade" id="bookmodal" tabindex="-1" role="dialog" aria-labelledby="bookmodal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="label">Booking Denied for <?php echo $name; ?></h4>
+      </div>
+      <div class="modal-body">
+	    <h4>Cannot book a table at a restaurant that does not have a verified ownership</h4>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+	</div>
+  </div>
+</div>
+<?php endif; ?>	
 
 <div class="modal fade" id="reviewmodal" tabindex="-1" role="dialog" aria-labelledby="reviewmodal" aria-hidden="true">
   <div class="modal-dialog">
