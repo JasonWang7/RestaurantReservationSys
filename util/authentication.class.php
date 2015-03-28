@@ -39,7 +39,7 @@ class authentication{
 		$isAutenticated = mysqldatabaserrs::verifyUser($email,authentication::encryptPass($password));
 		if($isAutenticated != true){  //user not fould or authenticated, redirect
 			
-			header('Location: '.$path.'loing');
+			header('Location: '.$path.'login');
 			
 		}
 		else{
