@@ -136,7 +136,7 @@ function ownerInfoPopup(url)
 					<br>
 					<img src="/RRS/img/green_checkmark.jpg" alt="Ownership Declared" style="width:20px;height:20px">
 				<?php endif; ?>	
-				<!------------------------ Ending of section written by Rhys Hall ----------------------------->
+				<!-- Ending of section written by Rhys Hall -->
         </div>
       </div>
   </div>
@@ -178,7 +178,24 @@ function ownerInfoPopup(url)
 </div>  
   </div>
   <div class="tab-pane fade" id="reviews">
-    <p>Reviews Here</p>
+    <div class="review-post" style="padding:10px;">
+      <div class="row">
+        <div class="col-sm-3">
+          <p><b>Name:</b> Bob Hotdog</p>
+          <p><b>Service:</b> 5 out of 5</p>
+          <p><b>Food:</b> 5 out of 5</p>
+          <p><b>Ambience:</b> 5 out of 5</p>
+        </div>
+        <div class="col-sm-9">
+        <div style="float:right;"><b>Date:</b> 10/10/2010</div>
+          <b>Overall Rating:</b>  5 out of 5
+          <hr>
+          <p>BLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAHBLAH BAH</p>
+        <div style="float:right;"><b><a href="#">Delete Review</a></b> - <b><a href="#">Mark as Spam</a></b></div>
+        </div>
+      </div>
+    </div>
+    <hr>
   </div>
   <div class="tab-pane fade" id="events">
     <p>Events here</p>
