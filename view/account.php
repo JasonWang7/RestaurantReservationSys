@@ -161,20 +161,29 @@
 				<?php 
 					$ownerSelector = new owner;
 					$ownershipSelector = new restaurantOwnership;
+					$restaurantSelector = new restaurant;
 					$i = 1;
 					$restaurantIdList = array_fill(1, 500, -1);
+					$restaurantNameList = array_fill(1, 500, -1);
 					
 					$ownerIdList = $ownerSelector->selectOwnersInfo($_SESSION['sess_user_id']);
+					$numOwned = $ownerIdList[1];
 					
-					while ($i <= $ownerIdList[1])
+					while ($i <= $numOwned)
 					{
 						$restaurantIdList[$i] = $ownershipSelector->selectRestaurantId($ownerIdList[$i+1]);
 						$i = $i + 1;
 					}
 					
+					$i = 1;
 					
+					while ($i <= $numOwned)
+					{
+						$restaurantNameList[$i] = $restaurantSelector->selectRestaurantName($restaurantIdList[$i]);
+						$i = $i + 1;
+					}
 				?>
-                <th><?php echo $ownerIdList; ?></th>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th>Edit</th>
@@ -182,7 +191,19 @@
               </tr>
             </thead>
             <tbody>
-              
+				<?php 
+					$i = 1;
+					
+					while ($i <= $numOwned)
+					{
+						echo '<tr>' . '<td>' . $restaurantNameList[$i] . '<td>' . '<td>' . '<td>' . '<td>';?>
+						<div id="edit">
+							<a href="/RRS/view/changerestaurant.php">Edit</a>
+						</div>
+						<?php
+						$i = $i + 1;
+					} 
+				?>
             </tbody>
           </table> 
           </div>
@@ -199,7 +220,7 @@
         <p>RAte here here</p>
       </div>
       <div class="tab-pane fade" id="bills">
-        <p>billing information</p>
+        <p>Billing Information</p>
       </div>
       <div class="tab-pane fade" id="history">
         <div class="table-responsive">
