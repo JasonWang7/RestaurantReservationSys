@@ -1,5 +1,5 @@
 <!--
-    Author: Vince - this is the index page
+    Author: Vince - this is the index page (front end stuff)
 -->
 <?php 
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
@@ -9,7 +9,11 @@ include($root ."util/database.class.php");
 <script>
 $(document).ready(function(){
     $("#show").click(function(){
-        $("#advanced").toggle("slow");
+      if ( $( "#advanced" ).is( ":hidden" ) ) {
+          $( "#advanced" ).slideDown( "slow" );
+        } else {
+          $( "#advanced" ).slideUp();
+        }
     });
 });
 </script>
