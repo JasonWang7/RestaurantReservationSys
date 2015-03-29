@@ -7,7 +7,7 @@
 	  <div class="title" style="padding: 0px 0px 0px 350px;">
 	    <p>Modify Restaurant</p>
 	  </div>
-      <form class="form-horizontal" role="form">
+      <form class="form-horizontal" role="form" action="/RRS/controller/addRestaurantController.php" method="post">  
         <fieldset>
           <div class="form-group">
             <label class="col-sm-3 control-label">Restaurant Name</label>

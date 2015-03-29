@@ -20,7 +20,6 @@ class owner
 	private $businessPhone;
 	private $verified;
 	
-	
 	/**
 	* retrieve all information about owner corresponding to given user id and business number
 	* @param userId
@@ -55,12 +54,12 @@ class owner
 	/**
 	* retrieve all owner Ids corresponding to given user id
 	* @param userId
-	* @return integer array of owner Ids- with index 0 being the length
+	* @return integer array of owner Ids- with index 1 being the length
 	*/
 	function selectOwnersInfo($userId)
 	{
-		$ownerIdList(500);
-		$i = 1;
+		$ownerIdList = array_fill(1, 500, -1);
+		$i = 2;
 		$dbconn = mysqldatabaserrs::connectdb();
 		$query = 'select ownerid from owner where userId=:userId;';
 		
@@ -73,11 +72,11 @@ class owner
 		
 		while($row=$stmt->fetch(PDO::FETCH_ASSOC))
 		{
-			$ownerIdList[i] = $row[ownerid];
+			$ownerIdList[$i] = $row[ownerid];
 			$i = $i + 1;
 		}
 		
-		ownerIdList[0] = i;
+		$ownerIdList[1] = $i-2;
 		
 		mysqldatabaserrs::closeconnection($dbconn);
 		

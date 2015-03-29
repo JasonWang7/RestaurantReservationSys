@@ -68,14 +68,11 @@ class restaurantOwnership
 		
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		
-		$restaurantOwnershipObj = new restaurantOwnership;
-		$restaurantOwnershipObj->setOwnerId($result['ownerid']);
-		$restaurantOwnershipObj->setRestaurantId($result['restaurantid']);
-		$restaurantOwnershipObj->setVerified($result['verified']);
+		$restaurantId = $result['restaurantid'];
 		
 		mysqldatabaserrs::closeconnection($dbconn);
 		
-		return $restaurantOwnershipObj;
+		return $restaurantId;
 	}
 	
 	/**
