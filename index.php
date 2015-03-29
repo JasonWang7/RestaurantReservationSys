@@ -1,24 +1,94 @@
 <!--
-    Author: Vince - this is the index page
+    Author: Vince - this is the index page (front end stuff)
 -->
 <?php 
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 include($root."view/include/header.php"); 
 include($root ."util/database.class.php");
 ?>
-
+<script>
+$(document).ready(function(){
+    $("#show").click(function(){
+      if ( $( "#advanced" ).is( ":hidden" ) ) {
+          $( "#advanced" ).slideDown( "slow" );
+        } else {
+          $( "#advanced" ).slideUp();
+        }
+    });
+});
+</script>
 <div class="row">
   <div class="col-md-12"> 
-    <form style="font-size:28px" class="navbar-form navbar-left" role="search">
-            Find a Resturant: 
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+    <form style="font-size:24px" role="search">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-7">
+            <div class="input-group">
+              <input id="address" type="textbox" placeholder="Search for Restaurants..." class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="addressSearch">Search</button>
+              </span>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+          <div class="col-sm-5">
+             <a id="show">Advanced Search</a> - <a href="addrestaurant">Add a Restaurant</a>
+          </div>
+        </div>
+      </div>
+      <div class="bg-danger" id="advanced" style="font-size: 14px; display:none;">
+          <div class="col-md-13" style="padding:10px;">
+            <div class="form-group">
+              <label class="control-label"><b>Features:</b> </label>
+              <div class="col-md-13">
+                African <input type="checkbox" name="african"> &nbsp;
+                Alcohol Menu <input type="checkbox" name="alcoholMenu"> &nbsp;
+                American <input type="checkbox" name="american"> &nbsp;
+                Buffet <input type="checkbox" name="buffet"> &nbsp;
+                Casual Dining <input type="checkbox" name="casualDining"> &nbsp;
+                Chinese <input type="checkbox" name="chinese"> &nbsp;
+                Coffeehouse <input type="checkbox" name="coffeehouse"> &nbsp;
+                Fast Food <input type="checkbox" name="fastFood"> &nbsp;
+                Fine Dining <input type="checkbox" name="fineDining"> &nbsp;
+                French <input type="checkbox" name="french"> &nbsp; 
+                Indian <input type="checkbox" name="indian"> &nbsp; 
+                Irish <input type="checkbox" name="irish"> &nbsp;
+                Italian <input type="checkbox" name="italian"> &nbsp; 
+                Japanese <input type="checkbox" name="japanese"> &nbsp;
+                Kid Friendly <input type="checkbox" name="kidFriendly"> &nbsp;
+                Korean <input type="checkbox" name="korean"> &nbsp;
+                Pub <input type="checkbox" name="pub">&nbsp; 
+                Tabletop Cooking <input type="checkbox" name="tabletopCooking"> &nbsp;
+                Vegan <input type="checkbox" name="vegan"> &nbsp;
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label class="control-label"><b>Price Range:</b> </label>
+                <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Enter max price">
+              </div>
+                            <div class="col-md-4">
+                <label class="control-label"><b>Rating:</b> </label>
+                  <select class="form-control">
+                    <option></option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+              </div>
+                            <div class="col-md-4">
+                <label class="control-label"><b>Type:</b> </label>
+                  <select class="form-control">
+                    <option></option>
+                    <option>Popular</option>
+                    <option>New</option>
+                  </select>
+              </div>
+            </div>
+          </div>
+      </div>
     </form>
-    <div style="font-size:28px" class="navbar-form navbar-right" role="search">
-      Or if you can't find one. <a href="addrestaurant">Add a Restaurant</a>
-    </div>
   </div>
 </div>
 <p><p>

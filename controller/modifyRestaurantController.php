@@ -40,7 +40,7 @@
 			$restaurantName = $_POST["restaurantName"];
 			
 			/* remove current information about given restaurant */
-			$result = removeRestaurantInfo(, );
+			
 			
 			/* Add new information into database */
 			//add all strings of features into array
