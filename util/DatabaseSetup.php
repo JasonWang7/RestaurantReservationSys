@@ -252,15 +252,109 @@ $query = "CREATE TABLE `review` (
 $result = mysql_query($query);
 
 $query = "CREATE TABLE `reviewvote` (
-    `reviewid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `reviewid` int(10) unsigned NOT NULL,
     `userId` int(10) unsigned NOT NULL,
-    `votevalue` int(1) not null,    
-    `reviewtime` datetime not null,
+    `votevalue` int(1) not null,         /*****1,0,-1 (upvote, none, downvote)******/ 
+    `updatetime`  timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
     FOREIGN KEY (userId) REFERENCES user (id),
-    FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid),
-    PRIMARY KEY (`reviewid`)
+    FOREIGN KEY (reviewid) REFERENCES review (reviewid),
+    PRIMARY KEY (`reviewid`,`userId`)
     )";
 
+$result = mysql_query($query);
+
+/***** triger to auto update vote count in review table AFTER INSERT******/
+$query = "\n"
+    . "CREATE TRIGGER reviewvote_after_insert\n"
+    . "AFTER INSERT\n"
+    . " ON reviewvote FOR EACH ROW\n"
+    . " \n"
+    . "BEGIN\n"
+    . "\n"
+    . " DECLARE voteNum int(20);\n"
+    . " DECLARE idNum int(10);\n"
+    . "\n"
+    . " -- Find username of person performing the INSERT into table\n"
+    . " SELECT `reviewid`,sum(`votevalue`) FROM `reviewvote` group by `reviewid` into idNum, voteNum;\n"
+    . " \n"
+    . " -- update record into audit table\n"
+    . " UPDATE `review` SET `votes`=voteNum WHERE `reviewid`=idNum;\n"
+    . " \n"
+    . "END;";
+
+$result = mysql_query($query);
+/***** triger to auto update vote count in review table AFTER UPDATE******/
+$query = "\n"
+    . "CREATE TRIGGER reviewvote_after_update\n"
+    . "AFTER UPDATE\n"
+    . " ON reviewvote FOR EACH ROW\n"
+    . " \n"
+    . "BEGIN\n"
+    . "\n"
+    . " DECLARE voteNum int(20);\n"
+    . " DECLARE idNum int(10);\n"
+    . "\n"
+    . " -- Find username of person performing the INSERT into table\n"
+    . " SELECT `reviewid`,sum(`votevalue`) FROM `reviewvote` group by `reviewid` into idNum, voteNum ;\n"
+    . " \n"
+    . " -- update record into audit table\n"
+    . " UPDATE `review` SET `votes`=voteNum WHERE `reviewid`=idNum;\n"
+    . " \n"
+    . "END;";
+
+$result = mysql_query($query);
+
+
+$query = "CREATE TABLE `spamvote` (
+    `reviewid` int(10) unsigned NOT NULL,
+    `userId` int(10) unsigned NOT NULL,
+    `votevalue` int(1) not null,         /*****1,0 (spam, not spam)******/ 
+    `updatetime`  timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES user (id),
+    FOREIGN KEY (reviewid) REFERENCES review (reviewid),
+    PRIMARY KEY (`reviewid`,`userId`)
+    )";
+
+$result = mysql_query($query);
+
+/***** triger to auto update spam count in review table AFTER insert******/
+$query =  "\n"
+    . "CREATE TRIGGER spamvote_after_insert\n"
+    . "AFTER INSERT\n"
+    . " ON spamvote FOR EACH ROW\n"
+    . " \n"
+    . "BEGIN\n"
+    . "\n"
+    . " DECLARE voteNum int(20);\n"
+    . " DECLARE idNum int(10);\n"
+    . "\n"
+    . " -- Find username of person performing the INSERT into table\n"
+    . " SELECT `reviewid`,sum(`votevalue`) FROM `spamvote` group by `reviewid` into idNum, voteNum ;\n"
+    . " \n"
+    . " -- update record into audit table\n"
+    . " UPDATE `review` SET `spam`=voteNum WHERE `reviewid`=idNum;\n"
+    . " \n"
+    . "END;";
+
+$result = mysql_query($query);
+/***** triger to auto update spam count in review table AFTER UPDATE******/
+$query =  "CREATE TRIGGER spamvote_after_update\n"
+    . "AFTER Update\n"
+    . " ON spamvote FOR EACH ROW\n"
+    . " \n"
+    . "BEGIN\n"
+    . "\n"
+    . " DECLARE voteNum int(20);\n"
+    . " DECLARE idNum int(10);\n"
+    . "\n"
+    . " -- Find username of person performing the INSERT into table\n"
+    . " SELECT `reviewid`,sum(`votevalue`) FROM `spamvote` group by `reviewid` into idNum, voteNum ;\n"
+    . " \n"
+    . " -- update record into audit table\n"
+    . " UPDATE `review` SET `spam`=voteNum WHERE `reviewid`=idNum;\n"
+    . " \n"
+    . "END;";
+    
 $result = mysql_query($query);
 
 $query = "DROP TABLES IF EXISTS subscription";
