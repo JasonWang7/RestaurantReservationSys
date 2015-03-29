@@ -116,7 +116,7 @@
 				
 				if ($result == 1)
 				{
-					echo "Successfully created new restaurant.\nIt can now be viewed on the home page."
+					echo "Successfully created new restaurant.\nIt can now be viewed on the home page.";
 				}
 				else
 				{
@@ -125,7 +125,6 @@
 					echo "\n Ensure that all the required fields are filled out.";
 				}
 			}	
-			}
 			else
 			{
 				echo "An error has occurred while creating the restaurant. \n";

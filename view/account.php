@@ -10,16 +10,13 @@
 	  include_once($root.'model/owner.php');
 	  include_once($root.'model/restaurantOwnership.php');
       include_once($root.'controller/creditcardcontroller.php'); ?>
-
+	  
 <?php 
   if(isset($_SESSION['sess_user_id'])){
-      
       $userinfo = new user;
       $userobj = $userinfo->selectUserInfo($_SESSION['sess_useremail']);
       $cardinfo = new creditcard;
       $creditcardobj = $cardinfo->selectCardInfo($_SESSION['sess_user_id']);
-	  $ownerIdList = array_fill(0, 500, -1);
-	  $ownerSelector = new owner;
 	  
       //echo '<pre>'.print_r($userobj, true).'</pre>';   
       //echo '<pre>'.print_r($creditcardobj, true).'</pre>';   
@@ -50,15 +47,10 @@
           $userobj->setVerifyUser($userobj->getUserId(),1); //update user talbe user is credit card verified
         } 
       }
-	  
-	  $ownerIdList = selectOwnersInfo($_SESSION['sess_user_id']);
-	  echo ownerIdList;
   }
   else{
     header('Location: /RRS/');
-  }
-
-  
+  } 
 ?>
 <div class="row">
   <div class="col-12">
@@ -166,7 +158,23 @@
             <thead>
               <tr>
                 <th>Restaurant Name</th>
-                <th></th>
+				<?php 
+					$ownerSelector = new owner;
+					$ownershipSelector = new restaurantOwnership;
+					$i = 1;
+					$restaurantIdList = array_fill(1, 500, -1);
+					
+					$ownerIdList = $ownerSelector->selectOwnersInfo($_SESSION['sess_user_id']);
+					
+					while ($i <= $ownerIdList[1])
+					{
+						$restaurantIdList[$i] = $ownershipSelector->selectRestaurantId($ownerIdList[$i+1]);
+						$i = $i + 1;
+					}
+					
+					
+				?>
+                <th><?php echo $ownerIdList; ?></th>
                 <th></th>
                 <th></th>
                 <th>Edit</th>
