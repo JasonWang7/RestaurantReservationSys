@@ -159,7 +159,7 @@ $query = "CREATE TABLE `creditcardinfo` (
     `expireddate` varchar(10) not null,
     `userId` int(10) unsigned NOT NULL,
     `cardtype` VARCHAR(50) NOT NULL ,
-    FOREIGN KEY (userId) REFERENCES user (id),
+    FOREIGN KEY (userId) REFERENCES user (id) ON DELETE CASCADE,
     PRIMARY KEY (`cardNum`)
     )";
 
@@ -177,8 +177,8 @@ $query = "CREATE TABLE `reservation` (
     `dinningtime` datetime not null,
     `email` text,
     `phone` varchar(11)  not null,
-    FOREIGN KEY (userId) REFERENCES user (id),
-    FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid),
+    FOREIGN KEY (userId) REFERENCES user (id) ON DELETE CASCADE,
+    FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid) ON DELETE CASCADE,
     PRIMARY KEY (`reservationid`)
     )";
 
@@ -189,8 +189,8 @@ $result = mysql_query($query);
 $query = "CREATE TABLE `eventattandance` (
     `reservationid` int(10) unsigned NOT NULL,
     `userId` int(10) unsigned NOT NULL,
-    FOREIGN KEY (userId) REFERENCES user (id),
-    FOREIGN KEY (reservationid) REFERENCES reservation (reservationid),
+    FOREIGN KEY (userId) REFERENCES user (id) ON DELETE CASCADE,
+    FOREIGN KEY (reservationid) REFERENCES reservation (reservationid) ON DELETE CASCADE,
     PRIMARY KEY (`reservationid`,`userId`)
     )";
 
@@ -224,8 +224,8 @@ $query = "CREATE TABLE `events` (
     `eventpictureurl` text,
     `eventtime` datetime not null,
     `eventendtime` datetime not null,
-    FOREIGN KEY (userId) REFERENCES user (id),
-    FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid),
+    FOREIGN KEY (userId) REFERENCES user (id) ON DELETE CASCADE,
+    FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid) ON DELETE CASCADE,
     PRIMARY KEY (`eventid`)
     )";
 $result = mysql_query($query);
@@ -244,8 +244,8 @@ $query = "CREATE TABLE `review` (
     `votes` int(10) not null default '0',
     `spam` int(10) not null default '0',
     `reviewtime` datetime not null,
-    FOREIGN KEY (userId) REFERENCES user (id),
-    FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid),
+    FOREIGN KEY (userId) REFERENCES user (id) ON DELETE CASCADE,
+    FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid) ON DELETE CASCADE,
     PRIMARY KEY (`reviewid`)
     )";
 
@@ -256,8 +256,8 @@ $query = "CREATE TABLE `reviewvote` (
     `userId` int(10) unsigned NOT NULL,
     `votevalue` int(1) not null,         /*****1,0,-1 (upvote, none, downvote)******/ 
     `updatetime`  timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-    FOREIGN KEY (userId) REFERENCES user (id),
-    FOREIGN KEY (reviewid) REFERENCES review (reviewid),
+    FOREIGN KEY (userId) REFERENCES user (id) ON DELETE CASCADE,
+    FOREIGN KEY (reviewid) REFERENCES review (reviewid) ON DELETE CASCADE,
     PRIMARY KEY (`reviewid`,`userId`)
     )";
 
@@ -310,8 +310,8 @@ $query = "CREATE TABLE `spamvote` (
     `userId` int(10) unsigned NOT NULL,
     `votevalue` int(1) not null,         /*****1,0 (spam, not spam)******/ 
     `updatetime`  timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-    FOREIGN KEY (userId) REFERENCES user (id),
-    FOREIGN KEY (reviewid) REFERENCES review (reviewid),
+    FOREIGN KEY (userId) REFERENCES user (id) ON DELETE CASCADE,
+    FOREIGN KEY (reviewid) REFERENCES review (reviewid) ON DELETE CASCADE,
     PRIMARY KEY (`reviewid`,`userId`)
     )";
 
@@ -354,7 +354,7 @@ $query =  "CREATE TRIGGER spamvote_after_update\n"
     . " UPDATE `review` SET `spam`=voteNum WHERE `reviewid`=idNum;\n"
     . " \n"
     . "END;";
-    
+
 $result = mysql_query($query);
 
 $query = "DROP TABLES IF EXISTS subscription";

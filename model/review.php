@@ -21,39 +21,36 @@ class review {
 
 
 	function insertReview(){
-		$dbconn = connectdb();
-		$tempColName = sanitize($columnName); //sanitize the column name
-		$query = 'INSERT INTO `review`(`restaurantid`, `userId`, `comment`, `servicerating`, `foodrating`, `ambiencerating`, `overallexp`, `votes`, `reviewtime`) VALUES 
-				(:restaurantid,:userId,:comment,:servicerating,:foodrating,:ambiencerating,:overallexp,:votes,:reviewtime);';
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+		$query = 'INSERT INTO `review`(`restaurantid`, `userId`, `comment`, `servicerating`, `foodrating`, `ambiencerating`, `overallexp`, `reviewtime`) VALUES 
+				(:restaurantid,:userId,:comment,:servicerating,:foodrating,:ambiencerating,:overallexp,:reviewtime);';
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/
 		$stmt->bindValue(':restaurantid',$this->getRestaurantId());
-		$stmt->bindValue(':userId',,$this->getUserId());
-		$stmt->bindValue(':comment',,$this->getComment());
-		$stmt->bindValue(':servicerating',,$this->getServiceRating());
-		$stmt->bindValue(':foodrating',,$this->getFoodRating());
-		$stmt->bindValue(':ambiencerating',,$this->getAmbienceRating());
-		$stmt->bindValue(':overallexp',,$this->getOverallExp());
-		$stmt->bindValue(':votes',,$this->getVotes());
-		$stmt->bindValue(':reviewtime',,$this->getReviewTime());
+		$stmt->bindValue(':userId',$this->getUserId());
+		$stmt->bindValue(':comment',$this->getComment());
+		$stmt->bindValue(':servicerating',$this->getServiceRating());
+		$stmt->bindValue(':foodrating',$this->getFoodRating());
+		$stmt->bindValue(':ambiencerating',$this->getAmbienceRating());
+		$stmt->bindValue(':overallexp',$this->getOverallExp());
+		$stmt->bindValue(':reviewtime',$this->getReviewTime());
 
 		$stmt->execute();
 		$insertedID = $dbconn->lastInsertId();
 		if($insertedID!=0){
 			$this->setReviewId($insertedID);
 		}
-		closeconnection($dbconn);
+		$auth->closeconnection($dbconn);
 	}
 
 	function updateReview($reivewObj){
-		$userObj = new user;
 		$auth = new mysqldatabaserrs;
 		$dbconn = $auth->connectdb();	
-		$squery =  'UPDATE `review` SET `comment`=:comment,`servicerating`=:servicerating,`foodrating`=:foodrating,`ambiencerating`=:ambiencerating,`overallexp`=:overallexp,`votes`=:votes
+		$query =  'UPDATE `review` SET `comment`=:comment,`servicerating`=:servicerating,`foodrating`=:foodrating,`ambiencerating`=:ambiencerating,`overallexp`=:overallexp,`votes`=:votes
 				 WHERE `reviewid`=:reviewid;';
 		$stmt = $dbconn->prepare($query);
-
 		/*bind values to escape*/
 		$stmt->bindValue(':reviewid',$reivewObj->getReviewId());
 		$stmt->bindValue(':comment',$reivewObj->getComment());
@@ -67,7 +64,6 @@ class review {
 	}
 
 	function deleteReview($deleteID){
-		$userObj = new user;
 		$auth = new mysqldatabaserrs;
 		$dbconn = $auth->connectdb();
 	
@@ -77,47 +73,61 @@ class review {
 		/*bind values to escape*/
 		$stmt->bindValue(':reviewid',$deleteID);
 		$stmt->execute();
-
 		$auth->closeconnection($dbconn);
 	}
-
-	function voteReview($val){
-		$userObj = new user;
+	
+	/*
+	function voteReview($val,$reviewIdParam){
 		$auth = new mysqldatabaserrs;
 		$dbconn = $auth->connectdb();	
-		$squery =  'UPDATE `review` SET votes=votes+1
+		$squery =  'UPDATE `reviewvote` SET votes=votes+1
 				 WHERE `reviewid`=:reviewid;';
 		$stmt = $dbconn->prepare($query);
 
-		/*bind values to escape*/
-		$stmt->bindValue(':reviewid',$reivewObj->getReviewId());
-		$stmt->bindValue(':comment',$reivewObj->getComment());
-		$stmt->bindValue(':servicerating',$reivewObj->getServiceRating());
-		$stmt->bindValue(':foodrating',$reivewObj->getFoodRating());
-		$stmt->bindValue(':ambiencerating',$reivewObj->getAmbienceRating());
-		$stmt->bindValue(':overallexp',$reivewObj->getOverallExp());
+		$stmt->bindValue(':reviewid',$reviewIdParam);
 		$stmt->bindValue(':votes',$reivewObj->getVotes());
 		$stmt->execute();
 		$auth->closeconnection($dbconn);
 	}
+
 	function voteSpam($val){
-		$userObj = new user;
 		$auth = new mysqldatabaserrs;
 		$dbconn = $auth->connectdb();	
 		$squery =  'UPDATE `review` SET votes=votes+1
 				 WHERE `reviewid`=:reviewid;';
 		$stmt = $dbconn->prepare($query);
-
-		/*bind values to escape*/
 		$stmt->bindValue(':reviewid',$reivewObj->getReviewId());
 		$stmt->bindValue(':comment',$reivewObj->getComment());
-		$stmt->bindValue(':servicerating',$reivewObj->getServiceRating());
-		$stmt->bindValue(':foodrating',$reivewObj->getFoodRating());
-		$stmt->bindValue(':ambiencerating',$reivewObj->getAmbienceRating());
 		$stmt->bindValue(':overallexp',$reivewObj->getOverallExp());
 		$stmt->bindValue(':votes',$reivewObj->getVotes());
 		$stmt->execute();
 		$auth->closeconnection($dbconn);
+	}
+	*/
+
+	function listReviewById($useridParam,$offsetNum){
+		//$sql = "SELECT * FROM Orders LIMIT 10 OFFSET 15";
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+		$query = 'SELECT * FROM `review` where `reviewid`=:reviewid order by updatetime limit 10 offset :offsetNum;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindValue(':reviewid',$useridParam);		
+		$stmt->bindValue(':offsetNum',$offsetNum);			
+
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$userObj = new user;
+		$userObj->setUserName($result['username']);
+		$auth->closeconnection($dbconn);
+		return $userObj;
+	}
+	//get list of new review
+	function listReview($offsetNume){
+
+
 	}
 	/*********************getter ********************/
 	function getUserId(){
