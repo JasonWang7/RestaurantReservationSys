@@ -11,6 +11,13 @@
 	  include_once($root.'model/restaurantOwnership.php');
       include_once($root.'controller/creditcardcontroller.php'); ?>
 	  
+<script type="text/javascript">
+function deletePromptPopup(url) 
+{
+	popUp = window.open(url,'Delete Prompt','height=600,width=700,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+}
+</script>
+	  
 <?php 
   if(isset($_SESSION['sess_user_id'])){
       $userinfo = new user;
@@ -196,7 +203,10 @@
 					
 					while ($i <= $numOwned)
 					{
-						echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td></td><td></td><td><a class="btn btn-primary" href="/RRs/view/changerestaurant.php?id=' . $restaurantIdList[$i] .'"</td></tr>';
+						$link = "/RRS/view/deletePrompt.php?id='" . $restaurantIdList[$i] . "'";
+
+						echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td></td><td></td><td><a class="btn btn-info" href="/RRS/view/changerestaurant.php?id=' . $restaurantIdList[$i] . '"' .
+						"</td><td>" . "<a class='btn btn-primary' href=deletePrompt(" . $link . ") target='_blank'></td></tr>";
 						
 						$i = $i + 1;
 					} 
