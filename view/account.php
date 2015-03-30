@@ -1,5 +1,5 @@
 <!--
-    Author: Vince,Jinhai Wang - this is the account page
+    Author: Vince,Jinhai Wang, Rhys Hall - this is the account page
 -->
 <?php 
       ob_start();
@@ -196,11 +196,8 @@
 					
 					while ($i <= $numOwned)
 					{
-						echo '<tr>' . '<td>' . $restaurantNameList[$i] . '<td>' . '<td>' . '<td>' . '<td>';?>
-						<div id="edit">
-							<a href="/RRS/view/changerestaurant.php">Edit</a>
-						</div>
-						<?php
+						echo '<tr>' . '<td>' . $restaurantNameList[$i] . '<td>' . '<td>' . '<td>' . '<td>' . '<a class="btn btn-primary" href="cancel?id=' . $restaurantIdList[$i] . '"';
+						
 						$i = $i + 1;
 					} 
 				?>

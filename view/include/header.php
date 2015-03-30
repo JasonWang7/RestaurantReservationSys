@@ -19,6 +19,12 @@
     
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<script type="text/javascript">
+	function loginRequiredPopup(url) 
+	{
+		popUp = window.open(url,'Ownership Information','height=350,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+	}
+	</script>
     <style>
       body { 
         background: url("http://www.resto.be/static/images/95/9/shutterstock_74171587_95399.jpg"); no-repeat center center fixed; 
@@ -86,10 +92,16 @@
                               <ul class="dropdown-menu" role="menu">
                                 <?php
                                 if(!isset($_SESSION['sess_username'])){
-                                        echo '<li><a href="login">Login</a></li>';}                                ?>
+                                        echo '<li><a href="login">Login</a></li>';}?>
                                 
                                 <li><a href="account?reservation=true">Reservations</a></li>
-                                <li><a href="account">Account</a></li>
+								
+								<?php if (isset($_SESSION['sess_username'])) : ?>
+									<li><a href="account">Account</a></li>
+								<?php else : ?>
+									<li><a href="JavaScript:loginRequiredPopup('/RRS/view/loginRequired.php');">Account</a></li>
+								<?php endif; ?>
+								
                                 <li><a href="contactus">Contact Us</a></li>
                                 <li><a href="help">Help</a></li>
                               </ul>
