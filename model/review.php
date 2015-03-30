@@ -79,34 +79,7 @@ class review {
 		$auth->closeconnection($dbconn);
 	}
 	
-	/*
-	function voteReview($val,$reviewIdParam){
-		$auth = new mysqldatabaserrs;
-		$dbconn = $auth->connectdb();	
-		$squery =  'UPDATE `reviewvote` SET votes=votes+1
-				 WHERE `reviewid`=:reviewid;';
-		$stmt = $dbconn->prepare($query);
-
-		$stmt->bindValue(':reviewid',$reviewIdParam);
-		$stmt->bindValue(':votes',$reivewObj->getVotes());
-		$stmt->execute();
-		$auth->closeconnection($dbconn);
-	}
-
-	function voteSpam($val){
-		$auth = new mysqldatabaserrs;
-		$dbconn = $auth->connectdb();	
-		$squery =  'UPDATE `review` SET votes=votes+1
-				 WHERE `reviewid`=:reviewid;';
-		$stmt = $dbconn->prepare($query);
-		$stmt->bindValue(':reviewid',$reivewObj->getReviewId());
-		$stmt->bindValue(':comment',$reivewObj->getComment());
-		$stmt->bindValue(':overallexp',$reivewObj->getOverallExp());
-		$stmt->bindValue(':votes',$reivewObj->getVotes());
-		$stmt->execute();
-		$auth->closeconnection($dbconn);
-	}
-	*/
+	
 	/***get review by user******/
 	/**
 	* retrive the list of review by specifide user id
@@ -191,6 +164,9 @@ class review {
 	}
 	function getReviewName(){
 		return $this->reviewname;
+	}
+	function getRestaurantName(){
+		return $this->restaurantname;
 	}
 	/*********************setter ********************/
 	function setUserId($param){
