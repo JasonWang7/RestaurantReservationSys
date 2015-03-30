@@ -81,6 +81,32 @@ class businessHour
 		}
 	}
 	
+	/**
+	* remove information in the database corresponding to a given restaurant name and email address
+	* @return true on success, false otherwise
+	*/
+	function removeHoursInfo($restaurantId)
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		
+		$query = "delete from businesshour where restaurantid=:restaurantId;";
+		$stmt = $dbconn->prepare($query);
+		
+		// bind class values to query values
+		$stmt->bindValue(':restaurantId', $restaurantId);		
+		
+		if ($stmt->execute())
+		{
+			mysqldatabaserrs::closeconnection($dbconn);
+			
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	
 	//getter methods
 	function getRestaurantId()
 	{

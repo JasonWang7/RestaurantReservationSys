@@ -12,6 +12,13 @@
 <html>
 	<head>
 		<title>Confirm Deletion</title>
+		
+		<?php
+			$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
+			include_once($root.'model/restaurant.php');
+			
+			session_start();
+		?>
 	</head>
 	
 	</body>
@@ -20,12 +27,17 @@
 			
 			<?php
 				$id = $_GET['id'];
+				$_SESSION["restaurantId"] = $id;
+				
+				$restaurantSelector = new restaurant;
+				
+				$restaurantName = $restaurantSelector->selectRestaurantName($id);
 			
-				echo "Are you sure you want to delete" . $id . "?";
+				echo "Are you sure you want to delete " . $restaurantName . "?";
 			?>
 		</div>
 		
-		<form action="/RRS/controller/addRestaurantController.php" method="post">
+		<form action="/RRS/controller/deleteRestaurantController.php" method="post">
 			<br><br>
 			
 			<div id = "buttons">

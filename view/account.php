@@ -12,9 +12,9 @@
       include_once($root.'controller/creditcardcontroller.php'); ?>
 	  
 <script type="text/javascript">
-function deletePromptPopup(url) 
+function deletePromptPopUp(url) 
 {
-	popUp = window.open(url,'Delete Prompt','height=600,width=700,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+	popUp = window.open(url,'Delete Prompt','height=300,width=550,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
 }
 </script>
 	  
@@ -204,10 +204,15 @@ function deletePromptPopup(url)
 					while ($i <= $numOwned)
 					{
 						$link = "/RRS/view/deletePrompt.php?id='" . $restaurantIdList[$i] . "'";
-
-						echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td></td><td></td><td><a class="btn btn-info" href="/RRS/view/changerestaurant.php?id=' . $restaurantIdList[$i] . '"' .
-						"</td><td>" . "<a class='btn btn-primary' href=deletePrompt(" . $link . ") target='_blank'></td></tr>";
+						$quotations = '"';
 						
+						$hrefContent = "JavaScript:deletePromptPopUp(" . $quotations . $link . $quotations . ");";
+						
+						$deleteButton = "<a class=\"btn btn-primary\" href=\"JavaScript:deletePromptPopUp('/RRS/view/deletePrompt.php?id=" . $restaurantIdList[$i] . "');\">";
+						
+						echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td></td><td></td><td><a class="btn btn-info" href="/RRS/view/changerestaurant.php?id=' . $restaurantIdList[$i] . '"' .
+						"</td><td>" . $deleteButton . "</td></tr>";
+
 						$i = $i + 1;
 					} 
 				?>
