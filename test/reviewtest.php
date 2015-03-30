@@ -21,6 +21,10 @@ $reviewobj->setComment("Test Update comment");
 echo '<pre>'.print_r($reviewobj, true).'</pre>'; 
 $reviewobj->updateReview($reviewobj);
 $reviewobj->deleteReview(2);
+$x = $reviewobj->listReviewById(65,5);
+//echo $x;
+echo '<pre>'.print_r($x, true).'</pre>'; 
+echo 'shit';
 
 
 ?>

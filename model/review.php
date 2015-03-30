@@ -10,14 +10,16 @@ require_once($root.'util/database.class.php');
 class review {
 	private $restaurantid;
 	private $reviewid;
-	private $userid;
+	private $userId;
 	private $comment;
 	private $servicerating;
 	private $foodrating;
 	private $ambiencerating;
 	private $overallexp;
+	private $spam;
 	private $votes;
 	private $reviewtime;
+	private $reviewname;   //record name of user who make review
 
 
 	function insertReview(){
@@ -104,34 +106,42 @@ class review {
 		$auth->closeconnection($dbconn);
 	}
 	*/
-
+	/***get review by user******/
+	/**
+	* retrive the list of review by specifide user id
+	* @param $useridParam, offsetNum
+	* @return list of review object
+	* fetch into class. ref: http://w3facility.org/question/php-pdofetch_class-is-mapping-to-all-lowercase-properties-instead-of-camelcase/
+	*/
 	function listReviewById($useridParam,$offsetNum){
 		//$sql = "SELECT * FROM Orders LIMIT 10 OFFSET 15";
 		$auth = new mysqldatabaserrs;
 		$dbconn = $auth->connectdb();
-		$query = 'SELECT * FROM `review` where `reviewid`=:reviewid order by updatetime limit 10 offset :offsetNum;';
+		$query = 'SELECT * FROM `review` where `userId`=:useridParam order by `reviewtime` limit 10 offset :offsetNum;';
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/
-		$stmt->bindValue(':reviewid',$useridParam);		
-		$stmt->bindValue(':offsetNum',$offsetNum);			
-
+		$stmt->bindParam(':useridParam', $useridParam, PDO::PARAM_INT);
+		$stmt->bindParam(':offsetNum', $offsetNum, PDO::PARAM_INT);				
 		$stmt->execute();
-		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		$userObj = new user;
-		$userObj->setUserName($result['username']);
+		$revewObj= new review;
+		$reviewList = array();
+		while($revewObj = $stmt->fetchObject('review')){
+			array_push($reviewList,$revewObj);
+		}
 		$auth->closeconnection($dbconn);
-		return $userObj;
+		return $reviewList;
 	}
-	//get list of new review
+	//get list of newest review made by users
 	function listReview($offsetNume){
 
 
 	}
+
 	/*********************getter ********************/
 	function getUserId(){
-		return $this->userid;		
+		return $this->userId;		
 	}
 	function getRestaurantId(){
 		return $this->restaurantid;
@@ -157,12 +167,18 @@ class review {
 	function getVotes(){
 		return $this->votes;
 	}
+	function getSpam(){
+		return $this->spam;
+	}
 	function getReviewTime(){
 		return $this->reviewtime;
 	}
+	function getReviewName(){
+		return $this->reviewname;
+	}
 	/*********************setter ********************/
 	function setUserId($param){
-		$this->userid = $param;		
+		$this->userId = $param;		
 	}
 	function setRestaurantId($param){
 		$this->restaurantid = $param;		
@@ -188,8 +204,14 @@ class review {
 	function setVotes($param){
 		$this->votes = $param;		
 	}
+	function setSpam($param){
+		$this->spam = $param;		
+	}
 	function setReviewTime($param){
 		$this->reviewtime = $param;		
+	}
+	function setReviewName($param){
+		$this->reviewname = $param;		
 	}
 }
 
