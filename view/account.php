@@ -196,7 +196,7 @@
 					
 					while ($i <= $numOwned)
 					{
-						echo '<tr>' . '<td>' . $restaurantNameList[$i] . '<td>' . '<td>' . '<td>' . '<td>' . '<a class="btn btn-primary" href="cancel?id=' . $restaurantIdList[$i] . '"';
+						echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td></td><td></td><td><a class="btn btn-primary" href="/RRs/view/changerestaurant.php?id=' . $restaurantIdList[$i] .'"</td></tr>';
 						
 						$i = $i + 1;
 					} 
