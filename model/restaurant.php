@@ -182,16 +182,15 @@ class restaurant
 	* remove information in the database corresponding to a given restaurant name and email address
 	* @return true on success, false otherwise
 	*/
-	function removeRestaurantInfo($restaurantName, $email)
+	function removeRestaurantInfo($restaurantId)
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
 		
-		$query = "delete from restaurant where restaurantname=:restaurantName and email=:email;";
+		$query = "delete from restaurant where restaurantid=:restaurantId;";
 		$stmt = $dbconn->prepare($query);
 		
 		// bind class values to query values
-		$stmt->bindValue(':restaurantName', $restaurantName);	
-		$stmt->bindValue(':email', $email);			
+		$stmt->bindValue(':restaurantId', $restaurantId);		
 		
 		if ($stmt->execute())
 		{
