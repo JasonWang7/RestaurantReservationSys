@@ -19,6 +19,7 @@ class review {
 	private $spam;
 	private $votes;
 	private $reviewtime;
+	private $restaurantname; //record restaurant name
 	private $reviewname;   //record name of user who make review
 
 
@@ -117,7 +118,7 @@ class review {
 		//$sql = "SELECT * FROM Orders LIMIT 10 OFFSET 15";
 		$auth = new mysqldatabaserrs;
 		$dbconn = $auth->connectdb();
-		$query = 'SELECT * FROM `review` where `userId`=:useridParam order by `reviewtime` limit 10 offset :offsetNum;';
+		$query = 'SELECT  `id` as userId, `reviewid`,`restaurantid`,`restaurantname`,`comment`,`servicerating`,`foodrating`,`ambiencerating`,`overallexp`,`votes`,`reviewtime`,`spam`,`profilepicture` FROM `view_review_user_restaurant` where `id`=:useridParam order by `reviewtime` desc limit 10 offset :offsetNum;';
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/
@@ -134,8 +135,23 @@ class review {
 		return $reviewList;
 	}
 	//get list of newest review made by users
-	function listReview($offsetNume){
+	function listReview($offsetNum){
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+		$query = 'SELECT `id` as userId, `reviewname`,`reviewid`,`restaurantid`,`restaurantname`,`comment`,`servicerating`,`foodrating`,`ambiencerating`,`overallexp`,`votes`,`reviewtime`,`spam`,`address`,`type`,`email`,`phone`,`features`,`about`,`likes`,`profilepicture`,`verified` FROM `view_review_user_restaurant` order by `reviewtime` desc limit 10 offset :offsetNum;';
+		$stmt = $dbconn->prepare($query);
 
+		/*bind values to escape*/
+		$stmt->bindParam(':offsetNum', $offsetNum, PDO::PARAM_INT);				
+		$stmt->execute();
+
+		$revewObj= new review;
+		$reviewList = array();
+		while($revewObj = $stmt->fetchObject('review')){
+			array_push($reviewList,$revewObj);
+		}
+		$auth->closeconnection($dbconn);
+		return $reviewList;
 
 	}
 
