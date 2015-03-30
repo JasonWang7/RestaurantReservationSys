@@ -373,6 +373,9 @@ $result = mysql_query($query);
 $query =  "CREATE OR REPLACE VIEW view_reservation_restaurant AS (select reservation.reservationid,reservation.userId,restaurant.restaurantid,reservation.numguest,reservation.note,reservation.invitationList,reservation.dinningtime,reservation.email,reservation.phone as userphone, restaurant.restaurantname,restaurant.address,restaurant.phone from restaurant inner join reservation on restaurant.restaurantid =reservation.restaurantid );";
 $result = mysql_query($query);
 
+$query ="CREATE OR REPLACE VIEW view_review_user_restaurant AS (select `id`, `UserName` as reviewname, `reviewid`,review.restaurantid,`comment`,`servicerating`,`foodrating`,`ambiencerating`,`overallexp`,`votes`, `reviewtime`,`spam`,restaurant.restaurantname,restaurant.address,restaurant.type,restaurant.email, restaurant.phone,restaurant.features,restaurant.about,restaurant.likes,restaurant.profilepicture, restaurant.verified from review inner join user on user.id =review.userId inner join restaurant on restaurant.restaurantid = review.restaurantid )";
+$result = mysql_query($query);
+
 /*insert default data*/
 $query = "insert into user (firstname,lastname,email,passwordHash,username,verified,role) values('','','admin@example.com','1234','admin',1,'super admin');";
 $result = mysql_query($query);
