@@ -3,6 +3,8 @@
 
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 require_once($root.'model/user.php');
+require_once($root.'model/accountlog.php');
+
 
 	$userObj = new user;	
 	$userObj->setUserEmail($_POST["email"]);	
@@ -16,6 +18,7 @@ require_once($root.'model/user.php');
 	$userObj->setActivationCode($activation_code);
 	$result = $userObj->insertUser();
 	if ($result == 1){
+
 		$userInfo = user::selectBasicInfo($userObj->getUserEmail());
 		//send activation email
 		$to=$userObj->getUserEmail();
@@ -34,7 +37,23 @@ require_once($root.'model/user.php');
 		$_SESSION['sess_useremail'] = $userObj->getUserEmail();
 		$userInfo->getUserName();
 		session_write_close();
-		//print($to.$subject.$body);
+		//log user activity
+		/*******get user ip******/
+		$ip=$_SERVER['REMOTE_ADDR'];
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {               // check ip from share internet
+			$ip=$_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {   // to check ip is pass from proxy
+			$ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+		}
+		$ips = explode(",", $ip);
+		$usrIp = $ips[0];
+		//create log class
+		$newlog = new accountlog;
+		$newlog->setActivity("Signed Up");
+		$newlog->setClientIp($usrIp);
+		$newlog->setUserId($_SESSION['sess_user_id']);
+		$newlog->insertActivity();
+		
 		header('Location: /RRS/success');	
 	}
 	else{

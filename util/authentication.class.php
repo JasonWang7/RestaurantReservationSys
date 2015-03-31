@@ -2,6 +2,7 @@
 /*****author: Jason Wang*******/
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 require_once($root.'util/database.class.php');
+require_once($root.'model/accountlog.php');
 class authentication{
 	private $useremail;
 	private $password;
@@ -38,7 +39,6 @@ class authentication{
 		$isAuthenticated = false;
 		$isAutenticated = mysqldatabaserrs::verifyUser($email,authentication::encryptPass($password));
 		if($isAutenticated != true){  //user not fould or authenticated, redirect
-			
 			header('Location: '.$path.'login');
 			
 		}
@@ -58,6 +58,14 @@ class authentication{
 				$_SESSION['sess_useremail'] = $email;
 				$userInfo->getUserName();
 				session_write_close();
+				//log user activity
+				//create log class				
+				$newlog = new accountlog;
+				$userIP = $newlog->getIpAddress();
+				$newlog->setActivity("Logged In");
+				$newlog->setClientIp($userIP);
+				$newlog->setUserId($_SESSION['sess_user_id']);
+				$newlog->insertActivity();
 				header('Location: /RRS/');
 
 			}

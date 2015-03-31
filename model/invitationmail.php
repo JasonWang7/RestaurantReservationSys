@@ -43,7 +43,7 @@ class invitationmail{
 	}
 
 	function buildBody(){
-		$this->body='<table width="100%" border="0" cellspacing="0" cellpadding="10" background="http://thumbs.dreamstime.com/x/10889588http://www.dreamstime.com/royalty-free-stock-photos-menu-dinner-party-invitation-10889588.jpg">
+		$this->body='<table width="450px" border="0" cellspacing="0" cellpadding="10" background="http://thumbs.dreamstime.com/x/10889588http://www.dreamstime.com/royalty-free-stock-photos-menu-dinner-party-invitation-10889588.jpg">
 		<tr>
 			<td align="center">
 	  			<img src="https://i.imgur.com/VMDg9Dc.png?1" style="width:100px; margin-top:0px;">
@@ -51,11 +51,11 @@ class invitationmail{
 		</tr>
   		<tr>
 	    	<td style="color: black;font-weight:bolder">'.
-				'Hello, <br/> <br/>'.$this->userobj->getFirstName().' '.$this->userobj->getLastName().' have invited you to dinne at '.$this->restaurantobj->getRestaurantName().'.'. 
-				'<br/>Address: '.$this->restaurantobj->getAddress().'<br/>'.
+				'Hello, <br/> <br/>'.$this->userobj->getFirstName().' '.$this->userobj->getLastName().' have invited you to dine at '.$this->restaurantobj->getRestaurantName().'.'. 
+				'<br/>Address: '.$this->restaurantobj->getAddress().'.<br/>'.
 				'Time: '.$this->revseravtionobj->getDinningTime().'<br/>'.
 				'Website: <a href="'.'http://localhost/RRS/profile?id='.$this->restaurantobj->getId().'">'.$this->restaurantobj->getRestaurantName().'</a><br/><br/>'.
-				'<hr/>Send on Behalf Of '.$this->userobj->getFirstName().' '.$this->userobj->getLastName().'<br/>'.
+				'<hr/>Send on Behalf of '.$this->userobj->getFirstName().' '.$this->userobj->getLastName().'<br/>'.
 				'Email: '.$this->userobj->getUserEmail().'<br/>'.
 				'Phone: '.$this->userobj->getPhone().'<br/>'.
 				'Sent By: Reserve4U INC.<br/>'.

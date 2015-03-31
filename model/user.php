@@ -137,6 +137,7 @@ class user{
 		if($stmt->execute()){
 			mysqldatabaserrs::closeconnection($dbconn);
 			$this->setPassword($passwordHashed);
+			
 			return 1;
 		}
 		else{
