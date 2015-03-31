@@ -62,8 +62,8 @@ class accountlog{
 
 	}
 	function renderView($accountLogList){
-		$renderedview;
-		
+		$renderedview='';
+		$tablebody='';
 		if(count($accountLogList)<1){
 			$renderedview = 'No user Activity to Display';
 			return $renderedview;
@@ -85,8 +85,8 @@ class accountlog{
 
 			$tablebody = $tablebody.'<tr class="row"><td class="field-label col-md-3 active">'.
 				$log->getActivityTime().
-				'</td>.
-          		<td class="col-md-9">'.
+				'</td>'.
+          		'<td class="col-md-9">'.
           		$log->getActivity().
           		'</td>'.
           		'<td class="col-md-9">'.
