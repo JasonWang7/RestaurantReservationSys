@@ -5,10 +5,11 @@
       ob_start();
       $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
       include_once("include/header.php");
+      include_once($root.'model/accountlog.php');
       include_once($root.'model/user.php');
-    include_once($root.'model/restaurant.php');
-    include_once($root.'model/owner.php');
-    include_once($root.'model/restaurantOwnership.php');
+      include_once($root.'model/restaurant.php');
+      include_once($root.'model/owner.php');
+      include_once($root.'model/restaurantOwnership.php');
       include_once($root.'controller/creditcardcontroller.php'); ?>
     
 <script type="text/javascript">
@@ -287,26 +288,13 @@ function deletePromptPopUp(url)
         <p>Billing Information</p>
       </div>
       <div class="tab-pane fade" id="history">
-        <div class="table-responsive">
-        <table class="table table-bordered"> 
-        <tr class="row">
-          <td class="field-label col-md-3 active">
-            <label>Date</label>
-          </td>
-          <td class="col-md-9">
-            <label>Activity Information</label>
-          </td>
-        </tr>
-        <tr class="row">
-          <td class="field-label col-md-3 active">
-              10/10/2010 - 10:10 PM
-          </td>
-          <td class="col-md-9">
-            Account Logged On
-          </td>
-        </tr>
-      </table>
-      </div>
+          <?php 
+          $logs = new accountlog;
+          $logs->setUserId($_SESSION['sess_user_id']);
+          $logList = $logs->retriveListActivity(0);
+          echo $logs->renderView($logList);
+
+          ?>      
       </div>
       <div class="tab-pane fade" id="creditcard">
         <form action="account?credit=true" method="post">
