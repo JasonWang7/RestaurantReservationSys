@@ -27,6 +27,7 @@ include($root ."model/businessHour.php");
       $phone = $row[5];
       $features = $row[6];
       $price = $row[7];
+      $_POST['restaurantid'] = $_GET['id'];
     }
     $stmt = null;
 
