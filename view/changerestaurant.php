@@ -229,8 +229,9 @@
             <div class="col-sm-6">
               <div id="hours">
             
+			  <!-- hours fields -->
               Sunday: &nbsp; <input type="text" name="sundayStart" value="<?php echo htmlspecialchars($sundayStart); ?>" size="5" maxlength="4"> &nbsp;
-              to &nbsp; <input type="text" name="sundayEnd" value="<?php echo htmlspecialchars($sundayEnd); ?>" size="5" maxlength="4">
+              to &nbsp; <input type="text" name="sundayEnd" value="<?php echo htmlspecialchars($sundayEnd); ?>" size="5" maxlength="4"> 
               <br><br>
               Monday: &nbsp; <input type="text" name="mondayStart" value="<?php echo htmlspecialchars($mondayStart); ?>" size="5" maxlength="4"> &nbsp;
               to &nbsp; <input type="text" name="mondayEnd" value="<?php echo htmlspecialchars($mondayEnd); ?>" size="5" maxlength="4">
