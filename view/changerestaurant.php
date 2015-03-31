@@ -61,7 +61,7 @@
 			$saturdayEnd = $saturdayHoursObj->getEndHour();
 	  ?> 
 	  
-      <form class="form-horizontal" role="form" action="/RRS/controller/modifyRestaurantController.php?id=" <?php echo htmlspecialchars($restaurantId) ?> method="post">  
+      <form class="form-horizontal" role="form" action="/RRS/controller/modifyRestaurantController.php?id=<?php echo htmlspecialchars($restaurantId) ?>" method="post">  
         <fieldset>
           <div class="form-group">
             <label class="col-sm-3 control-label">Restaurant Name</label>
@@ -239,7 +239,7 @@
               to &nbsp; <input type="text" name="tuesdayEnd" value="<?php echo htmlspecialchars($tuesdayEnd); ?>" size="5" maxlength="4">
               <br><br>
               Wednesday: &nbsp; <input type="text" name="wednesdayStart" value="<?php echo htmlspecialchars($wednesdayStart); ?>" size="5" maxlength="4"> &nbsp;
-              to &nbsp; <input type="text" name="wednesdayEnd" value="1""<?php echo htmlspecialchars($wednesdayEnd); ?>" size="5" maxlength="4">
+              to &nbsp; <input type="text" name="wednesdayEnd" value="<?php echo htmlspecialchars($wednesdayEnd); ?>" size="5" maxlength="4">
               <br><br>
               Thursday: &nbsp; <input type="text" name="thursdayStart" value="<?php echo htmlspecialchars($thursdayStart); ?>" size="5" maxlength="4"> &nbsp;
               to &nbsp; <input type="text" name="thursdayEnd" value="<?php echo htmlspecialchars($thursdayEnd); ?>" size="5" maxlength="4">
