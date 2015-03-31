@@ -29,11 +29,13 @@
 			$thursdayHoursObj = new businessHour;
 			$fridayHoursObj = new businessHour;
 			$saturdayHoursObj = new businessHour;
+			$id = $_GET["id"];
 			$features = array("african", "alcoholMenu", "american", "buffet", "casualDining", 
 			"chinese", "coffeehouse", "fastFood", "fineDining", "french", "indian", "irish",
 			"italian", "japanese", "kidFriendly", "korean", "pub", "tableTopCooking", "vegan");
 			$featureString = "";
-			$result = 0;
+			$result1 = 0;
+			$result2 = 0;
 
 			//add all strings of features into array
 			for($i; $i<19; $i++)
@@ -46,7 +48,7 @@
 			
 			$restaurantObj->setAddress($_POST["address"]);
 			$restaurantObj->setType("");
-			$restaurantObj->setRestaurantName($restaurantName);
+			$restaurantObj->setRestaurantName($_POST["restaurantName"]);
 			$restaurantObj->setEmail($_POST["email"]);
 			$restaurantObj->setPhone($_POST["phone"]);
 			$restaurantObj->setFeatures($featureString);
@@ -58,17 +60,39 @@
 			$restaurantObj->setProfilePicture("");
 			$restaurantObj->setVerified("");
 			
-			$result = $restaurantObj->updateRestaurantInfo($_GET["id"]);
+			$result1 = $restaurantObj->updateRestaurantInfo($id);
 			
-			$result = $sundayHoursObj->updateHoursInfo($_GET["id"]);
-			$result = $mondayHoursObj->updateHoursInfo($_GET["id"]);
-			$result = $tuesdayHoursObj->updateHoursInfo($_GET["id"]);
-			$result = $wednesdayHoursObj->updateHoursInfo($_GET["id"]);
-			$result = $thursdayHoursObj->updateHoursInfo($_GET["id"]);
-			$result = $fridayHoursObj->updateHoursInfo($_GET["id"]);
-			$result = $saturdayHoursObj->updateHoursInfo($_GET["id"]);
+			$sundayHoursObj->setDay("Sunday");
+			$sundayHoursObj->setStartHour($_POST["sundayStart"]);
+			$sundayHoursObj->setEndHour($_POST["sundayEnd"]);
+			$mondayHoursObj->setDay("Monday");
+			$mondayHoursObj->setStartHour($_POST["mondayStart"]);
+			$mondayHoursObj->setEndHour($_POST["mondayEnd"]);
+			$tuesdayHoursObj->setDay("Tuesday");
+			$tuesdayHoursObj->setStartHour($_POST["tuesdayStart"]);
+			$tuesdayHoursObj->setEndHour($_POST["tuesdayEnd"]);
+			$wednesdayHoursObj->setDay("Wednesday");
+			$wednesdayHoursObj->setStartHour($_POST["wednesdayStart"]);
+			$wednesdayHoursObj->setEndHour($_POST["wednesdayEnd"]);
+			$thursdayHoursObj->setDay("Thursday");
+			$thursdayHoursObj->setStartHour($_POST["thursdayStart"]);
+			$thursdayHoursObj->setEndHour($_POST["thursdayEnd"]);
+			$fridayHoursObj->setDay("Friday");
+			$fridayHoursObj->setStartHour($_POST["fridayStart"]);
+			$fridayHoursObj->setEndHour($_POST["fridayEnd"]);
+			$saturdayHoursObj->setDay("Saturday");
+			$saturdayHoursObj->setStartHour($_POST["saturdayStart"]);
+			$saturdayHoursObj->setEndHour($_POST["saturdayEnd"]);
 			
-			if ($result == 1)
+			$result2 = $sundayHoursObj->updateHoursInfo($id);
+			$result2 = $mondayHoursObj->updateHoursInfo($id);
+			$result2 = $tuesdayHoursObj->updateHoursInfo($id);
+			$result2 = $wednesdayHoursObj->updateHoursInfo($id);
+			$result2 = $thursdayHoursObj->updateHoursInfo($id);
+			$result2 = $fridayHoursObj->updateHoursInfo($id);
+			$result2 = $saturdayHoursObj->updateHoursInfo($id);
+			
+			if (($result1 == 1) && ($result2 == 1))
 			{
 				echo "Successfully modified the given restaurant."?>
 				<br><?php
@@ -84,7 +108,7 @@
 		
 		<br><br><br>
 		<div id="back">
-			&nbsp &nbsp &nbsp &nbsp <a class="btn btn-warning" href="/RRS/view/account.php">
+			&nbsp &nbsp &nbsp <a href="/RRS/view/account.php"><button type="button" value="back" height=35 width=100>Back</button>
 		</div>
 	</body>
 </html>
