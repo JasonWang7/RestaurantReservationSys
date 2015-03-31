@@ -61,7 +61,7 @@
 			$saturdayEnd = $saturdayHoursObj->getEndHour();
 	  ?> 
 	  
-      <form class="form-horizontal" role="form" action="/RRS/controller/modifyRestaurantController.php?id=" <?php echo htmlspecialchars($restaurantId) ?> method="post">  
+      <form class="form-horizontal" role="form" action="/RRS/controller/modifyRestaurantController.php?id=<?php echo htmlspecialchars($restaurantId) ?>" method="post">  
         <fieldset>
           <div class="form-group">
             <label class="col-sm-3 control-label">Restaurant Name</label>
@@ -229,8 +229,9 @@
             <div class="col-sm-6">
               <div id="hours">
             
+			  <!-- hours fields -->
               Sunday: &nbsp; <input type="text" name="sundayStart" value="<?php echo htmlspecialchars($sundayStart); ?>" size="5" maxlength="4"> &nbsp;
-              to &nbsp; <input type="text" name="sundayEnd" value="<?php echo htmlspecialchars($sundayEnd); ?>" size="5" maxlength="4">
+              to &nbsp; <input type="text" name="sundayEnd" value="<?php echo htmlspecialchars($sundayEnd); ?>" size="5" maxlength="4"> 
               <br><br>
               Monday: &nbsp; <input type="text" name="mondayStart" value="<?php echo htmlspecialchars($mondayStart); ?>" size="5" maxlength="4"> &nbsp;
               to &nbsp; <input type="text" name="mondayEnd" value="<?php echo htmlspecialchars($mondayEnd); ?>" size="5" maxlength="4">
@@ -239,7 +240,7 @@
               to &nbsp; <input type="text" name="tuesdayEnd" value="<?php echo htmlspecialchars($tuesdayEnd); ?>" size="5" maxlength="4">
               <br><br>
               Wednesday: &nbsp; <input type="text" name="wednesdayStart" value="<?php echo htmlspecialchars($wednesdayStart); ?>" size="5" maxlength="4"> &nbsp;
-              to &nbsp; <input type="text" name="wednesdayEnd" value="1""<?php echo htmlspecialchars($wednesdayEnd); ?>" size="5" maxlength="4">
+              to &nbsp; <input type="text" name="wednesdayEnd" value="<?php echo htmlspecialchars($wednesdayEnd); ?>" size="5" maxlength="4">
               <br><br>
               Thursday: &nbsp; <input type="text" name="thursdayStart" value="<?php echo htmlspecialchars($thursdayStart); ?>" size="5" maxlength="4"> &nbsp;
               to &nbsp; <input type="text" name="thursdayEnd" value="<?php echo htmlspecialchars($thursdayEnd); ?>" size="5" maxlength="4">

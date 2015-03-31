@@ -115,7 +115,6 @@ function deletePromptPopUp(url)
     </div>  
       </div>
       <div class="tab-pane fade  <?php if(isset($_GET['reservation'])){ echo 'active in'; } ?> " id="reservations">
-        <p>Below is the list of reservation:</p>
         <div class="row">
             <table class="table table-striped table-hover ">
             <thead>
@@ -220,7 +219,6 @@ function deletePromptPopUp(url)
       </div>
     
     <div class="tab-pane fade" id="restaurants">
-        <p>Displaying all currently owned restaurants:</p>
         <div class="row">
             <table class="table table-striped table-hover ">
             <thead>

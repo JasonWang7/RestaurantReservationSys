@@ -91,7 +91,7 @@ class businessHour
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
 		
-		$query = "update businesshour set day=:day, starhour=:startHour, end=:endHour where restaurantid=:restaurantId;";
+		$query = "update businesshour set restaurantid=:restaurantId, day=:day, starhour=:startHour, end=:endHour where restaurantid=:restaurantId;";
 		$stmt = $dbconn->prepare($query);
 		
 		// bind class values to query values
