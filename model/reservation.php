@@ -1,21 +1,20 @@
 <?php
-/* Based off of Jason's user.php code*/
-/* Written by Vincent Tieu */
+/* Written by Vincent Tieu, Jinhai Wang */
 
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 require_once($root.'util/authentication.class.php');
 require_once($root.'util/database.class.php');
 
 class Reservation{
-  private $restaurantId;
-  private $reservationId;
+  private $restaurantid;
+  private $reservationid;
   private $userId;
-  private $numberOfGuests;
+  private $numguest;
   private $note;
   private $invitationList;
-  private $diningTime;
-  private $userEmail;
-  private $userPhone;
+  private $dinningtime;
+  private $email;
+  private $phone;
 
 
   /**
@@ -35,6 +34,24 @@ class Reservation{
     
     mysqldatabaserrs::closeconnction($dbconn);
     return $result;
+  }
+
+  /***select reservation by reservation id ***/
+  function retriveReservationById($idParam){
+    $auth = new mysqldatabaserrs;
+    $dbconn = $auth->connectdb();
+    $query = 'SELECT  * FROM `reservation` where reservationid=:reservationid;';
+    $stmt = $dbconn->prepare($query);
+
+    /*bind values to escape*/
+    $stmt->bindParam(':reservationid', $idParam, PDO::PARAM_INT);    
+    $stmt->execute();
+
+    $reserveObj= new Reservation;
+    $reserveObj = $stmt->fetchObject('Reservation');
+   
+    $auth->closeconnection($dbconn);
+    return $reserveObj;
   }
 
 
@@ -59,7 +76,7 @@ class Reservation{
 
 
   /**
-  * inssert new reservation into database
+  * insert new reservation into database
   * @return true or false
   */
 
@@ -136,6 +153,63 @@ class Reservation{
     $auth->closeconnection($dbconn);
 
     return $result;
+  }
+  /*********************getter ********************/
+  function getUserId(){
+    return $this->userId;   
+  }
+  function getRestaurantId(){
+    return $this->restaurantid;   
+  }
+  function getReservationId(){
+    return $this->reservationid;   
+  }
+  function getNumGuest(){
+    return $this->numguest;   
+  }
+  function getNote(){
+    return $this->note;   
+  }
+  function getInvitationList(){
+    return $this->invitationList;   
+  }
+  function getDinningTime(){
+    return $this->dinningtime;   
+  }
+  function getEmail(){
+    return $this->email;   
+  }
+  function getPhone(){
+    return $this->phone;   
+  }
+
+  /****************************setter*****************************/
+  function setUserId($param){
+    $this->userId = $param;   
+  }
+  function setRestaurantId($param){
+    $this->restaurantid = $param;   
+  }
+  function setReservationId($param){
+    $this->reservationid = $param;   
+  }
+  function setNumGuest($param){
+    $this->numguest = $param;   
+  }
+  function setNote($param){
+    $this->note = $param;   
+  }
+  function setInvitationList($param){
+    $this->invitationList = $param;   
+  }
+  function setDinningTime($param){
+    $this->dinningtime = $param;   
+  }
+  function setEmail($param){
+    $this->email = $param;   
+  }
+  function sePhonet($param){
+    $this->phone = $param;   
   }
 
 }
