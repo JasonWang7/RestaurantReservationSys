@@ -231,6 +231,19 @@ $query = "CREATE TABLE `events` (
     )";
 $result = mysql_query($query);
 
+//record user activity
+$query = "CREATE TABLE `accountlog` (
+    `activityindex` int(20) unsigned NOT NULL AUTO_INCREMENT,
+    `userid` int(10) unsigned NOT NULL,
+    `activity` varchar(400)  not null,
+    `clientip` varchar(400)  not null,
+    `activitytime`  timestamp NOT NULL default CURRENT_TIMESTAMP,
+    FOREIGN KEY (userid) REFERENCES user (id) ON DELETE CASCADE,
+    PRIMARY KEY (`activityindex`)
+    );";
+$result = mysql_query($query);
+
+
 $query = "DROP TABLES IF EXISTS review";
 $result = mysql_query($query);
 $query = "CREATE TABLE `review` (
