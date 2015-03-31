@@ -73,10 +73,10 @@ class restaurant
 	}
 	/**
 	* retrieve all the information about the restaurant by restaurant id
-	* @param email
+	* @param restaurant id
 	* @return restaurant obj
 	*/
-	function selectRestaurantInfo($restaurantidParam)
+	function selectRestaurantInfoById($restaurantidParam)
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
 		$query = 'select restaurantid, address, type, restaurantname, email, phone, features, pricerange, about, website, holidayhour, likes, profilepicture, 
