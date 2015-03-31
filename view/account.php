@@ -142,7 +142,9 @@ function deletePromptPopUp(url)
               
               while($row = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT))
               {
-                $data = '<tr>' . '<td>' . $row[0] . '</td><td><a href="profile?id=' . $row[2] . '">'.$row[9].'</td><td>' . $row[6] . "</td><td>" . $row[3] .
+                $dtime = date_format($row[6],'d/m/Y H:i:s');
+                echo $dtime;
+                $data = '<tr>' . '<td>' . $row[0] . '</td><td><a href="profile?id=' . $row[2] . '">'.$row[9].'</td><td>' .$dtime. "</td><td>" . $row[3] .
                 '</td><td><a class="btn btn-default" href="#"  data-toggle="modal" data-target="#viewreservationmodal'.$row[0].'">View</a></td>'.'<td><a class="btn btn-primary" href="cancel?id='.$row[0].'" >Delete</a></td>'.'</tr>';
                 echo $data . '</a>';
 
@@ -152,17 +154,17 @@ function deletePromptPopUp(url)
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id="label">Reservation at <?php echo $name; ?></h4>
+                      <h4 class="modal-title" id="label">Reservation at ' . $row[9] .'</h4>
                     </div>
                     <div class="modal-body">
                       <div class="row">
                         <form id="booktable" name="booktable" ACTION="verifyreservation.php" METHOD=post>
                                           
                         <div class="col-md-4">
-                          <h3>Date: </h3><input  type="text" value="'. explode(" ", $row[6])[0] .'" name="datetime" id="datepicker1">
+                          <h3>Date: </h3><input  type="text" value="'. explode(" ", $dtime)[0] .'" name="datetime" id="datepicker1">
                         </div>
                         <div class="col-md-4">
-                          <h3>Time:</h3><input type="text" value="'.explode(" ", $row[6])[1] .'" name="dinningtime">
+                          <h3>Time:</h3><input type="text" value="'.explode(" ", $dtime)[1] .'" name="dinningtime">
                           
                         </div>
                         <div class="col-md-4">
@@ -189,6 +191,7 @@ function deletePromptPopUp(url)
                         <div class="col-md-12">
                           <h3>Enter your email addresses for your guests. Please separate them with the character ";" (no quotes)</h3>
                           <textarea name="invitationList" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
+                          <input type="hidden" name="reservationid" value='.$row[0].' >
                         </div>
                       </div>
                     </div>
