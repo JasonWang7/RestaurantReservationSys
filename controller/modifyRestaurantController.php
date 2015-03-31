@@ -20,7 +20,6 @@
 			
 			require_once($root.'model/restaurant.php');
 			require_once($root.'model/businessHour.php');
-			require_once($root.'model/restaurantOwnership.php');
 			
 			$restaurantObj = new restaurant;
 			$sundayHoursObj = new businessHour;
@@ -30,18 +29,12 @@
 			$thursdayHoursObj = new businessHour;
 			$fridayHoursObj = new businessHour;
 			$saturdayHoursObj = new businessHour;
-			$ownerObj = new owner;
-			$restaurantOwnershipObj = new restaurantOwnership;
 			$features = array("african", "alcoholMenu", "american", "buffet", "casualDining", 
 			"chinese", "coffeehouse", "fastFood", "fineDining", "french", "indian", "irish",
 			"italian", "japanese", "kidFriendly", "korean", "pub", "tableTopCooking", "vegan");
 			$featureString = "";
 			$result = 0;
-			
-			/* remove current information about given restaurant */
-			
-			
-			/* Add new information into database */
+
 			//add all strings of features into array
 			for($i; $i<19; $i++)
 			{
@@ -65,7 +58,33 @@
 			$restaurantObj->setProfilePicture("");
 			$restaurantObj->setVerified("");
 			
-			$result = $restaurantObj->insertRestaurantInfo();
+			$result = $restaurantObj->updateRestaurantInfo($_GET["id"]);
+			
+			$result = $sundayHoursObj->updateHoursInfo($_GET["id"]);
+			$result = $mondayHoursObj->updateHoursInfo($_GET["id"]);
+			$result = $tuesdayHoursObj->updateHoursInfo($_GET["id"]);
+			$result = $wednesdayHoursObj->updateHoursInfo($_GET["id"]);
+			$result = $thursdayHoursObj->updateHoursInfo($_GET["id"]);
+			$result = $fridayHoursObj->updateHoursInfo($_GET["id"]);
+			$result = $saturdayHoursObj->updateHoursInfo($_GET["id"]);
+			
+			if ($result == 1)
+			{
+				echo "Successfully modified the given restaurant."?>
+				<br><?php
+				echo "The updated information can now be viewed.";
+			}
+			else
+			{
+				echo "An error has occurred while modifying the restaurant. \n";
+				?> <br><br> <?php
+				echo "\n Ensure that all the required fields are filled out.";
+			}
 		?>
+		
+		<br><br><br>
+		<div id="back">
+			&nbsp &nbsp &nbsp &nbsp <a class="btn btn-warning" href="/RRS/view/account.php">
+		</div>
 	</body>
 </html>

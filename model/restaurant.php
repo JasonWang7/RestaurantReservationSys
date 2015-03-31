@@ -177,7 +177,7 @@ class restaurant
 	
 	/**
 	* insert new information corresponding to a given restaurant into the database system
-	* @return true on success, false otherwise
+	* @return 1 on success, 0 otherwise
 	*/
 	function insertRestaurantInfo()
 	{
@@ -212,6 +212,54 @@ class restaurant
 		}
 		else
 		{
+			return 0;
+		}
+	}
+	
+	/**
+	* update information about given restaurant corresponding to 
+	* restaurant Id
+	* @return 1 on success, 0 otherwise
+	*/
+	function updateRestaurantInfo($restaurantId)
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		
+		$query = "update restaurant set address=:address, type=:type, restaurantname=:restaurantName, email=:email,
+					phone=:phone, features=:features, pricerange=:priceRange, about=:about, website=:website, 
+					holidayhour=:holidayHour,likes=:likes, profilepicture=:profilePicture, verified=:verified 
+					where restaurantid=:restaurantId;";
+		$stmt = $dbconn->prepare($query);
+		
+		// bind class values to query values
+		$stmt->bindValue(':restaurantId',$restaurantId);
+		$stmt->bindValue(':address',$this->getAddress());	
+		$stmt->bindValue(':type',$this->getType());			
+		$stmt->bindValue(':restaurantName',$this->getRestaurantName());	
+		$stmt->bindValue(':email',$this->getEmail());	
+		$stmt->bindValue(':phone',$this->getPhone());			
+		$stmt->bindValue(':features',$this->getFeatures());		
+		$stmt->bindValue(':priceRange',$this->getPriceRange());			
+		$stmt->bindValue(':about',$this->getAbout());		
+		$stmt->bindValue(':website',$this->getWebsite());				
+		$stmt->bindValue(':holidayHour',$this->getHolidayHours());
+		$stmt->bindValue(':likes',$this->getLikes());
+		$stmt->bindValue(':profilePicture',$this->getProfilePicture());
+		$stmt->bindValue(':verified',$this->getVerified());
+		
+		if ($stmt->execute())
+		{
+			mysqldatabaserrs::closeconnection($dbconn);
+			
+			return 1;
+		}
+		else
+		{
+			mysqldatabaserrs::closeconnection($dbconn);
+			
+			$arr = $stmt->errorInfo();
+			print_r($arr);
+			
 			return 0;
 		}
 	}

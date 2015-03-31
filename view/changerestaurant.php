@@ -40,6 +40,7 @@
 			$email = $restaurantObj->getEmail();
 			$phone = $restaurantObj->getPhone();
 			$features = $restaurantObj->getFeatures();
+			$featureList = explode(" ", $features);
 			$priceRange = $restaurantObj->getPriceRange();
 			$about = $restaurantObj->getAbout();
 			$website = $restaurantObj->getWebsite();
@@ -60,7 +61,7 @@
 			$saturdayEnd = $saturdayHoursObj->getEndHour();
 	  ?> 
 	  
-      <form class="form-horizontal" role="form" action="/RRS/controller/addRestaurantController.php" method="post">  
+      <form class="form-horizontal" role="form" action="/RRS/controller/modifyRestaurantController.php?id=" <?php echo htmlspecialchars($restaurantId) ?> method="post">  
         <fieldset>
           <div class="form-group">
             <label class="col-sm-3 control-label">Restaurant Name</label>
@@ -108,25 +109,119 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">Features</label>
             <div class="col-sm-6">
-              African <input type="checkbox" name="african"> &nbsp;
-              Alcohol Menu <input type="checkbox" name="alcoholMenu"> &nbsp;
-              American <input type="checkbox" name="american"> &nbsp;
-              Buffet <input type="checkbox" name="buffet"> &nbsp;
-              Casual Dining <input type="checkbox" name="casualDining"> &nbsp; <br>
-              Chinese <input type="checkbox" name="chinese"> &nbsp;
-              Coffeehouse <input type="checkbox" name="coffeehouse"> &nbsp;
-              Fast Food <input type="checkbox" name="fastFood"> &nbsp;
-              Fine Dining <input type="checkbox" name="fineDining"> &nbsp;
-              French <input type="checkbox" name="french"> &nbsp; <br>
-              Indian <input type="checkbox" name="indian"> &nbsp; 
-              Irish <input type="checkbox" name="irish"> &nbsp;
-              Italian <input type="checkbox" name="italian"> &nbsp; 
-              Japanese <input type="checkbox" name="japanese"> &nbsp;
-              Kid Friendly <input type="checkbox" name="kidFriendly"> &nbsp; <br>
-              Korean <input type="checkbox" name="korean"> &nbsp;
-              Pub <input type="checkbox" name="pub">&nbsp; 
-              Tabletop Cooking <input type="checkbox" name="tabletopCooking"> &nbsp;
-              Vegan <input type="checkbox" name="vegan"> &nbsp;
+			  <?php if (in_array("african", $featureList)) : ?>
+				African <input type="checkbox" name="african" checked> &nbsp; 
+			  <?php else : ?>
+				African <input type="checkbox" name="african"> &nbsp; 
+			  <?php endif; ?>	
+			  
+			  <?php if (in_array("alcoholMenu", $featureList)) : ?>
+				Alcohol Menu <input type="checkbox" name="alcoholMenu" checked> &nbsp; 
+			  <?php else : ?>
+				Alcohol Menu <input type="checkbox" name="alcoholMenu"> &nbsp; 
+			  <?php endif; ?>	
+
+			  <?php if (in_array("american", $featureList)) : ?>
+				American <input type="checkbox" name="american" checked> &nbsp; 
+			  <?php else : ?>
+				American <input type="checkbox" name="american"> &nbsp; 
+			  <?php endif; ?>	
+
+			  <?php if (in_array("buffet", $featureList)) : ?>
+				Buffet <input type="checkbox" name="buffet" checked> &nbsp; 
+			  <?php else : ?>
+				Buffet <input type="checkbox" name="buffet"> &nbsp; 
+			  <?php endif; ?>	
+ 
+			  <?php if (in_array("casualDining", $featureList)) : ?>
+				Casual Dining <input type="checkbox" name="casualDining" checked> &nbsp; 
+			  <?php else : ?>
+				Casual Dining <input type="checkbox" name="casualDining"> &nbsp; 
+			  <?php endif; ?>	
+			  
+			  <?php if (in_array("chinese", $featureList)) : ?>
+				Chinese <input type="checkbox" name="chinese" checked> &nbsp; 
+			  <?php else : ?>
+				Chinese <input type="checkbox" name="chinese"> &nbsp; 
+			  <?php endif; ?>	
+			  
+			  <?php if (in_array("coffeehouse", $featureList)) : ?>
+				Coffeehouse <input type="checkbox" name="coffeehouse" checked> &nbsp; 
+			  <?php else : ?>
+				Coffeehouse <input type="checkbox" name="coffeehouse"> &nbsp; 
+			  <?php endif; ?>	
+			  
+			  <?php if (in_array("fastFood", $featureList)) : ?>
+				Fast Food <input type="checkbox" name="fastFood" checked> &nbsp; 
+			  <?php else : ?>
+				Fast Food <input type="checkbox" name="fastFood"> &nbsp; 
+			  <?php endif; ?>	
+			  
+			  <?php if (in_array("fineDining", $featureList)) : ?>
+				Fine Dining <input type="checkbox" name="fineDining" checked> &nbsp; 
+			  <?php else : ?>
+				Fine Dining <input type="checkbox" name="fineDining"> &nbsp; 
+			  <?php endif; ?>	
+			  
+			  <?php if (in_array("french", $featureList)) : ?>
+				French <input type="checkbox" name="french" checked> &nbsp; 
+			  <?php else : ?>
+				French <input type="checkbox" name="french"> &nbsp; 
+			  <?php endif; ?>	
+              
+			  <?php if (in_array("indian", $featureList)) : ?>
+				Indian <input type="checkbox" name="indian" checked> &nbsp; 
+			  <?php else : ?>
+				Indian <input type="checkbox" name="indian"> &nbsp; 
+			  <?php endif; ?>	
+			  
+              <?php if (in_array("irish", $featureList)) : ?>
+				Irish <input type="checkbox" name="irish" checked> &nbsp; 
+			  <?php else : ?>
+				Irish <input type="checkbox" name="irish"> &nbsp; 
+			  <?php endif; ?>	
+              
+			  <?php if (in_array("italian", $featureList)) : ?>
+				Italian <input type="checkbox" name="italian" checked> &nbsp; 
+			  <?php else : ?>
+				Italian <input type="checkbox" name="italian"> &nbsp; 
+			  <?php endif; ?>	
+			  
+			  <?php if (in_array("japanese", $featureList)) : ?>
+				Japanese <input type="checkbox" name="japanese" checked> &nbsp; 
+			  <?php else : ?>
+				Japanese <input type="checkbox" name="japanese"> &nbsp; 
+			  <?php endif; ?>	
+			  
+			  <?php if (in_array("kidFriendly", $featureList)) : ?>
+				Kid Friendly <input type="checkbox" name="kidFriendly" checked> &nbsp; 
+			  <?php else : ?>
+				Kid Friendly <input type="checkbox" name="kidFriendly"> &nbsp; 
+			  <?php endif; ?>	
+              
+			  <?php if (in_array("korean", $featureList)) : ?>
+				Korean <input type="checkbox" name="korean" checked> &nbsp; 
+			  <?php else : ?>
+				Korean <input type="checkbox" name="korean"> &nbsp; 
+			  <?php endif; ?>	
+              
+			  <?php if (in_array("pub", $featureList)) : ?>
+				Pub <input type="checkbox" name="pub" checked> &nbsp; 
+			  <?php else : ?>
+				Pub <input type="checkbox" name="pub"> &nbsp; 
+			  <?php endif; ?>	
+			  
+              <?php if (in_array("tabletopCooking", $featureList)) : ?>
+				Tabletop Cooking <input type="checkbox" name="tabletopCooking" checked> &nbsp; 
+			  <?php else : ?>
+				Table Top Cooking <input type="checkbox" name="tabletopCooking"> &nbsp; 
+			  <?php endif; ?>	
+              
+			  <?php if (in_array("vegan", $featureList)) : ?>
+				Vegan <input type="checkbox" name="vegan" checked> &nbsp; 
+			  <?php else : ?>
+				Vegan <input type="checkbox" name="vegan"> &nbsp; 
+			  <?php endif; ?>	
             </div>
           </div>
           <div class="form-group">
