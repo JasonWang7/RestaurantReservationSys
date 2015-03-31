@@ -177,6 +177,7 @@ $query = "CREATE TABLE `reservation` (
     `dinningtime` datetime not null,
     `email` text,
     `phone` varchar(11)  not null,
+    `updatetime`  timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
     FOREIGN KEY (userId) REFERENCES user (id) ON DELETE CASCADE,
     FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid) ON DELETE CASCADE,
     PRIMARY KEY (`reservationid`)

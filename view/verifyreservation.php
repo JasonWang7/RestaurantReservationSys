@@ -22,8 +22,10 @@ $phone = $_POST['phone'];
 $instance = new Reservation;
 //echo $restaurantid.$userid.$numguest.$note.$invitationList.$dinningtime.$email.$phone;
 $isReserved = $instance->insertReservation($restaurantid, $userid, $numguest, $note, $invitationList, $dinningtime,$email, $phone);
+
 if($isReserved){
 	//send invitation 
+	
 	if( $invitationList!=""&&strpos($invitationList, '@')!=false){
 		//pass $reserveParam,$userParam,$restaurantParam
 		$userParam = new user;

@@ -22,12 +22,12 @@ include($root ."model/businessHour.php");
     
     while($row = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT))
     {
-	  $id = $row[0];
+	   $id = $row[0];
       $name = $row[3];
       $phone = $row[5];
       $features = $row[6];
       $price = $row[7];
-      $_POST['restaurantid'] = $_GET['id'];
+      //$_POST['restaurantid'] = $_GET['id'];
     }
     $stmt = null;
 
@@ -265,6 +265,7 @@ function ownerInfoPopup(url)
           <div class="col-md-12">
             <h3>Enter your email addresses for your guests. Please separate them with the character ";" (no quotes)</h3>
             <textarea name="invitationList" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
+            <?php echo '<input type="hidden" name="restaurantid" value='.$_GET['id'].' >' ?> 
           </div>
         </div>
       </div>
