@@ -83,6 +83,41 @@ class businessHour
 	}
 	
 	/**
+	* update information about given restaurant corresponding to 
+	* restaurant Id
+	* @return 1 on success, 0 otherwise
+	*/
+	function updateHoursInfo($restaurantId)
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		
+		$query = "update businesshour set day=:day, starhour=:startHour, end=:endHour where restaurantid=:restaurantId;";
+		$stmt = $dbconn->prepare($query);
+		
+		// bind class values to query values
+		$stmt->bindValue(':restaurantId',$restaurantId);
+		$stmt->bindValue(':day',$this->getDay());	
+		$stmt->bindValue(':startHour',$this->getStartHour());			
+		$stmt->bindValue(':endHour',$this->getEndHour());	
+		
+		if ($stmt->execute())
+		{
+			mysqldatabaserrs::closeconnection($dbconn);
+			
+			return 1;
+		}
+		else
+		{
+			mysqldatabaserrs::closeconnection($dbconn);
+			
+			$arr = $stmt->errorInfo();
+			print_r($arr);
+			
+			return 0;
+		}
+	}
+	
+	/**
 	* remove business hour information in the database corresponding to a given 
 	* restaurant Id
 	* @return 1 on success, 0 otherwise
