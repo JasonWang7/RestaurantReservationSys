@@ -74,10 +74,10 @@ class accountlog{
 				      <td class="field-label col-md-3 active">
 				        <label>Date</label>
 				      </td>
-				      <td class="col-md-9">
+				      <td class="col-md-5">
 				        <label>Activity Information</label>
 				      </td>
-				      <td class="col-md-9">
+				      <td class="col-md-4">
 				        <label>Client IP Address</label>
 				      </td>
 				    </tr>';
@@ -86,10 +86,10 @@ class accountlog{
 			$tablebody = $tablebody.'<tr class="row"><td class="field-label col-md-3 active">'.
 				$log->getActivityTime().
 				'</td>'.
-          		'<td class="col-md-9">'.
+          		'<td class="col-md-5">'.
           		$log->getActivity().
           		'</td>'.
-          		'<td class="col-md-9">'.
+          		'<td class="col-md-4">'.
           		$log->getClientIp().
           		'</td></tr>';
 		}
