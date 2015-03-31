@@ -18,6 +18,10 @@
 			$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 			
 			require_once($root.'model/restaurant.php');
+			
+			$searchQuery = $_POST["searchQuery"];
+			
+			
 		?>
 	</body>
 		

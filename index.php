@@ -19,14 +19,14 @@ $(document).ready(function(){
 </script>
 <div class="row">
   <div class="col-md-12"> 
-    <form style="font-size:24px" role="search">
+    <form style="font-size:24px" method="post" action="/RRS/controller/searchResultsController.php">
       <div class="form-group">
         <div class="row">
           <div class="col-sm-7">
             <div class="input-group">
-              <input id="address" type="textbox" placeholder="Search for Restaurants..." class="form-control">
+              <input name="searchQuery" type="textbox" placeholder="Search for Restaurants..." class="form-control">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button" id="addressSearch">Search</button>
+                <button class="btn btn-default" type="submit" id="addressSearch">Search</button>
               </span>
             </div>
             </div>

@@ -142,6 +142,7 @@ class restaurant
 	*/
 	function selectMatchingRestaurants($keyword)
 	{
+		$i = 1;
 		$dbconn = mysqldatabaserrs::connectdb();
 		$query = "select restaurantname from restaurant where restaurantname like ':keyword%';";
 		
@@ -151,23 +152,29 @@ class restaurant
 		$stmt->bindValue(':keyword', $keyword);				
 
 		$stmt->execute();
-		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		
-		$restaurantObj = new restaurant;
-		$restaurantObj->setId($result['restaurantid']);
-		$restaurantObj->setAddress($result['address']);
-		$restaurantObj->setType($result['type']);
-		$restaurantObj->setRestaurantName($result['restaurantname']);
-		$restaurantObj->setEmail($result['email']);
-		$restaurantObj->setPhone($result['phone']);
-		$restaurantObj->setFeatures($result['features']);
-		$restaurantObj->setPriceRange($result['pricerange']);
-		$restaurantObj->setAbout($result['about']);
-		$restaurantObj->setWebsite($result['website']);
-		$restaurantObj->setHolidayHours($result['holidayhour']);
-		$restaurantObj->setLikes($result['likes']);
-		$restaurantObj->setProfilePicture($result['profilepicture']);
-		$restaurantObj->setVerified($result['verified']);
+		$restaurantList = new ArrayObject();
+		
+		while ($result = $stmt->fetch(PDO::FETCH_ASSOC))
+		{
+			$restaurantObj = new restaurant;
+			$restaurantObj->setId($result['restaurantid']);
+			$restaurantObj->setAddress($result['address']);
+			$restaurantObj->setType($result['type']);
+			$restaurantObj->setRestaurantName($result['restaurantname']);
+			$restaurantObj->setEmail($result['email']);
+			$restaurantObj->setPhone($result['phone']);
+			$restaurantObj->setFeatures($result['features']);
+			$restaurantObj->setPriceRange($result['pricerange']);
+			$restaurantObj->setAbout($result['about']);
+			$restaurantObj->setWebsite($result['website']);
+			$restaurantObj->setHolidayHours($result['holidayhour']);
+			$restaurantObj->setLikes($result['likes']);
+			$restaurantObj->setProfilePicture($result['profilepicture']);
+			$restaurantObj->setVerified($result['verified']);
+			
+			$restaurantList[$i] = 
+		}
 		
 		mysqldatabaserrs::closeconnection($dbconn);
 		
