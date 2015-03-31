@@ -82,8 +82,9 @@ class businessHour
 	}
 	
 	/**
-	* remove information in the database corresponding to a given restaurant name and email address
-	* @return true on success, false otherwise
+	* remove business hour information in the database corresponding to a given 
+	* restaurant Id
+	* @return 1 on success, 0 otherwise
 	*/
 	function removeHoursInfo($restaurantId)
 	{
@@ -103,6 +104,11 @@ class businessHour
 		}
 		else
 		{
+			$arr = $stmt->errorInfo();
+			print_r($arr);
+			
+			mysqldatabaserrs::closeconnection($dbconn);
+			
 			return 0;
 		}
 	}

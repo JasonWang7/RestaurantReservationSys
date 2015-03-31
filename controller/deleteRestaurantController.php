@@ -12,19 +12,36 @@
 <html>
 	<head>
 		<title>Delete Restaurant (Controller)</title>
+		
+		<?php
+			session_start();
+		
+			$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
+			
+			include_once($root.'model/restaurantOwnership.php');
+			include_once($root.'model/owner.php');
+			include_once($root.'model/businessHour.php');
+			include_once($root.'model/restaurant.php');
+		?>
 	</head>
 	
 	<body>
 		<?php
-			$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
-			include_once($root.'model/restaurant.php');
-			
-			session_start();
-		
 			$restaurantId = $_SESSION["restaurantId"];
+			$ownershipObj = new restaurantOwnership;
+			$ownershipSelector = new restaurantOwnership;
+			$ownerSelector = new owner;
+			$businessHourSelector = new businessHour;
 			$restaurantSelector = new restaurant;
 			$result = 0;
+			$ownerId = -1;
+
+			$ownershipObj = $ownershipSelector->selectRestaurantOwnership($restaurantId);
+			$ownerId = $ownershipObj->getOwnerId();
 			
+			$result = $ownershipSelector->removeOwnershipInfo($restaurantId);
+			$result = $ownerSelector->removeOwnerInfo($ownerId);
+			$result = $businessHourSelector->removeHoursInfo($restaurantId);
 			$result = $restaurantSelector->removeRestaurantInfo($restaurantId);
 			
 			if ($result == 1)

@@ -107,6 +107,38 @@ class restaurantOwnership
 		}
 	}
 	
+	/**
+	* remove restaurant ownership information in the database corresponding 
+	* to a given restaurant Id
+	* @return 1 on success, 0 otherwise
+	*/
+	function removeOwnershipInfo($restaurantId)
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		
+		$query = "delete from restaurantownership where restaurantid=:restaurantId;";
+		$stmt = $dbconn->prepare($query);
+		
+		// bind class values to query values
+		$stmt->bindValue(':restaurantId', $restaurantId);		
+		
+		if ($stmt->execute())
+		{
+			mysqldatabaserrs::closeconnection($dbconn);
+			
+			return 1;
+		}
+		else
+		{
+			$arr = $stmt->errorInfo();
+			print_r($arr);
+			
+			mysqldatabaserrs::closeconnection($dbconn);
+			
+			return 0;
+		}
+	}
+	
 	//getter functions
 	function getOwnerId()
 	{

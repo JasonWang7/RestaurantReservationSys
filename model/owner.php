@@ -116,6 +116,37 @@ class owner
 		}
 	}
 	
+	/**
+	* remove owner information in the database corresponding to a given 
+	* restaurant Id
+	* @return 1 on success, 0 otherwise
+	*/
+	function removeOwnerInfo($ownerId)
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		
+		$query = "delete from owner where ownerid=:ownerId;";
+		$stmt = $dbconn->prepare($query);
+		
+		// bind class values to query values
+		$stmt->bindValue(':ownerId', $ownerId);		
+		
+		if ($stmt->execute())
+		{
+			mysqldatabaserrs::closeconnection($dbconn);
+			
+			return 1;
+		}
+		else
+		{
+			$arr = $stmt->errorInfo();
+			print_r($arr);
+			
+			mysqldatabaserrs::closeconnection($dbconn);
+			
+			return 0;
+		}
+	}
 	
 	//getter functions
 	function getOwnerId()
