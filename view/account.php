@@ -16,6 +16,7 @@ function deletePromptPopUp(url)
 {
 	popUp = window.open(url,'Delete Prompt','height=300,width=550,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
 }
+
 </script>
 	  
 <?php 
@@ -141,8 +142,64 @@ function deletePromptPopUp(url)
               while($row = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT))
               {
                 $data = '<tr>' . '<td>' . $row[0] . '</td><td><a href="profile?id=' . $row[2] . '">'.$row[9].'</td><td>' . $row[6] . "</td><td>" . $row[3] .
-                '</td><td><a class="btn btn-default" onclick="changeRes("'.$row[0]. '", "' . $row[2] . '", "' . $row[9] . '", "' . $row[6] . '", "' . $row[3] . '");" href="#"  data-toggle="modal" data-target="#viewreservationmodal">View</a></td>'.'<td><a class="btn btn-primary" href="cancel?id='.$row[0].'" >Delete</a></td>'.'</tr>';
+                '</td><td><a class="btn btn-default" href="#"  data-toggle="modal" data-target="#viewreservationmodal'.$row[0].'">View</a></td>'.'<td><a class="btn btn-primary" href="cancel?id='.$row[0].'" >Delete</a></td>'.'</tr>';
                 echo $data . '</a>';
+
+                echo '
+                <div class="modal fade" id="viewreservationmodal'.$row[0].'" tabindex="-1" role="dialog" aria-labelledby="viewreservationmodal'.$row[0].'" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="label">Reservation at <?php echo $name; ?></h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <form id="booktable" name="booktable" ACTION="verifyreservation.php" METHOD=post>
+                                          
+                        <div class="col-md-4">
+                          <h3>Date: </h3><input  type="text" value="'. explode(" ", $row[6])[0] .'" name="datetime" id="datepicker1">
+                        </div>
+                        <div class="col-md-4">
+                          <h3>Time:</h3><input type="text" value="'.explode(" ", $row[6])[1] .'" name="dinningtime">
+                          
+                        </div>
+                        <div class="col-md-4">
+                          <h3># of Guests: </h3><input type="text" name="numguest" value="'. $row[3].'">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h3>Special Request / Note:</h3>
+                          <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h3>Your Phone Number:</h3><input type="text" name="phone">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h3>Your Email Address:</h3>    <input type="text" name="email">  
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h3>Enter your email addresses for your guests. Please separate them with the character ";" (no quotes)</h3>
+                          <textarea name="invitationList" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+                ';
               }
               $stmt = null;
 
@@ -298,70 +355,5 @@ function deletePromptPopUp(url)
     </div>
   </div>
 </div>
-<div class="modal fade" id="viewreservationmodal" tabindex="-1" role="dialog" aria-labelledby="viewreservationmodal" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="label">Reservation at <?php echo $name; ?></h4>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <form id="booktable" name="booktable" ACTION="view/verifyreservation.php" METHOD=post>
-                            
-          <div class="col-md-4">
-            <h3>Date: </h3><input  type="text" placeholder="dd/mm/yyyy" name="datetime" id="datepicker1">
-            <!-- Load jQuery and bootstrap datepicker scripts -->
-          
-            <script src="http://localhost/RRS/css/bootstrap/js/bootstrap-datepicker.js"></script>
-            <script type="text/javascript">
-                // When the document is ready
-                $(document).ready(function () {
-                    
-                    $('#datepicker1').datepicker({
-                        format: "dd/mm/yyyy"
-                    });  
-                
-                });
-            </script>
-          </div>
-          <div class="col-md-4">
-            <h3>Time:</h3><input type="text" placeholder="hh:mm" name="dinningtime">
-            
-          </div>
-          <div class="col-md-4">
-            <h3># of Guests: </h3><input type="text" name="numguest">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h3>Special Request / Note:</h3>
-            <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h3>Your Phone Number:</h3><input type="text" name="phone">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h3>Your Email Address:</h3>    <input type="text" name="email">  
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h3>Enter your email addresses for your guests. Please separate them with the character ";" (no quotes)</h3>
-            <textarea name="invitationList" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
+
 <?php include("include/footer.php"); ?>
