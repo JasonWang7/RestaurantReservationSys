@@ -102,6 +102,18 @@ class Reservation{
     $stmt->bindValue(':phone', $phoneparam);
 
     $result = $stmt->execute();
+    $insertedID = $dbconn->lastInsertId();
+    if($insertedID!=0){
+      $this->setReservationId($insertedID);
+      $this->setUserId($useridparam);
+      $this->setRestaurantId($restaurantidparam);
+      $this->setNumGuest($numguestparam);
+      $this->setNote( $noteparam);
+      $this->setInvitationList($invitationListparam);
+      $this->setDinningTime($date);
+      $this->setEmail($emailparam);
+      $this->sePhonet($phoneparam);
+    }
     $auth->closeconnection($dbconn);
 
     return $result;

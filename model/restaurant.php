@@ -71,7 +71,45 @@ class restaurant
 		
 		return $restaurantObj;
 	}
-	
+	/**
+	* retrieve all the information about the restaurant by restaurant id
+	* @param email
+	* @return restaurant obj
+	*/
+	function selectRestaurantInfo($restaurantidParam)
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		$query = 'select restaurantid, address, type, restaurantname, email, phone, features, pricerange, about, website, holidayhour, likes, profilepicture, 
+		verified from restaurant where restaurantid=:restaurantidParam;';
+		
+		$stmt = $dbconn->prepare($query);
+
+		// bind restaurant values from database to class values
+		$stmt->bindValue(':restaurantidParam', $restaurantidParam);				
+
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		$restaurantObj = new restaurant;
+		$restaurantObj->setId($result['restaurantid']);
+		$restaurantObj->setAddress($result['address']);
+		$restaurantObj->setType($result['type']);
+		$restaurantObj->setRestaurantName($result['restaurantname']);
+		$restaurantObj->setEmail($result['email']);
+		$restaurantObj->setPhone($result['phone']);
+		$restaurantObj->setFeatures($result['features']);
+		$restaurantObj->setPriceRange($result['pricerange']);
+		$restaurantObj->setAbout($result['about']);
+		$restaurantObj->setWebsite($result['website']);
+		$restaurantObj->setHolidayHours($result['holidayhour']);
+		$restaurantObj->setLikes($result['likes']);
+		$restaurantObj->setProfilePicture($result['profilepicture']);
+		$restaurantObj->setVerified($result['verified']);
+		
+		mysqldatabaserrs::closeconnection($dbconn);
+		
+		return $restaurantObj;
+	}
 	/**
 	* retrieve restaurant name corresponding to a given restaurant Id
 	* @param user ID
