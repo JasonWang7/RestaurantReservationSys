@@ -33,11 +33,12 @@ class accountlog{
 	function retriveListActivity($offsetnum){
 		$auth = new mysqldatabaserrs;
 		$dbconn = $auth->connectdb();
-		$query = 'SELECT * FROM `accountlog` order by `activitytime` desc limit 20 offset :offsetNum;';
+		$query = 'SELECT * FROM `accountlog` where userid=:userid order by `activitytime` desc limit 20 offset :offsetNum;';
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/
-		$stmt->bindParam(':offsetNum', $offsetnum, PDO::PARAM_INT);				
+		$stmt->bindParam(':offsetNum', $offsetnum, PDO::PARAM_INT);	
+		$stmt->bindParam(':userid', $this->getUserId(), PDO::PARAM_INT);				
 		$stmt->execute();
 
 		$logObj= new accountlog;
@@ -58,6 +59,44 @@ class accountlog{
 		$ips = explode(",", $ip);
 		$usrIp = $ips[0];
 		return $usrIp ;
+
+	}
+	function renderView($accountLogList){
+		$renderedview;
+		
+		if(count($accountLogList)<1){
+			$renderedview = 'No user Activity to Display';
+			return $renderedview;
+		}
+
+		$tablebegin= '<div class="table-responsive"><table class="table table-bordered"> 
+				    <tr class="row">
+				      <td class="field-label col-md-3 active">
+				        <label>Date</label>
+				      </td>
+				      <td class="col-md-9">
+				        <label>Activity Information</label>
+				      </td>
+				      <td class="col-md-9">
+				        <label>Client IP Address</label>
+				      </td>
+				    </tr>';
+		foreach($accountLogList as $log){
+
+			$tablebody = $tablebody.'<tr class="row"><td class="field-label col-md-3 active">'.
+				$log->getActivityTime().
+				'</td>.
+          		<td class="col-md-9">'.
+          		$log->getActivity().
+          		'</td>'.
+          		'<td class="col-md-9">'.
+          		$log->getClientIp().
+          		'</td></tr>';
+		}
+		
+        $tableendtag = '</table></div>';
+  		$renderedview=$tablebegin.$tablebody.$tableendtag;
+		return $renderedview;
 
 	}
 	/*********************getter ********************/

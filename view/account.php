@@ -141,7 +141,7 @@ function deletePromptPopUp(url)
               while($row = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT))
               {
                 $data = '<tr>' . '<td>' . $row[0] . '</td><td><a href="profile?id=' . $row[2] . '">'.$row[9].'</td><td>' . $row[6] . "</td><td>" . $row[3] .
-                '</td><td><a class="btn btn-default" onclick="changeRes("'.$row[0]. '", "' . $row[2] . '", "' . $row[9] . '", "' . $row[6] . '", "' . $row[3] . '");" href="#"  data-toggle="modal" data-target="#viewreservationmodal">View</a></td>'.'<td><a class="btn btn-primary" href="cancel?id='.$row[0].'" >Delete</a></td>'.'</tr>';
+                '</td><td><a class="btn btn-default" onclick="changeRes("'.$row[0]. '", "' . $row[2] . '", "' . $row[9] . '", "' . $row[6] . '", "' . $row[3] . '");" href="#"  data-toggle="modal" data-target="#viewreservationmodal">View</a></td>'.'<td><a class="btn btn-primary" href="cancel?id='.$row[0].'" >Cancel</a></td>'.'</tr>';
                 echo $data . '</a>';
               }
               $stmt = null;
