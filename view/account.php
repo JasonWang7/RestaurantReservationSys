@@ -202,12 +202,7 @@ function deletePromptPopUp(url)
 					$i = 1;
 					
 					while ($i <= $numOwned)
-					{
-						$link = "/RRS/view/deletePrompt.php?id='" . $restaurantIdList[$i] . "'";
-						$quotations = '"';
-						
-						$hrefContent = "JavaScript:deletePromptPopUp(" . $quotations . $link . $quotations . ");";
-						
+					{	
 						$deleteButton = "<a class=\"btn btn-primary\" href=\"JavaScript:deletePromptPopUp('/RRS/view/deletePrompt.php?id=" . $restaurantIdList[$i] . "');\">";
 						
 						echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td></td><td></td><td><a class="btn btn-info" href="/RRS/view/changerestaurant.php?id=' . $restaurantIdList[$i] . '"' .

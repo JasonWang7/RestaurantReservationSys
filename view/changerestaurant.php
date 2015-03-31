@@ -7,48 +7,101 @@
 	  <div class="title" style="padding: 0px 0px 0px 350px;">
 	    <p>Modify Restaurant</p>
 	  </div>
+	  
+	  <?php
+			$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
+			
+			require_once($root.'model/restaurant.php');
+			require_once($root.'model/businessHour.php');
+			$restaurantId = $_GET["id"];
+			$restaurantSelector = new restaurant;
+			$restaurantObj = new restaurant;
+			$hoursSelector = new businessHour;
+			$sundayHoursObj = new businessHour;
+			$mondayHoursObj = new businessHour;
+			$tuesdayHoursObj = new businessHour;
+			$wednesdayHoursObj = new businessHour;
+			$thursdayHoursObj = new businessHour;
+			$fridayHoursObj = new businessHour;
+			$saturdayHoursObj = new businessHour;
+			$restaurantName = $restaurantSelector->selectRestaurantName($restaurantId);
+			
+			$restaurantObj = $restaurantSelector->selectRestaurantInfo($restaurantName);
+			
+			$sundayHoursObj = $hoursSelector->selectHoursInfo($restaurantId, "sunday");
+			$mondayHoursObj = $hoursSelector->selectHoursInfo($restaurantId, "monday");
+			$tuesdayHoursObj = $hoursSelector->selectHoursInfo($restaurantId, "tuesday");
+			$wednesdayHoursObj = $hoursSelector->selectHoursInfo($restaurantId, "wednesday");
+			$thursdayHoursObj = $hoursSelector->selectHoursInfo($restaurantId, "thursday");
+			$fridayHoursObj = $hoursSelector->selectHoursInfo($restaurantId, "friday");
+			$saturdayHoursObj = $hoursSelector->selectHoursInfo($restaurantId, "saturday");
+			
+			$address = $restaurantObj->getAddress();
+			$email = $restaurantObj->getEmail();
+			$phone = $restaurantObj->getPhone();
+			$features = $restaurantObj->getFeatures();
+			$priceRange = $restaurantObj->getPriceRange();
+			$about = $restaurantObj->getAbout();
+			$website = $restaurantObj->getWebsite();
+			
+			$sundayStart = $sundayHoursObj->getStartHour();
+			$sundayEnd = $sundayHoursObj->getEndHour();
+			$mondayStart = $mondayHoursObj->getStartHour();
+			$mondayEnd = $mondayHoursObj->getEndHour();
+			$tuesdayStart = $tuesdayHoursObj->getStartHour();
+			$tuesdayEnd = $tuesdayHoursObj->getEndHour();
+			$wednesdayStart = $wednesdayHoursObj->getStartHour();
+			$wednesdayEnd = $wednesdayHoursObj->getEndHour();
+			$thursdayStart = $thursdayHoursObj->getStartHour();
+			$thursdayEnd = $thursdayHoursObj->getEndHour();
+			$fridayStart = $fridayHoursObj->getStartHour();
+			$fridayEnd = $fridayHoursObj->getEndHour();
+			$saturdayStart = $saturdayHoursObj->getStartHour();
+			$saturdayEnd = $saturdayHoursObj->getEndHour();
+	  ?> 
+	  
       <form class="form-horizontal" role="form" action="/RRS/controller/addRestaurantController.php" method="post">  
         <fieldset>
           <div class="form-group">
             <label class="col-sm-3 control-label">Restaurant Name</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="restaurantName" id="NAME_HERE" placeholder="">
+              <input type="text" class="form-control" name="restaurantName" value="<?php echo htmlspecialchars($restaurantName); ?>" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Address </label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="address" id="NAME_HERE" placeholder="">
+              <input type="text" class="form-control" name="address" value="<?php echo htmlspecialchars($address); ?>" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Email</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="email" id="NAME_HERE" placeholder="">
+              <input type="text" class="form-control" name="email" value="<?php echo htmlspecialchars($email); ?>" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Phone Number</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="phone" id="NAME_HERE" placeholder="">
+              <input type="text" class="form-control" name="phone" value="<?php echo htmlspecialchars($phone); ?>" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Price Range</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="priceRange" id="NAME_HERE" placeholder="">
+              <input type="text" class="form-control" name="priceRange" value="<?php echo htmlspecialchars($priceRange); ?>" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Website URL</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="website" id="NAME_HERE" placeholder="">
+              <input type="text" class="form-control" name="website" value="<?php echo htmlspecialchars($website); ?>" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">About</label>
             <div class="col-sm-6">
-              <textarea class="form-control" name="about" rows="5" id="comment"></textarea>
+              <textarea class="form-control" name="about" rows="5" value="comment"><?php echo htmlspecialchars($about); ?></textarea>
             </div>
           </div>
 
@@ -81,26 +134,26 @@
             <div class="col-sm-6">
               <div id="hours">
             
-              Sunday: &nbsp; <input type="text" name="sundayStart" size="5" maxlength="4"> &nbsp;
-              to &nbsp; <input type="text" name="sundayEnd" size="5" maxlength="4">
+              Sunday: &nbsp; <input type="text" name="sundayStart" value="<?php echo htmlspecialchars($sundayStart); ?>" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="sundayEnd" value="<?php echo htmlspecialchars($sundayEnd); ?>" size="5" maxlength="4">
               <br><br>
-              Monday: &nbsp; <input type="text" name="mondayStart" size="5" maxlength="4"> &nbsp;
-              to &nbsp; <input type="text" name="mondayEnd" size="5" maxlength="4">
+              Monday: &nbsp; <input type="text" name="mondayStart" value="<?php echo htmlspecialchars($mondayStart); ?>" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="mondayEnd" value="<?php echo htmlspecialchars($mondayEnd); ?>" size="5" maxlength="4">
               <br><br>
-              Tuesday: &nbsp; <input type="text" name="tuesdayStart" size="5" maxlength="4"> &nbsp;
-              to &nbsp; <input type="text" name="tuesdayEnd" size="5" maxlength="4">
+              Tuesday: &nbsp; <input type="text" name="tuesdayStart" value="<?php echo htmlspecialchars($tuesdayStart); ?>" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="tuesdayEnd" value="<?php echo htmlspecialchars($tuesdayEnd); ?>" size="5" maxlength="4">
               <br><br>
-              Wednesday: &nbsp; <input type="text" name="wednesdayStart" size="5" maxlength="4"> &nbsp;
-              to &nbsp; <input type="text" name="wednesdayEnd" size="5" maxlength="4">
+              Wednesday: &nbsp; <input type="text" name="wednesdayStart" value="<?php echo htmlspecialchars($wednesdayStart); ?>" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="wednesdayEnd" value="1""<?php echo htmlspecialchars($wednesdayEnd); ?>" size="5" maxlength="4">
               <br><br>
-              Thursday: &nbsp; <input type="text" name="thursdayStart" size="5" maxlength="4"> &nbsp;
-              to &nbsp; <input type="text" name="thursdayEnd" size="5" maxlength="4">
+              Thursday: &nbsp; <input type="text" name="thursdayStart" value="<?php echo htmlspecialchars($thursdayStart); ?>" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="thursdayEnd" value="<?php echo htmlspecialchars($thursdayEnd); ?>" size="5" maxlength="4">
               <br><br>
-              Friday: &nbsp; <input type="text" name="fridayStart" size="5" maxlength="4"> &nbsp;
-              to &nbsp; <input type="text" name="fridayEnd" size="5" maxlength="4">
+              Friday: &nbsp; <input type="text" name="fridayStart" value="<?php echo htmlspecialchars($fridayStart); ?>" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="fridayEnd" value="<?php echo htmlspecialchars($fridayEnd); ?>" size="5" maxlength="4">
               <br><br>
-              Saturday: &nbsp; <input type="text" name="saturdayStart" size="5" maxlength="4"> &nbsp;
-              to &nbsp; <input type="text" name="saturdayEnd" size="5" maxlength="4">         
+              Saturday: &nbsp; <input type="text" name="saturdayStart" value="<?php echo htmlspecialchars($saturdayStart); ?>" size="5" maxlength="4"> &nbsp;
+              to &nbsp; <input type="text" name="saturdayEnd" value="<?php echo htmlspecialchars($saturdayEnd); ?>" size="5" maxlength="4">         
             </div>
             </div>
 

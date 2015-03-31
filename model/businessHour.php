@@ -21,7 +21,7 @@ class businessHour
 	
 	/**
 	* retrieve all the business hour information about a given restaurant
-	* @param email
+	* @param restaurantId day
 	* @return restaurant obj
 	*/
 	function selectHoursInfo($id, $day)

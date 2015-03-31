@@ -37,7 +37,6 @@
 			"italian", "japanese", "kidFriendly", "korean", "pub", "tableTopCooking", "vegan");
 			$featureString = "";
 			$result = 0;
-			$restaurantName = $_POST["restaurantName"];
 			
 			/* remove current information about given restaurant */
 			
