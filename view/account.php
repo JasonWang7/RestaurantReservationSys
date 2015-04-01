@@ -313,13 +313,13 @@ function deletePromptPopUp(url)
                 <label class="btn btn-primary">
                     <input type="radio" name="cardtype" value="Mastercard" <?php if($creditcardobj->getCardType() == "Mastercard")
               {
-                echo 'checked'
+                echo 'checked';
                 } ?> > Mastercard
                 </label>
                 <label class="btn btn-primary">
                     <input type="radio" name="options" value="Visa" <?php if($creditcardobj->getCardType() == "Visa")
               {
-                echo 'checked'
+                echo 'checked';
                 } ?>> Visa
                 </label>
                 <script type="text/javascript">
