@@ -208,8 +208,8 @@ $query = "CREATE TABLE `reservationtransaction` (
     `transactiontime` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
     `desicription` varchar(4000) not null default '',
     FOREIGN KEY (userId) REFERENCES user (id),
-    FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid),
-    FOREIGN KEY (reservationid) REFERENCES reservation (reservationid),
+    FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid) ON DELETE CASCADE,
+    FOREIGN KEY (reservationid) REFERENCES reservation (reservationid) ON DELETE CASCADE,
     PRIMARY KEY (`tansactionid`)
     )";
 

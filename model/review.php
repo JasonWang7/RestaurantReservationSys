@@ -91,7 +91,7 @@ class review {
 		//$sql = "SELECT * FROM Orders LIMIT 10 OFFSET 15";
 		$auth = new mysqldatabaserrs;
 		$dbconn = $auth->connectdb();
-		$query = 'SELECT  `id` as userId, `reviewid`,`restaurantid`,`restaurantname`,`comment`,`servicerating`,`foodrating`,`ambiencerating`,`overallexp`,`votes`,`reviewtime`,`spam`,`profilepicture` FROM `view_review_user_restaurant` where `id`=:useridParam order by `reviewtime` desc limit 10 offset :offsetNum;';
+		$query = 'SELECT  `id` as userId, `reviewid`,`restaurantid`,`restaurantname`,`comment`,`servicerating`,`foodrating`,`ambiencerating`,`overallexp`,`votes`,`reviewtime`,`spam`,`profilepicture` FROM `view_review_user_restaurant` where `id`=:useridParam order by `reviewtime` desc limit 20 offset :offsetNum;';
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/

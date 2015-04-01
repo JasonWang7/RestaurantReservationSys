@@ -289,7 +289,7 @@ function deletePromptPopUp(url)
         <p>RAte here here</p>
       </div>
       <div class="tab-pane fade" id="bills">
-        <p>Billing Information</p>
+        <?php include("billstab.php") ?>
       </div>
       <div class="tab-pane fade" id="history">
           <?php 
