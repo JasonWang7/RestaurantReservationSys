@@ -299,15 +299,18 @@ function ownerInfoPopup(url)
 <div class="modal fade" id="reviewmodal" tabindex="-1" role="dialog" aria-labelledby="reviewmodal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
+      <form id="review" name="review" ACTION="controller/reviewcontroller.php" METHOD=post>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="label">Review for <?php echo $name; ?></h4>
       </div>
+
       <div class="modal-body">
+        
         <div class="row">
           <div class="col-md-12">
             <h3>Service:       
-              <select class="form-control" id="REPLACE_ID">
+              <select class="form-control" id="servicerating" name="servicerating" >
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -320,7 +323,7 @@ function ownerInfoPopup(url)
         <div class="row">
           <div class="col-md-12">
             <h3>Food:               
-            <select class="form-control" id="REPLACE_ID">
+            <select class="form-control" id="foodrating" name="foodrating">
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -332,7 +335,7 @@ function ownerInfoPopup(url)
         <div class="row">
           <div class="col-md-12">
             <h3>Ambience:               
-            <select class="form-control" id="REPLACE_ID">
+            <select class="form-control" id="ambiencerating" name="ambiencerating">
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -344,7 +347,7 @@ function ownerInfoPopup(url)
         <div class="row">
           <div class="col-md-12">
             <h3>Overall Experience:               
-            <select class="form-control" id="REPLACE_ID">
+            <select class="form-control" id="overallexp" name="overallexp">
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -356,14 +359,17 @@ function ownerInfoPopup(url)
         <div class="row">
           <div class="col-md-12">
             <h3>Comments:</h3>
-            <textarea style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;">Tell us what you thought about this experience.</textarea>
+            <textarea id="comment" name="comment" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;">Tell us what you thought about this experience.</textarea>
+            <?php echo '<input type="hidden" name="restaurantid" value="'.$id.'" >'; ?>
           </div>
         </div>
+      
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
+     </form> 
     </div>
   </div>
 </div>
