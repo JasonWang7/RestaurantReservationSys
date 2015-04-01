@@ -33,14 +33,14 @@ if(count($reviewlist)>0){
           </div>';  
     foreach($reviewlist as $r){
     	$tablebody = $tablebody.'<tr>' . '<td>' .$r->getReviewId() . '</td><td><a href="profile?id=' . $r->getRestaurantId(). '">'.$r->getRestaurantName().'</td><td>' .$r->getComment(). "</td><td>" . $r->getOverallExp() .
-                '</td><td>'.$r->getReviewTime().'</td><td><a class="btn btn-default" href="#"  data-toggle="modal" data-target="#reviewmodal'.$r->getReviewId().'">View</a></td>'.'<td><a class="btn btn-primary" href="cancel?id='.$r->getReviewId().'" >Delete</a></td>'.'</tr>'.'</a>'.
-                '<div class="modal fade" id="reviewmodal" tabindex="-1" role="dialog" aria-labelledby="reviewmodal" aria-hidden="true">
+                '</td><td>'.$r->getReviewTime().'</td><td><a class="btn btn-default" href="#"  data-toggle="modal" data-target="#reviewmodal'.$r->getReviewId().'">View</a></td>'.'<td><a class="btn btn-primary" href="deletereview?id='.$r->getReviewId().'" >Delete</a></td>'.'</tr>'.'</a>'.
+                '<div class="modal fade" id="reviewmodal'.$r->getReviewId().'" tabindex="-1" role="dialog" aria-labelledby="reviewmodal'.$r->getReviewId().'" aria-hidden="true">
 				  <div class="modal-dialog">
 				    <div class="modal-content">
-				      <form id="review" name="review" ACTION="controller/reviewcontroller.php" METHOD=post>
+				      <form id="review" name="review" ACTION="view/modifyreview.php" METHOD=post>
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h4 class="modal-title" id="label">Review for '.$r->getServiceRating().'</h4>
+				        <h4 class="modal-title" id="label">Review for '.$r->getRestaurantName().'</h4>
 				      </div>
 
 				      <div class="modal-body">
@@ -48,50 +48,186 @@ if(count($reviewlist)>0){
 				        <div class="row">
 				          <div class="col-md-12">
 				            <h3>Service:       
-				              <select class="form-control" id="servicerating" name="servicerating" value = '.$r->getRestaurantName().' >
-				              <option>1</option>
-				              <option>2</option>
-				              <option>3</option>
-				              <option>4</option>
-				              <option>5</option>
-				            </select>
+				              <select class="form-control" id="servicerating" name="servicerating" >';
+							  if($r->getServiceRating()==1){
+							  		$ops = '<option selected="selected">1</option>
+							  		<option>2</option>
+					              	<option>3</option>
+					              	<option>4</option>
+					              	<option>5</option>';
+							  }
+							  else if($r->getServiceRating()==2){
+							  		$ops = '<option>1</option>
+							  		<option selected="selected">2</option>
+					              	<option>3</option>
+					              	<option>4</option>
+					              	<option>5</option>';
+							  }
+							  else if($r->getServiceRating()==3){
+							  		$ops = '<option>1</option>
+							  		<option>2</option>
+					              	<option selected="selected">3</option>
+					              	<option>4</option>
+					              	<option>5</option>';
+							  }
+							  else if($r->getServiceRating()==4){
+							  		$ops = '<option>1</option>
+							  		<option>2</option>
+					              	<option>3</option>
+					              	<option selected="selected">4</option>
+					              	<option>5</option>';
+
+							  }
+							  else if($r->getServiceRating()==5){
+							  		$ops = '<option>1</option>
+							  		<option>2</option>
+					              	<option>3</option>
+					              	<option>4</option>
+					              	<option selected="selected">5</option>';
+							  }
+				              $tablebody=$tablebody.$ops;
+				              $ops='';
+				             
+				            $tablebody=$tablebody.'</select>
 				        </h3>
 				          </div>
 				        </div>
 				        <div class="row">
 				          <div class="col-md-12">
 				            <h3>Food:               
-				            <select class="form-control" id="foodrating" name="foodrating" value ='.$r->getFoodRating().'>
-				              <option>1</option>
-				              <option>2</option>
-				              <option>3</option>
-				              <option>4</option>
-				              <option>5</option>
-				            </select></h3>
+				            <select class="form-control" id="foodrating" name="foodrating" >';
+				            if($r->getFoodRating()==1){
+							  		$ops = '<option selected="selected">1</option>
+							  		<option>2</option>
+					              	<option>3</option>
+					              	<option>4</option>
+					              	<option>5</option>';
+							  }
+							  else if($r->getFoodRating()==2){
+							  		$ops = '<option>1</option>
+							  		<option selected="selected">2</option>
+					              	<option>3</option>
+					              	<option>4</option>
+					              	<option>5</option>';
+							  }
+							  else if($r->getFoodRating()==3){
+							  		$ops = '<option>1</option>
+							  		<option>2</option>
+					              	<option selected="selected">3</option>
+					              	<option>4</option>
+					              	<option>5</option>';
+							  }
+							  else if($r->getFoodRating()==4){
+							  		$ops = '<option>1</option>
+							  		<option>2</option>
+					              	<option>3</option>
+					              	<option selected="selected">4</option>
+					              	<option>5</option>';
+
+							  }
+							  else if($r->getFoodRating()==5){
+							  		$ops = '<option>1</option>
+							  		<option>2</option>
+					              	<option>3</option>
+					              	<option>4</option>
+					              	<option selected="selected">5</option>';
+							  }
+				              $tablebody=$tablebody.$ops;
+				              $ops='';
+				              
+				            $tablebody=$tablebody.'</select></h3>
 				          </div>
 				        </div>
 				        <div class="row">
 				          <div class="col-md-12">
 				            <h3>Ambience:               
-				            <select class="form-control" id="ambiencerating" name="ambiencerating" value ='.$r->getAmbienceRating().'>
-				              <option>1</option>
-				              <option>2</option>
-				              <option>3</option>
-				              <option>4</option>
-				              <option>5</option>
-				            </select></h3>
+				            <select class="form-control" id="ambiencerating" name="ambiencerating" >';
+				              if($r->getAmbienceRating()==1){
+							  		$ops = '<option selected="selected">1</option>
+							  		<option>2</option>
+					              	<option>3</option>
+					              	<option>4</option>
+					              	<option>5</option>';
+							  }
+							  else if($r->getAmbienceRating()==2){
+							  		$ops = '<option>1</option>
+							  		<option selected="selected">2</option>
+					              	<option>3</option>
+					              	<option>4</option>
+					              	<option>5</option>';
+							  }
+							  else if($r->getAmbienceRating()==3){
+							  		$ops = '<option>1</option>
+							  		<option>2</option>
+					              	<option selected="selected">3</option>
+					              	<option>4</option>
+					              	<option>5</option>';
+							  }
+							  else if($r->getAmbienceRating()==4){
+							  		$ops = '<option>1</option>
+							  		<option>2</option>
+					              	<option>3</option>
+					              	<option selected="selected">4</option>
+					              	<option>5</option>';
+
+							  }
+							  else if($r->getAmbienceRating()==5){
+							  		$ops = '<option>1</option>
+							  		<option>2</option>
+					              	<option>3</option>
+					              	<option>4</option>
+					              	<option selected="selected">5</option>';
+							  }
+				              $tablebody=$tablebody.$ops;
+				              $ops='';
+				              
+				            $tablebody=$tablebody.'</select></h3>
 				          </div>
 				        </div>
 				        <div class="row">
 				          <div class="col-md-12">
 				            <h3>Overall Experience:               
-				            <select class="form-control" id="overallexp" name="overallexp" value = '.$r->getOverallExp().'>
-				              <option>1</option>
-				              <option>2</option>
-				              <option>3</option>
-				              <option>4</option>
-				              <option>5</option>
-				            </select></h3>      
+				            <select class="form-control" id="overallexp" name="overallexp" >';
+				              if($r->getOverallExp()==1){
+							  		$ops = '<option selected="selected">1</option>
+							  		<option>2</option>
+					              	<option>3</option>
+					              	<option>4</option>
+					              	<option>5</option>';
+							  }
+							  else if($r->getOverallExp()==2){
+							  		$ops = '<option>1</option>
+							  		<option selected="selected">2</option>
+					              	<option>3</option>
+					              	<option>4</option>
+					              	<option>5</option>';
+							  }
+							  else if($r->getOverallExp()==3){
+							  		$ops = '<option>1</option>
+							  		<option>2</option>
+					              	<option selected="selected">3</option>
+					              	<option>4</option>
+					              	<option>5</option>';
+							  }
+							  else if($r->getOverallExp()==4){
+							  		$ops = '<option>1</option>
+							  		<option>2</option>
+					              	<option>3</option>
+					              	<option selected="selected">4</option>
+					              	<option>5</option>';
+
+							  }
+							  else if($r->getOverallExp()==5){
+							  		$ops = '<option>1</option>
+							  		<option>2</option>
+					              	<option>3</option>
+					              	<option>4</option>
+					              	<option selected="selected">5</option>';
+							  }
+				              $tablebody=$tablebody.$ops;
+				              $ops='';
+				              
+				            $tablebody=$tablebody.'</select></h3>      
 				          </div>
 				        </div>
 				        <div class="row">

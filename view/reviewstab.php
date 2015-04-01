@@ -3,6 +3,7 @@
 author: Vince, jason wang
 */
 include_once($root.'model/review.php');
+include_once($root.'model/spam.php');
 include_once($root.'model/user.php');
 $reviewobj = new review;
 $userid = $_SESSION['sess_user_id'];
@@ -27,15 +28,26 @@ if(count($reviewlist)>0){
     $tableend = '';  
     foreach($reviewlist as $r){
     	$deletebutton = "";
+    	$spambutton="";
     	//check if it is admin or super admin
     	$userobj = new user;
     	$role = '';
     	$userobj = $userobj->selectUserInfo($_SESSION['sess_useremail']);
     	$role = $userobj->getRole();
     	if($r->getUserId() ==$userid || strpos($role,'admin') == true){
-    		$deletebutton = '<b><a href="#">Delete Review</a></b> - ';
+    		$deletebutton = '<b><a href="deletereview?id='.$r->getReviewId().'">Delete Review</a></b> - ';
     	}
-
+    	//check if user mark it as spam
+    	$spamobj= new spam;
+    	$spamobj->setReviewId($r->getReviewId());
+    	$spamobj->setUserId($userid);
+    	$spamobj->retrieveVoteSpam();
+    	if($spamobj->getVoteValue()<1){
+    		$spambutton='<b><a href="markspam?mark=1&id='.$r->getReviewId().'">Mark as Spam</a> ('.$r->getSpam().')</b>';
+    	}
+    	else{
+    		$spambutton='<b><a href="markspam?mark=0&id='.$r->getReviewId().'">Not Spam</a> ('.$r->getSpam().')</b>';
+    	}
     	$tablebody = $tablebody.'<div class="review-post" style="padding:10px;">
 						          <div class="row">
 						            <div class="col-sm-3">'.
@@ -50,7 +62,7 @@ if(count($reviewlist)>0){
 					            '<b>By:</b> '.$verifiedDinnerImg.$r->getReviewName().' <small>(who have been there '.$numdined.' time(s))</small>'.
 							                '<hr>
 							                <p>'.$r->getComment().'</p>
-							              <div style="float:right;">'.$deletebutton.'<b><a href="#">Mark as Spam</a></b></div>
+							              <div style="float:right;">'.$deletebutton.$spambutton.'</div>
 							              <input type="hidden" name="reviewid" value="'.$r->getReviewId().'" >
 							            </div>
 							          </div>

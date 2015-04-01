@@ -54,10 +54,13 @@ class spam{
 		$stmt->bindValue(':userId',$this->getUserId());
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
-		
+		if(!$result){
+			return 0;
+		}
 		$this->setVoteValue($result['votevalue']);
 		$this->setUpdateTime($result['updatetime']);
 		$auth->closeconnection($dbconn);
+		return 1;
 	}
 	
 	/*********************getter ********************/
