@@ -143,42 +143,15 @@ class restaurant
 	function selectMatchingRestaurants($keyword)
 	{
 		$i = 1;
-		$restaurantList = array_fill(1, 500, array(0, "", "", "", "", "", "", "", "", "", "", "", "", 0));
 		
 		$dbconn = mysqldatabaserrs::connectdb();
-		$query = "select restaurantname from restaurant where restaurantname like '%:keyword%';";
+		$query = "select * from restaurant where restaurantname like '%".$keyword."%';";
 		
-		$stmt = $dbconn->prepare($query);
-
-		// bind restaurant values from database to class values
-		$stmt->bindValue(':keyword', $keyword);				
+		$stmt = $dbconn->prepare($query);		
 
 		$stmt->execute();
 		
 		$result = $stmt->fetchAll();
-		
-		if ($result == 0)
-		{
-			$arr = $stmt->errorInfo();
-			print_r($arr);
-		}
-		
-		/*
-			$restaurantObj = new restaurant;
-			$restaurantObj->setId($result['restaurantid']);
-			$restaurantObj->setAddress($result['address']);
-			$restaurantObj->setType($result['type']);
-			$restaurantObj->setRestaurantName($result['restaurantname']);
-			$restaurantObj->setEmail($result['email']);
-			$restaurantObj->setPhone($result['phone']);
-			$restaurantObj->setFeatures($result['features']);
-			$restaurantObj->setPriceRange($result['pricerange']);
-			$restaurantObj->setAbout($result['about']);
-			$restaurantObj->setWebsite($result['website']);
-			$restaurantObj->setHolidayHours($result['holidayhour']);
-			$restaurantObj->setLikes($result['likes']);
-			$restaurantObj->setProfilePicture($result['profilepicture']);
-			$restaurantObj->setVerified($result['verified']);*/
 		
 		mysqldatabaserrs::closeconnection($dbconn);
 		
