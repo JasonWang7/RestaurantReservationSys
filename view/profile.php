@@ -306,22 +306,51 @@ function ownerInfoPopup(url)
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
-            <h3>Service:</h3>
+            <h3>Service:       
+              <select class="form-control" id="REPLACE_ID">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+        </h3>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <h3>Food:</h3>
+            <h3>Food:               
+            <select class="form-control" id="REPLACE_ID">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select></h3>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <h3>Ambience:</h3>
+            <h3>Ambience:               
+            <select class="form-control" id="REPLACE_ID">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select></h3>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <h3>Overall Experience:</h3>      
+            <h3>Overall Experience:               
+            <select class="form-control" id="REPLACE_ID">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select></h3>      
           </div>
         </div>
         <div class="row">
