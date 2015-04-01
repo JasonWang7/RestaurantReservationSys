@@ -143,6 +143,8 @@ class restaurant
 	function selectMatchingRestaurants($keyword)
 	{
 		$i = 1;
+		$restaurantList = array_fill(1, 500, array(0, "", "", "", "", "", "", "", "", "", "", "", "", 0));
+		
 		$dbconn = mysqldatabaserrs::connectdb();
 		$query = "select restaurantname from restaurant where restaurantname like ':keyword%';";
 		
@@ -153,10 +155,14 @@ class restaurant
 
 		$stmt->execute();
 		
-		$restaurantList = new ArrayObject();
+		$result = $stmt->fetchAll();
 		
-		while ($result = $stmt->fetch(PDO::FETCH_ASSOC))
+		if ($result == 0)
 		{
+			
+		}
+		
+		/*
 			$restaurantObj = new restaurant;
 			$restaurantObj->setId($result['restaurantid']);
 			$restaurantObj->setAddress($result['address']);
@@ -171,14 +177,11 @@ class restaurant
 			$restaurantObj->setHolidayHours($result['holidayhour']);
 			$restaurantObj->setLikes($result['likes']);
 			$restaurantObj->setProfilePicture($result['profilepicture']);
-			$restaurantObj->setVerified($result['verified']);
-			
-			$restaurantList[$i] = 
-		}
+			$restaurantObj->setVerified($result['verified']);*/
 		
 		mysqldatabaserrs::closeconnection($dbconn);
 		
-		return $restaurantObj;
+		return $result;
 	}
 	
 	
