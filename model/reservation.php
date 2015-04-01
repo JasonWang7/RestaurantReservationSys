@@ -1,6 +1,6 @@
 <?php
 /* Written by Vincent Tieu, Jinhai Wang */
-
+error_reporting(0);
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 require_once($root.'util/authentication.class.php');
 require_once($root.'util/database.class.php');
@@ -73,7 +73,26 @@ class Reservation{
     mysqldatabaserrs::closeconnction($dbconn);
     return $result;
   }
+  
+  /**
+	* retrieve count of ordered reservation Ids
+	* @param user ID
+	* @return array of reservation Ids
+	*/
+	function selectOrderedIdCount()
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		$query = 'select restaurantid, count(restaurantid) from reservation group by restaurantid;';
+		
+		$stmt = $dbconn->prepare($query);			
 
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+		
+		mysqldatabaserrs::closeconnection($dbconn);
+		
+		return $result;
+	}
 
   /**
   * insert new reservation into database

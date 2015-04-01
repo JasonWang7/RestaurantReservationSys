@@ -27,13 +27,13 @@
 			$matchCount = count($restaurantMatches);?>
 			
 			<?php if($matchCount == 0) : ?>
-				<div id=message1>
+				<div id="message1">
 					<p>There are no search results for "<?php echo htmlspecialchars($searchQuery); ?>"</p>
 					<br><br>
 				</div>
 			
 			<?php else : ?>
-				<div id=message2>
+				<div id="message2">
 					<p>Displaying all search results for "<?php echo htmlspecialchars($searchQuery); ?>":</p>
 					<br><br>
 				</div>

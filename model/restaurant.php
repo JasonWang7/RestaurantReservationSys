@@ -110,6 +110,27 @@ class restaurant
 		
 		return $restaurantObj;
 	}
+	
+	/**
+	* retrieve all the information about the restaurant by restaurant id
+	* @param restaurant id
+	* @return restaurant obj
+	*/
+	function selectAllRestaurants()
+	{
+		$dbconn = mysqldatabaserrs::connectdb();
+		$query = 'select * from restaurant;';
+		
+		$stmt = $dbconn->prepare($query);		
+
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+		
+		mysqldatabaserrs::closeconnection($dbconn);
+		
+		return $result;
+	}
+	
 	/**
 	* retrieve restaurant name corresponding to a given restaurant Id
 	* @param user ID

@@ -108,8 +108,8 @@ $(document).ready(function(){
 </div>
 <div class="row">
   <div class="btn-group btn-group-justified">
-    <a href="#" class="btn btn-primary">Popular Restaurants</a>
-    <a href="#" class="btn btn-primary">New Restaurants</a>
+    <a href="/RRS/popularRestaurants" class="btn btn-primary">Popular Restaurants</a>
+    <a href="/RRS/newRestaurants" class="btn btn-primary">New Restaurants</a>
     <a href="#" class="btn btn-primary">Events</a>
     <a href="#" class="btn btn-primary">Reviews</a>
   </div>
