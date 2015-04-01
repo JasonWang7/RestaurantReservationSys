@@ -9,7 +9,6 @@
       include_once($root.'model/user.php');
       include_once($root.'model/restaurant.php');
       include_once($root.'model/owner.php');
-      include_once($root.'model/review.php');
       include_once($root.'model/restaurantOwnership.php');
       include_once($root.'controller/creditcardcontroller.php'); ?>
     
@@ -69,7 +68,7 @@ function deletePromptPopUp(url)
       <li class=""><a href="#reservations" data-toggle="tab" aria-expanded="true">Reservations</a></li>
     <li class=""><a href="#restaurants" data-toggle="tab" aria-expanded="true">My Restaurants</a></li>
       <li class=""><a href="#events" data-toggle="tab" aria-expanded="true">Likes</a></li>
-      <li class=""><a href="#Reviews" data-toggle="tab" aria-expanded="true">Reviews</a></li>
+      <li class=""><a href="#about" data-toggle="tab" aria-expanded="true">Reviews</a></li>
       <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Reward</a></li>
       <li class=""><a href="#history" data-toggle="tab" aria-expanded="true">History</a></li>
       <li class=""><a href="#bills" data-toggle="tab" aria-expanded="true">Bills</a></li>
@@ -282,11 +281,8 @@ function deletePromptPopUp(url)
       <div class="tab-pane fade" id="events">
         <p>Events here</p>
       </div>
-      <div class="tab-pane fade" id="Reviews">
-        <?php 
-            include_once($root.'view/reviewtab.php');
-
-        ?>
+      <div class="tab-pane fade" id="about">
+        <p>About here</p>
       </div>
       <div class="tab-pane fade" id="rateadish">
         <p>RAte here here</p>
