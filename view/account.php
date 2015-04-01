@@ -309,11 +309,18 @@ function deletePromptPopUp(url)
             </div>
               <div class="col-md-12"><h2>Credit Card Type:
               <div class="btn-group" data-toggle="buttons">
+
                 <label class="btn btn-primary">
-                    <input type="radio" name="cardtype" value="Mastercard"> Mastercard
+                    <input type="radio" name="cardtype" value="Mastercard" <?php if($creditcardobj->getCardType() == "Mastercard")
+              {
+                echo 'checked'
+                } ?> > Mastercard
                 </label>
                 <label class="btn btn-primary">
-                    <input type="radio" name="options" value="Visa"> Visa
+                    <input type="radio" name="options" value="Visa" <?php if($creditcardobj->getCardType() == "Visa")
+              {
+                echo 'checked'
+                } ?>> Visa
                 </label>
                 <script type="text/javascript">
                    document.querySelector("input[value='Mastercard']").checked = true;
