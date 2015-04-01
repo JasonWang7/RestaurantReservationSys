@@ -146,7 +146,7 @@ class restaurant
 		$restaurantList = array_fill(1, 500, array(0, "", "", "", "", "", "", "", "", "", "", "", "", 0));
 		
 		$dbconn = mysqldatabaserrs::connectdb();
-		$query = "select restaurantname from restaurant where restaurantname like ':keyword%';";
+		$query = "select restaurantname from restaurant where restaurantname like '%:keyword%';";
 		
 		$stmt = $dbconn->prepare($query);
 
@@ -159,7 +159,8 @@ class restaurant
 		
 		if ($result == 0)
 		{
-			
+			$arr = $stmt->errorInfo();
+			print_r($arr);
 		}
 		
 		/*

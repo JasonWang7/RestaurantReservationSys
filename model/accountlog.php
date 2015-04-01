@@ -11,7 +11,7 @@ class accountlog{
 	private $userid;
 
 
-	//$_SERVER['REMOTE_ADDR']
+	
 	function insertActivity(){
 		$auth = new mysqldatabaserrs;
 		$dbconn = $auth->connectdb();
