@@ -197,15 +197,16 @@ $query = "CREATE TABLE `eventattandance` (
 
 $result = mysql_query($query);
 
-$query = "DROP TABLES IF EXISTS reservtiontransaction";
+$query = "DROP TABLES IF EXISTS reservationtransaction";
 $result = mysql_query($query);
-$query = "CREATE TABLE `reservtiontransaction` (
+$query = "CREATE TABLE `reservationtransaction` (
     `restaurantid` int(10) unsigned NOT NULL,
     `reservationid` int(10) unsigned NOT NULL ,
     `tansactionid` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `userId` int(10) unsigned NOT NULL,
     `amount` decimal(4,2) not null default '0',
-    `transactiontime` datetime not null,
+    `transactiontime` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+    `desicription` varchar(4000) not null default '',
     FOREIGN KEY (userId) REFERENCES user (id),
     FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid),
     FOREIGN KEY (reservationid) REFERENCES reservation (reservationid),
@@ -289,7 +290,7 @@ $query = "\n"
     . " DECLARE idNum int(10);\n"
     . "\n"
     . " -- Find username of person performing the INSERT into table\n"
-    . " SELECT `reviewid`,sum(`votevalue`) FROM `reviewvote` group by `reviewid` into idNum, voteNum;\n"
+    . " SELECT `reviewid`,sum(`votevalue`) FROM `reviewvote` where `reviewid` = NEW.reviewid group by `reviewid` into idNum, voteNum;\n"
     . " \n"
     . " -- update record into audit table\n"
     . " UPDATE `review` SET `votes`=voteNum WHERE `reviewid`=idNum;\n"
@@ -309,7 +310,7 @@ $query = "\n"
     . " DECLARE idNum int(10);\n"
     . "\n"
     . " -- Find username of person performing the INSERT into table\n"
-    . " SELECT `reviewid`,sum(`votevalue`) FROM `reviewvote` group by `reviewid` into idNum, voteNum ;\n"
+    . " SELECT `reviewid`,sum(`votevalue`) FROM `reviewvote` where `reviewid` = NEW.reviewid group by `reviewid` into idNum, voteNum ;\n"
     . " \n"
     . " -- update record into audit table\n"
     . " UPDATE `review` SET `votes`=voteNum WHERE `reviewid`=idNum;\n"
@@ -343,7 +344,7 @@ $query =  "\n"
     . " DECLARE idNum int(10);\n"
     . "\n"
     . " -- Find username of person performing the INSERT into table\n"
-    . " SELECT `reviewid`,sum(`votevalue`) FROM `spamvote` group by `reviewid` into idNum, voteNum ;\n"
+    . " SELECT `reviewid`,sum(`votevalue`) FROM `spamvote` where `reviewid` = NEW.reviewid group by `reviewid` into idNum, voteNum ;\n"
     . " \n"
     . " -- update record into audit table\n"
     . " UPDATE `review` SET `spam`=voteNum WHERE `reviewid`=idNum;\n"
@@ -362,7 +363,7 @@ $query =  "CREATE TRIGGER spamvote_after_update\n"
     . " DECLARE idNum int(10);\n"
     . "\n"
     . " -- Find username of person performing the INSERT into table\n"
-    . " SELECT `reviewid`,sum(`votevalue`) FROM `spamvote` group by `reviewid` into idNum, voteNum ;\n"
+    . " SELECT `reviewid`,sum(`votevalue`) FROM `spamvote` where `reviewid` = NEW.reviewid group by `reviewid` into idNum, voteNum ;\n"
     . " \n"
     . " -- update record into audit table\n"
     . " UPDATE `review` SET `spam`=voteNum WHERE `reviewid`=idNum;\n"

@@ -54,7 +54,7 @@ if(count($reviewlist)>0){
     		$spambutton='<b><a href="markspam?mark=0&id='.$r->getReviewId().'">Not Spam</a> ('.$r->getSpam().')</b>';
     	}
     	$tablebody = $tablebody.'<div class="well col-md-2" style="font-size:13px; background-color:#eee; margin:8px; text-align:middle; height:180px;">"'.
-    							$r->getComment().'" by '.$r->getReviewName().'<p>on <a href=profile?id="'.$r->getRestaurantId().'">'.$r->getRestaurantName().'</a></div>';
+    							$r->getComment().'" by '.$r->getReviewName().' <b>on</b><p> <a style="font-size: 14px;" href=profile?id='.$r->getRestaurantId().'>'.$r->getRestaurantName().'</a></div>';
     }
     $tablebody = $tablebody.'<div class="well col-md-2" style="font-size:18px; background-color:#eee; margin:8px; text-align:middle; width:50px; height:180px;">'.
     							'<a href="#">></a></div>';         
