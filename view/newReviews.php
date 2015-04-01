@@ -24,8 +24,14 @@ $tableend="";
 //echo  $id;
 //echo '<pre>'.print_r($reviewlist, true).'</pre>'; 
 if(count($reviewlist)>0){
-	$tablehead ='';
-    $tableend = '';  
+	$tablehead ='<table class="table table-striped table-hover ">
+		  <thead>
+		    <tr>
+		    </tr>
+		  </thead>
+		  <tbody>';
+    $tableend = '</tbody>
+				</table> ';  
     foreach($reviewlist as $r){
     	$deletebutton = "";
     	$spambutton="";
@@ -55,7 +61,7 @@ if(count($reviewlist)>0){
     	else{
     		$spambutton='<b><a href="markspam?mark=0&id='.$r->getReviewId().'">Not Spam</a> ('.$r->getSpam().')</b>';
     	}
-    	$tablebody = $tablebody.'<div class="review-post" style="padding:10px;">
+    	$tablebody = $tablebody.'<tr><td><div class="review-post" style="padding:10px;">
 						          <div class="row">
 						            <div class="col-sm-3">'.
 						        '<p><b>Name:</b> <a href="profile?id='.$r->getRestaurantId().'">'.$r->getRestaurantName().'</a></p>
@@ -74,7 +80,7 @@ if(count($reviewlist)>0){
 							            </div>
 							          </div>
 							        </div>
-							  <hr>';
+							  <hr></tr></td>';
     }         
     $renderbody=$tablehead.$tablebody.$tableend;
     echo $renderbody;
