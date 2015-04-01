@@ -124,6 +124,7 @@ function deletePromptPopUp(url)
                 <th>Time</th>
                 <th># Guests</th>
                 <th>Change/View</th>
+                <th>Print</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -146,7 +147,7 @@ function deletePromptPopUp(url)
                 $dtime = date_format($dd,'d/m/Y H:i:s');
                
                 $data = '<tr>' . '<td>' . $row[0] . '</td><td><a href="profile?id=' . $row[2] . '">'.$row[9].'</td><td>' .$dtime. "</td><td>" . $row[3] .
-                '</td><td><a class="btn btn-default" href="#"  data-toggle="modal" data-target="#viewreservationmodal'.$row[0].'">View</a></td>'.'<td><a class="btn btn-primary" href="cancel?id='.$row[0].'" >Delete</a></td>'.'</tr>';
+                '</td><td><a class="btn btn-default" href="#"  data-toggle="modal" data-target="#viewreservationmodal'.$row[0].'">View</a></td>'. '<td><a class="btn btn-default" href="print?phone='.$row[11].'&time='.$dtime.'&guests='.$row[3].'&name='.$row[9].'&id='.$row[0].'">Print</a></td>' .'<td><a class="btn btn-primary" href="cancel?id='.$row[0].'" >Delete</a></td>'.'</tr>';
                 echo $data . '</a>';
 
                 echo '
@@ -159,7 +160,7 @@ function deletePromptPopUp(url)
                     </div>
                     <div class="modal-body">
                       <div class="row">
-                        <form id="booktable" name="booktable" ACTION="view/modifyreservation.php" METHOD=post>
+                        <form id="booktable" name="booktable" ACTION="modifyreservation.php" METHOD=post>
                                           
                         <div class="col-md-4">
                           <h3>Date: </h3><input  type="text" value="'. explode(" ", $dtime)[0] .'" name="datetime" id="datepicker1">
@@ -264,9 +265,9 @@ function deletePromptPopUp(url)
           
           while ($i <= $numOwned)
           { 
-            $deleteButton = "<a class=\"btn btn-primary\" href=\"JavaScript:deletePromptPopUp('/RRS/view/deletePrompt.php?id=" . $restaurantIdList[$i] . "');\">";
+            $deleteButton = "<a class=\"btn btn-primary\" href=\"JavaScript:deletePromptPopUp('/RRS/deletePrompt?id=" . $restaurantIdList[$i] . "');\">";
             
-            echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td></td><td></td><td><a class="btn btn-info" href="/RRS/view/changerestaurant.php?id=' . $restaurantIdList[$i] . '"' .
+            echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td></td><td></td><td><a class="btn btn-info" href="/RRS/changeRestaurant?id=' . $restaurantIdList[$i] . '"' .
             "</td><td>" . $deleteButton . "</td></tr>";
 
             $i = $i + 1;
@@ -309,10 +310,16 @@ function deletePromptPopUp(url)
               <div class="col-md-12"><h2>Credit Card Type:
               <div class="btn-group" data-toggle="buttons">
                 <label class="btn btn-primary">
-                    <input type="radio" name="cardtype" value="Mastercard"> Mastercard
+                    <input type="radio" name="cardtype" value="Mastercard" <?php if($creditcardobj->getCardType() == "Mastercard")
+              {
+                echo 'checked';
+                } ?> > Mastercard
                 </label>
                 <label class="btn btn-primary">
-                    <input type="radio" name="options" value="Visa"> Visa
+                    <input type="radio" name="options" value="Visa" <?php if($creditcardobj->getCardType() == "Visa")
+              {
+                echo 'checked';
+                } ?>> Visa
                 </label>
                 <script type="text/javascript">
                    document.querySelector("input[value='Mastercard']").checked = true;
