@@ -1,16 +1,20 @@
 <?php
-/**********this is view  for review tab**********
-author: Vince, jason wang
-*/
+/******************************************************************************************
+* File name: newRestaurants.php
+* Purpose: Displays the review as a list
+* Author: Jinhai Wang
+* Group Name: Centaur Logic
+* Created: March 31, 2015
+******************************************************************************************/
+
+include($root."view/include/header.php"); 
 include_once($root.'model/review.php');
 include_once($root.'model/spam.php');
 include_once($root.'model/user.php');
 $reviewobj = new review;
 $userid = $_SESSION['sess_user_id'];
-$restid = $id;
-$reviewlist = $reviewobj->listReviewRestaurant($restid,0);
-
-
+$numoffset=0;
+$reviewlist = $reviewobj->listReview(100,$numoffset);
 $renderbody="";
 $tablehead="";
 $tablebody="";
@@ -54,7 +58,7 @@ if(count($reviewlist)>0){
     	$tablebody = $tablebody.'<div class="review-post" style="padding:10px;">
 						          <div class="row">
 						            <div class="col-sm-3">'.
-						        '<p><b>Name:</b> '.$r->getRestaurantName().'</p>
+						        '<p><b>Name:</b> <a href="profile?id='.$r->getRestaurantId().'">'.$r->getRestaurantName().'</a></p>
 					              <p><b>Service:</b> '.$r->getServiceRating().' out of 5</p>
 					              <p><b>Food:</b> '.$r->getFoodRating().' out of 5</p>
 					              <p><b>Ambience:</b> '.$r->getAmbienceRating().' out of 5</p>'.
@@ -79,10 +83,5 @@ else{
 	$renderbody="<h2>This restaurant doesn't have any review yet!</h2>";
 	echo $renderbody;
 }
-
-
-
-
-
-
+include($root."view/include/footer.php");
 ?>

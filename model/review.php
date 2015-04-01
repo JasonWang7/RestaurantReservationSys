@@ -108,14 +108,15 @@ class review {
 		return $reviewList;
 	}
 	//get list of newest review made by users
-	function listReview($offsetNum){
+	function listReview($limit,$offsetNum){
 		$auth = new mysqldatabaserrs;
 		$dbconn = $auth->connectdb();
-		$query = 'SELECT `id` as userId, `reviewname`,`reviewid`,`restaurantid`,`restaurantname`,`comment`,`servicerating`,`foodrating`,`ambiencerating`,`overallexp`,`votes`,`reviewtime`,`spam`,`address`,`type`,`email`,`phone`,`features`,`about`,`likes`,`profilepicture`,`verified` FROM `view_review_user_restaurant` order by `reviewtime` desc limit 10 offset :offsetNum;';
+		$query = 'SELECT `id` as userId, `reviewname`,`reviewid`,`restaurantid`,`restaurantname`,`comment`,`servicerating`,`foodrating`,`ambiencerating`,`overallexp`,`votes`,`reviewtime`,`spam`,`address`,`type`,`email`,`phone`,`features`,`about`,`likes`,`profilepicture`,`verified` FROM `view_review_user_restaurant` order by `reviewtime` desc limit :limits offset :offsetNum;';
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/
-		$stmt->bindParam(':offsetNum', $offsetNum, PDO::PARAM_INT);				
+		$stmt->bindParam(':offsetNum', $offsetNum, PDO::PARAM_INT);		
+		$stmt->bindParam(':limits', $limit, PDO::PARAM_INT);			
 		$stmt->execute();
 
 		$revewObj= new review;
