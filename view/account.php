@@ -309,7 +309,6 @@ function deletePromptPopUp(url)
             </div>
               <div class="col-md-12"><h2>Credit Card Type:
               <div class="btn-group" data-toggle="buttons">
-
                 <label class="btn btn-primary">
                     <input type="radio" name="cardtype" value="Mastercard" <?php if($creditcardobj->getCardType() == "Mastercard")
               {
