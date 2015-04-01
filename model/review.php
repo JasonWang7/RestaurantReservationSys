@@ -17,7 +17,7 @@ class review {
 	private $ambiencerating;
 	private $overallexp;
 	private $spam;
-	private $votes;
+	private $votes=0;
 	private $reviewtime;
 	private $restaurantname; //record restaurant name
 	private $reviewname;   //record name of user who make review
@@ -125,6 +125,46 @@ class review {
 		}
 		$auth->closeconnection($dbconn);
 		return $reviewList;
+
+	}
+
+	//get list of newest review made by restaurant id
+	function listReviewRestaurant($restid,$offsetNum){
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+		$query = 'SELECT `id` as userId, `reviewname`,`reviewid`,`restaurantid`,`restaurantname`,`comment`,`servicerating`,`foodrating`,`ambiencerating`,`overallexp`,`votes`,`reviewtime`,`spam`,`address`,`type`,`email`,`phone`,`features`,`about`,`likes`,`profilepicture`,`verified` FROM `view_review_user_restaurant` where restaurantid=:restaurantid order by `reviewtime` desc limit 100 offset :offsetNum;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindParam(':offsetNum', $offsetNum, PDO::PARAM_INT);	
+		$stmt->bindParam(':restaurantid', $restid, PDO::PARAM_INT);			
+		$stmt->execute();
+
+		$revewObj= new review;
+		$reviewList = array();
+		while($revewObj = $stmt->fetchObject('review')){
+			array_push($reviewList,$revewObj);
+		}
+		$auth->closeconnection($dbconn);
+		return $reviewList;
+
+	}
+	//check if it is verified dinner
+	function isDinner($useridParam,$restIdParam){
+
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+		$query = 'SELECT count(`restaurantid`) as numdine FROM `reservation` WHERE `restaurantid`=:restaurantid and `userId`=:userId;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindParam(':restaurantid', $restIdParam, PDO::PARAM_INT);	
+		$stmt->bindParam(':userId', $useridParam, PDO::PARAM_INT);			
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);		
+		$auth->closeconnection($dbconn); 
+
+		return $result['numdine'];
 
 	}
 
