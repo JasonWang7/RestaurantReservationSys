@@ -22,6 +22,7 @@
 			require_once($root.'model/businessHour.php');
 			
 			$restaurantObj = new restaurant;
+			$hoursSelector = new businessHour;
 			$sundayHoursObj = new businessHour;
 			$mondayHoursObj = new businessHour;
 			$tuesdayHoursObj = new businessHour;
@@ -36,7 +37,7 @@
 			$featureString = "";
 			$result1 = 0;
 			$result2 = 0;
-
+			
 			//add all strings of features into array
 			for($i; $i<19; $i++)
 			{
@@ -62,35 +63,43 @@
 			
 			$result1 = $restaurantObj->updateRestaurantInfo($id);
 			
+			$sundayHoursObj->setRestaurantId($id);
 			$sundayHoursObj->setDay("Sunday");
 			$sundayHoursObj->setStartHour($_POST["sundayStart"]);
 			$sundayHoursObj->setEndHour($_POST["sundayEnd"]);
+			$mondayHoursObj->setRestaurantId($id);
 			$mondayHoursObj->setDay("Monday");
 			$mondayHoursObj->setStartHour($_POST["mondayStart"]);
 			$mondayHoursObj->setEndHour($_POST["mondayEnd"]);
+			$tuesdayHoursObj->setRestaurantId($id);
 			$tuesdayHoursObj->setDay("Tuesday");
 			$tuesdayHoursObj->setStartHour($_POST["tuesdayStart"]);
 			$tuesdayHoursObj->setEndHour($_POST["tuesdayEnd"]);
+			$wednesdayHoursObj->setRestaurantId($id);
 			$wednesdayHoursObj->setDay("Wednesday");
 			$wednesdayHoursObj->setStartHour($_POST["wednesdayStart"]);
 			$wednesdayHoursObj->setEndHour($_POST["wednesdayEnd"]);
+			$thursdayHoursObj->setRestaurantId($id);
 			$thursdayHoursObj->setDay("Thursday");
 			$thursdayHoursObj->setStartHour($_POST["thursdayStart"]);
 			$thursdayHoursObj->setEndHour($_POST["thursdayEnd"]);
+			$fridayHoursObj->setRestaurantId($id);
 			$fridayHoursObj->setDay("Friday");
 			$fridayHoursObj->setStartHour($_POST["fridayStart"]);
 			$fridayHoursObj->setEndHour($_POST["fridayEnd"]);
+			$saturdayHoursObj->setRestaurantId($id);
 			$saturdayHoursObj->setDay("Saturday");
 			$saturdayHoursObj->setStartHour($_POST["saturdayStart"]);
 			$saturdayHoursObj->setEndHour($_POST["saturdayEnd"]);
 			
-			$result2 = $sundayHoursObj->updateHoursInfo($id);
-			$result2 = $mondayHoursObj->updateHoursInfo($id);
-			$result2 = $tuesdayHoursObj->updateHoursInfo($id);
-			$result2 = $wednesdayHoursObj->updateHoursInfo($id);
-			$result2 = $thursdayHoursObj->updateHoursInfo($id);
-			$result2 = $fridayHoursObj->updateHoursInfo($id);
-			$result2 = $saturdayHoursObj->updateHoursInfo($id);
+			$result2 = $hoursSelector->removeHoursInfo($id);
+			$result2 = $sundayHoursObj->insertHoursInfo();
+			$result2 = $mondayHoursObj->insertHoursInfo();
+			$result2 = $tuesdayHoursObj->insertHoursInfo();
+			$result2 = $wednesdayHoursObj->insertHoursInfo();
+			$result2 = $thursdayHoursObj->insertHoursInfo();
+			$result2 = $fridayHoursObj->insertHoursInfo();
+			$result2 = $saturdayHoursObj->insertHoursInfo();
 			
 			if (($result1 == 1) && ($result2 == 1))
 			{
