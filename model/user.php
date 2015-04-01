@@ -182,8 +182,8 @@ class user{
 		$dbconn = $auth->connectdb();
 	
 		$query = 'update user set firstname=:firstname,lastname=:lastname,email=:useremail,passwordHash=:password,
-					phone=:phone,username=:username,city=:city,address=:address,postcode=:postcode,role=:role,
-					likes=:likes, status=:status, verified=:verified, rewardpoint=:rewardpoint where id=:userid;';
+					username=:username,city=:city
+					 where id=:userid;';
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/
@@ -192,15 +192,15 @@ class user{
 		$stmt->bindValue(':firstname',$newUserObj->getFirstName());	
 		$stmt->bindValue(':lastname',$newUserObj->getLastName());			
 		$stmt->bindValue(':password',$newUserObj->getPassword());		
-		$stmt->bindValue(':phone',$newUserObj->getPhone());			
+		//$stmt->bindValue(':phone',$newUserObj->getPhone());			
 		$stmt->bindValue(':address',$newUserObj->getAddress());		
-		$stmt->bindValue(':postcode',$newUserObj->getPostcode());				
+		//$stmt->bindValue(':postcode',$newUserObj->getPostcode());				
 		$stmt->bindValue(':city',$newUserObj->getCity());
-		$stmt->bindValue(':role',$newUserObj->getRole());			
-		$stmt->bindValue(':likes',$newUserObj->getLikes());
-		$stmt->bindValue(':verified',$newUserObj->getVerified());
-		$stmt->bindValue(':status',$newUserObj->getStatus());
-		$stmt->bindValue(':rewardpoint',$newUserObj->getRewardpoint());
+		//$stmt->bindValue(':role',$newUserObj->getRole());			
+		//$stmt->bindValue(':likes',$newUserObj->getLikes());
+		//$stmt->bindValue(':verified',$newUserObj->getVerified());
+		//$stmt->bindValue(':status',$newUserObj->getStatus());
+		//$stmt->bindValue(':rewardpoint',$newUserObj->getRewardpoint());
 		$stmt->bindValue(':userid',$newUserObj->getUserId());
 		$stmt->execute();
 

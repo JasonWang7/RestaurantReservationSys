@@ -37,7 +37,7 @@ if(count($reviewlist)>0){
                 '<div class="modal fade" id="reviewmodal'.$r->getReviewId().'" tabindex="-1" role="dialog" aria-labelledby="reviewmodal'.$r->getReviewId().'" aria-hidden="true">
 				  <div class="modal-dialog">
 				    <div class="modal-content">
-				      <form id="review" name="review" ACTION="view/modifyreview.php" METHOD=post>
+				      <form id="review" name="review" ACTION="modifyreview" METHOD=post>
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				        <h4 class="modal-title" id="label">Review for '.$r->getRestaurantName().'</h4>

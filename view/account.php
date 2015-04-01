@@ -197,7 +197,7 @@ function deletePromptPopUp(url)
                     </div>
                     <div class="modal-body">
                       <div class="row">
-                        <form id="booktable" name="booktable" ACTION="modifyreservation.php" METHOD=post>
+                        <form id="booktable" name="booktable" ACTION="modifyreservation" METHOD=post>
                                           
                         <div class="col-md-4">
                           <h3>Date: </h3><input  type="text" value="'. explode(" ", $dtime)[0] .'" name="datetime" id="datepicker1">

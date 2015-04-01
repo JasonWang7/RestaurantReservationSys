@@ -202,7 +202,7 @@ function ownerInfoPopup(url)
       </div>
       <div class="modal-body">
         <div class="row">
-          <form id="booktable" name="booktable" ACTION="view/verifyreservation.php" METHOD=post>
+          <form id="booktable" name="booktable" ACTION="verifyreservation" METHOD=post>
                             
           <div class="col-md-4">
             <h3>Date: </h3><input  type="text" placeholder="dd/mm/yyyy" name="datetime" id="datepicker1">
