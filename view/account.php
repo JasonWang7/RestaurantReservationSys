@@ -124,6 +124,7 @@ function deletePromptPopUp(url)
                 <th>Time</th>
                 <th># Guests</th>
                 <th>Change/View</th>
+                <th>Print</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -146,7 +147,7 @@ function deletePromptPopUp(url)
                 $dtime = date_format($dd,'d/m/Y H:i:s');
                
                 $data = '<tr>' . '<td>' . $row[0] . '</td><td><a href="profile?id=' . $row[2] . '">'.$row[9].'</td><td>' .$dtime. "</td><td>" . $row[3] .
-                '</td><td><a class="btn btn-default" href="#"  data-toggle="modal" data-target="#viewreservationmodal'.$row[0].'">View</a></td>'.'<td><a class="btn btn-primary" href="cancel?id='.$row[0].'" >Delete</a></td>'.'</tr>';
+                '</td><td><a class="btn btn-default" href="#"  data-toggle="modal" data-target="#viewreservationmodal'.$row[0].'">View</a></td>'. '<td><a class="btn btn-default" href="print?phone='.$row[11].'&time='.$dtime.'&guests='.$row[3].'&name='.$row[9].'&id='.$row[0].'">Print</a></td>' .'<td><a class="btn btn-primary" href="cancel?id='.$row[0].'" >Delete</a></td>'.'</tr>';
                 echo $data . '</a>';
 
                 echo '
