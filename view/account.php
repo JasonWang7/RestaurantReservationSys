@@ -159,7 +159,7 @@ function deletePromptPopUp(url)
                     </div>
                     <div class="modal-body">
                       <div class="row">
-                        <form id="booktable" name="booktable" ACTION="view/modifyreservation.php" METHOD=post>
+                        <form id="booktable" name="booktable" ACTION="modifyreservation.php" METHOD=post>
                                           
                         <div class="col-md-4">
                           <h3>Date: </h3><input  type="text" value="'. explode(" ", $dtime)[0] .'" name="datetime" id="datepicker1">
@@ -264,9 +264,9 @@ function deletePromptPopUp(url)
           
           while ($i <= $numOwned)
           { 
-            $deleteButton = "<a class=\"btn btn-primary\" href=\"JavaScript:deletePromptPopUp('/RRS/view/deletePrompt.php?id=" . $restaurantIdList[$i] . "');\">";
+            $deleteButton = "<a class=\"btn btn-primary\" href=\"JavaScript:deletePromptPopUp('/RRS/deletePrompt?id=" . $restaurantIdList[$i] . "');\">";
             
-            echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td></td><td></td><td><a class="btn btn-info" href="/RRS/view/changerestaurant.php?id=' . $restaurantIdList[$i] . '"' .
+            echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td></td><td></td><td><a class="btn btn-info" href="/RRS/changeRestaurant?id=' . $restaurantIdList[$i] . '"' .
             "</td><td>" . $deleteButton . "</td></tr>";
 
             $i = $i + 1;
