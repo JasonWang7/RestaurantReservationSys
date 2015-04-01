@@ -42,6 +42,49 @@ class transaction{
 		$auth->closeconnection($dbconn);
 		return $transactionList;
 	}
+	//get list of transaction by owner id
+	function listTransactionByOnwerId($useridParam,$offsetNum){
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+		$transactionList = array();
+		
+		$query = 'select ownerid from owner where userId = :useridParam;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindParam(':useridParam', $useridParam, PDO::PARAM_INT);		
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		if($result['ownerid']!=''&&$result['ownerid']>0){
+			$ownerId = $result['ownerid'];
+			$query = 'select restaurantid from restaurantownership where ownerid = :ownerid;';
+			$stmt = $dbconn->prepare($query);
+			/*bind values to escape*/
+			$stmt->bindParam(':ownerid', $ownerId, PDO::PARAM_INT);			
+			$stmt->execute();
+			$results = $stmt->fetchAll();
+			if(count($result)>0){
+				foreach($results as $restid){
+					$query = 'SELECT  * FROM `view_transaction_user_restaurant` where `restaurantid`=:restidParam order by `transactiontime` desc;';
+					$stmt = $dbconn->prepare($query);
+					/*bind values to escape*/
+					$stmt->bindParam(':restidParam', $restid['restaurantid'], PDO::PARAM_INT);	
+					$stmt->execute();
+					$transactionObj= new transaction;
+					while($transactionObj = $stmt->fetchObject('transaction')){
+						array_push($transactionList,$transactionObj);
+					}
+				}
+				
+			}
+		}
+
+		
+		$auth->closeconnection($dbconn);
+		return $transactionList;
+	}
+
+
 	//get list of transaction by restaurant id
 	function listTransactionByRestId($restidParam,$offsetNum){
 		$auth = new mysqldatabaserrs;

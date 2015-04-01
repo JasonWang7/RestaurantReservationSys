@@ -73,6 +73,28 @@ function deletePromptPopUp(url)
       <li class=""><a href="#history" data-toggle="tab" aria-expanded="true">History</a></li>
       <li class=""><a href="#bills" data-toggle="tab" aria-expanded="true">Bills</a></li>
       <li class=""><a href="#creditcard" data-toggle="tab" aria-expanded="true">Credit Card</a></li>
+      <?php 
+        if(isset($_SESSION['sess_user_id'])){
+          $ownertempobj = new owner;
+          $ownertempobjList  = $ownertempobj ->selectOwnersInfo($_SESSION['sess_user_id']);
+
+          if(count($ownertempobjList)>0){ 
+              echo '<li class=""><a href="manageaowner">Owner</a></li>';
+          }           
+        }
+
+      ?>
+      <?php 
+        if(isset($_SESSION['sess_user_id'])){
+          $usertempobj = new user;
+          $usertempobj  = $usertempobj ->selectUserInfo($_SESSION['sess_useremail']);
+
+          if($usertempobj->getRole()=='admin'){ 
+              echo '<li class=""><a href="manageadmin">Admin</a></li>';
+          }           
+        }
+      ?>
+      
       <li class=""><a href="deleteacc">Delete Account</a></li>
     </ul>
     <div id="myTabContent" class="tab-content" style="margin-left:20px;">
