@@ -204,7 +204,7 @@ $query = "CREATE TABLE `reservationtransaction` (
     `reservationid` int(10) unsigned NOT NULL ,
     `tansactionid` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `userId` int(10) unsigned NOT NULL,
-    `amount` decimal(4,2) not null default '0',
+    `amount` decimal(6,2) not null default '0',
     `transactiontime` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
     `desicription` varchar(4000) not null default '',
     FOREIGN KEY (userId) REFERENCES user (id),

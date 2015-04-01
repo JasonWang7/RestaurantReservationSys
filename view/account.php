@@ -10,7 +10,8 @@
       include_once($root.'model/restaurant.php');
       include_once($root.'model/owner.php');
       include_once($root.'model/restaurantOwnership.php');
-      include_once($root.'controller/creditcardcontroller.php'); ?>
+      require_once($root.'model/creditcard.php');
+      //include_once($root.'controller/creditcardcontroller.php'); ?>
     
 <script type="text/javascript">
 function deletePromptPopUp(url) 
@@ -51,7 +52,21 @@ function deletePromptPopUp(url)
           //update
         }
         else{ //insert the new credit card
-          $creditcardobj = addCreditcard();
+          $cardObj = new creditcard;
+          //$cardObj->setUserId($_POST['userid']);
+          $cardObj->setCardNum($_POST['cardNum']);    
+          $cardObj->setUserId($_SESSION['sess_user_id']);
+          $cardObj->setAddress($_POST['address']);
+          $cardObj->setCV($_POST['cv']);
+          $cardObj->setName($_POST['name']);
+          $cardObj->setCardType($_POST['cardtype']);
+          $cardObj->setExpireDate($_POST['expireddate']);
+         
+          if($cardObj->luhn_checksum($cardObj->getCardNum())&&$cardObj->cv_check($cardObj->getCV())&&$cardObj->exp_date_check($cardObj->getExpireDate())){
+            $cardObj->insertCardInfo($cardObj);
+            
+          }
+          $creditcardobj = $creditcardobj->insertCardInfo($creditcardobj);
           $userobj->setVerified(1);
           $userobj->setVerifyUser($userobj->getUserId(),1); //update user talbe user is credit card verified
         } 
@@ -76,9 +91,9 @@ function deletePromptPopUp(url)
       <?php 
         if(isset($_SESSION['sess_user_id'])){
           $ownertempobj = new owner;
-          $ownertempobjList  = $ownertempobj ->selectOwnersInfo($_SESSION['sess_user_id']);
+          $ownertempobjList  = $ownertempobj ->isOwnersInfo($_SESSION['sess_user_id']);
 
-          if(count($ownertempobjList)>0){ 
+          if($ownertempobjList>0){ 
               echo '<li class=""><a href="manageaowner">Owner</a></li>';
           }           
         }
@@ -323,8 +338,9 @@ function deletePromptPopUp(url)
           ?>      
       </div>
       <div class="tab-pane fade" id="creditcard">
-        <form action="account?credit=true" method="post">
+        <form action="controller/creditcardcontroller.php" method="post">
         <h2>Credit Card Information</h2>
+      
             <div class="row">
               <div class="row">
               <div class="col-md-12"><h2>Verified: <?php if($userobj->getVerified()==1){ echo "Yes";}else{echo "No";} ?> </h2></div>

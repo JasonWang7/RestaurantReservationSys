@@ -12,7 +12,7 @@ $tableend="";
 if(count($transactionlist)>0){
   $tablehead='<div class="row">
             <div class="col-12">  
-              <h3>Admin Panel</h3>
+              <h3>Restaurant Owner Panel</h3>
               <table class="table table-striped table-hover ">
                 <thead>
                   <tr>
@@ -42,7 +42,7 @@ if(count($transactionlist)>0){
     echo $renderbody;
 }
 else{
-  $renderbody="<h2>There is no transaction yet!</h2>";
+  $renderbody="<h2>There is no transaction for any of your restaurant yet!</h2>";
   echo $renderbody;
 }
 

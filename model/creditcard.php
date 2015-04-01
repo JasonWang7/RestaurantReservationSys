@@ -53,7 +53,7 @@ class creditcard{
 		$userObj = new user;
 		$auth = new mysqldatabaserrs;
 		$dbconn = $auth->connectdb();
-		$query = 'INSERT INTO `creditcardinfo`(`cardNum`, `cardtype`,`name`, `address`, `cv`, `expireddate`, `userId`) VALUES (:cardNum,:cardtype,:name,:address,:cvv,:expireddate,:userId)';
+		$query = 'INSERT INTO `creditcardinfo` (`cardNum`, `cardtype`,`name`, `address`, `cv`, `expireddate`, `userId`) VALUES (:cardNum,:cardtype,:name,:address,:cvv,:expireddate,:userId);';
 		$stmt = $dbconn->prepare($query);
 
 		/*bind values to escape*/
@@ -65,6 +65,17 @@ class creditcard{
 		$stmt->bindValue(':expireddate',$creditcard->getExpireDate()); 
 		$stmt->bindValue(':userId',$creditcard->getUserId());			
 		$stmt->execute();
+		$insertedID = $dbconn->lastInsertId();
+		echo $insertedID;
+		if($insertedID>0){
+			$query = 'UPDATE `user` SET `verified`=:verified where id=:userId;';
+			$stmt = $dbconn->prepare($query);
+
+			/*bind values to escape*/
+			$stmt->bindValue(':verified',1);	
+			$stmt->bindValue(':userId',$creditcard->getUserId());			
+			$stmt->execute();
+		}
 		$auth->closeconnection($dbconn);
 		
 		return $creditcard;

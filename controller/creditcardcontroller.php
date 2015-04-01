@@ -2,6 +2,9 @@
 /*****jinhai Wang****/
 	$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 	require_once($root.'model/creditcard.php');
+	session_start();
+	addCreditcard();
+	header('Location: /RRS/account');
 	function addCreditcard(){
 		$cardObj = new creditcard;
 		//$cardObj->setUserId($_POST['userid']);

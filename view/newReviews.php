@@ -12,7 +12,13 @@ include_once($root.'model/review.php');
 include_once($root.'model/spam.php');
 include_once($root.'model/user.php');
 $reviewobj = new review;
-$userid = $_SESSION['sess_user_id'];
+if(isset($_SESSION['sess_user_id'])){
+	$userid = $_SESSION['sess_user_id'];
+}
+else{
+	$userid =0;
+}
+
 $numoffset=0;
 $reviewlist = $reviewobj->listReview(100,$numoffset);
 $renderbody="";
@@ -45,9 +51,12 @@ if(count($reviewlist)>0){
     	//check if it is admin or super admin
     	$userobj = new user;
     	$role = '';
-    	$userobj = $userobj->selectUserInfo($_SESSION['sess_useremail']);
-    	$role = $userobj->getRole();
-    	if($r->getUserId() ==$userid || strpos($role,'admin') == true){
+    	if(isset($_SESSION['sess_useremail'])){
+    		$userobj = $userobj->selectUserInfo($_SESSION['sess_useremail']);
+    		$role = $userobj->getRole();
+    	}
+    	
+    	if($r->getUserId() ==$userid || $role== 'admin'||$role=='super admin'){
     		$deletebutton = '<b><a href="deletereview?id='.$r->getReviewId().'">Delete Review</a></b> - ';
     	}
     	//check if user mark it as spam

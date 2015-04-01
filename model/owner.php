@@ -56,6 +56,31 @@ class owner
 	* @param userId
 	* @return integer array of owner Ids- with index 1 being the length
 	*/
+	function isOwnersInfo($userId)
+	{
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+		$query = 'SELECT  ownerid FROM `owner` where userId=:userId;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT);			
+		$stmt->execute();
+
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if($result['ownerid']>0){
+			return $result['ownerid'];
+		}
+		$auth->closeconnection($dbconn);
+		return 0;
+	}
+
+	/**
+	* retrieve all owner Ids corresponding to given user id
+	* @param userId
+	* @return integer array of owner Ids- with index 1 being the length
+	*/
 	function selectOwnersInfo($userId)
 	{
 		$ownerIdList = array_fill(1, 500, -1);
