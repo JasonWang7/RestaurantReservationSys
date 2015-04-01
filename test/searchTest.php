@@ -3,7 +3,5 @@
 	require_once($root.'model/restaurant.php');
 	
 	$selector = new restaurant;
-	$restaurantList = $selector->selectMatchingRestaurants("kink");
-	
-	print_r($restaurantList);
+	$lol = $selector->selectMatchingRestaurants("kink");
 ?>
