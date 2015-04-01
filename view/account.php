@@ -9,7 +9,7 @@
       include_once($root.'model/user.php');
       include_once($root.'model/restaurant.php');
       include_once($root.'model/owner.php');
-       include_once($root.'model/review.php');
+      include_once($root.'model/review.php');
       include_once($root.'model/restaurantOwnership.php');
       include_once($root.'controller/creditcardcontroller.php'); ?>
     
@@ -283,7 +283,6 @@ function deletePromptPopUp(url)
         <p>Events here</p>
       </div>
       <div class="tab-pane fade" id="Reviews">
-        <p>Review code here</p>
         <?php 
             include_once($root.'view/reviewtab.php');
 

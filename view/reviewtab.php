@@ -2,6 +2,7 @@
 /**********this is view  for review tab**********
 author: Vince, jason wang
 */
+include_once($root.'model/review.php');
 $reviewobj = new review;
 $userid = $_SESSION['sess_user_id'];
 $reviewlist = $reviewobj->listReviewById($userid,0);
@@ -9,6 +10,9 @@ $renderbody="";
 $tablehead="";
 $tablebody="";
 $tableend="";
+//echo 'in review tab';
+//echo $userid;
+//echo '<pre>'.print_r($reviewlist, true).'</pre>'; 
 if(count($reviewlist)>0){
 	$tablehead ='<div class="row">
             <table class="table table-striped table-hover ">
@@ -88,6 +92,10 @@ if(count($reviewlist)>0){
     }         
     $renderbody=$tablehead.$tablebody.$tableend;
     echo $renderbody;
+}
+else{
+	$renderbody="<h2>You haven't made any review yet!</h2>";
+	echo $renderbody;
 }
 
 

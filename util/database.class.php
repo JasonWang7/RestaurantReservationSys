@@ -35,7 +35,7 @@ class mysqldatabaserrs{
 		
 		try
 		{
-			$connection = new PDO($constring, 'root', 'roadkill182');
+			$connection = new PDO($constring, 'root', 'jasonwang');
 		}
 		catch (PDOException $pe)
 		{
