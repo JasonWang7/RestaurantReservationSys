@@ -21,8 +21,51 @@
 			
 			$searchQuery = $_POST["searchQuery"];
 			$restaurantSelector = new restaurant;
+			$features = array("african", "alcoholMenu", "american", "buffet", "casualDining", 
+			"chinese", "coffeehouse", "fastFood", "fineDining", "french", "indian", "irish",
+			"italian", "japanese", "kidFriendly", "korean", "pub", "tableTopCooking", "vegan");
+			$featureList = array();
+			$index = 0;
 			
 			$restaurantMatches = $restaurantSelector->selectMatchingRestaurants($searchQuery);
+			
+			//add all strings of features into array
+			for($i = 0; $i < 19; $i++)
+			{
+				if (!empty($_POST[$features[$i]]))
+				{
+					$featureList[$index] = $features[$i];
+					$index++;
+				}
+			}
+			
+			$matchCount = count($restaurantMatches);
+			$featureCount = count($featureList);
+			
+			for ($i = 0; $i < $matchCount; $i++)
+			{
+				for ($j = 0; $j < $featureCount; $j++)
+				{
+					if (strstr($restaurantMatches[$i]["features"], $featureList[$j]) == false)
+					{
+						unset($restaurantMatches[$i]);
+					}
+				}
+			}
+			
+			$index = 0;
+			$temp = array();
+			
+			for ($i = 0; $i < $matchCount; $i++)
+			{
+				if (!empty($restaurantMatches[$i]))
+				{
+					$temp[$index] = $restaurantMatches[$i];
+					$index++;
+				}
+			}
+			
+			$restaurantMatches = $temp;
 			
 			$matchCount = count($restaurantMatches);?>
 			
@@ -63,7 +106,6 @@
 			</div>
 			
 			<?php include($root."view/include/footer.php"); ?>
-		?>
 	</body>
 		
 </html>

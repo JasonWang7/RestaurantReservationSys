@@ -50,7 +50,7 @@
 		<div id="message">
 			<h3>Popular Restaurants</h3>
 			<br><br>
-			<p>Displaying restaurants in order from most popular to least popular:</p>
+			<p>Displaying popular restaurants with most popular being at the top:</p>
 			<br>
 		</div>
 			
