@@ -69,11 +69,14 @@
 			$priceRange = $_POST["priceRange"];
 			$matchCount = count($restaurantMatches);
 			
-			for ($i = 0; $i < $matchCount; $i++)
+			if (strcmp($priceRange, "") != 0)
 			{
-				if (strcmp($priceRange, $restaurantMatches[$i]["pricerange"]) != 0)
+				for ($i = 0; $i < $matchCount; $i++)
 				{
-					unset($restaurantMatches[$i]);
+					if (strcmp($priceRange, $restaurantMatches[$i]["pricerange"]) != 0)
+					{
+						unset($restaurantMatches[$i]);
+					}
 				}
 			}
 			
