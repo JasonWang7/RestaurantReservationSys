@@ -66,8 +66,40 @@
 			}
 			
 			$restaurantMatches = $temp;
+			$priceRange = $_POST["priceRange"];
+			$matchCount = count($restaurantMatches);
 			
-			$matchCount = count($restaurantMatches);?>
+			for ($i = 0; $i < $matchCount; $i++)
+			{
+				if (strcmp($priceRange, $restaurantMatches[$i]["pricerange"]) != 0)
+				{
+					unset($restaurantMatches[$i]);
+				}
+			}
+			
+			$index = 0;
+			$temp = array();
+			
+			for ($i = 0; $i < $matchCount; $i++)
+			{
+				if (!empty($restaurantMatches[$i]))
+				{
+					$temp[$index] = $restaurantMatches[$i];
+					$index++;
+				}
+			}
+			
+			$restaurantMatches = $temp;
+			$matchCount = count($restaurantMatches);
+			
+			/*
+			$type = $_POST["type"];
+			
+			if (strcmp($type,"New") == 0)
+			{
+				for ($i = $matchCount; $i )
+			}*/
+		?>
 			
 			<?php if($matchCount == 0) : ?>
 				<div id="message1">

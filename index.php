@@ -64,7 +64,7 @@ $(document).ready(function(){
             <div class="row">
               <div class="col-md-4">
                 <label class="control-label"><b>Price Range:</b> </label>
-                <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Enter max price">
+                <input type="text" class="form-control" name="priceRange" placeholder="$<num>-$<num>" id="card-number" placeholder="Enter max price">
               </div>
                             <div class="col-md-4">
                 <label class="control-label"><b>Rating:</b> </label>
@@ -79,7 +79,7 @@ $(document).ready(function(){
               </div>
                             <div class="col-md-4">
                 <label class="control-label"><b>Type:</b> </label>
-                  <select class="form-control">
+                  <select class="form-control" name="type">
                     <option></option>
                     <option>Popular</option>
                     <option>New</option>

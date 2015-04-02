@@ -105,7 +105,7 @@
 							<div id="priceRangeText">
 								<h4 class="white">Price Range</h4>
 							</div>
-							<input type="text" name="priceRange" size=25 maxlength=25></input>
+							<input type="text" name="priceRange" placeholder="$<num>-$<num>" size=25 maxlength=25></input>
 						</div>
 					
 						<!--hours corresponding to each day of the week-->
