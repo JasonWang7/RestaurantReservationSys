@@ -71,9 +71,20 @@
 			
 			if (strcmp($priceRange, "") != 0)
 			{
+				$priceRangeLength = strlen($priceRange);
+				
+				//parse min and max values of price range 
+				for ($i = 0; $i < $priceRangeLength)
+				{
+					if ($priceRange[$i] == "$")
+					{
+						
+					}
+				}
+				
 				for ($i = 0; $i < $matchCount; $i++)
 				{
-					if (strcmp($priceRange, $restaurantMatches[$i]["pricerange"]) != 0)
+					if ($restaurantMatches[$i]["pricerange"]) != 0)
 					{
 						unset($restaurantMatches[$i]);
 					}
