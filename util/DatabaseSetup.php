@@ -352,7 +352,7 @@ $query =  "\n"
     . "END;";
 
 $result = mysql_query($query);
-/***** triger to auto update spam count in review table AFTER UPDATE******/
+/***** trigger to auto update spam count in review table AFTER UPDATE******/
 $query =  "CREATE TRIGGER spamvote_after_update\n"
     . "AFTER Update\n"
     . " ON spamvote FOR EACH ROW\n"
