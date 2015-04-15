@@ -41,6 +41,30 @@ h4.white
 	padding: 0px 0px 0px 0px;
 }
 
+#nameText
+{
+	background-color: #3385FF;
+	padding: 0px 0px 0px 15px;
+	width: 170px;
+}
+
+#name
+{
+	padding: 80px 0px 0px 0px;
+}
+
+#priceText
+{
+	background-color: #3385FF;
+	padding: 0px 0px 0px 15px;
+	width: 170px;
+}
+
+#price
+{
+	padding: 28px 0px 35px 0px;
+}
+
 #buttons
 {
 	padding: 20px 0px 40px 0px;

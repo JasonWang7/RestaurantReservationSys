@@ -28,33 +28,24 @@
 	
 			$result = $dishObj->insertDishInfo();
 
-			//get ownerObj back for id value
-			$newOwnerObj = $ownerObj->selectOwnerInfo($_SESSION["sess_user_id"], $_POST["businessNumber"]);
 			
 			if ($result == 1)
-			{
-				$ownershipObj->setOwnerId($newOwnerObj->getOwnerId());
-				$ownershipObj->setRestaurantId($_SESSION["restaurantId"]);
-				$ownershipObj->setVerified(1);
-				
-				$result = $ownershipObj->insertRestaurantOwnership();
-				
-				if ($result == 1)
-				{
-					echo "Successfully added ownership information for the given restaurant.\n";
-					echo "Indicated ownership will be viewable upon page refresh.";
-					?>
+			{	
+				echo "Successfully added dish to the given restaurant.\n";
+				echo "New dish information will be viewable upon page refresh.";
+				?>
 					
-					<div id="Dismiss">
-						<br><br>
-						<a href="JavaScript:window.close()">Close</a>
-					</div>
-					<?php
-				}
+				<div id="Dismiss">
+					<br><br>
+					<a href="JavaScript:window.close()">Close</a>
+				</div>
+				
+				<?php
 			}
+			
 			else
 			{
-				echo "An error has occurred while adding the ownership information. \n";
+				echo "An error has occurred while adding the dish information. \n";
 				?> <br><br> <?php
 				echo "\n Ensure that all the required fields are filled out correctly.";
 			}
