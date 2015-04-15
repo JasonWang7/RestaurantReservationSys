@@ -173,7 +173,7 @@ function deletePromptPopUp(url)
                 
               $auth = new mysqldatabaserrs;
               $dbconn = $auth->connectdb();
-              $query = "select * from view_reservation_restaurant where userId=:userId";
+              $query = "select * from view_reservation_restaurant where userId=:userId ";
               try {
 
               $stmt = $dbconn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));

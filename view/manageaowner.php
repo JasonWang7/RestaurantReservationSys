@@ -192,10 +192,24 @@ function deletePromptPopUp(url)
                         $statusval='<td>'.'<span class="glyphicon glyphicon-remove-sign"></span> '. $row[13] .'</td>';
                       }
                   }
-                  $actionbtn='<div class="btn-group">
+                  date_default_timezone_set('America/Toronto'); 
+                 
+                  $dt = new DateTime();
+                  //check if datetime expired
+                
+                  if($dd>$dt ){
+                      $actionbtn='<div class="btn-group">
                               <button type="button" class="btn btn-success">Accept</button>
                               <button type="button" class="btn btn-primary">Reject</button>
                             </div>';
+                  }
+                  else if($dd<$dt ){
+                      $actionbtn='<div class="btn-group">
+                              <button type="button" class="btn btn-success disabled">Accept</button>
+                              <button type="button" class="btn btn-primary disabled">Reject</button>
+                            </div>';  
+                  }
+                 
                   $data = '<tr>' . '<td>' . $row[0] . '</td><td><a href="profile?id=' . $row[2] . '">'.$row[10].'</td><td>' .$dtime. "</td>".
                   '<td>'.$row[14].' '.$row[15] .'</td>'.
                   "<td>" . $row[3] .
