@@ -82,7 +82,6 @@ function deletePromptPopUp(url)
       <li class="active"><a href="#account" data-toggle="tab" aria-expanded="false">Account Details</a></li>
       <li class=""><a href="#reservations" data-toggle="tab" aria-expanded="true">Reservations</a></li>
     <li class=""><a href="#restaurants" data-toggle="tab" aria-expanded="true">My Restaurants</a></li>
-      <li class=""><a href="#events" data-toggle="tab" aria-expanded="true">Likes</a></li>
       <li class=""><a href="#Reviews" data-toggle="tab" aria-expanded="true">Reviews</a></li>
       <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Reward</a></li>
       <li class=""><a href="#history" data-toggle="tab" aria-expanded="true">History</a></li>
@@ -173,7 +172,7 @@ function deletePromptPopUp(url)
                 
               $auth = new mysqldatabaserrs;
               $dbconn = $auth->connectdb();
-              $query = "select * from view_reservation_restaurant where userId=:userId ";
+              $query = "select * from view_reservation_restaurant where userId=:userId order by dinningtime desc";
               try {
 
               $stmt = $dbconn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
