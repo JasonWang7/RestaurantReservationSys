@@ -141,11 +141,6 @@ class signatureDish
 		$this->dishName = $param;	
 	}
 	
-	function setRestaurantId($param)
-	{
-		$this->restaurantId = $param;	
-	}
-	
 	function setPrice($param)
 	{
 		$this->price = $param;	
