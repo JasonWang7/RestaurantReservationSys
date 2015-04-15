@@ -170,13 +170,92 @@ function ownerInfoPopup(url)
     <?php include("reviewstab.php"); ?>
     </div>
   <div class="tab-pane fade" id="events">
-    <p>Events here</p>
+    <div class="row" style="padding:10px;">
+      <div class="col-md-2" style="floating:right;">
+        <p><h4>Here</h4></p>      
+      </div>
+      <div class="col-md-2">
+        <p><h4>Event Name:</h4> Grand Opening</p>
+      </div>
+      <div class="col-md-2">
+        <p><h4>Time:</h4> 10PM - 11PM</p>
+      </div>
+      <div class="col-md-4">
+        <p><h4>Description:</h4> $14</p>
+      </div>
+      <div class="col-md-2">
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#eventmodal">Subscribe</a>
+        <hr>
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#eventmodal">Unsubscribe</a>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-10">
+      </div>
+      <div class="col-md-2">
+        <a style="position:relative; floating:right;" href="#" class="btn btn-primary" data-toggle="modal" data-target="#eventmodal">Add Event</a>
+      </div>
+    </div>
   </div>
   <div class="tab-pane fade" id="about">
     <p><?php echo $about ?>"</p>
   </div>
   <div class="tab-pane fade" id="rateadish">
-    <p>RAte here</p>
+    <div class="row" style="padding:10px;">
+      <div class="col-md-2">
+        <p><h4>Dish Name:</h4> Beef Stew</p>
+      </div>
+      <div class="col-md-2">
+        <p><h4>Rating:</h4> 5 / 5</p>
+      </div>
+      <div class="col-md-5">
+        <p><h4>Description:</h4> $14</p>
+      </div>
+      <div class="col-md-3" style="floating:right;">
+        <p><h4>Rate This Dish: [1] [2] [3] [4] [5]</h4></p>      
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-10">
+      </div>
+      <div class="col-md-2">
+        <a style="position:relative; floating:right;" href="#" class="btn btn-primary" data-toggle="modal" data-target="#addfoodmodal">Add Food</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="addfoodmodal" tabindex="-1" role="dialog" aria-labelledby="addfoodmodal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="label">Add Food at <?php echo $name; ?></h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <form id="booktable" name="booktable" ACTION="verifyreservation" METHOD=post>
+                            
+          <div class="col-md-12">
+            <h3>Dish Name:</h3><input type="text" name="phone">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Description:</h3>
+            <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+      </form>
+    </div>
   </div>
 </div>
 
@@ -249,6 +328,7 @@ function ownerInfoPopup(url)
   </div>
 </div>
 <?php else : ?>
+
 <div class="modal fade" id="bookmodal" tabindex="-1" role="dialog" aria-labelledby="bookmodal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -344,5 +424,86 @@ function ownerInfoPopup(url)
     </div>
   </div>
 </div>
+
+<?php if (is_null($ownershipObj->getOwnerId()) == FALSE) : ?>
+<div class="modal fade" id="eventmodal" tabindex="-1" role="dialog" aria-labelledby="eventmodal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="label">Event at <?php echo $name; ?></h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <form id="booktable" name="booktable" ACTION="verifyreservation" METHOD=post>
+                            
+          <div class="col-md-4">
+            <h3>Date: </h3><input  type="text" placeholder="dd/mm/yyyy" name="datetime" id="datepicker1">
+            <!-- Load jQuery and bootstrap datepicker scripts -->
+          
+            <script src="http://localhost/RRS/css/bootstrap/js/bootstrap-datepicker.js"></script>
+            <script type="text/javascript">
+                // When the document is ready
+                $(document).ready(function () {
+                    
+                    $('#datepicker1').datepicker({
+                        format: "dd/mm/yyyy"
+                    });  
+                
+                });
+            </script>
+          </div>
+          <div class="col-md-4">
+            <h3>Start/End Time:</h3><input type="text" placeholder="hh:mm" name="dinningtime">
+             - <input type="text" placeholder="hh:mm" name="dinningtime">
+            
+          </div>
+          <div class="col-md-4">
+            <h3>Picture: </h3> <input type="file" name="img">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Description:</h3>
+            <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Your Phone Number:</h3><input type="text" name="phone">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Your Email Address:</h3>    <input type="text" name="email">  
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<?php else : ?>
+<div class="modal fade" id="bookmodal" tabindex="-1" role="dialog" aria-labelledby="bookmodal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="label">Booking Denied for <?php echo $name; ?></h4>
+      </div>
+      <div class="modal-body">
+      <h4>Cannot book a table at a restaurant that does not have a verified ownership</h4>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+  </div>
+  </div>
+</div>
+<?php endif; ?> 
 
 <?php include("include/footer.php"); ?>
