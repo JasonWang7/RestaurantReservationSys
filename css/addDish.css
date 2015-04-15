@@ -1,0 +1,54 @@
+/******************************************************************************************
+* File name: addDish.css
+* Purpose: Provides styles to be applied to sections in "addDish.php"
+* Author: Rhys Hall
+* Group Name: Centaur Logic
+* Created: April 11, 2015
+******************************************************************************************/
+
+h2.white
+{
+	color: white;
+}
+
+h4.white
+{
+	color: white;
+}
+
+#pageName
+{
+	background-color: #3385FF;
+	padding: 6px 0px 0px 185px;
+}
+
+#content
+{
+	padding: 0px 0px 0px 25px; 
+}
+
+#instructions
+{
+	color: white;
+	padding: 15px 0px 0px 0px;
+}
+
+#instructionsText
+{
+	background-color: #3385FF;
+	font-size: 105%;
+	width: 500px;
+	padding: 0px 0px 0px 0px;
+}
+
+#buttons
+{
+	padding: 20px 0px 40px 0px;
+	color: black;
+}
+
+#submitButton
+{
+	width: 75px;
+	height: 28px;
+}

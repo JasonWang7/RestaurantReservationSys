@@ -310,7 +310,7 @@ function deletePromptPopUp(url)
           }
         ?>
                 <th></th>
-                <th></th>
+                <th>Add Dish</th>
                 <th></th>
                 <th>Edit</th>
                 <th>Remove</th>
@@ -324,7 +324,7 @@ function deletePromptPopUp(url)
           { 
             $deleteButton = "<a class=\"btn btn-primary\" href=\"JavaScript:deletePromptPopUp('/RRS/deletePrompt?id=" . $restaurantIdList[$i] . "');\">";
             
-            echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td></td><td></td><td><a class="btn btn-info" href="/RRS/changeRestaurant?id=' . $restaurantIdList[$i] . '"' .
+            echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td><a class="btn btn-danger" href="/RRS/addDish?id='. $restaurantIdList[$i] . '"' ."</td><td></td><td><a class="btn btn-info" href="/RRS/changeRestaurant?id=' . $restaurantIdList[$i] . '"' .
             "</td><td>" . $deleteButton . "</td></tr>";
 
             $i = $i + 1;
