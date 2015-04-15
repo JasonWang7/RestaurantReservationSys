@@ -167,6 +167,7 @@ $result = mysql_query($query);
 
 $query = "DROP TABLES IF EXISTS reservation";
 $result = mysql_query($query);
+/*****status:Reviewing, Rejected, Accapted */
 $query = "CREATE TABLE `reservation` (
     `restaurantid` int(10) unsigned NOT NULL,
     `reservationid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -177,6 +178,8 @@ $query = "CREATE TABLE `reservation` (
     `dinningtime` datetime not null,
     `email` text,
     `phone` varchar(11)  not null,
+    `status` VARCHAR(20) NOT NULL DEFAULT 'Reviewing',
+    `reason` VARCHAR(2000) NOT NULL DEFAULT '',
     `updatetime`  timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
     FOREIGN KEY (userId) REFERENCES user (id) ON DELETE CASCADE,
     FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid) ON DELETE CASCADE,
@@ -385,7 +388,7 @@ $query = "CREATE TABLE `subscription` (
 $result = mysql_query($query);
 
 //create reservation restaurant view
-$query =  "CREATE OR REPLACE VIEW view_reservation_restaurant AS (select reservation.reservationid,reservation.userId,restaurant.restaurantid,reservation.numguest,reservation.note,reservation.invitationList,reservation.dinningtime,reservation.email,reservation.phone as userphone, restaurant.restaurantname,restaurant.address,restaurant.phone from restaurant inner join reservation on restaurant.restaurantid =reservation.restaurantid );";
+$query =  "CREATE OR REPLACE VIEW view_reservation_restaurant AS (select reservation.reservationid,reservation.userId,restaurant.restaurantid,reservation.numguest,reservation.note,reservation.reason,reservation.invitationList,reservation.dinningtime,reservation.email,reservation.phone as userphone, restaurant.restaurantname,restaurant.address,restaurant.phone from restaurant inner join reservation on restaurant.restaurantid =reservation.restaurantid );";
 $result = mysql_query($query);
 
 $query ="CREATE OR REPLACE VIEW view_review_user_restaurant AS (select `id`, `UserName` as reviewname, `reviewid`,review.restaurantid,`comment`,`servicerating`,`foodrating`,`ambiencerating`,`overallexp`,`votes`, `reviewtime`,`spam`,restaurant.restaurantname,restaurant.address,restaurant.type,restaurant.email, restaurant.phone,restaurant.features,restaurant.about,restaurant.likes,restaurant.profilepicture, restaurant.verified from review inner join user on user.id =review.userId inner join restaurant on restaurant.restaurantid = review.restaurantid )";

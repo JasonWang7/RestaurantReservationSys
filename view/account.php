@@ -94,7 +94,7 @@ function deletePromptPopUp(url)
           $ownertempobjList  = $ownertempobj ->isOwnersInfo($_SESSION['sess_user_id']);
 
           if($ownertempobjList>0){ 
-              echo '<li class=""><a href="manageaowner">Owner</a></li>';
+              echo '<li class=""><a href="manageowner">Owner</a></li>';
           }           
         }
 
@@ -153,6 +153,7 @@ function deletePromptPopUp(url)
       </div>
       <div class="tab-pane fade  <?php if(isset($_GET['reservation'])){ echo 'active in'; } ?> " id="reservations">
         <div class="row">
+            <p>Note: Only reservation that accepted by the restaurant will counted as a successful booking. See 'status' of the reservation under the table.</p>
             <table class="table table-striped table-hover ">
             <thead>
               <tr>
@@ -160,6 +161,8 @@ function deletePromptPopUp(url)
                 <th>Restaurant</th>
                 <th>Time</th>
                 <th># Guests</th>
+                <th>Status</th>
+                <th>Reason</th>
                 <th>Change/View</th>
                 <th>Print</th>
                 <th>Delete</th>
@@ -180,69 +183,86 @@ function deletePromptPopUp(url)
               while($row = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT))
               {
                
-                $dd = date_create_from_format('Y-m-d H:i:s', $row[6]);
-                $dtime = date_format($dd,'d/m/Y H:i:s');
-               
-                $data = '<tr>' . '<td>' . $row[0] . '</td><td><a href="profile?id=' . $row[2] . '">'.$row[9].'</td><td>' .$dtime. "</td><td>" . $row[3] .
-                '</td><td><a class="btn btn-default" href="#"  data-toggle="modal" data-target="#viewreservationmodal'.$row[0].'">View</a></td>'. '<td><a class="btn btn-default" href="print?phone='.$row[11].'&time='.$dtime.'&guests='.$row[3].'&name='.$row[9].'&id='.$row[0].'">Print</a></td>' .'<td><a class="btn btn-primary" href="cancel?id='.$row[0].'" >Delete</a></td>'.'</tr>';
-                echo $data . '</a>';
+                  $dd = date_create_from_format('Y-m-d H:i:s', $row[7]);
+                  $dtime = date_format($dd,'d/m/Y H:i:s');
+                  if($row[13]=="Accepted"){
+                      $printbtn='<td><a class="btn btn-success" href="print?phone='.$row[12].'&time='.$dtime.'&guests='.$row[3].'&name='.$row[10].
+                      '&id='.$row[0].'">Print</a></td>' ;
+                      $statusval='<td>'.'<span class="glyphicon glyphicon-ok"></span> '. $row[13] .'</td>';
+                  }
+                  else{
+                      $printbtn='<td><a class="btn btn-default disabled" >Print</a></td>';
+                      if($row[13]=="Reviewing"){
+                        $statusval='<td>'.'<span class="glyphicon glyphicon-eye-open"></span> '. $row[13] .'</td>';
+                      }
+                      else{
+                        $statusval='<td>'.'<span class="glyphicon glyphicon-remove-sign"></span> '. $row[13] .'</td>';
+                      }
+                  }
+                  $data = '<tr>' . '<td>' . $row[0] . '</td><td><a href="profile?id=' . $row[2] . '">'.$row[10].'</td><td>' .$dtime. "</td><td>" . $row[3] .
+                  '</td>'.$statusval.'<td>'.$row[5] .'</td>'.
+                  '<td><a class="btn btn-info" href="#"  data-toggle="modal" data-target="#viewreservationmodal'.$row[0].'">View</a></td>'.
+                  $printbtn.
 
-                echo '
-                <div class="modal fade" id="viewreservationmodal'.$row[0].'" tabindex="-1" role="dialog" aria-labelledby="viewreservationmodal'.$row[0].'" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id="label">Reservation at ' . $row[9] .'</h4>
+                  '<td><a class="btn btn-primary" href="cancel?id='.$row[0].'" >Delete</a></td>'.'</tr>';
+                  echo $data . '</a>';
+
+                  echo '
+                  <div class="modal fade" id="viewreservationmodal'.$row[0].'" tabindex="-1" role="dialog" aria-labelledby="viewreservationmodal'.$row[0].'" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="label">Reservation at ' . $row[10] .'</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <form id="booktable" name="booktable" ACTION="modifyreservation" METHOD=post>
+                                            
+                          <div class="col-md-4">
+                            <h3>Date: </h3><input  type="text" value="'. explode(" ", $dtime)[0] .'" name="datetime" id="datepicker1">
+                          </div>
+                          <div class="col-md-4">
+                            <h3>Time:</h3><input type="text" value="'.explode(" ", $dtime)[1] .'" name="dinningtime">
+                            
+                          </div>
+                          <div class="col-md-4">
+                            <h3># of Guests: </h3><input type="text" name="numguest" value="'. $row[3].'">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h3>Special Request / Note:</h3>
+                            <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes.">'.$row[4].'</textarea>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h3>Your Phone Number:</h3><input type="text" name="phone" value="'.$row[9].'">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h3>Your Email Address:</h3>    <input type="text" name="email" value="'.$row[8].'" >  
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h3>Enter your email addresses for your guests. Please separate them with the character ";" (no quotes)</h3>
+                            <textarea name="invitationList" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes.">'.$row[6].'</textarea>
+                            <input type="hidden" name="reservationid" value="'.$row[0].'" >
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                      </form>
                     </div>
-                    <div class="modal-body">
-                      <div class="row">
-                        <form id="booktable" name="booktable" ACTION="modifyreservation" METHOD=post>
-                                          
-                        <div class="col-md-4">
-                          <h3>Date: </h3><input  type="text" value="'. explode(" ", $dtime)[0] .'" name="datetime" id="datepicker1">
-                        </div>
-                        <div class="col-md-4">
-                          <h3>Time:</h3><input type="text" value="'.explode(" ", $dtime)[1] .'" name="dinningtime">
-                          
-                        </div>
-                        <div class="col-md-4">
-                          <h3># of Guests: </h3><input type="text" name="numguest" value="'. $row[3].'">
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <h3>Special Request / Note:</h3>
-                          <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes.">'.$row[4].'</textarea>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <h3>Your Phone Number:</h3><input type="text" name="phone" value="'.$row[11].'">
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <h3>Your Email Address:</h3>    <input type="text" name="email" value="'.$row[7].'" >  
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <h3>Enter your email addresses for your guests. Please separate them with the character ";" (no quotes)</h3>
-                          <textarea name="invitationList" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes.">'.$row[5].'</textarea>
-                          <input type="hidden" name="reservationid" value="'.$row[0].'" >
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                    </form>
                   </div>
                 </div>
-              </div>
-                ';
+                  ';
               }
               $stmt = null;
 
