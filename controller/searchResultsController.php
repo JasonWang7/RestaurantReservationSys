@@ -71,9 +71,85 @@
 			
 			if (strcmp($priceRange, "") != 0)
 			{
+				$priceRangeLength = strlen($priceRange);
+				
+				//parse min and max values of price range 
+				for ($i = 0; $i < $priceRangeLength; $i++)
+				{
+					if ($priceRange[$i] == '$')
+					{
+						$i++;
+						$min = "";
+						
+						break;
+					}
+				}
+				
+				while ((is_numeric(strval($priceRange[$i])) == 1) && ($i < $priceRangeLength))
+				{
+					$min = $min . $priceRange[$i];
+					$i++;
+				}
+						
+				for ($j = $i; $j < $priceRangeLength; $j++)
+				{
+					if ($priceRange[$j] == '$')
+					{
+						$j++;
+						$max = "";
+						
+						break;
+					}
+				}
+												
+				while ((is_numeric($priceRange[$j]) == TRUE) && ($j < $priceRangeLength))
+				{
+					$max = $max . strval($priceRange[$j]);
+					$j++;
+				}
+				
+				//select restaurants with matching features
 				for ($i = 0; $i < $matchCount; $i++)
 				{
-					if (strcmp($priceRange, $restaurantMatches[$i]["pricerange"]) != 0)
+					$matchPriceRange = $restaurantMatches[$i]["pricerange"];
+					$priceRangeLength = strlen($matchPriceRange);
+				
+					//parse min and max values of price range 
+					for ($j = 0; $j < $priceRangeLength; $j++)
+					{
+						if ($matchPriceRange[$j] == '$')
+						{
+							$j++;
+							$matchMin = "";
+						
+							break;
+						}
+					}
+					
+					while ((is_numeric(strval($matchPriceRange[$j])) == 1) && ($j < $priceRangeLength))
+					{
+						$matchMin = $matchMin . $matchPriceRange[$j];
+						$j++;
+					}
+						
+					for ($j = $j; $j < $priceRangeLength; $j++)
+					{
+						if ($priceRange[$j] == '$')
+						{
+							$j++;
+							$matchMax = "";
+						
+							break;
+						}
+					}
+												
+					while ((is_numeric($priceRange[$j]) == TRUE) && ($j < $priceRangeLength))
+					{
+						$matchMax = $matchMax . strval($matchPriceRange[$j]);
+						$j++;
+					}
+					
+					if (($matchMin < $min) || ($matchMax > $max))
 					{
 						unset($restaurantMatches[$i]);
 					}
@@ -95,13 +171,7 @@
 			$restaurantMatches = $temp;
 			$matchCount = count($restaurantMatches);
 			
-			/*
-			$type = $_POST["type"];
 			
-			if (strcmp($type,"New") == 0)
-			{
-				for ($i = $matchCount; $i )
-			}*/
 		?>
 			
 			<?php if($matchCount == 0) : ?>

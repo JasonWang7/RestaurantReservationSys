@@ -20,6 +20,7 @@ include($root ."model/businessHour.php");
     $stmt ->bindParam(":profileid",$_GET['id']);
     $stmt->execute();
     
+	//retrieve restaurant info from database to display
     while($row = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT))
     {
 	   $id = $row[0];
@@ -27,7 +28,7 @@ include($root ."model/businessHour.php");
       $phone = $row[5];
       $features = $row[6];
       $price = $row[7];
-      //$_POST['restaurantid'] = $_GET['id'];
+	  $about = $row[8];
     }
     $stmt = null;
 
@@ -159,25 +160,12 @@ function ownerInfoPopup(url)
 </div>
 <hr>
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#menu" data-toggle="tab" aria-expanded="false">Menu</a></li>
   <li class=""><a href="#reviews" data-toggle="tab" aria-expanded="true">Reviews</a></li>
   <li class=""><a href="#events" data-toggle="tab" aria-expanded="true">Events</a></li>
   <li class=""><a href="#about" data-toggle="tab" aria-expanded="true">About</a></li>
   <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Rate A Dish</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
-  <div class="tab-pane fade active in" id="menu">
-    <div class="row">
-    <div class="col-md-9">
-      <h3>Photo Menu:</h3>
-        <div class="row">
-          <div class="col-md-2">IMAGE HERE</div>
-          <div class="col-md-2">IMAGE HERE</div>
-          <div class="col-md-2">IMAGE HERE</div>
-        </div>
-    </div>
-</div>  
-  </div>
     <div class="tab-pane fade" id="reviews">
     <?php include("reviewstab.php"); ?>
     </div>
@@ -185,7 +173,7 @@ function ownerInfoPopup(url)
     <p>Events here</p>
   </div>
   <div class="tab-pane fade" id="about">
-    <p>About here</p>
+    <p><?php echo $about ?>"</p>
   </div>
   <div class="tab-pane fade" id="rateadish">
     <p>RAte here</p>
