@@ -176,7 +176,28 @@ function ownerInfoPopup(url)
     <p><?php echo $about ?>"</p>
   </div>
   <div class="tab-pane fade" id="rateadish">
-    <p>RAte here</p>
+    <div class="row" style="padding:10px;">
+      <div class="col-md-2">
+        <p><h4>Dish Name:</h4> Beef Stew</p>
+      </div>
+      <div class="col-md-2">
+        <p><h4>Rating:</h4> 5 / 5</p>
+      </div>
+      <div class="col-md-5">
+        <p><h4>Description:</h4> $14</p>
+      </div>
+      <div class="col-md-3" style="floating:right;">
+        <p><h4>Rate This Dish: [1] [2] [3] [4] [5]</h4></p>      
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-10">
+      </div>
+      <div class="col-md-2">
+        <a style="position:relative; floating:right;" href="#" class="btn btn-primary" data-toggle="modal" data-target="#add">Add a Dish</a>
+      </div>
+    </div>
   </div>
 </div>
 
