@@ -19,7 +19,7 @@ class transaction{
 	private $email; //restaurant email
 	private $phone; //restaurant phone
 
-	function insertTransction(){
+	function insertTransction($amountParam,$descriptionParam){
 
 	}
 	//get list of transaction by user id

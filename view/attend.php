@@ -1,8 +1,6 @@
 <?php 
 	/******Author: Jinhai Wang*******/
-	$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 	include("include/header.php");
-	include_once($root.'model/attendance.php');
 	//check if user login, if user is from owner link
 	if(isset($_GET["id"])&& isset($_SESSION['sess_username'])&& strpos($_SERVER['HTTP_REFERER'],'manageaowner') !== false){
 		ob_start();
@@ -16,8 +14,7 @@
 		$reservationObj = new Reservation;
 		$isChanged = $reservationObj->acceptReservation($idParam,$reasonParam);
 		//update to attendance table
-		$
-		retriveAttendanceByReservationId
+
 
 		//if($isChanged){
 			echo '<div class="row">

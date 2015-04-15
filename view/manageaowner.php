@@ -165,11 +165,11 @@ function deletePromptPopUp(url)
                   
                 $auth = new mysqldatabaserrs;
                 $dbconn = $auth->connectdb();
-                $query = "select * from view_reservation_restaurant where userId=:userId order by dinningtime desc";
+                $query = "select * from view_reservation_restaurant where userownwerid=:userownwerid order by dinningtime desc";
                 try {
 
                 $stmt = $dbconn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-                $stmt->bindValue(':userId',$_SESSION['sess_user_id']);
+                $stmt->bindValue(':userownwerid',$_SESSION['sess_user_id']);
                 $stmt->execute();
                 
                 while($row = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT))
