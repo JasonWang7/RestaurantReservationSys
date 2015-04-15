@@ -184,9 +184,9 @@ function ownerInfoPopup(url)
         <p><h4>Description:</h4> $14</p>
       </div>
       <div class="col-md-2">
-        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#eventmodal">Subscribe</a>
+        <a href="#">Subscribe</a> / <a href="#">Unsubscribe</a>
         <hr>
-        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#eventmodal">Unsubscribe</a>
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modifyeventmodal">Modify</a>
       </div>
     </div>
     <hr>
@@ -421,6 +421,68 @@ function ownerInfoPopup(url)
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
      </form> 
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modifyeventmodal" tabindex="-1" role="dialog" aria-labelledby="modifyeventmodal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="label">Modify Event at <?php echo $name; ?></h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <form id="booktable" name="booktable" ACTION="verifyreservation" METHOD=post>
+                            
+          <div class="col-md-4">
+            <h3>Date: </h3><input  type="text" placeholder="dd/mm/yyyy" name="datetime" id="datepicker1">
+            <!-- Load jQuery and bootstrap datepicker scripts -->
+          
+            <script src="http://localhost/RRS/css/bootstrap/js/bootstrap-datepicker.js"></script>
+            <script type="text/javascript">
+                // When the document is ready
+                $(document).ready(function () {
+                    
+                    $('#datepicker1').datepicker({
+                        format: "dd/mm/yyyy"
+                    });  
+                
+                });
+            </script>
+          </div>
+          <div class="col-md-4">
+            <h3>Start/End Time:</h3><input type="text" placeholder="hh:mm" name="dinningtime">
+             - <input type="text" placeholder="hh:mm" name="dinningtime">
+            
+          </div>
+          <div class="col-md-4">
+            <h3>Picture: </h3> <input type="file" name="img">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Description:</h3>
+            <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Your Phone Number:</h3><input type="text" name="phone">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Your Email Address:</h3>    <input type="text" name="email">  
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+      </form>
     </div>
   </div>
 </div>
