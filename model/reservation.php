@@ -217,16 +217,16 @@ class Reservation{
   * @param reservation id
   * @return true or false
   */
-  function acceptReservation($idParam)
+  function acceptReservation($idParam,$reasonParam)
   {
     $affectedRowCount=0;
     $auth = new mysqldatabaserrs;
     $dbconn = $auth->connectdb();
-    $query = 'update reservation set status:="Accepted" where reservationid=:reservationid;';
+    $query = 'update reservation set status:="Accepted",reason=:reason where reservationid=:reservationid;';
     $stmt = $dbconn->prepare($query);
     /*bind values to escape*/
     $stmt->bindValue(':reservationid', $idParam);
-
+    $stmt->bindValue(':reason', $reasonParam);
     $result = $stmt->execute();
     $affectedRowCount = $stmt->rowCount();
     $auth->closeconnection($dbconn);
