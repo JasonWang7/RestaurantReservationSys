@@ -9,11 +9,13 @@
 		include($root.'model/user.php');
 		include($root.'model/reservation.php'); 
 		$idParam = $_GET["id"];
+		$reasonParam='';
+		
 		$reservationObj = new Reservation;
-		$isChanged = $reservationObj->acceptReservation($idParam);
+		$isChanged = $reservationObj->acceptReservation($idParam,$reasonParam);
 		//update to attendance table
 
-		
+
 		//if($isChanged){
 			echo '<div class="row">
 			  <div class="col-12">  

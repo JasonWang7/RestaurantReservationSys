@@ -113,6 +113,38 @@ class user{
 		return $userObj;
 	}
 
+	function selectUserInfoByUserId($idParam){
+		$userObj = new user;
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+		$query = 'select username,id as userid,email as useremail,status, firstname,lastname,passwordHash as password,
+					phone,verified,city,role,rewardpoint,likes,address from user where id=:idParam;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindValue(':idParam',$idParam);				
+
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		$userObj = new user;
+		$userObj->setUserName($result['username']);
+		$userObj->setUserId($result['userid']);
+		$userObj->setUserEmail($result['useremail']);
+		$userObj->setStatus($result['status']);
+		$userObj->setFirstName($result['firstname']);
+		$userObj->setLastName($result['lastname']);
+		$userObj->setPassword($result['password']);
+		$userObj->setPhone($result['phone']);
+		$userObj->setVerified($result['verified']);
+		$userObj->setCity($result['city']);
+		$userObj->setRole($result['role']);
+		$userObj->setAddress($result['address']);
+		$userObj->setRewardpoint($result['rewardpoint']);
+		$userObj->setLikes($result['likes']);
+		$auth->closeconnection($dbconn);
+		return $userObj;
+	}
+
 	/**********insert user data to datbase********/
 
 	/**

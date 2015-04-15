@@ -82,7 +82,7 @@ function deletePromptPopUp(url)
     <ul class="nav nav-tabs">
       <li class="active"><a href="#restaurants" data-toggle="tab" aria-expanded="true">My Restaurants</a></li>
       <li class=""><a href="#reservations" data-toggle="tab" aria-expanded="true">Approve Reservation</a></li>   
-      <li class=""><a href="#attendance" data-toggle="tab" aria-expanded="false">Attendance</a></li>
+      <li class=""><a href="#attendances" data-toggle="tab" aria-expanded="true">Attendance</a></li>
        <li class=""><a href="#transaction" data-toggle="tab" aria-expanded="true">Transaction</a></li>
       <li class=""><a href="#event" data-toggle="tab" aria-expanded="true">Event</a></li>
     </ul>
@@ -143,9 +143,7 @@ function deletePromptPopUp(url)
               </table> 
               </div>
         </div>
-        <div class="tab-pane fade" id="attendance">
-          
-        </div>
+        
         <div class="tab-pane fade  <?php if(isset($_GET['reservation'])){ echo 'active in'; } ?> " id="reservations">
           <div class="row">
               <table class="table table-striped table-hover ">
@@ -333,13 +331,17 @@ function deletePromptPopUp(url)
             </table> 
             </div>
         </div>          
-        <div class="tab-pane fade" id="event">
-          <p>Events here</p>
-        </div>
+        
+        <div class="tab-pane fade" id="attendances">
+          <?php include($root."view/ownerattendancetab.php"); ?>
+        </div> 
         <div class="tab-pane fade" id="transaction">
-          <?php include("ownertransactiontab.php") ?>
-        </div>               
-                    
+          <?php include("ownertransactiontab.php"); ?>
+        </div>    
+         <div class="tab-pane fade" id="event">
+          <p>Events here</p>
+        </div>         
+              
                       
     </div>
   </div>
