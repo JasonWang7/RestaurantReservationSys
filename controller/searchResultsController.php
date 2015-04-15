@@ -131,10 +131,12 @@
 						$matchMin = $matchMin . $matchPriceRange[$j];
 						$j++;
 					}
+	
+					$upperBound = $j;
 						
-					for ($j = $j; $j < $priceRangeLength; $j++)
+					for ($j = $upperBound; $j < $priceRangeLength; $j++)
 					{
-						if ($priceRange[$j] == '$')
+						if ($matchPriceRange[$j] == '$')
 						{
 							$j++;
 							$matchMax = "";
@@ -143,7 +145,7 @@
 						}
 					}
 												
-					while ((is_numeric($priceRange[$j]) == TRUE) && ($j < $priceRangeLength))
+					while ((is_numeric(strval($matchPriceRange[$j])) == TRUE) && ($j < $priceRangeLength))
 					{
 						$matchMax = $matchMax . strval($matchPriceRange[$j]);
 						$j++;

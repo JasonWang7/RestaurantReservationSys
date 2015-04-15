@@ -111,7 +111,7 @@ $(document).ready(function(){
   <thead>
     <tr>
       <th>#</th>
-      <th>Cusine</th>
+      <th>Cuisine</th>
       <th>Features</th>
       <th>Cost</th>
     </tr>

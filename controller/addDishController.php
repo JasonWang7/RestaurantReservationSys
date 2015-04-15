@@ -21,11 +21,12 @@
 			session_start();
 			$dishObj = new signatureDish;
 
-			$dishObj->setUserId($_SESSION["sess_user_id"]);
-			$ownerObj->setBusinessNumber($_POST["businessNumber"]);
-			$ownerObj->setBusinessPhone($_POST["businessPhone"]);
+			$dishObj->setRestaurantId($_GET["id"]);
+			$dishObj->setDishName($_POST["name"]);
+			$dishObj->setPrice($_POST["price"]);
+			$dishObj->setRating("");
 	
-			$result = $ownerObj->insertOwner();
+			$result = $dishObj->insertDishInfo();
 
 			//get ownerObj back for id value
 			$newOwnerObj = $ownerObj->selectOwnerInfo($_SESSION["sess_user_id"], $_POST["businessNumber"]);

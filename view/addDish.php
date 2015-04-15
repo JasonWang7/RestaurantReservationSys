@@ -12,7 +12,7 @@
 <html>
 
 	<head>
-		<title>Add Restaurant</title>
+		<title>Add Dish</title>
 		
 		<link rel="stylesheet" type="text/css" href="/RRS/css/addDish.css">
 	</head>
@@ -40,11 +40,23 @@
 			
 			<!--main content of page-->
 			<div id="content" style="background-color:#fff;">
-				<form action="/RRS/controller/addDishController.php" method="post">
+				<form action="/RRS/addDishController?id=<?php echo $_GET["id"] ?>" method="post">
 				
 					<!--all components of page where user enters data-->
 					<div id="input">
+						<div id="name">
+							<div id="nameText">
+								<h4 class="white">Name</h4>
+							</div>
+							<input type="text" name="name" size=35 maxlength=35>
+						</div>
 						
+						<div id="price">
+							<div id="priceText">
+								<h4 class="white">Price</h4>
+							</div>
+							<input type="text" name="pricee" size=35 maxlength=35>
+						</div>
 					</div>
 					
 					<!--buttons that user clicks on to submit, cancel or preview info-->

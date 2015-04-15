@@ -75,8 +75,8 @@ class businessHour
 		}
 		else
 		{
-			//$arr = $stmt->errorInfo();
-			//print_r($arr);
+			$arr = $stmt->errorInfo();
+			print_r($arr);
 			
 			return 0;
 		}
