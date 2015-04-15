@@ -186,7 +186,8 @@ function ownerInfoPopup(url)
       <div class="col-md-2">
         <a href="#">Subscribe</a> / <a href="#">Unsubscribe</a>
         <hr>
-        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modifyeventmodal">Modify</a>
+        Implement with this. For backend - http://stackoverflow.com/questions/10488831/link-to-add-to-google-calendar
+        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Your+Event+Name&dates=20140127T224000Z/20140320T221500Z&details=For+details,+link+here:+http://www.example.com&location=Waldorf+Astoria,+301+Park+Ave+,+New+York,+NY+10022&sf=true&output=xml">Add Calendar</a><hr><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modifyeventmodal">Modify</a>
       </div>
     </div>
     <hr>
