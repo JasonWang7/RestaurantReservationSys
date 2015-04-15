@@ -15,6 +15,8 @@ class Reservation{
   private $dinningtime;
   private $email;
   private $phone;
+  private $status;
+  private $reason;
 
 
   /**
@@ -185,6 +187,58 @@ class Reservation{
 
     return $result;
   }
+
+
+  /**
+  * reject reservation 
+  * @param reservation id
+  * @param reject reason
+  * @return true or false
+  */
+  function rejectReservation($idParam,$reasonParam)
+  {
+   
+    $auth = new mysqldatabaserrs;
+    $dbconn = $auth->connectdb();
+   
+    $query = 'update reservation set status:="Rejected",reason=:reason where reservationid=:reservationid;';
+    $stmt = $dbconn->prepare($query);
+    /*bind values to escape*/
+    $stmt->bindValue(':reservationid', $idParam);
+    $stmt->bindValue(':reason', $reasonParam);
+    $result = $stmt->execute();
+    $auth->closeconnection($dbconn);
+
+    return $result;
+  }
+
+  /**
+  * accept reservation 
+  * @param reservation id
+  * @return true or false
+  */
+  function acceptReservation($idParam)
+  {
+    $affectedRowCount=0;
+    $auth = new mysqldatabaserrs;
+    $dbconn = $auth->connectdb();
+    $query = 'update reservation set status:="Accepted" where reservationid=:reservationid;';
+    $stmt = $dbconn->prepare($query);
+    /*bind values to escape*/
+    $stmt->bindValue(':reservationid', $idParam);
+
+    $result = $stmt->execute();
+    $affectedRowCount = $stmt->rowCount();
+    $auth->closeconnection($dbconn);
+    
+    if($affectedRowCount>0){
+      return true;
+    }
+    else{
+      return false;
+    }
+    return $result;
+  }
   /*********************getter ********************/
   function getUserId(){
     return $this->userId;   
@@ -213,7 +267,12 @@ class Reservation{
   function getPhone(){
     return $this->phone;   
   }
-
+  function getStatus(){
+    return $this->status;   
+  }
+  function getReason(){
+    return $this->reason;   
+  }
   /****************************setter*****************************/
   function setUserId($param){
     $this->userId = $param;   
@@ -242,6 +301,11 @@ class Reservation{
   function sePhonet($param){
     $this->phone = $param;   
   }
-
+  function setStatus($param){
+    $this->status = $param;     
+  }
+  function setReason($param){
+    $this->reason = $param;    
+  }
 }
 ?>

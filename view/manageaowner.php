@@ -199,14 +199,14 @@ function deletePromptPopUp(url)
                 
                   if($dd>$dt ){
                       $actionbtn='<div class="btn-group">
-                              <button type="button" class="btn btn-success">Accept</button>
-                              <button type="button" class="btn btn-primary">Reject</button>
+                              <a class="btn btn-success" href="acceptreservation?id='.$row[0].'" >Accept</a>
+                              <button type="button" class="btn btn-primary" href="#"  data-toggle="modal" data-target="#approvereservationmodal'.$row[0].'">Reject</button>
                             </div>';
                   }
                   else if($dd<$dt ){
                       $actionbtn='<div class="btn-group">
-                              <button type="button" class="btn btn-success disabled">Accept</button>
-                              <button type="button" class="btn btn-primary disabled">Reject</button>
+                              <button type="button" class="btn btn-success disabled" href="#" >Accept</button>
+                              <button type="button" class="btn btn-primary disabled" href="#"  data-toggle="modal" data-target="#approvereservationmodal'.$row[0].'">Reject</button>
                             </div>';  
                   }
                  
@@ -234,39 +234,33 @@ function deletePromptPopUp(url)
                           <form id="booktable" name="booktable" ACTION="modifyreservation" METHOD=post>
                                             
                           <div class="col-md-4">
-                            <h3>Date: </h3><input  type="text" value="'. explode(" ", $dtime)[0] .'" name="datetime" id="datepicker1">
+                            <h3>Date: </h3><input  type="text" value="'. explode(" ", $dtime)[0] .'" name="datetime" id="datepicker1" disabled>
                           </div>
                           <div class="col-md-4">
-                            <h3>Time:</h3><input type="text" value="'.explode(" ", $dtime)[1] .'" name="dinningtime">
+                            <h3>Time:</h3><input type="text" value="'.explode(" ", $dtime)[1] .'" name="dinningtime" disabled>
                             
                           </div>
                           <div class="col-md-4">
-                            <h3># of Guests: </h3><input type="text" name="numguest" value="'. $row[3].'">
+                            <h3># of Guests: </h3><input type="text" name="numguest" value="'. $row[3].'" disabled>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-12">
                             <h3>Special Request / Note:</h3>
-                            <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes.">'.$row[4].'</textarea>
+                            <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes." disabled>'.$row[4].'</textarea>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-12">
-                            <h3>Phone Number:</h3><input type="text" name="phone" value="'.$row[9].'">
+                            <h3>Phone Number:</h3><input type="text" name="phone" value="'.$row[9].'" disabled>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-12">
-                            <h3>Email Address:</h3>    <input type="text" name="email" value="'.$row[8].'" >  
+                            <h3>Email Address:</h3>    <input type="text" name="email" value="'.$row[8].'" disabled>  
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <h3>Customer\'s guest list</h3>
-                            <textarea name="invitationList" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes.">'.$row[6].'</textarea>
-                            <input type="hidden" name="reservationid" value="'.$row[0].'" >
-                          </div>
-                        </div>
+                        
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -276,6 +270,55 @@ function deletePromptPopUp(url)
                   </div>
                 </div>
                   ';
+                  echo '<div class="modal fade" id="approvereservationmodal'.$row[0].'" tabindex="-2" role="dialog" aria-labelledby="approvereservationmodal'.$row[0].'" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="label">Reject the reservation at ' . $row[10] .'</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <form id="rejectreservation" name="rejectreservation" ACTION="rejectreservation" METHOD=post>
+                                            
+                          <div class="col-md-4">
+                            <h3>Date: </h3><input  type="text" value="'. explode(" ", $dtime)[0] .'" name="datetime" id="datepicker1" disabled>
+                          </div>
+                          <div class="col-md-4">
+                            <h3>Time:</h3><input type="text" value="'.explode(" ", $dtime)[1] .'" name="dinningtime" disabled>
+                            
+                          </div>
+                          <div class="col-md-4">
+                            <h3># of Guests: </h3><input type="text" name="numguest" value="'. $row[3].'" disabled>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h3>Special Request / Note:</h3>
+                            <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes." disabled>'.$row[4].'</textarea>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h3>Customer Phone:</h3><input type="text" name="phone" value="'.$row[9].'" disabled>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h3>Reason (give any extra information to user):</h3>
+                            <textarea name="reason" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let user know the reason that reservation is rejected or just extra information for user.">'.$row[5].'</textarea>
+                            <input type="hidden" name="reservationid" value="'.$row[0].'" >
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button  type="submit" class="btn btn-primary" ">Confirm</button>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>';
                 }
                 $stmt = null;
 
