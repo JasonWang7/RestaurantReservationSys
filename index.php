@@ -64,11 +64,18 @@ $(document).ready(function(){
             <div class="row">
               <div class="col-md-4">
                 <label class="control-label"><b>Price Range:</b> </label>
-                <input type="text" class="form-control" name="priceRange" placeholder="$<num>-$<num>" id="card-number" placeholder="Enter max price">
+                  <select class="form-control" name="priceRange">
+                    <option></option>
+                    <option>1-10</option>
+                    <option>10-20</option>
+                    <option>20-30</option>
+                    <option>30-40</option>
+                    <option>40-50</option>
+                  </select>
               </div>
                             <div class="col-md-4">
                 <label class="control-label"><b>Rating:</b> </label>
-                  <select class="form-control">
+                  <select class="form-control" name="rating">
                     <option></option>
                     <option>1</option>
                     <option>2</option>
