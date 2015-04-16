@@ -4,21 +4,38 @@
 	include("include/header.php");
 	include_once($root.'model/attendance.php');
 	//check if user login, if user is from owner link
-	if(isset($_GET["id"])&& isset($_SESSION['sess_username'])&& strpos($_SERVER['HTTP_REFERER'],'manageaowner') !== false){
+	if(isset($_GET["id"])&&isset($_GET["rid"])&&isset($_GET["userid"])&& isset($_SESSION['sess_username'])&& strpos($_SERVER['HTTP_REFERER'],'manageaowner') !== false){
 		ob_start();
-		$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 		
-		include($root.'model/user.php');
-		include($root.'model/reservation.php'); 
+		
+		include_once($root.'model/user.php');
+		include_once($root.'model/reservation.php'); 
 		$idParam = $_GET["id"];
 		$reasonParam='';
 		
 		$reservationObj = new Reservation;
 		$isChanged = $reservationObj->acceptReservation($idParam,$reasonParam);
 		//update to attendance table
-		$
-		retriveAttendanceByReservationId
+		$attendanceObj = new attendance;
+		
+		$attendanceObj = $attendanceObj->retriveAttendanceByReservationId($idParam);
+		//check if it is not in attendance table, insert one
+		if($attendanceObj==null){
+			$attendanceObjtemp = new attendance;
+			$attendanceObjtemp->setReservationId($idParam);
+			$attendanceObjtemp->setUserId($_GET["userid"]);
+			$attendanceObjtemp->setRestaurantId($_GET["rid"]);
+			
+			if(!isset($_GET["eventid"])){
+				$attendanceObjtemp->setEventid(null);
+			}
+			else{
+				$attendanceObjtemp->setEventid($_GET["eventid"]);
+			}
+			
+			$attendanceObjtemp->insertAttendance();
 
+		}
 		//if($isChanged){
 			echo '<div class="row">
 			  <div class="col-12">  

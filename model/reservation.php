@@ -48,10 +48,16 @@ class Reservation{
     /*bind values to escape*/
     $stmt->bindParam(':reservationid', $idParam, PDO::PARAM_INT);    
     $stmt->execute();
-
-    $reserveObj= new Reservation;
-    $reserveObj = $stmt->fetchObject('Reservation');
-   
+    $numRow = 0;
+    $numRow =  $stmt->rowCount();
+    if($numRow>0){
+      
+      $reserveObj= new Reservation;
+      $reserveObj = $stmt->fetchObject('Reservation');
+    }
+    else{
+      $reserveObj = null;
+    }   
     $auth->closeconnection($dbconn);
     return $reserveObj;
   }

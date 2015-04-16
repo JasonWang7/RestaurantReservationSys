@@ -75,6 +75,36 @@ class attendance{
 		}
 		return $result;
 	}
+
+	/**
+	* delete attendacne
+	* @param reservation id
+	* @return true or false
+	*/
+	function deleteAttendance($reservationidParam)
+	{
+		$affectedRowCount=0;
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+		$query = 'DELETE from `eventattandance` WHERE `reservationid`=:reservationid;';
+		$stmt = $dbconn->prepare($query);
+		/*bind values to escape*/
+		
+		$stmt->bindValue(':reservationid', $reservationidParam);
+		
+		$result = $stmt->execute();
+		$affectedRowCount = $stmt->rowCount();
+		$auth->closeconnection($dbconn);
+
+		if($affectedRowCount>0){
+		  $this->setAttendanceStatus($statusParam);
+		  return true;
+		}
+		else{
+		  return false;
+		}
+		return $result;
+	}
 	/***select attendance by reservation id and user id***/
 	function retriveAttendanceById($reservationIdParam,$useIdParam){
 		$auth = new mysqldatabaserrs;
@@ -104,9 +134,15 @@ class attendance{
 		/*bind values to escape*/
 		$stmt->bindParam(':reservationid', $idParam, PDO::PARAM_INT);    
 		$stmt->execute();
-
-		$attendanceObj= new attendance;
-		$attendanceObj = $stmt->fetchObject('attendance');
+		$numRow = 0;
+		$numRow =  $stmt->rowCount();
+		if($numRow>0){
+			$attendanceObj= new attendance;
+			$attendanceObj = $stmt->fetchObject('attendance');
+		}
+		else{
+			$attendanceObj = null;
+		}
 
 		$auth->closeconnection($dbconn);
 		return $attendanceObj;
@@ -237,16 +273,19 @@ class attendance{
 
 			if($dd>$dt ){
 			  $actionbtn='<div class="btn-group">
-			          <a class="btn btn-success" href="acceptreservation?id='.$att->getReservationId().'" >Attended</a>
-			          <a class="btn btn-default" href="acceptreservation?id='.$att->getReservationId().'" >N/A</a>
-			          <a class="btn btn-primary" href="acceptreservation?id='.$att->getReservationId().'" >Missed</a>
+			          <a class="btn btn-success" href="attend?action=Attend&id='.$att->getReservationId().'&restid='.$att->getRestaurantId().
+			          '&userid='.$att->getUserId().'" >Attended</a>
+			          <a class="btn btn-default" href="attend?action=NA&id='.$att->getReservationId().'&restid='.$att->getRestaurantId().
+			          '&userid='.$att->getUserId().'" >N/A</a>
+			          <a class="btn btn-primary" href="attend?action=Miss&id='.$att->getReservationId().'&restid='.$att->getRestaurantId().
+			          '&userid='.$att->getUserId().'" >Missed</a>
 			        </div>';
 			}
 			else if($dd<$dt ){
 			  $actionbtn='<div class="btn-group">
-			          <a class="btn btn-success disabled" href="acceptreservation?id='.$att->getReservationId().'" >Attended</a>
-			          <a class="btn btn-default disabled" href="acceptreservation?id='.$att->getReservationId().'" >N/A</a>
-			          <a class="btn btn-primary disabled" href="acceptreservation?id='.$att->getReservationId().'" >Missed</a>
+			          <a class="btn btn-success disabled" href="attend?id='.$att->getReservationId().'" >Attended</a>
+			          <a class="btn btn-default disabled" href="attend?id='.$att->getReservationId().'" >N/A</a>
+			          <a class="btn btn-primary disabled" href="attend?id='.$att->getReservationId().'" >Missed</a>
 			        </div>';  
 			}
 

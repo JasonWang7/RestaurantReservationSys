@@ -165,7 +165,7 @@ function deletePromptPopUp(url)
                   
                 $auth = new mysqldatabaserrs;
                 $dbconn = $auth->connectdb();
-                $query = "select * from view_reservation_restaurant where userownwerid=:userownwerid order by dinningtime desc";
+                $query = "select * from view_reservation_restaurant where userownwerid=:userownwerid and reservationid not in (SELECT reservationid FROM `eventattandance` WHERE `attendancestatus`<> 'N/A') order by dinningtime desc";
                 try {
 
                 $stmt = $dbconn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -197,7 +197,7 @@ function deletePromptPopUp(url)
                 
                   if($dd>$dt ){
                       $actionbtn='<div class="btn-group">
-                              <a class="btn btn-success" href="acceptreservation?id='.$row[0].'" >Accept</a>
+                              <a class="btn btn-success" href="acceptreservation?id='.$row[0].'&userid='.$row[1].'&rid='.$row[2].'&eventid='.$row[17].'" >Accept</a>
                               <button type="button" class="btn btn-primary" href="#"  data-toggle="modal" data-target="#approvereservationmodal'.$row[0].'">Reject</button>
                             </div>';
                   }

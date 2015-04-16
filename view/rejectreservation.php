@@ -5,9 +5,9 @@
 	if(isset($_POST["reservationid"])&& isset($_SESSION['sess_username'])&& strpos($_SERVER['HTTP_REFERER'],'manageaowner') !== false){
 		ob_start();
 		$root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
-		
-		include($root.'model/user.php');
-		include($root.'model/reservation.php'); 
+		include_once($root.'model/attendance.php');
+		include_once($root.'model/user.php');
+		include_once($root.'model/reservation.php'); 
 		$idParam = $_POST["reservationid"];
 		$reasonParam='';
 		if(isset($_POST['reason'])){
@@ -16,6 +16,13 @@
 		$reservationObj = new Reservation;
 		$isChanged = $reservationObj->rejectReservation($idParam,$reasonParam);
 
+		$attendanceObj = new attendance;
+		$attendanceObj = $attendanceObj->retriveAttendanceByReservationId($idParam);
+		//check if it is not in attendance table, insert one
+		if($attendanceObj!=null){
+			$attendanceObjtemp = new attendance;			
+			$isDeleted = $attendanceObjtemp->deleteAttendance($idParam);
+		}
 		//if($isChanged){
 			echo '<div class="row">
 			  <div class="col-12">  
