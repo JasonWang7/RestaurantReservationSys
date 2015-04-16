@@ -20,16 +20,10 @@
 	<body>
 		<!-- container represents whole page -->
 		<div id="container">
-		
-			<div id="header">
-				<?php
-					include 'include/header.php';
-				?>
-			</div>
 			
 			<!--title-->
 			<div id="pageName">
-				<h2 class="white">Add a Dish</h2>
+				<h2>Add a Dish</h2>
 			</div>
 			
 			<div id="instructions">
@@ -40,22 +34,24 @@
 			
 			<!--main content of page-->
 			<div id="content" style="background-color:#fff;">
-				<form action="/RRS/addDishController?id=<?php echo $_GET["id"] ?>" method="post">
+				<form action="/RRS/controller/addDishController.php?id=<?php echo $_GET["id"] ?>" method="post">
 				
 					<!--all components of page where user enters data-->
 					<div id="input">
 						<div id="name">
 							<div id="nameText">
-								<h4 class="white">Name</h4>
+								<br>
+								<h4>Name</h4>
 							</div>
 							<input type="text" name="name" size=35 maxlength=35>
 						</div>
 						
 						<div id="price">
 							<div id="priceText">
-								<h4 class="white">Price</h4>
+								<br>
+								<h4>Price (eg. 4.50)</h4>
 							</div>
-							<input type="text" name="pricee" size=35 maxlength=35>
+							$ &nbsp <input type="text" name="price" size=35 maxlength=35>
 						</div>
 					</div>
 					
@@ -64,12 +60,6 @@
 						<div id="submit">
 							<input id="submitButton" type="submit" value="Submit"></input>	
 						</div>
-					</div>
-					
-					<div id="footer">
-						<?php
-							include 'include/footer.php';
-						?>
 					</div>
 				</form>
 			</div>

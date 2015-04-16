@@ -100,8 +100,8 @@ class signatureDish
 		}
 		else
 		{
-			/*$arr = $stmt->errorInfo();
-			print_r($arr);*/
+			$arr = $stmt->errorInfo();
+			print_r($arr);
 			
 			mysqldatabaserrs::closeconnection($dbconn);
 			
@@ -139,11 +139,6 @@ class signatureDish
 	function setDishName($param)
 	{
 		$this->dishName = $param;	
-	}
-	
-	function setRestaurantId($param)
-	{
-		$this->restaurantId = $param;	
 	}
 	
 	function setPrice($param)

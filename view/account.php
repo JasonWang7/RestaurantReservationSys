@@ -19,6 +19,10 @@ function deletePromptPopUp(url)
   popUp = window.open(url,'Delete Prompt','height=300,width=550,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
 }
 
+function addDishPopUp(url) 
+{
+  popUp = window.open(url,'Add Dish','height=432,width=550,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+}
 </script>
     
 <?php 
@@ -310,7 +314,7 @@ function deletePromptPopUp(url)
         ?>
                 <th></th>
                 <th>Add Dish</th>
-                <th></th>
+                <th>View Dishes</th>
                 <th>Edit</th>
                 <th>Remove</th>
               </tr>
@@ -321,11 +325,12 @@ function deletePromptPopUp(url)
           
           while ($i <= $numOwned)
           { 
-			$editButton = "<a class=\"btn btn-info\" href=\"/RRS/changeRestaurant?id=" . $restaurantIdList[$i] . "');\">";
+			$editButton = "<a class=\"btn btn-info\" href=\"/RRS/changeRestaurant?id=" . $restaurantIdList[$i] . "\">";
             $deleteButton = "<a class=\"btn btn-primary\" href=\"JavaScript:deletePromptPopUp('/RRS/deletePrompt?id=" . $restaurantIdList[$i] . "');\">";
-            $dishButton = "<a class=\"btn btn-default\" href=\"JavaScript:dishPopUp('/RRS/addDish?id=" . $restaurantIdList[$i] . "');\">";
+            $dishButton = "<a class=\"btn btn-default\" href=\"JavaScript:addDishPopUp('/RRS/addDish?id=" . $restaurantIdList[$i] . "');\">";
+			$viewDishButton = "<a class=\"btn btn-warning\" href=\"/RRS/viewDish?id=" . $restaurantIdList[$i] . "\">";
 			
-            echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td>'. $dishButton . '</td><td></td><td>' . $editButton .
+            echo '<tr><td>' . $restaurantNameList[$i] . '</td><td></td><td>'. $dishButton . '</td><td>' . $viewDishButton . '</td><td>' . $editButton .
             "</td><td>" . $deleteButton . "</td></tr>";
 
             $i = $i + 1;
