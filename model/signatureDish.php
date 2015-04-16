@@ -78,19 +78,14 @@ class signatureDish
 	
 	/**
 	* remove signature dish information in the database corresponding to a given 
-	* restaurant Id and dish name
+	* restaurant Id
 	* @return 1 on success, 0 otherwise
 	*/
-	function removeDishInfo($restaurantId, $dishName)
+	function removeDishInfo($restaurantId)
 	{
 		$dbconn = mysqldatabaserrs::connectdb();
-		
-		$query = "delete from signaturedish where restaurantid=:restaurantId and dishname=:dishName;";
+		$query = "delete from signaturedish where restaurantid=" . $restaurantId . ";";
 		$stmt = $dbconn->prepare($query);
-		
-		// bind class values to query values
-		$stmt->bindValue(':restaurantId', $restaurantId);	
-		$stmt->bindValue(':dishName', $dishName);		
 		
 		if ($stmt->execute())
 		{
