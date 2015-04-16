@@ -85,7 +85,6 @@ function addDishPopUp(url)
     <ul class="nav nav-tabs">
       <li class="active"><a href="#account" data-toggle="tab" aria-expanded="false">Account Details</a></li>
       <li class=""><a href="#reservations" data-toggle="tab" aria-expanded="true">Reservations</a></li>
-    <li class=""><a href="#restaurants" data-toggle="tab" aria-expanded="true">My Restaurants</a></li>
       <li class=""><a href="#Reviews" data-toggle="tab" aria-expanded="true">Reviews</a></li>
       <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Reward</a></li>
       <li class=""><a href="#history" data-toggle="tab" aria-expanded="true">History</a></li>
