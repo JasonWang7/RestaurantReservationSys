@@ -23,7 +23,7 @@
 			
 			<!--title-->
 			<div id="pageName">
-				<h2 class="white">Add a Dish</h2>
+				<h2>Add a Dish</h2>
 			</div>
 			
 			<div id="instructions">

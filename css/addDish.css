@@ -6,11 +6,6 @@
 * Created: April 11, 2015
 ******************************************************************************************/
 
-h2.white
-{
-	color: white;
-}
-
 h4.white
 {
 	color: white;
@@ -18,7 +13,6 @@ h4.white
 
 #pageName
 {
-	background-color: #3385FF;
 	padding: 6px 0px 0px 185px;
 }
 
@@ -39,30 +33,6 @@ h4.white
 	font-size: 105%;
 	width: 500px;
 	padding: 0px 0px 0px 0px;
-}
-
-#nameText
-{
-	background-color: #3385FF;
-	padding: 0px 0px 0px 15px;
-	width: 170px;
-}
-
-#name
-{
-	padding: 80px 0px 0px 0px;
-}
-
-#priceText
-{
-	background-color: #3385FF;
-	padding: 0px 0px 0px 15px;
-	width: 170px;
-}
-
-#price
-{
-	padding: 28px 0px 35px 0px;
 }
 
 #buttons
