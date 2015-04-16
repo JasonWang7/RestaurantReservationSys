@@ -172,7 +172,30 @@ class owner
 			return 0;
 		}
 	}
+	//check if user is the restaurant's owner
+	function isRestaurantOwner($restidParam,$userIdParam)
+	{
+		$auth = new mysqldatabaserrs;
+		$dbconn = $auth->connectdb();
+		$query = 'SELECT `ownerid` FROM `view_owner_ownership` WHERE `userId`=:userIdParam and `restaurantid`=:restidParam;';
+		$stmt = $dbconn->prepare($query);
+
+		/*bind values to escape*/
+		$stmt->bindParam(':userIdParam', $userIdParam, PDO::PARAM_INT);	
+		$stmt->bindParam(':restidParam', $restidParam, PDO::PARAM_INT);			
+		$stmt->execute();
+
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		if($result['ownerid']>0){
+			$auth->closeconnection($dbconn);
+			return $result['ownerid'];
+		}
+		$auth->closeconnection($dbconn);
+		return 0;
+	}
 	
+
 	//getter functions
 	function getOwnerId()
 	{

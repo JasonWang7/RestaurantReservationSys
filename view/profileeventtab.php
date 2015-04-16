@@ -14,8 +14,23 @@ $tableend="";
 //echo $userid;
 //echo '<pre>'.print_r($reviewlist, true).'</pre>'; 
 if(count($reviewlist)>0){
-	$tablehead =' <div class="row" style="padding:10px;">';
-    $tableend = '';  
+	$tablehead ='<div class="row">
+            <table class="table table-striped table-hover ">
+            <thead>
+              <tr>
+                <th>Review #</th>
+                <th>Restaurant Name</th>
+                <th>Comment</th>
+                <th>Overall Rating</th>
+                <th>Time Reviewed</th>
+                <th>Edit/View</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>';
+    $tableend = ' </tbody>
+          </table> 
+          </div>';  
     foreach($reviewlist as $r){
     	$tablebody = $tablebody.'<tr>' . '<td>' .$r->getReviewId() . '</td><td><a href="profile?id=' . $r->getRestaurantId(). '">'.$r->getRestaurantName().'</td><td>' .$r->getComment(). "</td><td>" . $r->getOverallExp() .
                 '</td><td>'.$r->getReviewTime().'</td><td><a class="btn btn-default" href="#"  data-toggle="modal" data-target="#reviewmodal'.$r->getReviewId().'">View</a></td>'.'<td><a class="btn btn-primary" href="deletereview?id='.$r->getReviewId().'" >Delete</a></td>'.'</tr>'.'</a>'.
