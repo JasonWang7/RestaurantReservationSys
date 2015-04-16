@@ -19,6 +19,10 @@ function deletePromptPopUp(url)
   popUp = window.open(url,'Delete Prompt','height=300,width=550,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
 }
 
+function addDishPopUp(url) 
+{
+  popUp = window.open(url,'Add Dish','height=432,width=550,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+}
 </script>
     
 <?php 
@@ -89,59 +93,62 @@ function deletePromptPopUp(url)
     <div id="myTabContent" class="tab-content" style="margin-left:20px;">
         <div class="tab-pane fade <?php if(isset($_GET['reservation'])==false){ echo 'active in'; } ?>" id="restaurants">
             <div class="row">
-                <table class="table table-striped table-hover ">
-                <thead>
-                  <tr>
-                    <th>Restaurant Name</th>
-            <?php 
-              $ownerSelector = new owner;
-              $ownershipSelector = new restaurantOwnership;
-              $restaurantSelector = new restaurant;
-              $i = 1;
-              $restaurantIdList = array_fill(1, 500, -1);
-              $restaurantNameList = array_fill(1, 500, -1);
-              
-              $ownerIdList = $ownerSelector->selectOwnersInfo($_SESSION['sess_user_id']);
-              $numOwned = $ownerIdList[1];
-              
-              while ($i <= $numOwned)
-              {
-                $restaurantIdList[$i] = $ownershipSelector->selectRestaurantId($ownerIdList[$i+1]);
-                $i = $i + 1;
-              }
-              
-              $i = 1;
-              
-              while ($i <= $numOwned)
-              {
-                $restaurantNameList[$i] = $restaurantSelector->selectRestaurantName($restaurantIdList[$i]);
-                $i = $i + 1;
-              }
-            ?>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>Edit</th>
-                    <th>Remove</th>
-                  </tr>
-                </thead>
-                <tbody>
-            <?php 
-              $i = 1;
-              
-              while ($i <= $numOwned)
-              { 
-                $deleteButton = "<a class=\"btn btn-primary\" href=\"JavaScript:deletePromptPopUp('/RRS/deletePrompt?id=" . $restaurantIdList[$i] . "');\">";
-                
-                echo '<tr>' . '<td>' . $restaurantNameList[$i] . '</td><td></td><td></td><td></td><td><a class="btn btn-info" href="/RRS/changeRestaurant?id=' . $restaurantIdList[$i] . '"' .
-                "</td><td>" . $deleteButton . "</td></tr>";
+            <table class="table table-striped table-hover ">
+            <thead>
+              <tr>
+                <th>Restaurant Name</th>
+        <?php 
+          $ownerSelector = new owner;
+          $ownershipSelector = new restaurantOwnership;
+          $restaurantSelector = new restaurant;
+          $i = 1;
+          $restaurantIdList = array_fill(1, 500, -1);
+          $restaurantNameList = array_fill(1, 500, -1);
+          
+          $ownerIdList = $ownerSelector->selectOwnersInfo($_SESSION['sess_user_id']);
+          $numOwned = $ownerIdList[1];
+          
+          while ($i <= $numOwned)
+          {
+            $restaurantIdList[$i] = $ownershipSelector->selectRestaurantId($ownerIdList[$i+1]);
+            $i = $i + 1;
+          }
+          
+          $i = 1;
+          
+          while ($i <= $numOwned)
+          {
+            $restaurantNameList[$i] = $restaurantSelector->selectRestaurantName($restaurantIdList[$i]);
+            $i = $i + 1;
+          }
+        ?>
+                <th></th>
+                <th>Add Dish</th>
+                <th>View Dishes</th>
+                <th>Edit</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+        <?php 
+          $i = 1;
+          
+          while ($i <= $numOwned)
+          { 
+			$editButton = "<a class=\"btn btn-info\" href=\"/RRS/changeRestaurant?id=" . $restaurantIdList[$i] . "\">";
+            $deleteButton = "<a class=\"btn btn-primary\" href=\"JavaScript:deletePromptPopUp('/RRS/deletePrompt?id=" . $restaurantIdList[$i] . "');\">";
+            $dishButton = "<a class=\"btn btn-default\" href=\"JavaScript:addDishPopUp('/RRS/addDish?id=" . $restaurantIdList[$i] . "');\">";
+			$viewDishButton = "<a class=\"btn btn-warning\" href=\"/RRS/viewDish?id=" . $restaurantIdList[$i] . "\">";
+			
+            echo '<tr><td>' . $restaurantNameList[$i] . '</td><td></td><td>'. $dishButton . '</td><td>' . $viewDishButton . '</td><td>' . $editButton .
+            "</td><td>" . $deleteButton . "</td></tr>";
 
-                $i = $i + 1;
-              } 
-            ?>
-                </tbody>
-              </table> 
-              </div>
+            $i = $i + 1;
+          } 
+        ?>
+            </tbody>
+          </table> 
+          </div>
         </div>
         
         <div class="tab-pane fade  <?php if(isset($_GET['reservation'])){ echo 'active in'; } ?> " id="reservations">

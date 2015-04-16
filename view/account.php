@@ -97,7 +97,7 @@ function addDishPopUp(url)
           $ownertempobjList  = $ownertempobj ->isOwnersInfo($_SESSION['sess_user_id']);
 
           if($ownertempobjList>0){ 
-              echo '<li class=""><a href="manageowner">Owner</a></li>';
+              echo '<li class=""><a href="manageaowner">Owner</a></li>';
           }           
         }
 
