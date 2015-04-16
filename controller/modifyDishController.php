@@ -25,6 +25,8 @@
 			
 			$upperBound = (count($_POST)/3) -1;
 			
+			$result1 = $dishSelector->removeDishInfo($restaurantId);
+			
 			for ($i = 0; $i < $upperBound; $i++)
 			{
 				$dishObj = new signatureDish;
@@ -34,7 +36,6 @@
 				$dishObj->setPrice($_POST["price" . ($i+1)]);
 				$dishObj->setRating($_POST["rating" . ($i+1)]);
 				
-				$result1 = $dishSelector->removeDishInfo($restaurantId, $_POST["dishName" . ($i+1)]);
 				$result2 = $dishObj->insertDishInfo();
 			}
 
@@ -48,7 +49,7 @@
 			{
 				echo "An error has occurred while editing the dishes. \n";
 				?> <br><br> <?php
-				echo "\n Please try again.";
+				echo "\n Please make sure that you have entered valid ratings.";
 			}
 		?>
 		

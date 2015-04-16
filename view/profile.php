@@ -1,12 +1,14 @@
 <?php 
-/****vince****/
+/****vince and Rhys****/
 error_reporting(0);
 $root = $_SERVER['DOCUMENT_ROOT'].'/RRS/';
 include($root."view/include/header.php"); 
 include($root ."util/database.class.php");
 include($root ."model/restaurantOwnership.php");
 include($root ."model/businessHour.php");
+include($root ."model/signatureDish.php");
 ?>
+
 <?php
 	//retrieve restaurant info
     $userObj = new user;
@@ -38,8 +40,7 @@ include($root ."model/businessHour.php");
     }
 
     $auth->closeconnection($dbconn);
-	
-	/******************** retrieve restaurant hours info (section written by Rhys Hall) *************************/
+
 	$sundayHoursObj = new businessHour;
 	$mondayHoursObj = new businessHour;
 	$tuesdayHoursObj = new businessHour;
@@ -57,10 +58,11 @@ include($root ."model/businessHour.php");
 	$fridayHoursObj = $selector->selectHoursInfo($id, "friday");
 	$saturdayHoursObj = $selector->selectHoursInfo($id, "saturday");
 	
-	/******************************** ending of section written by Rhys Hall *************************/
+	$dishSelector = new signatureDish;
+	$dishes = $dishSelector->selectAllDishes($id);
+
 ?>
 
-<!-------- displays pop-up that displays interface for user to enter ownership info into (section written by Rhys Hall) -------->
 <script type="text/javascript">
 
 function loginRequiredPopup(url) 
@@ -73,7 +75,6 @@ function ownerInfoPopup(url)
 	popUp = window.open(url,'Ownership Information','height=600,width=700,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
 }
 </script>
-<!--------------------------------- Ending of section written by Rhys Hall -------------------------------------------->
 
 <!-- Vincent Tieu created this page -->
 <!-- some things such as the tabbed pages are from the http://bootswatch.com/simplex/ examples -->
@@ -108,7 +109,6 @@ function ownerInfoPopup(url)
                   <h3>Payment Methods: Credit card, Cash</h3>
                 </div>
 				
-				<!-------- takes appropriate action for given restaurant's ownership (section written by Rhys Hall)-------->
 				<?php 
 					$_SESSION["restaurantId"] = $id;
 
@@ -163,7 +163,7 @@ function ownerInfoPopup(url)
   <li class=""><a href="#reviews" data-toggle="tab" aria-expanded="true">Reviews</a></li>
   <li class=""><a href="#events" data-toggle="tab" aria-expanded="true">Events</a></li>
   <li class=""><a href="#about" data-toggle="tab" aria-expanded="true">About</a></li>
-  <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Rate A Dish</a></li>
+  <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Rate Dish</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade" id="reviews">
@@ -204,29 +204,70 @@ function ownerInfoPopup(url)
   </div>
   <div class="tab-pane fade" id="rateadish">
     <div class="row" style="padding:10px;">
-      <div class="col-md-2">
-        <p><h4>Dish Name:</h4> Beef Stew</p>
+	<?php 
+		$dishCount = count($dishes);?>
+	
+		<div class="col-md-2">
+			<h4>Dish Name</h4>
+		</div>
+			
+		<div class="col-md-2">
+			<h4>Price</h4>
+		</div>
+			
+		<div class="col-md-2">
+			<h4>Rating</h4>
+		</div>
+			
+		<div class="col-md-6" style="floating:right;">
+			<h4>Rate Dish (from 1 to 5)</h4>   
+		</div>
+		<br><br>
+		
+		<form action="/RRS/controller/addRatingController.php" method="post">
+			<div>
+				<input type="hidden" name="restaurantId" value="<?php echo $id?>">
+			</div>
+		<?php
+			for ($i = 0; $i < $dishCount; $i++)
+			{?>
+				<input type="hidden" name="<?php echo "dishName" . ($i+1) ?>" value="<?php echo $dishes[$i][1]?>">
+				<input type="hidden" name="<?php echo "price" . ($i+1) ?>" value="<?php echo $dishes[$i][2]?>">
+				<input type="hidden" name="<?php echo "oldRating" . ($i+1) ?>" value="<?php echo $dishes[$i][3]?>">
+		
+				<div class="col-md-2">
+					<p><h6><?php echo $dishes[$i][1]?></h6></p>
+				</div>
+			
+				<div class="col-md-2">
+					<p><h6><?php echo "$" . $dishes[$i][2]?></h6></p>
+				</div>
+			
+				<div class="col-md-2">
+					<p><h6><?php echo $dishes[$i][3] . "/5"?></h6><p>
+				</div>
+			
+				<div class="col-md-6" style="floating:right;">
+					<p><input type="text" name="<?php echo "rating" . ($i+1) ?>" size=5 maxlength=1> / 5</input></p>
+				</div>
+			
+				<hr>
+				<div class="row">
+					<div class="col-md-1"></div>
+				</div> 
+				<br>
+				<?php
+			}
+		?>
+			<br><br>
+			<div class="col-md-2">
+				<div id="submit" style="padding: 0px 0px 0px 260px;">
+					<input id="submitButton" style="width: 80px; height: 32px;" type="submit" value="Confirm"></input>	
+				</div>
+			</div>
+		</form>
       </div>
-      <div class="col-md-2">
-        <p><h4>Rating:</h4> 5 / 5</p>
-      </div>
-      <div class="col-md-5">
-        <p><h4>Description:</h4> $14</p>
-      </div>
-      <div class="col-md-3" style="floating:right;">
-        <p><h4>Rate This Dish: [1] [2] [3] [4] [5]</h4></p>      
-      </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-md-10">
-      </div>
-      <div class="col-md-2">
-        <a style="position:relative; floating:right;" href="#" class="btn btn-primary" data-toggle="modal" data-target="#addfoodmodal">Add Food</a>
-      </div>
-    </div>
-  </div>
-</div>
+	</div>
 
 
 <div class="modal fade" id="addfoodmodal" tabindex="-1" role="dialog" aria-labelledby="addfoodmodal" aria-hidden="true">
