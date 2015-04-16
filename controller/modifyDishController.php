@@ -21,10 +21,10 @@
 			require_once($root.'model/signatureDish.php');
 			
 			$dishSelector = new signatureDish;
-			$restaurantId = $_GET["id"];
+			$restaurantId = $_POST["id"];
 			
-			$upperBound = count($_POST)/3;
-			echo $restaurantId;
+			$upperBound = (count($_POST)/3) -1;
+			
 			for ($i = 0; $i < $upperBound; $i++)
 			{
 				$dishObj = new signatureDish;
