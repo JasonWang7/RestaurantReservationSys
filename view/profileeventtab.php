@@ -40,7 +40,7 @@ if(count($reviewlist)>0){
     echo $renderbody;
 }
 else{
-	$renderbody="<h2>You haven't made any review yet!</h2>";
+	$renderbody="<h2>There currently aren't any events</h2>";
 	echo $renderbody;
 }
 

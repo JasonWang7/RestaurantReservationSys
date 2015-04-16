@@ -256,6 +256,7 @@ function ownerInfoPopup(url)
 				</div>
 			</div>
 		</form>
+
       </div>
 	</div>
 
@@ -453,6 +454,7 @@ function ownerInfoPopup(url)
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
      </form> 
+             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addfoodmodal">Add A Dish</a>
     </div>
   </div>
 </div>
