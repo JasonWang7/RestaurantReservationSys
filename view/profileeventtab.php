@@ -33,7 +33,7 @@ if(count($reviewlist)>0){
         <a class="btn btn-success" href="#">Book Event</a>
        	<br />
         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#">Subscribe</a>
-        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#">Unsubscrib<e/a>
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#">Unsubscribe</a>
         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modifyeventmodal">Modify</a>
         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modifyeventmodal">Delete</a>
       </div></div>';
