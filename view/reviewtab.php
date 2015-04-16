@@ -30,7 +30,7 @@ if(count($reviewlist)>0){
             <tbody>';
     $tableend = ' </tbody>
           </table> 
-          </div>';  
+          </div>';    
     foreach($reviewlist as $r){
     	$tablebody = $tablebody.'<tr>' . '<td>' .$r->getReviewId() . '</td><td><a href="profile?id=' . $r->getRestaurantId(). '">'.$r->getRestaurantName().'</td><td>' .$r->getComment(). "</td><td>" . $r->getOverallExp() .
                 '</td><td>'.$r->getReviewTime().'</td><td><a class="btn btn-default" href="#"  data-toggle="modal" data-target="#reviewmodal'.$r->getReviewId().'">View</a></td>'.'<td><a class="btn btn-primary" href="deletereview?id='.$r->getReviewId().'" >Delete</a></td>'.'</tr>'.'</a>'.

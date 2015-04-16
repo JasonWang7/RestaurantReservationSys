@@ -6,6 +6,7 @@ include($root."view/include/header.php");
 include($root ."util/database.class.php");
 include($root ."model/restaurantOwnership.php");
 include($root ."model/businessHour.php");
+include_once($root ."model/owner.php");
 include($root ."model/signatureDish.php");
 ?>
 
@@ -166,39 +167,28 @@ function ownerInfoPopup(url)
   <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Rate Dish</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade" id="reviews">
+  <div class="tab-pane fade" id="reviews">
     <?php include("reviewstab.php"); ?>
-    </div>
+  </div>
   <div class="tab-pane fade" id="events">
-    <div class="row" style="padding:10px;">
-      <div class="col-md-2" style="floating:right;">
-        <p><h4>Here</h4></p>      
-      </div>
-      <div class="col-md-2">
-        <p><h4>Event Name:</h4> Grand Opening</p>
-      </div>
-      <div class="col-md-2">
-        <p><h4>Time:</h4> 10PM - 11PM</p>
-      </div>
-      <div class="col-md-4">
-        <p><h4>Description:</h4> $14</p>
-      </div>
-      <div class="col-md-2">
-        <a href="#">Subscribe</a> / <a href="#">Unsubscribe</a>
-        <hr>
-        Implement with this. For backend - http://stackoverflow.com/questions/10488831/link-to-add-to-google-calendar
-        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Your+Event+Name&dates=20140127T224000Z/20140320T221500Z&details=For+details,+link+here:+http://www.example.com&location=Waldorf+Astoria,+301+Park+Ave+,+New+York,+NY+10022&sf=true&output=xml">Add Calendar</a><hr><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modifyeventmodal">Modify</a>
-      </div>
-    </div>
-    <hr>
     <div class="row">
       <div class="col-md-10">
       </div>
       <div class="col-md-2">
-        <a style="position:relative; floating:right;" href="#" class="btn btn-primary" data-toggle="modal" data-target="#eventmodal">Add Event</a>
+        <?php
+          $ownerObj = new owner;
+          $owneridval = $ownerObj->isRestaurantOwner($_GET['id'],$_SESSION["sess_user_id"]);
+          if($owneridval!=0){
+            echo '<a style="position:relative; floating:right;" href="#" class="btn btn-primary" data-toggle="modal" data-target="#eventmodal">Add Event</a>';
+          }
+        ?>        
       </div>
+       <hr>
+       <?php include("profileeventtab.php"); ?>
     </div>
   </div>
+
+    
   <div class="tab-pane fade" id="about">
     <p><?php echo $about ?>"</p>
   </div>
@@ -539,10 +529,14 @@ function ownerInfoPopup(url)
       </div>
       <div class="modal-body">
         <div class="row">
-          <form id="booktable" name="booktable" ACTION="verifyreservation" METHOD=post>
-                            
+          <form id="booktable" name="booktable" ACTION="createevent" METHOD=post enctype="multipart/form-data">
           <div class="col-md-4">
-            <h3>Date: </h3><input  type="text" placeholder="dd/mm/yyyy" name="datetime" id="datepicker1">
+            <h3>Event Name:</h3><input type="text" placeholder="" name="eventname">
+            
+          </div>                 
+          <div class="col-md-4">
+            <h3>Start Date: </h3><input  type="text" placeholder="dd/mm/yyyy" name="startdate" id="datepicker1">
+            <h3>End Date: </h3><input  type="text" placeholder="dd/mm/yyyy" name="enddate" id="datepicker1">
             <!-- Load jQuery and bootstrap datepicker scripts -->
           
             <script src="http://localhost/RRS/css/bootstrap/js/bootstrap-datepicker.js"></script>
@@ -558,30 +552,22 @@ function ownerInfoPopup(url)
             </script>
           </div>
           <div class="col-md-4">
-            <h3>Start/End Time:</h3><input type="text" placeholder="hh:mm" name="dinningtime">
-             - <input type="text" placeholder="hh:mm" name="dinningtime">
+            <h3>Start Time:</h3><input type="text" placeholder="hh:mm" name="starttime">
+             <h3>End Time:</h3><input type="text" placeholder="hh:mm" name="endtime">
             
           </div>
           <div class="col-md-4">
-            <h3>Picture: </h3> <input type="file" name="img">
+            <h3>Picture: </h3> <input type="file" name="eventimage" id="eventimage">
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <h3>Description:</h3>
-            <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
+            <textarea name="description" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
+            <?php echo '<input type="hidden" name="restid" value="'.$_GET["id"].'" >' ?>;
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h3>Your Phone Number:</h3><input type="text" name="phone">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h3>Your Email Address:</h3>    <input type="text" name="email">  
-          </div>
-        </div>
+       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

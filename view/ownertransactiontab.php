@@ -30,7 +30,7 @@ if(count($transactionlist)>0){
     foreach($transactionlist as $r){
       $tablebody = $tablebody.'<tr>' . '<td>' .$r->getTansactionId() . '</td><td><a href="profile?id=' . $r->getRestaurantId(). '">'.$r->getRestaurantName().'</td>'.
                 '<td>' .$r->getReservationId(). '</td>'.
-                '<td>'.$r->getLastName().' '.$r->getFirstName().'</td>'.
+                '<td>'.$r->getFirstName().' '.$r->getLastName().'</td>'.
                 '<td>' . $r->getAmount() .
                 '</td><td>'.$r->getDesicription().'</td>'.
                 '<td>'.$r->getTransactionTime().'</td>'.

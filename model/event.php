@@ -22,6 +22,12 @@ class event{
 		date_default_timezone_set('America/Toronto'); 
 		$attStatusVal ='N/A';
 		$dbconn = $auth->connectdb();
+		//convert to date string
+	    $date =date_create_from_format('d/m/Y H:i:s', $this->getEventTime());
+	    $startdate = date_format($date,'Y-m-d H:i:s');
+	    $date =date_create_from_format('d/m/Y H:i:s', $this->getEventEndTime());
+	    $enddate = date_format($date,'Y-m-d H:i:s');
+
 		$query = 'INSERT INTO `events`(`restaurantid`, `userId`, `eventname`,`eventdiscription`, `eventpictureurl`,`eventtime`,`eventendtime`)
 				 VALUES (:restaurantid,:userId,:eventname,:eventdiscription,:eventpictureurl,:eventtime,:eventendtime)';
 		$stmt = $dbconn->prepare($query);
@@ -32,8 +38,8 @@ class event{
 		$stmt->bindValue(':eventname',$this->getEventName());
 		$stmt->bindValue(':eventdiscription',$this->getEventDiscription());
 		$stmt->bindValue(':eventpictureurl',$this->getEventPictureUrl());
-		$stmt->bindValue(':eventtime',$this->getEventTime());
-		$stmt->bindValue(':eventendtime',$this->getEventEndTime());
+		$stmt->bindValue(':eventtime',$startdate);
+		$stmt->bindValue(':eventendtime',$enddate);
 		$stmt->execute();
 		
 		$affectedRowCount = $stmt->rowCount();		
