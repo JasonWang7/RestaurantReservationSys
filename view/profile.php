@@ -167,9 +167,9 @@ function ownerInfoPopup(url)
   <li class=""><a href="#rateadish" data-toggle="tab" aria-expanded="true">Rate Dish</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade" id="reviews">
+  <div class="tab-pane fade" id="reviews">
     <?php include("reviewstab.php"); ?>
-    </div>
+  </div>
   <div class="tab-pane fade" id="events">
     <div class="row">
       <div class="col-md-10">
@@ -181,14 +181,13 @@ function ownerInfoPopup(url)
           if($owneridval!=0){
             echo '<a style="position:relative; floating:right;" href="#" class="btn btn-primary" data-toggle="modal" data-target="#eventmodal">Add Event</a>';
           }
-        ?>
-        
+        ?>        
       </div>
+       <hr>
+       <?php include("profileeventtab.php"); ?>
     </div>
   </div>
-  <hr>
-    <?php include("profileeventtab.php"); ?>
-    </div>
+
     
   <div class="tab-pane fade" id="about">
     <p><?php echo $about ?>"</p>
