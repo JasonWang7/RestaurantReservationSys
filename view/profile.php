@@ -529,10 +529,14 @@ function ownerInfoPopup(url)
       </div>
       <div class="modal-body">
         <div class="row">
-          <form id="booktable" name="booktable" ACTION="verifyreservation" METHOD=post>
-                            
+          <form id="booktable" name="booktable" ACTION="createevent" METHOD=post enctype="multipart/form-data">
           <div class="col-md-4">
-            <h3>Date: </h3><input  type="text" placeholder="dd/mm/yyyy" name="datetime" id="datepicker1">
+            <h3>Event Name:</h3><input type="text" placeholder="" name="eventname">
+            
+          </div>                 
+          <div class="col-md-4">
+            <h3>Start Date: </h3><input  type="text" placeholder="dd/mm/yyyy" name="startdate" id="datepicker1">
+            <h3>End Date: </h3><input  type="text" placeholder="dd/mm/yyyy" name="enddate" id="datepicker1">
             <!-- Load jQuery and bootstrap datepicker scripts -->
           
             <script src="http://localhost/RRS/css/bootstrap/js/bootstrap-datepicker.js"></script>
@@ -548,30 +552,22 @@ function ownerInfoPopup(url)
             </script>
           </div>
           <div class="col-md-4">
-            <h3>Start/End Time:</h3><input type="text" placeholder="hh:mm" name="dinningtime">
-             - <input type="text" placeholder="hh:mm" name="dinningtime">
+            <h3>Start Time:</h3><input type="text" placeholder="hh:mm" name="starttime">
+             <h3>End Time:</h3><input type="text" placeholder="hh:mm" name="endtime">
             
           </div>
           <div class="col-md-4">
-            <h3>Picture: </h3> <input type="file" name="img">
+            <h3>Picture: </h3> <input type="file" name="eventimage" id="eventimage">
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <h3>Description:</h3>
-            <textarea name="note" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
+            <textarea name="description" style="overflow: hidden; word-wrap: break-word; resize: horizontal; width:100%; height: 100px;" placeholder="Let us know your special requests / notes."></textarea>
+            <?php echo '<input type="hidden" name="restid" value="'.$_GET["id"].'" >' ?>;
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h3>Your Phone Number:</h3><input type="text" name="phone">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h3>Your Email Address:</h3>    <input type="text" name="email">  
-          </div>
-        </div>
+       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
