@@ -6,6 +6,8 @@ include($root."view/include/header.php");
 include($root ."util/database.class.php");
 include($root ."model/restaurantOwnership.php");
 include($root ."model/businessHour.php");
+include_once($root ."model/owner.php");
+include($root ."model/signatureDish.php");
 ?>
 
 <?php
