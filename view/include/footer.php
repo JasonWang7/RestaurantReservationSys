@@ -27,7 +27,7 @@
 <a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Invite Friends</a> 
 
 <!-- "Events/Promotions" link -->
-<a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Events/Promotions</a> 
+<a href="" style="font-size: 15px; text-decoration: none">&nbsp &nbsp Events</a> 
 
 <!-- Style sheet obtained from http://bootsnipp.com/snippets/featured -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
