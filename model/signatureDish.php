@@ -100,8 +100,8 @@ class signatureDish
 		}
 		else
 		{
-			/*$arr = $stmt->errorInfo();
-			print_r($arr);*/
+			$arr = $stmt->errorInfo();
+			print_r($arr);
 			
 			mysqldatabaserrs::closeconnection($dbconn);
 			

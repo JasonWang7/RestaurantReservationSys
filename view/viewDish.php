@@ -27,7 +27,7 @@
 	  ?> 
 	<?php 
 		$count = count($dishes); ?>
-	
+		
 		<div name="title">
             <h4><?php echo htmlspecialchars("Dishes on Menu for " . $restaurantName);?></h4>
         </div>
@@ -35,7 +35,7 @@
 	<?php
 		for ($i = 0; $i < $count; $i++)
 		{?>
-      <form class="form-horizontal" role="form" action="/RRS/controller/modifyDishController.php?id=<?php echo htmlspecialchars($restaurantId) ?>" method="post">  
+      <form class="form-horizontal" role="form" action="/RRS/controller/modifyDishController.php?id=<?php echo $restaurantId; ?> method="post">  
           <div class="form-group">
             <label class="col-sm-3 control-label">Dish Name</label>
             <div class="col-sm-6">
@@ -45,13 +45,13 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">Price</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="price" value="<?php echo htmlspecialchars($dishes[$i][2]); ?>" size="15" maxlength="15" placeholder="">
+              <input type="text" class="form-control" name="<?php echo "price" . htmlspecialchars($i+1)?>" size="50" maxlength="50" value="<?php echo htmlspecialchars($dishes[$i][2]); ?>" placeholder=""" value="<?php echo htmlspecialchars($dishes[$i][2]); ?>" size="15" maxlength="15" placeholder="">
             </div>
           </div>
 		  <div class="form-group">
             <label class="col-sm-3 control-label">Rating</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="rating" readonly value="<?php echo htmlspecialchars($dishes[$i][3]) . "/5"; ?>" size="15" maxlength="15" placeholder="">
+              <input type="text" class="form-control" name="<?php echo "rating" . htmlspecialchars($i+1)?>" readonly value="<?php echo htmlspecialchars($dishes[$i][3]) . "/5"; ?>" size="15" maxlength="15" placeholder="">
             </div>
 			<br><br><br><br><br>
           </div>

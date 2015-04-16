@@ -21,14 +21,22 @@
 			require_once($root.'model/signatureDish.php');
 			
 			$dishSelector = new signatureDish;
-			$dishObj = new signatureDish;
 			$restaurantId = $_GET["id"];
 			
-			echo $_POST["dishName2"];
-			
-			/*
-			$dishObj->setDishName($_POST["dishName"]);
-			$dishObj->setPrice($_POST["price"]);
+			$upperBound = count($_POST)/3;
+			echo $restaurantId;
+			for ($i = 0; $i < $upperBound; $i++)
+			{
+				$dishObj = new signatureDish;
+				
+				$dishObj->setRestaurantId($restaurantId);
+				$dishObj->setDishName($_POST["dishName" . ($i+1)]); 
+				$dishObj->setPrice($_POST["price" . ($i+1)]);
+				$dishObj->setRating($_POST["rating" . ($i+1)]);
+				
+				$result1 = $dishSelector->removeDishInfo($restaurantId, $_POST["dishName" . ($i+1)]);
+				$result2 = $dishObj->insertDishInfo();
+			}
 
 			if (($result1 == 1) && ($result2 == 1))
 			{
@@ -41,7 +49,7 @@
 				echo "An error has occurred while editing the dishes. \n";
 				?> <br><br> <?php
 				echo "\n Please try again.";
-			}*/
+			}
 		?>
 		
 		<br><br><br>

@@ -325,10 +325,10 @@ function addDishPopUp(url)
           
           while ($i <= $numOwned)
           { 
-			$editButton = "<a class=\"btn btn-info\" href=\"/RRS/changeRestaurant?id=" . $restaurantIdList[$i] . "');\">";
+			$editButton = "<a class=\"btn btn-info\" href=\"/RRS/changeRestaurant?id=" . $restaurantIdList[$i] . "\">";
             $deleteButton = "<a class=\"btn btn-primary\" href=\"JavaScript:deletePromptPopUp('/RRS/deletePrompt?id=" . $restaurantIdList[$i] . "');\">";
             $dishButton = "<a class=\"btn btn-default\" href=\"JavaScript:addDishPopUp('/RRS/addDish?id=" . $restaurantIdList[$i] . "');\">";
-			$viewDishButton = "<a class=\"btn btn-warning\" href=\"/RRS/viewDish?id=" . $restaurantIdList[$i] . "');\">";
+			$viewDishButton = "<a class=\"btn btn-warning\" href=\"/RRS/viewDish?id=" . $restaurantIdList[$i] . "\">";
 			
             echo '<tr><td>' . $restaurantNameList[$i] . '</td><td></td><td>'. $dishButton . '</td><td>' . $viewDishButton . '</td><td>' . $editButton .
             "</td><td>" . $deleteButton . "</td></tr>";
