@@ -32,6 +32,8 @@ if(count($reviewlist)>0){
       <div class="col-md-2">
         <a class="btn btn-success" href="#">Book Event</a>
        	<br />
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#">Subscribe</a>
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#">Unsubscribe</a>
         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modifyeventmodal">Modify</a>
         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modifyeventmodal">Delete</a>
       </div></div>';
@@ -40,7 +42,7 @@ if(count($reviewlist)>0){
     echo $renderbody;
 }
 else{
-	$renderbody="<h2>You haven't made any review yet!</h2>";
+	$renderbody="<h2>There currently aren't any events</h2>";
 	echo $renderbody;
 }
 
