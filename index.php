@@ -136,7 +136,8 @@ $(document).ready(function(){
     
     while($row = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT))
     {
-      $data = '<tr>' . '<td>' . $row[0] . '</td><td><a href="profile?id=' . $row[0] . '">'.$row[3].'</td><td>' . $row[6] . "</td><td>" . $row[7] . '</td></tr>';
+	  $features = $row[6];
+      $data = '<tr>' . '<td>' . $row[0] . '</td><td><a href="profile?id=' . $row[0] . '">'.$row[3].'</td><td>' . strval($row[6]) . "</td><td>" . $row[7] . '</td></tr>';
       echo $data . '</a>';
     }
     $stmt = null;
